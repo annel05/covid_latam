@@ -79,16 +79,16 @@ async function drawScatter() {
   // 6. draw peripherals
   // TODO draw grid lines
   // TODO draw text for quadrants
-  const xAxisGenerator = d3.axisBottom().scale(xScale);
+  // const xAxisGenerator = d3.axisBottom().scale(xScale);
 
-  const xAxis = bounds
-    .append('g')
-    .call(xAxisGenerator)
-    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+  // const xAxis = bounds
+  //   .append('g')
+  //   .call(xAxisGenerator)
+  //   .style('transform', `translateY(${dimensions.boundedHeight}px)`);
 
-  const yAxisGenerator = d3.axisLeft().scale(yScale);
+  // const yAxisGenerator = d3.axisLeft().scale(yScale);
 
-  const yAxis = bounds.append('g').call(yAxisGenerator);
+  // const yAxis = bounds.append('g').call(yAxisGenerator);
 
   // 7. set up interactions
   // TODO on slider change, flip through the dates
