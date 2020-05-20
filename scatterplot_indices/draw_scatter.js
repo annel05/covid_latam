@@ -1,20 +1,27 @@
 async function drawScatter() {
   // 1. access data
-  let dataset = await d3.csv('./../data/mexico-20200508.csv');
+  let dataset = await d3.csv('./../data/mexico-20200519.csv');
 
   const xAccessor = d => d.avg_7d_mobility;
   const yAccessor = d => d.Policy_Index_Adjusted_Time;
   const stateNameAccessor = d => d.State_Name;
-  const dateParser = d3.timeParse('%d %b %y');
+  const dateParser = d3.timeParse('%d-%b-%y');
   const dateAccessor = d => dateParser(d.Date);
+  const dayAccessor = d => +d.Days;
 
-  const nestedDataset = d3
-    .nest()
-    .key(dateAccessor)
-    .key(stateNameAccessor)
-    .entries(dataset);
+  const latestDate = d3.max(dataset.map(dateAccessor));
+  const latestDay = d3.max(dataset.map(dayAccessor));
 
-  console.log(nestedDataset[0]);
+  // set slider maximum
+  let slider = d3.select('#myRange');
+  slider.attr('max', latestDay).attr('value', latestDay);
+
+  // const nestedDataset = d3
+  //   .nest()
+  //   .key(stateNameAccessor)
+  //   .entries(dataset);
+
+  // TODO set slider max based on dataset.Days - 1.
 
   // 2. create dimensions
   const width = d3.min([window.innerWidth * 0.9, window.innerHeight * 0.9]);
@@ -34,12 +41,47 @@ async function drawScatter() {
     dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
   // 3. draw canvas
+  const wrapper = d3
+    .select('#wrapper')
+    .append('svg')
+    .attr('width', dimensions.width)
+    .attr('height', dimensions.height);
+
+  const bounds = wrapper
+    .append('g')
+    .style(
+      'transform',
+      `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
+    );
 
   // 4. create scales
+  const xScale = d3
+    .scaleLinear()
+    .domain(d3.extent(dataset, xAccessor))
+    .range([0, dimensions.boundedWidth])
+    .nice();
+
+  const yScale = d3
+    .scaleLinear()
+    .domain(d3.extent(dataset, yAccessor))
+    .range([dimensions.boundedHeight, 0])
+    .nice();
+
   // 5. draw data
+  // TODO compute mean lines
+  // TODO draw quadrants
+  // TODO draw circles
+  // TODO draw mean lines
+
   // 6. draw peripherals
+  // TODO draw Axes
+  // TODO draw grid lines
+  // TODO draw text for quadrants
+
   // 7. set up interactions
-  let slider = d3.select('#myRange');
+  // TODO on slider change, flip through the dates
+  // TODO add tooltips
+
   slider.on('input', onSliderInput);
   function onSliderInput() {
     console.log(this.value);
