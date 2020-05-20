@@ -68,28 +68,37 @@ async function drawScatter() {
     .domain(d3.extent(dataset, yAccessor))
     .range([dimensions.boundedHeight, 0])
     .nice();
-  console.log(d3.extent(dataset, yAccessor));
 
   // 5. draw data
   // TODO compute mean lines
   // TODO draw quadrants
   // TODO draw circles
+  console.log(data);
+  const dots = bounds
+    .selectAll('circle')
+    .data(data.values)
+    .enter()
+    .append('circle')
+    .attr('cx', d => xScale(xAccessor(d)))
+    .attr('cy', d => yScale(yAccessor(d)))
+    .attr('r', 4)
+    .attr('fill', 'blue');
   // TODO draw mean lines
 
   // 6. draw peripherals
+
+  const xAxisGenerator = d3.axisBottom().scale(xScale);
+
+  const xAxis = bounds
+    .append('g')
+    .call(xAxisGenerator)
+    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+
+  const yAxisGenerator = d3.axisLeft().scale(yScale);
+
+  const yAxis = bounds.append('g').call(yAxisGenerator);
   // TODO draw grid lines
   // TODO draw text for quadrants
-  // const xAxisGenerator = d3.axisBottom().scale(xScale);
-
-  // const xAxis = bounds
-  //   .append('g')
-  //   .call(xAxisGenerator)
-  //   .style('transform', `translateY(${dimensions.boundedHeight}px)`);
-
-  // const yAxisGenerator = d3.axisLeft().scale(yScale);
-
-  // const yAxis = bounds.append('g').call(yAxisGenerator);
-
   // 7. set up interactions
   // TODO on slider change, flip through the dates
   // TODO add tooltips
