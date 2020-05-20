@@ -2,8 +2,8 @@ async function drawScatter() {
   // 1. access data
   let dataset = await d3.csv('./../data/mexico-20200519.csv');
 
-  const xAccessor = d => d.avg_7d_mobility;
-  const yAccessor = d => d.Policy_Index_Adjusted_Time;
+  const xAccessor = d => d.Policy_Index_Adjusted_Time;
+  const yAccessor = d => +d.avg_google_7d;
   const stateNameAccessor = d => d.State_Name;
   const dateParser = d3.timeParse('%d-%b-%y');
   const dateAccessor = d => dateParser(d.Date);
@@ -11,10 +11,12 @@ async function drawScatter() {
 
   const latestDate = d3.max(dataset.map(dateAccessor));
   const latestDay = d3.max(dataset.map(dayAccessor));
-
   // set slider maximum
   let slider = d3.select('#myRange');
   slider.attr('max', latestDay).attr('value', latestDay);
+
+  const nestedDataset = d3.nest().key(dayAccessor).entries(dataset);
+  let data = nestedDataset[latestDay - 1];
 
   // const nestedDataset = d3
   //   .nest()
@@ -57,7 +59,7 @@ async function drawScatter() {
   // 4. create scales
   const xScale = d3
     .scaleLinear()
-    .domain(d3.extent(dataset, xAccessor))
+    .domain([0, d3.max(dataset, xAccessor)])
     .range([0, dimensions.boundedWidth])
     .nice();
 
@@ -66,6 +68,7 @@ async function drawScatter() {
     .domain(d3.extent(dataset, yAccessor))
     .range([dimensions.boundedHeight, 0])
     .nice();
+  console.log(d3.extent(dataset, yAccessor));
 
   // 5. draw data
   // TODO compute mean lines
@@ -74,9 +77,18 @@ async function drawScatter() {
   // TODO draw mean lines
 
   // 6. draw peripherals
-  // TODO draw Axes
   // TODO draw grid lines
   // TODO draw text for quadrants
+  const xAxisGenerator = d3.axisBottom().scale(xScale);
+
+  const xAxis = bounds
+    .append('g')
+    .call(xAxisGenerator)
+    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+
+  const yAxisGenerator = d3.axisLeft().scale(yScale);
+
+  const yAxis = bounds.append('g').call(yAxisGenerator);
 
   // 7. set up interactions
   // TODO on slider change, flip through the dates
