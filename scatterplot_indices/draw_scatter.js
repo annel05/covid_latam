@@ -2,7 +2,7 @@ async function drawScatter() {
   // 1. access data
   let dataset = await d3.csv('./../data/mexico-20200519.csv');
 
-  const xAccessor = d => d.Policy_Index_Adjusted_Time;
+  const xAccessor = d => +d.Policy_Index_Adjusted_Time;
   const yAccessor = d => +d.avg_google_7d;
   const stateNameAccessor = d => d.State_Name;
   const dateParser = d3.timeParse('%d-%b-%y');
@@ -11,12 +11,13 @@ async function drawScatter() {
 
   const latestDate = d3.max(dataset.map(dateAccessor));
   const latestDay = d3.max(dataset.map(dayAccessor));
+  const firstDay = d3.min(dataset.map(dayAccessor));
   // set slider maximum
   let slider = d3.select('#myRange');
-  slider.attr('max', latestDay).attr('value', latestDay);
+  slider.attr('max', latestDay).attr('value', firstDay);
 
   const nestedDataset = d3.nest().key(dayAccessor).entries(dataset);
-  let data = nestedDataset[latestDay - 1];
+  let data = nestedDataset[4 - 1];
 
   // const nestedDataset = d3
   //   .nest()
@@ -59,21 +60,24 @@ async function drawScatter() {
   // 4. create scales
   const xScale = d3
     .scaleLinear()
-    .domain([0, d3.max(dataset, xAccessor)])
+    .domain(d3.extent(data.values, xAccessor))
     .range([0, dimensions.boundedWidth])
     .nice();
 
   const yScale = d3
     .scaleLinear()
-    .domain(d3.extent(dataset, yAccessor))
+    .domain(d3.extent(data.values, yAccessor))
     .range([dimensions.boundedHeight, 0])
     .nice();
-
   // 5. draw data
   // TODO compute mean lines
+  const meanX = d3.mean(data.values, xAccessor);
+  const meanY = d3.mean(data.values, yAccessor);
+  let meanXLatest = meanX,
+    meanYLatest = meanY;
+  console.log(meanXLatest, meanYLatest);
   // TODO draw quadrants
   // TODO draw circles
-  console.log(data);
   const dots = bounds
     .selectAll('circle')
     .data(data.values)
@@ -86,6 +90,24 @@ async function drawScatter() {
   // TODO draw mean lines
 
   // 6. draw peripherals
+  // TODO draw mean Lines
+  const meanLineX = bounds
+    .append('line')
+    .attr('x1', xScale(meanX))
+    .attr('x2', xScale(meanX))
+    .attr('y1', -15)
+    .attr('y2', dimensions.boundedHeight)
+    .attr('stroke', 'maroon')
+    .attr('stroke-dasharray', '2px 4px');
+
+  const meanLineY = bounds
+    .append('line')
+    .attr('y1', yScale(meanY))
+    .attr('y2', yScale(meanY))
+    .attr('x1', -15)
+    .attr('x2', dimensions.boundedWidth)
+    .attr('stroke', 'red')
+    .attr('stroke-dasharray', '2px 4px');
 
   const xAxisGenerator = d3.axisBottom().scale(xScale);
 
@@ -94,7 +116,10 @@ async function drawScatter() {
     .call(xAxisGenerator)
     .style('transform', `translateY(${dimensions.boundedHeight}px)`);
 
-  const yAxisGenerator = d3.axisLeft().scale(yScale);
+  const yAxisGenerator = d3
+    .axisLeft()
+    .scale(yScale)
+    .tickFormat(d => d + '%');
 
   const yAxis = bounds.append('g').call(yAxisGenerator);
   // TODO draw grid lines
@@ -103,9 +128,32 @@ async function drawScatter() {
   // TODO on slider change, flip through the dates
   // TODO add tooltips
 
-  slider.on('input', onSliderInput);
-  function onSliderInput() {
+  slider.on('input', changeDate);
+  function changeDate() {
     console.log(this.value);
+    data = nestedDataset[this.value - 1];
+
+    // update scales
+    xScale.domain(d3.extent(data.values, xAccessor));
+    yScale.domain(d3.extent(data.values, yAccessor));
+
+    // update axes
+    xAxis.call(xAxisGenerator);
+    yAxis.call(yAxisGenerator);
+
+    // update means
+    const meanX = d3.mean(data.values, xAccessor);
+    const meanY = d3.mean(data.values, yAccessor);
+
+    // update mean lines
+    meanLineX.attr('x1', xScale(meanX)).attr('x2', xScale(meanX));
+    meanLineY.attr('y1', yScale(meanY)).attr('y2', yScale(meanY));
+
+    // update circles
+    bounds
+      .selectAll('circle')
+      .attr('cx', d => xScale(xAccessor(d)))
+      .attr('cy', d => yScale(yAccessor(d)));
   }
 }
 drawScatter();
