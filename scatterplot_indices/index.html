@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scatterplot Indices</title>
-    <link rel="stylesheet" href="./slider.css" />
+    <style>
+      .meanX,
+      .meanY {
+        stroke: grey;
+        stroke-width: 3px;
+        stroke-dasharray: 4px 2px;
+      }
+    </style>
   </head>
   <body>
-    <div class="slide_container">
-      <input type="range" min="1" class="slider" id="myRange" />
+    <div>
+      <input type="range" min="1" id="date_range" />
     </div>
     <figure id="wrapper"></figure>
     <script src="./../d3.v5.js"></script>
-    <!-- <script src="./slider.js"></script> -->
     <script src="./draw_scatter.js" charset="UTF-8"></script>
   </body>
 </html>

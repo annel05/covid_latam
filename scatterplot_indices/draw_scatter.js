@@ -4,30 +4,26 @@ async function drawScatter() {
 
   const xAccessor = d => +d.Policy_Index_Adjusted_Time;
   const yAccessor = d => +d.avg_google_7d;
-  const stateNameAccessor = d => d.State_Name;
-  const dateParser = d3.timeParse('%d-%b-%y');
-  const dateAccessor = d => dateParser(d.Date);
+  // const dateParser = d3.timeParse('%d-%b-%y');
+  // const dateAccessor = d => dateParser(d.Date);
   const dayAccessor = d => +d.Days;
 
   const latestDate = d3.max(dataset.map(dateAccessor));
   const latestDay = d3.max(dataset.map(dayAccessor));
   const firstDay = d3.min(dataset.map(dayAccessor));
+
   // set slider maximum
-  let slider = d3.select('#myRange');
-  slider.attr('max', latestDay).attr('value', firstDay);
+  let slider = d3.select('#date_range');
+  slider.attr('max', latestDay).attr('value', latestDay);
+
+  const updateTransition = d3.transition().duration(600);
 
   const nestedDataset = d3.nest().key(dayAccessor).entries(dataset);
-  let data = nestedDataset[4 - 1];
-
-  // const nestedDataset = d3
-  //   .nest()
-  //   .key(stateNameAccessor)
-  //   .entries(dataset);
-
-  // TODO set slider max based on dataset.Days - 1.
+  let data = nestedDataset[latestDay - 1];
 
   // 2. create dimensions
   const width = d3.min([window.innerWidth * 0.9, window.innerHeight * 0.9]);
+
   let dimensions = {
     width: width,
     height: width,
@@ -35,9 +31,10 @@ async function drawScatter() {
       top: 10,
       right: 10,
       bottom: 50,
-      left: 50,
+      left: 60,
     },
   };
+
   dimensions.boundedWidth =
     dimensions.width - dimensions.margin.left - dimensions.margin.right;
   dimensions.boundedHeight =
@@ -57,6 +54,32 @@ async function drawScatter() {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
+  // initialize static elements
+  bounds.append('line').attr('class', 'meanX');
+  bounds.append('line').attr('class', 'meanY');
+  bounds
+    .append('g')
+    .attr('class', 'x_axis')
+    .style('transform', `translateY(${dimensions.boundedHeight}px)`)
+    .append('text')
+    .attr('class', 'x_axis_label')
+    .attr('x', dimensions.boundedWidth / 2)
+    .attr('y', dimensions.margin.bottom - 10)
+    .attr('fill', 'black')
+    .style('text-anchor', 'middle')
+    .style('font-size', '1.4em');
+  bounds
+    .append('g')
+    .attr('class', 'y_axis')
+    .append('text')
+    .attr('class', 'y_axis_label')
+    .attr('x', -dimensions.boundedHeight / 2)
+    .attr('y', -dimensions.margin.left + 10)
+    .style('transform', 'rotate(-90deg)')
+    .attr('fill', 'black')
+    .style('text-anchor', 'middle')
+    .style('font-size', '1.4em');
+
   // 4. create scales
   const xScale = d3
     .scaleLinear()
@@ -69,91 +92,116 @@ async function drawScatter() {
     .domain(d3.extent(data.values, yAccessor))
     .range([dimensions.boundedHeight, 0])
     .nice();
+
   // 5. draw data
-  // TODO compute mean lines
-  const meanX = d3.mean(data.values, xAccessor);
-  const meanY = d3.mean(data.values, yAccessor);
-  let meanXLatest = meanX,
-    meanYLatest = meanY;
-  console.log(meanXLatest, meanYLatest);
-  // TODO draw quadrants
-  // TODO draw circles
-  const dots = bounds
-    .selectAll('circle')
-    .data(data.values)
-    .enter()
-    .append('circle')
-    .attr('cx', d => xScale(xAccessor(d)))
-    .attr('cy', d => yScale(yAccessor(d)))
-    .attr('r', 4)
-    .attr('fill', 'blue');
-  // TODO draw mean lines
+  const drawDots = _dataset => {
+    const dots = bounds.selectAll('circle').data(_dataset);
+    const newDots = dots
+      .enter()
+      .append('circle')
+      .attr('r', 0)
+      .attr('cx', d => xScale(xAccessor(d)))
+      .attr('cy', d => yScale(yAccessor(d)))
+      .attr('fill', '#f2f2f2')
+      .attr('stroke', '#333333');
 
-  // 6. draw peripherals
-  // TODO draw mean Lines
-  const meanLineX = bounds
-    .append('line')
-    .attr('x1', xScale(meanX))
-    .attr('x2', xScale(meanX))
-    .attr('y1', -15)
-    .attr('y2', dimensions.boundedHeight)
-    .attr('stroke', 'maroon')
-    .attr('stroke-dasharray', '2px 4px');
+    const allDots = newDots.merge(dots);
 
-  const meanLineY = bounds
-    .append('line')
-    .attr('y1', yScale(meanY))
-    .attr('y2', yScale(meanY))
-    .attr('x1', -15)
-    .attr('x2', dimensions.boundedWidth)
-    .attr('stroke', 'red')
-    .attr('stroke-dasharray', '2px 4px');
+    allDots
+      .attr('cx', d => xScale(xAccessor(d)))
+      .attr('cy', d => yScale(yAccessor(d)))
+      .attr('r', 10);
+
+    const oldDots = dots
+      .exit()
+      .attr('fill', 'red')
+      .transition(updateTransition)
+      .attr('r', 0)
+      .remove();
+  };
+  drawDots(data.values);
+
+  // 6. Draw peripherals
+  const drawMean = _dataset => {
+    const meanX = d3.mean(_dataset, xAccessor);
+    const meanY = d3.mean(_dataset, yAccessor);
+
+    const meanLineX = bounds
+      .selectAll('.meanX')
+      .attr('x1', xScale(meanX))
+      .attr('x2', xScale(meanX))
+      .attr('y1', -20)
+      .attr('y2', dimensions.boundedHeight);
+
+    const meanLineY = bounds
+      .selectAll('.meanY')
+      .attr('y1', xScale(meanX))
+      .attr('y2', xScale(meanX))
+      .attr('x1', -20)
+      .attr('x2', dimensions.boundedWidth);
+  };
+
+  drawMean(data.values);
 
   const xAxisGenerator = d3.axisBottom().scale(xScale);
 
   const xAxis = bounds
-    .append('g')
-    .call(xAxisGenerator)
-    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+    .select('.x_axis')
+    .transition(updateTransition)
+    .call(xAxisGenerator);
+
+  const xAxisLabel = xAxis
+    .select('.x_axis_label')
+    .text('Indice de adopcion de politicas');
 
   const yAxisGenerator = d3
     .axisLeft()
     .scale(yScale)
     .tickFormat(d => d + '%');
 
-  const yAxis = bounds.append('g').call(yAxisGenerator);
-  // TODO draw grid lines
-  // TODO draw text for quadrants
-  // 7. set up interactions
-  // TODO on slider change, flip through the dates
-  // TODO add tooltips
+  const yAxis = bounds
+    .select('.y_axis')
+    .transition(updateTransition)
+    .call(yAxisGenerator);
 
-  slider.on('input', changeDate);
-  function changeDate() {
-    console.log(this.value);
-    data = nestedDataset[this.value - 1];
+  const yAxisLabel = yAxis
+    .select('.y_axis_label')
+    .text('Porcentaje de caída de la movilidad');
 
-    // update scales
-    xScale.domain(d3.extent(data.values, xAccessor));
-    yScale.domain(d3.extent(data.values, yAccessor));
+  // const yAxis = bounds.append('g').call(yAxisGenerator);
+  // // TODO draw grid lines
+  // // TODO draw text for quadrants
+  // // 7. set up interactions
+  // // TODO on slider change, flip through the dates
+  // // TODO add tooltips
 
-    // update axes
-    xAxis.call(xAxisGenerator);
-    yAxis.call(yAxisGenerator);
+  // slider.on('input', changeDate);
+  // function changeDate() {
+  //   console.log(this.value);
+  //   data = nestedDataset[this.value - 1];
 
-    // update means
-    const meanX = d3.mean(data.values, xAccessor);
-    const meanY = d3.mean(data.values, yAccessor);
+  //   // update scales
+  //   xScale.domain(d3.extent(data.values, xAccessor));
+  //   yScale.domain(d3.extent(data.values, yAccessor));
 
-    // update mean lines
-    meanLineX.attr('x1', xScale(meanX)).attr('x2', xScale(meanX));
-    meanLineY.attr('y1', yScale(meanY)).attr('y2', yScale(meanY));
+  //   // update axes
+  //   xAxis.transition(updateTransition).call(xAxisGenerator);
+  //   yAxis.transition(updateTransition).call(yAxisGenerator);
 
-    // update circles
-    bounds
-      .selectAll('circle')
-      .attr('cx', d => xScale(xAccessor(d)))
-      .attr('cy', d => yScale(yAccessor(d)));
-  }
+  //   // update means
+  //   const meanX = d3.mean(data.values, xAccessor);
+  //   const meanY = d3.mean(data.values, yAccessor);
+
+  //   // update mean lines
+  //   meanLineX.attr('x1', xScale(meanX)).attr('x2', xScale(meanX));
+  //   meanLineY.attr('y1', yScale(meanY)).attr('y2', yScale(meanY));
+
+  //   // update circles
+  //   bounds
+  //     .selectAll('circle')
+  //     .transition(updateTransition)
+  //     .attr('cx', d => xScale(xAccessor(d)))
+  //     .attr('cy', d => yScale(yAccessor(d)));
+  // }
 }
 drawScatter();
