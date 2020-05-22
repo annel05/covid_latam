@@ -4,11 +4,11 @@ async function drawScatter() {
 
   const xAccessor = d => +d.Policy_Index_Adjusted_Time;
   const yAccessor = d => +d.avg_google_7d;
+  // TODO use dateAccessor for slider
   // const dateParser = d3.timeParse('%d-%b-%y');
   // const dateAccessor = d => dateParser(d.Date);
   const dayAccessor = d => +d.Days;
 
-  const latestDate = d3.max(dataset.map(dateAccessor));
   const latestDay = d3.max(dataset.map(dayAccessor));
   const firstDay = d3.min(dataset.map(dayAccessor));
 
@@ -55,8 +55,12 @@ async function drawScatter() {
     );
 
   // initialize static elements
-  bounds.append('line').attr('class', 'meanX');
-  bounds.append('line').attr('class', 'meanY');
+  bounds.append('rect').attr('class', 'upper_left quadrant');
+  bounds.append('rect').attr('class', 'upper_right quadrant');
+  bounds.append('rect').attr('class', 'lower_left quadrant');
+  bounds.append('rect').attr('class', 'lower_right quadrant ');
+  bounds.append('line').attr('class', 'mean_x');
+  bounds.append('line').attr('class', 'mean_y');
   bounds
     .append('g')
     .attr('class', 'x_axis')
@@ -110,7 +114,7 @@ async function drawScatter() {
     allDots
       .attr('cx', d => xScale(xAccessor(d)))
       .attr('cy', d => yScale(yAccessor(d)))
-      .attr('r', 10);
+      .attr('r', 7);
 
     const oldDots = dots
       .exit()
@@ -122,52 +126,99 @@ async function drawScatter() {
   drawDots(data.values);
 
   // 6. Draw peripherals
-  const drawMean = _dataset => {
-    const meanX = d3.mean(_dataset, xAccessor);
-    const meanY = d3.mean(_dataset, yAccessor);
+  const meanX = d3.mean(data.values, xAccessor);
+  const meanY = d3.mean(data.values, yAccessor);
 
+  const drawMean = _dataset => {
     const meanLineX = bounds
-      .selectAll('.meanX')
+      .selectAll('.mean_x')
       .attr('x1', xScale(meanX))
       .attr('x2', xScale(meanX))
-      .attr('y1', -20)
+      .attr('y1', 0)
       .attr('y2', dimensions.boundedHeight);
 
     const meanLineY = bounds
-      .selectAll('.meanY')
-      .attr('y1', xScale(meanX))
-      .attr('y2', xScale(meanX))
-      .attr('x1', -20)
+      .selectAll('.mean_y')
+      .attr('y1', yScale(meanY))
+      .attr('y2', yScale(meanY))
+      .attr('x1', 0)
       .attr('x2', dimensions.boundedWidth);
   };
 
   drawMean(data.values);
 
-  const xAxisGenerator = d3.axisBottom().scale(xScale);
+  const drawAxes = _dataset => {
+    const xAxisGenerator = d3.axisBottom().scale(xScale);
 
-  const xAxis = bounds
-    .select('.x_axis')
-    .transition(updateTransition)
-    .call(xAxisGenerator);
+    const xAxis = bounds
+      .select('.x_axis')
+      .transition(updateTransition)
+      .call(xAxisGenerator);
 
-  const xAxisLabel = xAxis
-    .select('.x_axis_label')
-    .text('Indice de adopcion de politicas');
+    const xAxisLabel = xAxis
+      .select('.x_axis_label')
+      .text('Indice de adopcion de politicas');
 
-  const yAxisGenerator = d3
-    .axisLeft()
-    .scale(yScale)
-    .tickFormat(d => d + '%');
+    const yAxisGenerator = d3
+      .axisLeft()
+      .scale(yScale)
+      .tickFormat(d => d + '%');
 
-  const yAxis = bounds
-    .select('.y_axis')
-    .transition(updateTransition)
-    .call(yAxisGenerator);
+    const yAxis = bounds
+      .select('.y_axis')
+      .transition(updateTransition)
+      .call(yAxisGenerator);
 
-  const yAxisLabel = yAxis
-    .select('.y_axis_label')
-    .text('Porcentaje de caída de la movilidad');
+    const yAxisLabel = yAxis
+      .select('.y_axis_label')
+      .text('Porcentaje de caída de la movilidad');
+  };
 
+  drawAxes(data.values);
+
+  const drawQuadrants = _dataset => {
+    const lower_left = '#F3B9A2';
+    const lower_right = '#488D81';
+
+    const upper_left = bounds
+      .select('.upper_left')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', xScale(meanX))
+      .attr('height', yScale(meanY));
+
+    const upper_right = bounds
+      .select('.upper_right')
+      .attr('x', xScale(meanX))
+      .attr('y', 0)
+      .attr('width', dimensions.boundedWidth - xScale(meanX))
+      .attr('height', yScale(meanY));
+    upper_right.transition(updateTransition).attr('fill', '#56AD9E');
+
+    upper_left.transition(updateTransition).attr('fill', '#E97F63');
+
+    bounds;
+
+    bounds
+      .select('.lower_left')
+      .transition(updateTransition)
+      .attr('x', 0)
+      .attr('y', yScale(meanY))
+      .attr('width', xScale(meanX))
+      .attr('height', dimensions.boundedHeight - yScale(meanY))
+      .attr('fill', lower_left);
+
+    bounds
+      .select('.lower_right')
+      .transition(updateTransition)
+      .attr('x', xScale(meanX))
+      .attr('y', yScale(meanY))
+      .attr('width', dimensions.boundedWidth - xScale(meanX))
+      .attr('height', dimensions.boundedHeight - yScale(meanY))
+      .attr('fill', lower_right);
+  };
+  drawQuadrants(data.values);
+  console.log(d3.select('.upper_left'), d3.select('.mean_y'));
   // const yAxis = bounds.append('g').call(yAxisGenerator);
   // // TODO draw grid lines
   // // TODO draw text for quadrants
