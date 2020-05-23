@@ -17,7 +17,7 @@ async function drawScatter() {
 
   const updateTransition = d3.transition().duration(600);
 
-  const nestedDataset = d3.nest().key(dayAccessor).entries(dataset);
+  let nestedDataset = d3.nest().key(dayAccessor).entries(dataset);
   let data = nestedDataset[latestDay - 1];
 
   // 2. create dimensions
@@ -219,17 +219,18 @@ async function drawScatter() {
   drawQuadrants(data.values);
 
   // 7. add interactivity
-  slider.on('input', changeDay);
-  function changeDay() {
-    console.log(this.value);
-    const newDataset = nestedDataset[this.value - 1];
+  // slider.on('input', changeDay);
+  // function changeDay() {
+  //   console.log(this.value);
+  //   const newDataset = nestedDataset[this.value - 1];
 
-    xScale.domain(d3.extent(newDataset, xAccessor));
-    yScale.domain(d3.extent(newDataset, yAccessor));
-    // TODO Update dots
-    // TODO Update Axes
-    // TODO Update Mean Lines
-    // TODO Update quadrants
-  }
+  //   xScale.domain(d3.extent(newDataset, xAccessor));
+  //   yScale.domain(d3.extent(newDataset, yAccessor));
+  //   drawAxes(newDataset);
+  //   // TODO Update dots
+  //   // TODO Update Axes
+  //   // TODO Update Mean Lines
+  //   // TODO Update quadrants
+  // }
 }
 drawScatter();
