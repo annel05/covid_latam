@@ -4,9 +4,8 @@ async function drawScatter() {
 
   const xAccessor = d => +d.Policy_Index_Adjusted_Time;
   const yAccessor = d => +d.avg_google_7d;
-  // TODO use dateAccessor for slider
-  // const dateParser = d3.timeParse('%d-%b-%y');
-  // const dateAccessor = d => dateParser(d.Date);
+  const dateParser = d3.timeParse('%d-%b-%y');
+  const dateAccessor = d => dateParser(d.Date);
   const dayAccessor = d => +d.Days;
 
   const latestDay = d3.max(dataset.map(dayAccessor));
@@ -68,7 +67,7 @@ async function drawScatter() {
     .append('text')
     .attr('class', 'x_axis_label')
     .attr('x', dimensions.boundedWidth / 2)
-    .attr('y', dimensions.margin.bottom - 10)
+    .attr('y', dimensions.margin.bottom - 15)
     .attr('fill', 'black')
     .style('text-anchor', 'middle')
     .style('font-size', '1.4em');
@@ -148,13 +147,17 @@ async function drawScatter() {
   drawMean(data.values);
 
   const drawAxes = _dataset => {
-    const xAxisGenerator = d3.axisBottom().scale(xScale);
+    const xAxisGenerator = d3
+      .axisBottom()
+      .scale(xScale)
+      .tickSize(-dimensions.boundedWidth - dimensions.margin.top);
 
     const xAxis = bounds
       .select('.x_axis')
       .transition(updateTransition)
       .call(xAxisGenerator);
 
+    xAxis.selectAll('g.tick text').attr('dy', '1.25em');
     const xAxisLabel = xAxis
       .select('.x_axis_label')
       .text('Indice de adopcion de politicas');
@@ -162,7 +165,8 @@ async function drawScatter() {
     const yAxisGenerator = d3
       .axisLeft()
       .scale(yScale)
-      .tickFormat(d => d + '%');
+      .tickFormat(d => d + '%')
+      .tickSize(-(dimensions.width + dimensions.margin.left));
 
     const yAxis = bounds
       .select('.y_axis')
@@ -177,9 +181,6 @@ async function drawScatter() {
   drawAxes(data.values);
 
   const drawQuadrants = _dataset => {
-    const lower_left = '#F3B9A2';
-    const lower_right = '#488D81';
-
     const upper_left = bounds
       .select('.upper_left')
       .attr('x', 0)
@@ -197,26 +198,38 @@ async function drawScatter() {
 
     upper_left.transition(updateTransition).attr('fill', '#E97F63');
 
-    bounds;
-
-    bounds
+    const lower_left = bounds
       .select('.lower_left')
-      .transition(updateTransition)
       .attr('x', 0)
       .attr('y', yScale(meanY))
       .attr('width', xScale(meanX))
-      .attr('height', dimensions.boundedHeight - yScale(meanY))
-      .attr('fill', lower_left);
+      .attr('height', dimensions.boundedHeight - yScale(meanY));
 
-    bounds
+    lower_left.transition(updateTransition).attr('fill', '#F3B9A2');
+
+    const lower_right = bounds
       .select('.lower_right')
-      .transition(updateTransition)
       .attr('x', xScale(meanX))
       .attr('y', yScale(meanY))
       .attr('width', dimensions.boundedWidth - xScale(meanX))
-      .attr('height', dimensions.boundedHeight - yScale(meanY))
-      .attr('fill', lower_right);
+      .attr('height', dimensions.boundedHeight - yScale(meanY));
+
+    lower_right.transition(updateTransition).attr('fill', '#488D81');
   };
   drawQuadrants(data.values);
+
+  // 7. add interactivity
+  slider.on('input', changeDay);
+  function changeDay() {
+    console.log(this.value);
+    const newDataset = nestedDataset[this.value - 1];
+
+    xScale.domain(d3.extent(newDataset, xAccessor));
+    yScale.domain(d3.extent(newDataset, yAccessor));
+    // TODO Update dots
+    // TODO Update Axes
+    // TODO Update Mean Lines
+    // TODO Update quadrants
+  }
 }
 drawScatter();
