@@ -1,6 +1,8 @@
 async function drawScatter() {
   // 1. access data
-  let dataset = await d3.csv('./../data/mexico-20200519.csv');
+  let dataset = await d3.csv(
+    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/mexico-20200519.csv?token=AB4JHMMEPKKOU7VG7PMKPTC62LJ3K'
+  );
 
   const xAccessor = d => +d.Policy_Index_Adjusted_Time;
   const yAccessor = d => +d.avg_google_7d;
