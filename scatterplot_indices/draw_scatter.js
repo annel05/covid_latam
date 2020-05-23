@@ -218,41 +218,5 @@ async function drawScatter() {
       .attr('fill', lower_right);
   };
   drawQuadrants(data.values);
-  console.log(d3.select('.upper_left'), d3.select('.mean_y'));
-  // const yAxis = bounds.append('g').call(yAxisGenerator);
-  // // TODO draw grid lines
-  // // TODO draw text for quadrants
-  // // 7. set up interactions
-  // // TODO on slider change, flip through the dates
-  // // TODO add tooltips
-
-  // slider.on('input', changeDate);
-  // function changeDate() {
-  //   console.log(this.value);
-  //   data = nestedDataset[this.value - 1];
-
-  //   // update scales
-  //   xScale.domain(d3.extent(data.values, xAccessor));
-  //   yScale.domain(d3.extent(data.values, yAccessor));
-
-  //   // update axes
-  //   xAxis.transition(updateTransition).call(xAxisGenerator);
-  //   yAxis.transition(updateTransition).call(yAxisGenerator);
-
-  //   // update means
-  //   const meanX = d3.mean(data.values, xAccessor);
-  //   const meanY = d3.mean(data.values, yAccessor);
-
-  //   // update mean lines
-  //   meanLineX.attr('x1', xScale(meanX)).attr('x2', xScale(meanX));
-  //   meanLineY.attr('y1', yScale(meanY)).attr('y2', yScale(meanY));
-
-  //   // update circles
-  //   bounds
-  //     .selectAll('circle')
-  //     .transition(updateTransition)
-  //     .attr('cx', d => xScale(xAccessor(d)))
-  //     .attr('cy', d => yScale(yAccessor(d)));
-  // }
 }
 drawScatter();
