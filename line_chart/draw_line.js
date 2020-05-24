@@ -4,6 +4,9 @@ async function drawLine() {
 
   const xAccessor = d => +d.Days;
   const yAccessor = d => +d.avg_google_7d;
+  const stateAccessor = d => d.State_Name;
+
+  const datasetByState = d3.nest().key(stateAccessor).entries(dataset);
   // 2. create dimensions
   // 3. draw canvas
   // 4. create scales
