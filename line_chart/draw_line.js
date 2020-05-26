@@ -7,6 +7,7 @@ async function drawLine() {
   const stateAccessor = d => d.State_Name;
 
   const datasetByState = d3.nest().key(stateAccessor).entries(dataset);
+  console.log(datasetByState);
   // 2. create dimensions
   // 3. draw canvas
   // 4. create scales
