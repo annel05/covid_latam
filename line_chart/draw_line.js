@@ -1,6 +1,12 @@
+// TODO add spanish locale so months show up in spanish
+// TODO add 0 baseline
+// TODO hide x-baseline
+// TODO extend ticks to make grid
+// TODO add class for each line
+// TODO extend 
 async function drawLine() {
   // 1. access data
-  const dataset = await d3.csv('../data/mexico-20200519.csv');
+  const dataset = await d3.csv('../data/mexico_through20200513.csv');
 
   const yAccessor = d => +d.avg_google_7d;
   const dateParser = d3.timeParse('%d-%b-%y');
@@ -79,7 +85,6 @@ async function drawLine() {
   const xAxisGenerator = d3
     .axisBottom()
     .scale(xScale)
-    // .tickFormat(d3.timeFormat('%Y-%m-%d'));
     .tickFormat(d3.timeFormat('%d %b %Y'));
 
   const xAxis = bounds
