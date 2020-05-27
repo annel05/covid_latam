@@ -1,0 +1,2465 @@
+State_Code,Date,Days,State_Name,avg_google_7d
+2,27-Feb-20,1,Baja California,3.3142858
+25,27-Feb-20,1,Sinaloa,10.542857
+4,27-Feb-20,1,Campeche,2.942857
+30,27-Feb-20,1,Veracruz,-0.2857143
+10,27-Feb-20,1,Durango,1.8285714
+28,27-Feb-20,1,Tamaulipas,0.60000002
+31,27-Feb-20,1,Yucatán,0.40000001
+18,27-Feb-20,1,Nayarit,0.88571429
+12,27-Feb-20,1,Guerrero,-0.77142859
+16,27-Feb-20,1,Michoacán,1.5428572
+1,27-Feb-20,1,Aguascalientes,-0.057142857
+5,27-Feb-20,1,Coahuila,0.74285716
+14,27-Feb-20,1,Jalisco,3.2285714
+26,27-Feb-20,1,Sonora,2.6285715
+21,27-Feb-20,1,Puebla,1.6
+11,27-Feb-20,1,Guanajuato,0.48571429
+7,27-Feb-20,1,Chiapas,-2.0857143
+13,27-Feb-20,1,Hidalgo,-0.48571429
+20,27-Feb-20,1,Oaxaca,-0.97142857
+29,27-Feb-20,1,Tlaxcala,6.4000001
+23,27-Feb-20,1,Quintana Roo,2.4000001
+15,27-Feb-20,1,Mex,2.7142856
+22,27-Feb-20,1,Querétaro,3.7428572
+8,27-Feb-20,1,Chihuahua,2.7428572
+32,27-Feb-20,1,Zacatecas,0.82857144
+9,27-Feb-20,1,Ciudad de Mexico,3.5142858
+6,27-Feb-20,1,Colima,-1.2571429
+17,27-Feb-20,1,Morelos,4.7714286
+24,27-Feb-20,1,San Luis Potosí,1.0571429
+27,27-Feb-20,1,Tabasco,2.0857143
+19,27-Feb-20,1,Nuevo León,3.6285715
+3,27-Feb-20,1,Baja California Sur,5.4857144
+8,28-Feb-20,2,Chihuahua,3.7142856
+11,28-Feb-20,2,Guanajuato,0.85714287
+25,28-Feb-20,2,Sinaloa,9.6285715
+13,28-Feb-20,2,Hidalgo,0.2857143
+3,28-Feb-20,2,Baja California Sur,5.5428572
+5,28-Feb-20,2,Coahuila,2.5142858
+17,28-Feb-20,2,Morelos,5.1142859
+1,28-Feb-20,2,Aguascalientes,0.85714287
+20,28-Feb-20,2,Oaxaca,-0.48571429
+22,28-Feb-20,2,Querétaro,4.3714285
+4,28-Feb-20,2,Campeche,1.6
+16,28-Feb-20,2,Michoacán,1.8285714
+23,28-Feb-20,2,Quintana Roo,2.2857144
+10,28-Feb-20,2,Durango,2.2
+2,28-Feb-20,2,Baja California,3.5999999
+15,28-Feb-20,2,Mex,3.2857144
+30,28-Feb-20,2,Veracruz,0.057142857
+24,28-Feb-20,2,San Luis Potosí,2.0857143
+12,28-Feb-20,2,Guerrero,-0.22857143
+32,28-Feb-20,2,Zacatecas,1
+18,28-Feb-20,2,Nayarit,1.2857143
+6,28-Feb-20,2,Colima,-0.6857143
+31,28-Feb-20,2,Yucatán,0.37142858
+28,28-Feb-20,2,Tamaulipas,2
+7,28-Feb-20,2,Chiapas,-1.2857143
+27,28-Feb-20,2,Tabasco,2.4000001
+26,28-Feb-20,2,Sonora,3.0285714
+14,28-Feb-20,2,Jalisco,3.4571428
+21,28-Feb-20,2,Puebla,1.8
+9,28-Feb-20,2,Ciudad de Mexico,3.9714286
+19,28-Feb-20,2,Nuevo León,5.4857144
+29,28-Feb-20,2,Tlaxcala,6.8000002
+15,29-Feb-20,3,Mex,3.8285713
+8,29-Feb-20,3,Chihuahua,4.0571427
+7,29-Feb-20,3,Chiapas,-0.34285715
+25,29-Feb-20,3,Sinaloa,7.4000001
+3,29-Feb-20,3,Baja California Sur,5.5714288
+9,29-Feb-20,3,Ciudad de Mexico,4.1999998
+11,29-Feb-20,3,Guanajuato,1.4285715
+12,29-Feb-20,3,Guerrero,0.48571429
+10,29-Feb-20,3,Durango,2.7142856
+14,29-Feb-20,3,Jalisco,3.8857143
+6,29-Feb-20,3,Colima,-0.17142858
+28,29-Feb-20,3,Tamaulipas,2.4857142
+19,29-Feb-20,3,Nuevo León,6.8000002
+20,29-Feb-20,3,Oaxaca,-0.028571429
+27,29-Feb-20,3,Tabasco,3.6285715
+21,29-Feb-20,3,Puebla,2.2571428
+17,29-Feb-20,3,Morelos,5.0857143
+24,29-Feb-20,3,San Luis Potosí,3.1428571
+22,29-Feb-20,3,Querétaro,5.0571427
+5,29-Feb-20,3,Coahuila,3.6571429
+26,29-Feb-20,3,Sonora,3.7142856
+31,29-Feb-20,3,Yucatán,0.25714287
+16,29-Feb-20,3,Michoacán,2.2285714
+18,29-Feb-20,3,Nayarit,1.8285714
+23,29-Feb-20,3,Quintana Roo,2.057143
+29,29-Feb-20,3,Tlaxcala,6.9714284
+13,29-Feb-20,3,Hidalgo,0.94285715
+30,29-Feb-20,3,Veracruz,0.25714287
+1,29-Feb-20,3,Aguascalientes,2.6571429
+32,29-Feb-20,3,Zacatecas,1.3142858
+4,29-Feb-20,3,Campeche,-0.25714287
+2,29-Feb-20,3,Baja California,4.5999999
+2,1-Mar-20,4,Baja California,3.9142857
+20,1-Mar-20,4,Oaxaca,0.51428574
+22,1-Mar-20,4,Querétaro,5.6285715
+11,1-Mar-20,4,Guanajuato,2.0285714
+16,1-Mar-20,4,Michoacán,2.5714285
+13,1-Mar-20,4,Hidalgo,1.7428571
+10,1-Mar-20,4,Durango,3.6285715
+8,1-Mar-20,4,Chihuahua,4.8571429
+4,1-Mar-20,4,Campeche,-1.6
+23,1-Mar-20,4,Quintana Roo,1.5714285
+14,1-Mar-20,4,Jalisco,4.3142858
+15,1-Mar-20,4,Mex,4.3714285
+29,1-Mar-20,4,Tlaxcala,6.9142857
+12,1-Mar-20,4,Guerrero,1.2
+1,1-Mar-20,4,Aguascalientes,3.7714286
+21,1-Mar-20,4,Puebla,2.8857143
+19,1-Mar-20,4,Nuevo León,7.6285715
+5,1-Mar-20,4,Coahuila,5.0571427
+18,1-Mar-20,4,Nayarit,2.5428572
+30,1-Mar-20,4,Veracruz,0.11428571
+7,1-Mar-20,4,Chiapas,0.057142857
+26,1-Mar-20,4,Sonora,4.257143
+3,1-Mar-20,4,Baja California Sur,5.4857144
+32,1-Mar-20,4,Zacatecas,1.7714286
+28,1-Mar-20,4,Tamaulipas,3.1714287
+17,1-Mar-20,4,Morelos,4.9714284
+9,1-Mar-20,4,Ciudad de Mexico,4.3428574
+31,1-Mar-20,4,Yucatán,0.028571429
+27,1-Mar-20,4,Tabasco,4.1999998
+6,1-Mar-20,4,Colima,0.48571429
+25,1-Mar-20,4,Sinaloa,5.1999998
+24,1-Mar-20,4,San Luis Potosí,4.1714287
+8,2-Mar-20,5,Chihuahua,5.0571427
+1,2-Mar-20,5,Aguascalientes,4.1142859
+25,2-Mar-20,5,Sinaloa,4
+19,2-Mar-20,5,Nuevo León,7.8000002
+2,2-Mar-20,5,Baja California,3.0857143
+7,2-Mar-20,5,Chiapas,0.60000002
+9,2-Mar-20,5,Ciudad de Mexico,4.742857
+16,2-Mar-20,5,Michoacán,2.6857142
+10,2-Mar-20,5,Durango,3.8571429
+6,2-Mar-20,5,Colima,0.5714286
+3,2-Mar-20,5,Baja California Sur,5.3428574
+18,2-Mar-20,5,Nayarit,2.7428572
+13,2-Mar-20,5,Hidalgo,2.1428571
+21,2-Mar-20,5,Puebla,3.0857143
+15,2-Mar-20,5,Mex,4.4285712
+4,2-Mar-20,5,Campeche,-0.62857145
+23,2-Mar-20,5,Quintana Roo,1.7428571
+22,2-Mar-20,5,Querétaro,6.1428571
+12,2-Mar-20,5,Guerrero,1.4571428
+28,2-Mar-20,5,Tamaulipas,3.6285715
+17,2-Mar-20,5,Morelos,5.257143
+26,2-Mar-20,5,Sonora,4.5142856
+24,2-Mar-20,5,San Luis Potosí,4.4857144
+31,2-Mar-20,5,Yucatán,0.71428573
+11,2-Mar-20,5,Guanajuato,2.2571428
+27,2-Mar-20,5,Tabasco,4.7142859
+30,2-Mar-20,5,Veracruz,0.5714286
+20,2-Mar-20,5,Oaxaca,0.91428572
+14,2-Mar-20,5,Jalisco,4.5142856
+29,2-Mar-20,5,Tlaxcala,6.7714286
+32,2-Mar-20,5,Zacatecas,1.4857143
+5,2-Mar-20,5,Coahuila,5.7142859
+24,3-Mar-20,6,San Luis Potosí,4.9142857
+5,3-Mar-20,6,Coahuila,5.9142857
+16,3-Mar-20,6,Michoacán,2.3714285
+9,3-Mar-20,6,Ciudad de Mexico,5.0857143
+17,3-Mar-20,6,Morelos,5.1428571
+20,3-Mar-20,6,Oaxaca,1.2285714
+3,3-Mar-20,6,Baja California Sur,4.9142857
+21,3-Mar-20,6,Puebla,2.9142857
+23,3-Mar-20,6,Quintana Roo,1.6285714
+4,3-Mar-20,6,Campeche,0.65714288
+6,3-Mar-20,6,Colima,0.94285715
+7,3-Mar-20,6,Chiapas,0.54285717
+14,3-Mar-20,6,Jalisco,4.5999999
+11,3-Mar-20,6,Guanajuato,2.3142858
+32,3-Mar-20,6,Zacatecas,1.1142857
+1,3-Mar-20,6,Aguascalientes,4.2285714
+12,3-Mar-20,6,Guerrero,1.4857143
+13,3-Mar-20,6,Hidalgo,2.3142858
+29,3-Mar-20,6,Tlaxcala,6.5428572
+2,3-Mar-20,6,Baja California,3.1428571
+28,3-Mar-20,6,Tamaulipas,4.0571427
+27,3-Mar-20,6,Tabasco,4.9714284
+30,3-Mar-20,6,Veracruz,1.0857143
+26,3-Mar-20,6,Sonora,4.1714287
+8,3-Mar-20,6,Chihuahua,4.6285715
+18,3-Mar-20,6,Nayarit,2.6571429
+15,3-Mar-20,6,Mex,4.8571429
+25,3-Mar-20,6,Sinaloa,2.5714285
+31,3-Mar-20,6,Yucatán,1.5142857
+22,3-Mar-20,6,Querétaro,6.4285712
+19,3-Mar-20,6,Nuevo León,7.742857
+10,3-Mar-20,6,Durango,3.2
+19,4-Mar-20,7,Nuevo León,8.3428574
+6,4-Mar-20,7,Colima,0.97142857
+27,4-Mar-20,7,Tabasco,6.0857143
+11,4-Mar-20,7,Guanajuato,2.1714287
+13,4-Mar-20,7,Hidalgo,3
+8,4-Mar-20,7,Chihuahua,4.8285713
+12,4-Mar-20,7,Guerrero,1.2
+4,4-Mar-20,7,Campeche,2.4000001
+5,4-Mar-20,7,Coahuila,6.5999999
+25,4-Mar-20,7,Sinaloa,2.1142857
+20,4-Mar-20,7,Oaxaca,1.5428572
+14,4-Mar-20,7,Jalisco,4.742857
+10,4-Mar-20,7,Durango,3.4285715
+16,4-Mar-20,7,Michoacán,2.2857144
+17,4-Mar-20,7,Morelos,5.1142859
+1,4-Mar-20,7,Aguascalientes,4.3714285
+3,4-Mar-20,7,Baja California Sur,4.7714286
+26,4-Mar-20,7,Sonora,4.4285712
+23,4-Mar-20,7,Quintana Roo,1.6857142
+29,4-Mar-20,7,Tlaxcala,6.1142859
+22,4-Mar-20,7,Querétaro,6.5714288
+9,4-Mar-20,7,Ciudad de Mexico,5.1999998
+21,4-Mar-20,7,Puebla,3.0857143
+15,4-Mar-20,7,Mex,4.9428573
+30,4-Mar-20,7,Veracruz,3.942857
+24,4-Mar-20,7,San Luis Potosí,5.4285712
+32,4-Mar-20,7,Zacatecas,0.88571429
+31,4-Mar-20,7,Yucatán,2.1714287
+28,4-Mar-20,7,Tamaulipas,5.4857144
+7,4-Mar-20,7,Chiapas,0.5714286
+18,4-Mar-20,7,Nayarit,2.5428572
+2,4-Mar-20,7,Baja California,3.4857142
+3,5-Mar-20,8,Baja California Sur,4.7714286
+15,5-Mar-20,8,Mex,5.1999998
+12,5-Mar-20,8,Guerrero,0.71428573
+4,5-Mar-20,8,Campeche,3.0857143
+5,5-Mar-20,8,Coahuila,6.9142857
+22,5-Mar-20,8,Querétaro,6.8000002
+16,5-Mar-20,8,Michoacán,2.3428571
+11,5-Mar-20,8,Guanajuato,2.2857144
+29,5-Mar-20,8,Tlaxcala,6.1999998
+13,5-Mar-20,8,Hidalgo,3.057143
+18,5-Mar-20,8,Nayarit,2.5714285
+14,5-Mar-20,8,Jalisco,4.8857141
+8,5-Mar-20,8,Chihuahua,5.2285714
+24,5-Mar-20,8,San Luis Potosí,5.6571426
+19,5-Mar-20,8,Nuevo León,8.6000004
+1,5-Mar-20,8,Aguascalientes,4.0571427
+21,5-Mar-20,8,Puebla,3.5142858
+6,5-Mar-20,8,Colima,0.94285715
+20,5-Mar-20,8,Oaxaca,1.7714286
+27,5-Mar-20,8,Tabasco,8.7714281
+28,5-Mar-20,8,Tamaulipas,6.0285716
+26,5-Mar-20,8,Sonora,4.6857142
+31,5-Mar-20,8,Yucatán,2.5428572
+32,5-Mar-20,8,Zacatecas,0.85714287
+25,5-Mar-20,8,Sinaloa,1.8285714
+30,5-Mar-20,8,Veracruz,4.5428572
+23,5-Mar-20,8,Quintana Roo,1.9142857
+17,5-Mar-20,8,Morelos,4.9714284
+10,5-Mar-20,8,Durango,3.5142858
+7,5-Mar-20,8,Chiapas,0.62857145
+9,5-Mar-20,8,Ciudad de Mexico,5.2285714
+2,5-Mar-20,8,Baja California,3.6857142
+2,6-Mar-20,9,Baja California,3.4857142
+31,6-Mar-20,9,Yucatán,2.4000001
+29,6-Mar-20,9,Tlaxcala,5.7142859
+3,6-Mar-20,9,Baja California Sur,4.4571428
+4,6-Mar-20,9,Campeche,3.2285714
+32,6-Mar-20,9,Zacatecas,0.14285715
+25,6-Mar-20,9,Sinaloa,1.4
+6,6-Mar-20,9,Colima,0.22857143
+21,6-Mar-20,9,Puebla,3.2285714
+8,6-Mar-20,9,Chihuahua,4.9428573
+16,6-Mar-20,9,Michoacán,2
+18,6-Mar-20,9,Nayarit,2.4285715
+20,6-Mar-20,9,Oaxaca,1.2857143
+10,6-Mar-20,9,Durango,3.057143
+14,6-Mar-20,9,Jalisco,4.6285715
+30,6-Mar-20,9,Veracruz,4.4857144
+5,6-Mar-20,9,Coahuila,6.3714285
+11,6-Mar-20,9,Guanajuato,1.8571428
+12,6-Mar-20,9,Guerrero,0.085714288
+13,6-Mar-20,9,Hidalgo,2.2857144
+26,6-Mar-20,9,Sonora,4.5999999
+17,6-Mar-20,9,Morelos,4.4000001
+9,6-Mar-20,9,Ciudad de Mexico,4.7142859
+28,6-Mar-20,9,Tamaulipas,5.5714288
+22,6-Mar-20,9,Querétaro,6.2285714
+19,6-Mar-20,9,Nuevo León,8.0571432
+15,6-Mar-20,9,Mex,4.6285715
+1,6-Mar-20,9,Aguascalientes,3.0285714
+7,6-Mar-20,9,Chiapas,-0.028571429
+24,6-Mar-20,9,San Luis Potosí,5.0571427
+27,6-Mar-20,9,Tabasco,8.6857147
+23,6-Mar-20,9,Quintana Roo,1.3714286
+12,7-Mar-20,10,Guerrero,-0.45714286
+24,7-Mar-20,10,San Luis Potosí,4.4285712
+9,7-Mar-20,10,Ciudad de Mexico,4.1999998
+31,7-Mar-20,10,Yucatán,2.3714285
+4,7-Mar-20,10,Campeche,2.6285715
+29,7-Mar-20,10,Tlaxcala,5.0857143
+22,7-Mar-20,10,Querétaro,5.742857
+16,7-Mar-20,10,Michoacán,1.5142857
+25,7-Mar-20,10,Sinaloa,1.0857143
+10,7-Mar-20,10,Durango,2.4285715
+11,7-Mar-20,10,Guanajuato,1.5142857
+20,7-Mar-20,10,Oaxaca,0.6857143
+19,7-Mar-20,10,Nuevo León,7.5428572
+14,7-Mar-20,10,Jalisco,4.3428574
+7,7-Mar-20,10,Chiapas,-0.71428573
+8,7-Mar-20,10,Chihuahua,4.6285715
+28,7-Mar-20,10,Tamaulipas,5.3714285
+30,7-Mar-20,10,Veracruz,4
+21,7-Mar-20,10,Puebla,2.6857142
+23,7-Mar-20,10,Quintana Roo,0.77142859
+6,7-Mar-20,10,Colima,-0.25714287
+1,7-Mar-20,10,Aguascalientes,1.3714286
+18,7-Mar-20,10,Nayarit,2.4285715
+32,7-Mar-20,10,Zacatecas,-0.60000002
+13,7-Mar-20,10,Hidalgo,1.6285714
+26,7-Mar-20,10,Sonora,4.257143
+15,7-Mar-20,10,Mex,4.3714285
+17,7-Mar-20,10,Morelos,3.7142856
+27,7-Mar-20,10,Tabasco,7.8571429
+5,7-Mar-20,10,Coahuila,5.5714288
+3,7-Mar-20,10,Baja California Sur,4.0857143
+2,7-Mar-20,10,Baja California,3.0857143
+2,8-Mar-20,11,Baja California,3.7428572
+18,8-Mar-20,11,Nayarit,2.2
+26,8-Mar-20,11,Sonora,2.8571429
+22,8-Mar-20,11,Querétaro,5.5142856
+5,8-Mar-20,11,Coahuila,4.4857144
+28,8-Mar-20,11,Tamaulipas,4.8857141
+6,8-Mar-20,11,Colima,-0.60000002
+14,8-Mar-20,11,Jalisco,4.4571428
+4,8-Mar-20,11,Campeche,2.057143
+31,8-Mar-20,11,Yucatán,2.1714287
+10,8-Mar-20,11,Durango,2.1142857
+12,8-Mar-20,11,Guerrero,-0.97142857
+13,8-Mar-20,11,Hidalgo,1
+25,8-Mar-20,11,Sinaloa,0.71428573
+16,8-Mar-20,11,Michoacán,1.3142858
+23,8-Mar-20,11,Quintana Roo,0.48571429
+19,8-Mar-20,11,Nuevo León,7.5142856
+9,8-Mar-20,11,Ciudad de Mexico,4.3714285
+30,8-Mar-20,11,Veracruz,3.0285714
+11,8-Mar-20,11,Guanajuato,1.3428571
+20,8-Mar-20,11,Oaxaca,0.14285715
+17,8-Mar-20,11,Morelos,3.0285714
+21,8-Mar-20,11,Puebla,2.2571428
+3,8-Mar-20,11,Baja California Sur,3.6285715
+24,8-Mar-20,11,San Luis Potosí,3.942857
+1,8-Mar-20,11,Aguascalientes,0.62857145
+32,8-Mar-20,11,Zacatecas,-1.5142857
+15,8-Mar-20,11,Mex,4.257143
+7,8-Mar-20,11,Chiapas,-1.3714286
+29,8-Mar-20,11,Tlaxcala,4.1714287
+27,8-Mar-20,11,Tabasco,7.3142858
+8,8-Mar-20,11,Chihuahua,3.8857143
+15,9-Mar-20,12,Mex,2.3714285
+7,9-Mar-20,12,Chiapas,-2.7714286
+27,9-Mar-20,12,Tabasco,5.5714288
+5,9-Mar-20,12,Coahuila,2.2571428
+21,9-Mar-20,12,Puebla,0.028571429
+29,9-Mar-20,12,Tlaxcala,2.3142858
+23,9-Mar-20,12,Quintana Roo,-0.91428572
+31,9-Mar-20,12,Yucatán,-0.085714288
+26,9-Mar-20,12,Sonora,1.6
+2,9-Mar-20,12,Baja California,3.2285714
+10,9-Mar-20,12,Durango,0.25714287
+1,9-Mar-20,12,Aguascalientes,-1.3142858
+16,9-Mar-20,12,Michoacán,0.057142857
+6,9-Mar-20,12,Colima,-2.2571428
+32,9-Mar-20,12,Zacatecas,-3
+17,9-Mar-20,12,Morelos,0.97142857
+11,9-Mar-20,12,Guanajuato,-0.45714286
+30,9-Mar-20,12,Veracruz,1.4857143
+4,9-Mar-20,12,Campeche,0.057142857
+18,9-Mar-20,12,Nayarit,0.5714286
+22,9-Mar-20,12,Querétaro,3.1142857
+25,9-Mar-20,12,Sinaloa,-1.1714286
+8,9-Mar-20,12,Chihuahua,2.4000001
+13,9-Mar-20,12,Hidalgo,-0.80000001
+28,9-Mar-20,12,Tamaulipas,3.6571429
+14,9-Mar-20,12,Jalisco,2.0285714
+12,9-Mar-20,12,Guerrero,-2.1428571
+24,9-Mar-20,12,San Luis Potosí,1.7714286
+9,9-Mar-20,12,Ciudad de Mexico,1.0285715
+19,9-Mar-20,12,Nuevo León,4.6857142
+3,9-Mar-20,12,Baja California Sur,2.5142858
+20,9-Mar-20,12,Oaxaca,-1.1714286
+7,10-Mar-20,13,Chiapas,-2.6857142
+15,10-Mar-20,13,Mex,2.2571428
+1,10-Mar-20,13,Aguascalientes,-1.0571429
+9,10-Mar-20,13,Ciudad de Mexico,0.88571429
+31,10-Mar-20,13,Yucatán,-0.085714288
+30,10-Mar-20,13,Veracruz,1.2571429
+25,10-Mar-20,13,Sinaloa,-0.97142857
+23,10-Mar-20,13,Quintana Roo,-1.0285715
+8,10-Mar-20,13,Chihuahua,3.6285715
+12,10-Mar-20,13,Guerrero,-2.2857144
+3,10-Mar-20,13,Baja California Sur,2.5714285
+28,10-Mar-20,13,Tamaulipas,3.4000001
+14,10-Mar-20,13,Jalisco,2.0285714
+19,10-Mar-20,13,Nuevo León,4.5999999
+13,10-Mar-20,13,Hidalgo,-0.85714287
+16,10-Mar-20,13,Michoacán,0.11428571
+20,10-Mar-20,13,Oaxaca,-1.4857143
+17,10-Mar-20,13,Morelos,1.0857143
+21,10-Mar-20,13,Puebla,0.057142857
+22,10-Mar-20,13,Querétaro,3.0285714
+26,10-Mar-20,13,Sonora,2.2857144
+11,10-Mar-20,13,Guanajuato,-0.54285717
+2,10-Mar-20,13,Baja California,0.45714286
+10,10-Mar-20,13,Durango,1.2285714
+27,10-Mar-20,13,Tabasco,5.6285715
+6,10-Mar-20,13,Colima,-2.5142858
+29,10-Mar-20,13,Tlaxcala,2.0857143
+18,10-Mar-20,13,Nayarit,0.5714286
+24,10-Mar-20,13,San Luis Potosí,1.8571428
+4,10-Mar-20,13,Campeche,-0.22857143
+32,10-Mar-20,13,Zacatecas,-2.6571429
+5,10-Mar-20,13,Coahuila,2.5999999
+16,11-Mar-20,14,Michoacán,-0.085714288
+28,11-Mar-20,14,Tamaulipas,3.1714287
+5,11-Mar-20,14,Coahuila,2.8571429
+22,11-Mar-20,14,Querétaro,2.9714286
+19,11-Mar-20,14,Nuevo León,4.4285712
+4,11-Mar-20,14,Campeche,-0.77142859
+23,11-Mar-20,14,Quintana Roo,-1.0285715
+12,11-Mar-20,14,Guerrero,-2.4571428
+13,11-Mar-20,14,Hidalgo,-1.1428572
+2,11-Mar-20,14,Baja California,0.11428571
+32,11-Mar-20,14,Zacatecas,-2.4857142
+21,11-Mar-20,14,Puebla,-0.085714288
+25,11-Mar-20,14,Sinaloa,-1
+30,11-Mar-20,14,Veracruz,0.85714287
+9,11-Mar-20,14,Ciudad de Mexico,0.71428573
+20,11-Mar-20,14,Oaxaca,-1.5714285
+7,11-Mar-20,14,Chiapas,-2.7714286
+1,11-Mar-20,14,Aguascalientes,-0.85714287
+26,11-Mar-20,14,Sonora,2.057143
+3,11-Mar-20,14,Baja California Sur,2.6285715
+10,11-Mar-20,14,Durango,1.3714286
+31,11-Mar-20,14,Yucatán,-0.11428571
+11,11-Mar-20,14,Guanajuato,-0.82857144
+27,11-Mar-20,14,Tabasco,5.257143
+24,11-Mar-20,14,San Luis Potosí,1.9428571
+17,11-Mar-20,14,Morelos,1.0571429
+14,11-Mar-20,14,Jalisco,1.8857143
+8,11-Mar-20,14,Chihuahua,4.1428571
+18,11-Mar-20,14,Nayarit,0.51428574
+15,11-Mar-20,14,Mex,2.057143
+6,11-Mar-20,14,Colima,-2.8285713
+29,11-Mar-20,14,Tlaxcala,1.6571429
+24,12-Mar-20,15,San Luis Potosí,2.2571428
+16,12-Mar-20,15,Michoacán,-0.028571429
+27,12-Mar-20,15,Tabasco,5.6571426
+18,12-Mar-20,15,Nayarit,0.62857145
+20,12-Mar-20,15,Oaxaca,-1.4
+19,12-Mar-20,15,Nuevo León,4.8857141
+15,12-Mar-20,15,Mex,1.8571428
+6,12-Mar-20,15,Colima,-3.0857143
+17,12-Mar-20,15,Morelos,1.0857143
+11,12-Mar-20,15,Guanajuato,-0.51428574
+26,12-Mar-20,15,Sonora,0.6857143
+4,12-Mar-20,15,Campeche,-0.88571429
+12,12-Mar-20,15,Guerrero,-2.1142857
+22,12-Mar-20,15,Querétaro,3
+23,12-Mar-20,15,Quintana Roo,-1.0571429
+30,12-Mar-20,15,Veracruz,1.2571429
+9,12-Mar-20,15,Ciudad de Mexico,0.74285716
+21,12-Mar-20,15,Puebla,-0.14285715
+14,12-Mar-20,15,Jalisco,1.9714285
+13,12-Mar-20,15,Hidalgo,-1.1142857
+8,12-Mar-20,15,Chihuahua,4.1714287
+5,12-Mar-20,15,Coahuila,3.4857142
+7,12-Mar-20,15,Chiapas,-2.5142858
+3,12-Mar-20,15,Baja California Sur,2.7714286
+25,12-Mar-20,15,Sinaloa,-0.54285717
+1,12-Mar-20,15,Aguascalientes,-0.51428574
+2,12-Mar-20,15,Baja California,-1.1428572
+10,12-Mar-20,15,Durango,1.6857142
+28,12-Mar-20,15,Tamaulipas,3.5142858
+29,12-Mar-20,15,Tlaxcala,1.4857143
+31,12-Mar-20,15,Yucatán,6.34E-17
+32,12-Mar-20,15,Zacatecas,-2.2571428
+5,13-Mar-20,16,Coahuila,4.2285714
+9,13-Mar-20,16,Ciudad de Mexico,0.77142859
+17,13-Mar-20,16,Morelos,1.9428571
+1,13-Mar-20,16,Aguascalientes,0.17142858
+4,13-Mar-20,16,Campeche,0.057142857
+13,13-Mar-20,16,Hidalgo,-0.62857145
+26,13-Mar-20,16,Sonora,1.2285714
+11,13-Mar-20,16,Guanajuato,-0.22857143
+23,13-Mar-20,16,Quintana Roo,-0.51428574
+14,13-Mar-20,16,Jalisco,2.1428571
+20,13-Mar-20,16,Oaxaca,-0.77142859
+22,13-Mar-20,16,Querétaro,2.8857143
+18,13-Mar-20,16,Nayarit,0.91428572
+7,13-Mar-20,16,Chiapas,-1.6
+6,13-Mar-20,16,Colima,-2.6571429
+19,13-Mar-20,16,Nuevo León,5.0571427
+12,13-Mar-20,16,Guerrero,-1.5142857
+29,13-Mar-20,16,Tlaxcala,1.5714285
+2,13-Mar-20,16,Baja California,-2
+15,13-Mar-20,16,Mex,1.9142857
+24,13-Mar-20,16,San Luis Potosí,2.8857143
+16,13-Mar-20,16,Michoacán,0.25714287
+27,13-Mar-20,16,Tabasco,6.2285714
+10,13-Mar-20,16,Durango,2.7428572
+8,13-Mar-20,16,Chihuahua,4.3428574
+32,13-Mar-20,16,Zacatecas,-1.5714285
+21,13-Mar-20,16,Puebla,-0.057142857
+28,13-Mar-20,16,Tamaulipas,4.1142859
+31,13-Mar-20,16,Yucatán,0.40000001
+25,13-Mar-20,16,Sinaloa,0.42857143
+3,13-Mar-20,16,Baja California Sur,3.0285714
+30,13-Mar-20,16,Veracruz,2.1428571
+1,14-Mar-20,17,Aguascalientes,0.85714287
+32,14-Mar-20,17,Zacatecas,-0.25714287
+26,14-Mar-20,17,Sonora,2.0285714
+31,14-Mar-20,17,Yucatán,0.77142859
+24,14-Mar-20,17,San Luis Potosí,4.2857141
+17,14-Mar-20,17,Morelos,3.9714286
+14,14-Mar-20,17,Jalisco,2.3428571
+3,14-Mar-20,17,Baja California Sur,3.4000001
+5,14-Mar-20,17,Coahuila,5.1714287
+29,14-Mar-20,17,Tlaxcala,2.2
+2,14-Mar-20,17,Baja California,-2.4857142
+18,14-Mar-20,17,Nayarit,2.3428571
+12,14-Mar-20,17,Guerrero,0.80000001
+27,14-Mar-20,17,Tabasco,7.7714286
+10,14-Mar-20,17,Durango,4.0857143
+19,14-Mar-20,17,Nuevo León,4.8571429
+23,14-Mar-20,17,Quintana Roo,-0.057142857
+25,14-Mar-20,17,Sinaloa,1.8571428
+9,14-Mar-20,17,Ciudad de Mexico,0.37142858
+8,14-Mar-20,17,Chihuahua,4.7714286
+7,14-Mar-20,17,Chiapas,-0.65714288
+4,14-Mar-20,17,Campeche,1.2857143
+20,14-Mar-20,17,Oaxaca,0.14285715
+11,14-Mar-20,17,Guanajuato,0.085714288
+30,14-Mar-20,17,Veracruz,4.3142858
+15,14-Mar-20,17,Mex,1.9428571
+28,14-Mar-20,17,Tamaulipas,4.5714288
+16,14-Mar-20,17,Michoacán,1.2285714
+21,14-Mar-20,17,Puebla,0.54285717
+13,14-Mar-20,17,Hidalgo,0.40000001
+22,14-Mar-20,17,Querétaro,2.9714286
+6,14-Mar-20,17,Colima,-1.6857142
+12,15-Mar-20,18,Guerrero,2.6285715
+32,15-Mar-20,18,Zacatecas,0.085714288
+9,15-Mar-20,18,Ciudad de Mexico,-1.1428572
+4,15-Mar-20,18,Campeche,1.3142858
+25,15-Mar-20,18,Sinaloa,2.6285715
+28,15-Mar-20,18,Tamaulipas,4.4285712
+19,15-Mar-20,18,Nuevo León,3.0857143
+15,15-Mar-20,18,Mex,1.4857143
+6,15-Mar-20,18,Colima,-1.2571429
+7,15-Mar-20,18,Chiapas,-0.42857143
+26,15-Mar-20,18,Sonora,3.2285714
+3,15-Mar-20,18,Baja California Sur,3.4000001
+2,15-Mar-20,18,Baja California,-3.0285714
+11,15-Mar-20,18,Guanajuato,-0.2
+30,15-Mar-20,18,Veracruz,5.5142856
+31,15-Mar-20,18,Yucatán,0.057142857
+24,15-Mar-20,18,San Luis Potosí,4.3142858
+5,15-Mar-20,18,Coahuila,4.7714286
+23,15-Mar-20,18,Quintana Roo,-0.085714288
+17,15-Mar-20,18,Morelos,5.9714284
+13,15-Mar-20,18,Hidalgo,1.3142858
+27,15-Mar-20,18,Tabasco,7.8000002
+1,15-Mar-20,18,Aguascalientes,2.54E-16
+22,15-Mar-20,18,Querétaro,2.6285715
+8,15-Mar-20,18,Chihuahua,5.3142858
+16,15-Mar-20,18,Michoacán,1.3428571
+10,15-Mar-20,18,Durango,4.0571427
+29,15-Mar-20,18,Tlaxcala,2.1714287
+21,15-Mar-20,18,Puebla,0.25714287
+18,15-Mar-20,18,Nayarit,3.2571428
+14,15-Mar-20,18,Jalisco,1.5428572
+20,15-Mar-20,18,Oaxaca,0.71428573
+2,16-Mar-20,19,Baja California,-4.257143
+18,16-Mar-20,19,Nayarit,4.1999998
+4,16-Mar-20,19,Campeche,0.45714286
+31,16-Mar-20,19,Yucatán,-1.8
+5,16-Mar-20,19,Coahuila,4.3428574
+10,16-Mar-20,19,Durango,4.1428571
+27,16-Mar-20,19,Tabasco,6.257143
+15,16-Mar-20,19,Mex,0.22857143
+19,16-Mar-20,19,Nuevo León,0.51428574
+3,16-Mar-20,19,Baja California Sur,2.5428572
+1,16-Mar-20,19,Aguascalientes,-0.42857143
+9,16-Mar-20,19,Ciudad de Mexico,-2.8857143
+7,16-Mar-20,19,Chiapas,-0.62857145
+23,16-Mar-20,19,Quintana Roo,-0.97142857
+16,16-Mar-20,19,Michoacán,1.3714286
+32,16-Mar-20,19,Zacatecas,-0.085714288
+29,16-Mar-20,19,Tlaxcala,1.3428571
+24,16-Mar-20,19,San Luis Potosí,4.1714287
+14,16-Mar-20,19,Jalisco,0.42857143
+25,16-Mar-20,19,Sinaloa,3
+22,16-Mar-20,19,Querétaro,1.3428571
+30,16-Mar-20,19,Veracruz,5.8000002
+28,16-Mar-20,19,Tamaulipas,3.5428572
+13,16-Mar-20,19,Hidalgo,1.4571428
+17,16-Mar-20,19,Morelos,6.8857141
+20,16-Mar-20,19,Oaxaca,0.2857143
+6,16-Mar-20,19,Colima,-0.94285715
+12,16-Mar-20,19,Guerrero,4.4857144
+26,16-Mar-20,19,Sonora,3.2571428
+8,16-Mar-20,19,Chihuahua,4.742857
+11,16-Mar-20,19,Guanajuato,-1.3428571
+21,16-Mar-20,19,Puebla,0.085714288
+5,17-Mar-20,20,Coahuila,3.7142856
+1,17-Mar-20,20,Aguascalientes,-0.94285715
+9,17-Mar-20,20,Ciudad de Mexico,-4.3714285
+27,17-Mar-20,20,Tabasco,6.3428574
+13,17-Mar-20,20,Hidalgo,1.5142857
+31,17-Mar-20,20,Yucatán,-4.4000001
+26,17-Mar-20,20,Sonora,1.8857143
+30,17-Mar-20,20,Veracruz,5.9714284
+17,17-Mar-20,20,Morelos,6.7142859
+20,17-Mar-20,20,Oaxaca,0.31428573
+3,17-Mar-20,20,Baja California Sur,1.8571428
+21,17-Mar-20,20,Puebla,-0.2857143
+32,17-Mar-20,20,Zacatecas,0.2857143
+10,17-Mar-20,20,Durango,3.7428572
+25,17-Mar-20,20,Sinaloa,2.8285713
+7,17-Mar-20,20,Chiapas,-0.22857143
+12,17-Mar-20,20,Guerrero,4.742857
+24,17-Mar-20,20,San Luis Potosí,3.6571429
+18,17-Mar-20,20,Nayarit,4.0857143
+28,17-Mar-20,20,Tamaulipas,2.2857144
+23,17-Mar-20,20,Quintana Roo,-1.8857143
+22,17-Mar-20,20,Querétaro,0.74285716
+4,17-Mar-20,20,Campeche,9.52E-17
+19,17-Mar-20,20,Nuevo León,-2
+6,17-Mar-20,20,Colima,-2.1428571
+11,17-Mar-20,20,Guanajuato,-2.3142858
+16,17-Mar-20,20,Michoacán,1.0571429
+14,17-Mar-20,20,Jalisco,-1.2
+29,17-Mar-20,20,Tlaxcala,0.2
+8,17-Mar-20,20,Chihuahua,3.8285713
+15,17-Mar-20,20,Mex,-0.42857143
+2,17-Mar-20,20,Baja California,-2.0857143
+30,18-Mar-20,21,Veracruz,5.1999998
+17,18-Mar-20,21,Morelos,5.5428572
+3,18-Mar-20,21,Baja California Sur,0.74285716
+21,18-Mar-20,21,Puebla,-1.1714286
+32,18-Mar-20,21,Zacatecas,-0.057142857
+24,18-Mar-20,21,San Luis Potosí,2.2857144
+2,18-Mar-20,21,Baja California,-4.7714286
+4,18-Mar-20,21,Campeche,-1.0571429
+9,18-Mar-20,21,Ciudad de Mexico,-6.5428572
+10,18-Mar-20,21,Durango,2.5142858
+25,18-Mar-20,21,Sinaloa,1.9428571
+12,18-Mar-20,21,Guerrero,4.257143
+20,18-Mar-20,21,Oaxaca,-0.25714287
+22,18-Mar-20,21,Querétaro,-1.5428572
+19,18-Mar-20,21,Nuevo León,-5.4285712
+23,18-Mar-20,21,Quintana Roo,-3.4285715
+16,18-Mar-20,21,Michoacán,0.085714288
+28,18-Mar-20,21,Tamaulipas,0.11428571
+27,18-Mar-20,21,Tabasco,6
+31,18-Mar-20,21,Yucatán,-8
+14,18-Mar-20,21,Jalisco,-3.5999999
+11,18-Mar-20,21,Guanajuato,-3.8571429
+26,18-Mar-20,21,Sonora,-2
+18,18-Mar-20,21,Nayarit,2.7714286
+6,18-Mar-20,21,Colima,-3.5142858
+5,18-Mar-20,21,Coahuila,2.8857143
+7,18-Mar-20,21,Chiapas,-0.17142858
+8,18-Mar-20,21,Chihuahua,1.7142857
+13,18-Mar-20,21,Hidalgo,1.1142857
+1,18-Mar-20,21,Aguascalientes,-2.7142856
+29,18-Mar-20,21,Tlaxcala,-1.6
+15,18-Mar-20,21,Mex,-1.7428571
+7,19-Mar-20,22,Chiapas,-0.74285716
+22,19-Mar-20,22,Querétaro,-4.4571428
+12,19-Mar-20,22,Guerrero,2.7428572
+13,19-Mar-20,22,Hidalgo,0.37142858
+17,19-Mar-20,22,Morelos,3.6285715
+5,19-Mar-20,22,Coahuila,0.2
+23,19-Mar-20,22,Quintana Roo,-5.6285715
+4,19-Mar-20,22,Campeche,-2.5714285
+3,19-Mar-20,22,Baja California Sur,-0.88571429
+1,19-Mar-20,22,Aguascalientes,-5.3714285
+16,19-Mar-20,22,Michoacán,-1.5428572
+11,19-Mar-20,22,Guanajuato,-6.4571428
+25,19-Mar-20,22,Sinaloa,-0.028571429
+29,19-Mar-20,22,Tlaxcala,-4.0285716
+32,19-Mar-20,22,Zacatecas,-1.0571429
+10,19-Mar-20,22,Durango,-0.25714287
+31,19-Mar-20,22,Yucatán,-12.2
+20,19-Mar-20,22,Oaxaca,-1.3142858
+19,19-Mar-20,22,Nuevo León,-9.9714289
+6,19-Mar-20,22,Colima,-6.5999999
+18,19-Mar-20,22,Nayarit,0.34285715
+26,19-Mar-20,22,Sonora,-4.0571427
+14,19-Mar-20,22,Jalisco,-6.8857141
+27,19-Mar-20,22,Tabasco,4.742857
+2,19-Mar-20,22,Baja California,-6.6857142
+24,19-Mar-20,22,San Luis Potosí,0.14285715
+28,19-Mar-20,22,Tamaulipas,-3.3142858
+21,19-Mar-20,22,Puebla,-2.7714286
+15,19-Mar-20,22,Mex,-3.4000001
+9,19-Mar-20,22,Ciudad de Mexico,-9.5428572
+8,19-Mar-20,22,Chihuahua,-0.48571429
+30,19-Mar-20,22,Veracruz,3.6857142
+19,20-Mar-20,23,Nuevo León,-15.228572
+1,20-Mar-20,23,Aguascalientes,-9
+8,20-Mar-20,23,Chihuahua,-3
+2,20-Mar-20,23,Baja California,-9.1428576
+31,20-Mar-20,23,Yucatán,-17.371429
+17,20-Mar-20,23,Morelos,0.057142857
+16,20-Mar-20,23,Michoacán,-4.1428571
+12,20-Mar-20,23,Guerrero,-0.2857143
+3,20-Mar-20,23,Baja California Sur,-3.4285715
+15,20-Mar-20,23,Mex,-5.7142859
+7,20-Mar-20,23,Chiapas,-2.6571429
+14,20-Mar-20,23,Jalisco,-10.828571
+11,20-Mar-20,23,Guanajuato,-9.3142853
+4,20-Mar-20,23,Campeche,-5.8571429
+20,20-Mar-20,23,Oaxaca,-3.3142858
+10,20-Mar-20,23,Durango,-4.4000001
+18,20-Mar-20,23,Nayarit,-3.3142858
+23,20-Mar-20,23,Quintana Roo,-8.6857147
+22,20-Mar-20,23,Querétaro,-7.3428574
+29,20-Mar-20,23,Tlaxcala,-7.6285715
+21,20-Mar-20,23,Puebla,-5.0285716
+27,20-Mar-20,23,Tabasco,1.9714285
+13,20-Mar-20,23,Hidalgo,-1.3714286
+9,20-Mar-20,23,Ciudad de Mexico,-12.857142
+24,20-Mar-20,23,San Luis Potosí,-3.1428571
+25,20-Mar-20,23,Sinaloa,-3.1428571
+5,20-Mar-20,23,Coahuila,-3.8857143
+26,20-Mar-20,23,Sonora,-8.5428572
+30,20-Mar-20,23,Veracruz,0.91428572
+32,20-Mar-20,23,Zacatecas,-3.7428572
+6,20-Mar-20,23,Colima,-11
+28,20-Mar-20,23,Tamaulipas,-7.4285712
+22,21-Mar-20,24,Querétaro,-10.828571
+2,21-Mar-20,24,Baja California,-12.285714
+32,21-Mar-20,24,Zacatecas,-7.9428573
+1,21-Mar-20,24,Aguascalientes,-12.885715
+28,21-Mar-20,24,Tamaulipas,-12.085714
+20,21-Mar-20,24,Oaxaca,-5.9428573
+6,21-Mar-20,24,Colima,-15.885715
+9,21-Mar-20,24,Ciudad de Mexico,-16.428572
+5,21-Mar-20,24,Coahuila,-8.742857
+14,21-Mar-20,24,Jalisco,-15.6
+31,21-Mar-20,24,Yucatán,-22.771429
+13,21-Mar-20,24,Hidalgo,-5.0285716
+12,21-Mar-20,24,Guerrero,-5.2285714
+16,21-Mar-20,24,Michoacán,-7.1428571
+30,21-Mar-20,24,Veracruz,-3.4285715
+10,21-Mar-20,24,Durango,-8.5714283
+11,21-Mar-20,24,Guanajuato,-12.228572
+15,21-Mar-20,24,Mex,-8.257143
+24,21-Mar-20,24,San Luis Potosí,-7.7714286
+23,21-Mar-20,24,Quintana Roo,-12.657143
+17,21-Mar-20,24,Morelos,-4.3428574
+7,21-Mar-20,24,Chiapas,-5.3428574
+18,21-Mar-20,24,Nayarit,-8.3714285
+3,21-Mar-20,24,Baja California Sur,-6.7714286
+29,21-Mar-20,24,Tlaxcala,-10.828571
+8,21-Mar-20,24,Chihuahua,-6.5428572
+19,21-Mar-20,24,Nuevo León,-21.085714
+4,21-Mar-20,24,Campeche,-9.9428568
+25,21-Mar-20,24,Sinaloa,-7.1142859
+26,21-Mar-20,24,Sonora,-13.257143
+21,21-Mar-20,24,Puebla,-7.8857141
+27,21-Mar-20,24,Tabasco,-2.0285714
+5,22-Mar-20,25,Coahuila,-13.771428
+21,22-Mar-20,25,Puebla,-10.914286
+7,22-Mar-20,25,Chiapas,-8.2857141
+20,22-Mar-20,25,Oaxaca,-9.1142855
+1,22-Mar-20,25,Aguascalientes,-16.771429
+13,22-Mar-20,25,Hidalgo,-9.5714283
+17,22-Mar-20,25,Morelos,-9.6285715
+8,22-Mar-20,25,Chihuahua,-10.4
+23,22-Mar-20,25,Quintana Roo,-17.314285
+24,22-Mar-20,25,San Luis Potosí,-12.371428
+22,22-Mar-20,25,Querétaro,-15.285714
+12,22-Mar-20,25,Guerrero,-10.371428
+30,22-Mar-20,25,Veracruz,-7.8571429
+15,22-Mar-20,25,Mex,-10.857142
+3,22-Mar-20,25,Baja California Sur,-11.057143
+6,22-Mar-20,25,Colima,-21.4
+9,22-Mar-20,25,Ciudad de Mexico,-19.942858
+14,22-Mar-20,25,Jalisco,-21.285715
+26,22-Mar-20,25,Sonora,-18.457144
+28,22-Mar-20,25,Tamaulipas,-17.228571
+32,22-Mar-20,25,Zacatecas,-12.828571
+2,22-Mar-20,25,Baja California,-16.200001
+25,22-Mar-20,25,Sinaloa,-11.6
+10,22-Mar-20,25,Durango,-13
+31,22-Mar-20,25,Yucatán,-28
+27,22-Mar-20,25,Tabasco,-6.4285712
+19,22-Mar-20,25,Nuevo León,-26.057142
+4,22-Mar-20,25,Campeche,-14.171429
+29,22-Mar-20,25,Tlaxcala,-14.114285
+18,22-Mar-20,25,Nayarit,-13.857142
+16,22-Mar-20,25,Michoacán,-10.371428
+11,22-Mar-20,25,Guanajuato,-15.571428
+3,23-Mar-20,26,Baja California Sur,-13.685715
+4,23-Mar-20,26,Campeche,-16.714285
+8,23-Mar-20,26,Chihuahua,-12.628572
+24,23-Mar-20,26,San Luis Potosí,-14.657143
+14,23-Mar-20,26,Jalisco,-24.257143
+5,23-Mar-20,26,Coahuila,-16.485714
+31,23-Mar-20,26,Yucatán,-29.971428
+11,23-Mar-20,26,Guanajuato,-16.171429
+7,23-Mar-20,26,Chiapas,-10.314285
+19,23-Mar-20,26,Nuevo León,-26.714285
+10,23-Mar-20,26,Durango,-15.771428
+18,23-Mar-20,26,Nayarit,-17.742857
+28,23-Mar-20,26,Tamaulipas,-20
+15,23-Mar-20,26,Mex,-11.257143
+22,23-Mar-20,26,Querétaro,-16.085714
+21,23-Mar-20,26,Puebla,-12.4
+30,23-Mar-20,26,Veracruz,-10.657143
+17,23-Mar-20,26,Morelos,-12
+23,23-Mar-20,26,Quintana Roo,-20.371429
+20,23-Mar-20,26,Oaxaca,-11.285714
+16,23-Mar-20,26,Michoacán,-12.571428
+1,23-Mar-20,26,Aguascalientes,-19
+26,23-Mar-20,26,Sonora,-21.771429
+2,23-Mar-20,26,Baja California,-17.914286
+25,23-Mar-20,26,Sinaloa,-14.228572
+6,23-Mar-20,26,Colima,-24.828571
+9,23-Mar-20,26,Ciudad de Mexico,-20.028572
+13,23-Mar-20,26,Hidalgo,-12.228572
+12,23-Mar-20,26,Guerrero,-14.6
+29,23-Mar-20,26,Tlaxcala,-15.657143
+32,23-Mar-20,26,Zacatecas,-15.914286
+27,23-Mar-20,26,Tabasco,-8.6285715
+1,24-Mar-20,27,Aguascalientes,-23.257143
+5,24-Mar-20,27,Coahuila,-21.342857
+6,24-Mar-20,27,Colima,-28.657143
+10,24-Mar-20,27,Durango,-20.228571
+25,24-Mar-20,27,Sinaloa,-18.628571
+26,24-Mar-20,27,Sonora,-25.571428
+22,24-Mar-20,27,Querétaro,-20.142857
+27,24-Mar-20,27,Tabasco,-14.342857
+4,24-Mar-20,27,Campeche,-21.4
+12,24-Mar-20,27,Guerrero,-18.314285
+24,24-Mar-20,27,San Luis Potosí,-19.142857
+13,24-Mar-20,27,Hidalgo,-16.571428
+20,24-Mar-20,27,Oaxaca,-15.171429
+32,24-Mar-20,27,Zacatecas,-21.285715
+19,24-Mar-20,27,Nuevo León,-30.057142
+11,24-Mar-20,27,Guanajuato,-18.857143
+14,24-Mar-20,27,Jalisco,-29.257143
+30,24-Mar-20,27,Veracruz,-14.914286
+9,24-Mar-20,27,Ciudad de Mexico,-24.057142
+16,24-Mar-20,27,Michoacán,-15.771428
+28,24-Mar-20,27,Tamaulipas,-23.485714
+7,24-Mar-20,27,Chiapas,-14.314285
+17,24-Mar-20,27,Morelos,-15.685715
+29,24-Mar-20,27,Tlaxcala,-18.742857
+21,24-Mar-20,27,Puebla,-16.228571
+31,24-Mar-20,27,Yucatán,-33.57143
+18,24-Mar-20,27,Nayarit,-22.171429
+8,24-Mar-20,27,Chihuahua,-16.514286
+3,24-Mar-20,27,Baja California Sur,-18.171429
+2,24-Mar-20,27,Baja California,-22.114286
+23,24-Mar-20,27,Quintana Roo,-25.028572
+15,24-Mar-20,27,Mex,-14.771428
+4,25-Mar-20,28,Campeche,-25.771429
+28,25-Mar-20,28,Tamaulipas,-26.657143
+29,25-Mar-20,28,Tlaxcala,-21.085714
+15,25-Mar-20,28,Mex,-17.942858
+2,25-Mar-20,28,Baja California,-24.285715
+10,25-Mar-20,28,Durango,-24.371429
+1,25-Mar-20,28,Aguascalientes,-26.799999
+8,25-Mar-20,28,Chihuahua,-19.971428
+12,25-Mar-20,28,Guerrero,-21.571428
+19,25-Mar-20,28,Nuevo León,-32.799999
+6,25-Mar-20,28,Colima,-31.942858
+30,25-Mar-20,28,Veracruz,-18.514286
+14,25-Mar-20,28,Jalisco,-33.228573
+13,25-Mar-20,28,Hidalgo,-20.6
+26,25-Mar-20,28,Sonora,-26.714285
+3,25-Mar-20,28,Baja California Sur,-22.571428
+22,25-Mar-20,28,Querétaro,-22.714285
+23,25-Mar-20,28,Quintana Roo,-29.657143
+20,25-Mar-20,28,Oaxaca,-18.771429
+5,25-Mar-20,28,Coahuila,-26.228571
+7,25-Mar-20,28,Chiapas,-18.171429
+17,25-Mar-20,28,Morelos,-18.4
+18,25-Mar-20,28,Nayarit,-25.799999
+11,25-Mar-20,28,Guanajuato,-21.228571
+32,25-Mar-20,28,Zacatecas,-26.228571
+9,25-Mar-20,28,Ciudad de Mexico,-27.657143
+25,25-Mar-20,28,Sinaloa,-22.485714
+21,25-Mar-20,28,Puebla,-19.828571
+16,25-Mar-20,28,Michoacán,-18.571428
+24,25-Mar-20,28,San Luis Potosí,-23
+27,25-Mar-20,28,Tabasco,-19.885714
+31,25-Mar-20,28,Yucatán,-36.485714
+2,26-Mar-20,29,Baja California,-26.514286
+19,26-Mar-20,29,Nuevo León,-34.885715
+7,26-Mar-20,29,Chiapas,-22.114286
+4,26-Mar-20,29,Campeche,-30.028572
+21,26-Mar-20,29,Puebla,-23.171429
+1,26-Mar-20,29,Aguascalientes,-29.742857
+5,26-Mar-20,29,Coahuila,-29.714285
+6,26-Mar-20,29,Colima,-33.799999
+10,26-Mar-20,29,Durango,-27.285715
+3,26-Mar-20,29,Baja California Sur,-26.828571
+25,26-Mar-20,29,Sinaloa,-25.942858
+14,26-Mar-20,29,Jalisco,-35.914288
+16,26-Mar-20,29,Michoacán,-21.028572
+23,26-Mar-20,29,Quintana Roo,-34.085712
+18,26-Mar-20,29,Nayarit,-28.657143
+9,26-Mar-20,29,Ciudad de Mexico,-30.828571
+22,26-Mar-20,29,Querétaro,-24.857143
+30,26-Mar-20,29,Veracruz,-21.942858
+17,26-Mar-20,29,Morelos,-20.971428
+11,26-Mar-20,29,Guanajuato,-23.257143
+24,26-Mar-20,29,San Luis Potosí,-26.428572
+15,26-Mar-20,29,Mex,-21.085714
+26,26-Mar-20,29,Sonora,-28.914286
+31,26-Mar-20,29,Yucatán,-39.057144
+20,26-Mar-20,29,Oaxaca,-22.314285
+12,26-Mar-20,29,Guerrero,-24.314285
+28,26-Mar-20,29,Tamaulipas,-28.971428
+29,26-Mar-20,29,Tlaxcala,-23.142857
+13,26-Mar-20,29,Hidalgo,-24.657143
+32,26-Mar-20,29,Zacatecas,-31.085714
+8,26-Mar-20,29,Chihuahua,-23.828571
+27,26-Mar-20,29,Tabasco,-25.171429
+11,27-Mar-20,30,Guanajuato,-24.914286
+2,27-Mar-20,30,Baja California,-28.657143
+4,27-Mar-20,30,Campeche,-33.228573
+12,27-Mar-20,30,Guerrero,-26.4
+1,27-Mar-20,30,Aguascalientes,-31.857143
+32,27-Mar-20,30,Zacatecas,-34.685715
+29,27-Mar-20,30,Tlaxcala,-24.285715
+8,27-Mar-20,30,Chihuahua,-27.685715
+14,27-Mar-20,30,Jalisco,-37.857143
+20,27-Mar-20,30,Oaxaca,-25.457144
+10,27-Mar-20,30,Durango,-29.514286
+27,27-Mar-20,30,Tabasco,-29.171429
+5,27-Mar-20,30,Coahuila,-31.914286
+18,27-Mar-20,30,Nayarit,-30.942858
+26,27-Mar-20,30,Sonora,-30.828571
+25,27-Mar-20,30,Sinaloa,-28.885714
+7,27-Mar-20,30,Chiapas,-25.514286
+17,27-Mar-20,30,Morelos,-22.828571
+16,27-Mar-20,30,Michoacán,-23
+9,27-Mar-20,30,Ciudad de Mexico,-33.742859
+21,27-Mar-20,30,Puebla,-25.685715
+24,27-Mar-20,30,San Luis Potosí,-28.885714
+13,27-Mar-20,30,Hidalgo,-27.971428
+6,27-Mar-20,30,Colima,-34.771427
+30,27-Mar-20,30,Veracruz,-24.857143
+22,27-Mar-20,30,Querétaro,-26.571428
+23,27-Mar-20,30,Quintana Roo,-38.028572
+19,27-Mar-20,30,Nuevo León,-36.114285
+15,27-Mar-20,30,Mex,-23.485714
+3,27-Mar-20,30,Baja California Sur,-30.542856
+28,27-Mar-20,30,Tamaulipas,-31.085714
+31,27-Mar-20,30,Yucatán,-40.942856
+5,28-Mar-20,31,Coahuila,-33.142857
+9,28-Mar-20,31,Ciudad de Mexico,-35.285713
+14,28-Mar-20,31,Jalisco,-38.457142
+32,28-Mar-20,31,Zacatecas,-36.257141
+15,28-Mar-20,31,Mex,-24.914286
+31,28-Mar-20,31,Yucatán,-42.114285
+23,28-Mar-20,31,Quintana Roo,-41.342857
+1,28-Mar-20,31,Aguascalientes,-33.142857
+25,28-Mar-20,31,Sinaloa,-30.628571
+2,28-Mar-20,31,Baja California,-30.171429
+24,28-Mar-20,31,San Luis Potosí,-30.428572
+3,28-Mar-20,31,Baja California Sur,-33.657143
+17,28-Mar-20,31,Morelos,-24.428572
+10,28-Mar-20,31,Durango,-30.771429
+26,28-Mar-20,31,Sonora,-32
+30,28-Mar-20,31,Veracruz,-26.685715
+20,28-Mar-20,31,Oaxaca,-27.714285
+8,28-Mar-20,31,Chihuahua,-30.200001
+11,28-Mar-20,31,Guanajuato,-26.257143
+22,28-Mar-20,31,Querétaro,-27.685715
+21,28-Mar-20,31,Puebla,-27.314285
+19,28-Mar-20,31,Nuevo León,-36.257141
+29,28-Mar-20,31,Tlaxcala,-25.285715
+28,28-Mar-20,31,Tamaulipas,-32.200001
+27,28-Mar-20,31,Tabasco,-31.457144
+16,28-Mar-20,31,Michoacán,-24.371429
+18,28-Mar-20,31,Nayarit,-32.371429
+12,28-Mar-20,31,Guerrero,-27.771429
+13,28-Mar-20,31,Hidalgo,-29.228571
+4,28-Mar-20,31,Campeche,-35.228573
+6,28-Mar-20,31,Colima,-35.085712
+7,28-Mar-20,31,Chiapas,-27.428572
+30,29-Mar-20,32,Veracruz,-28.342857
+12,29-Mar-20,32,Guerrero,-28.971428
+17,29-Mar-20,32,Morelos,-25.885714
+28,29-Mar-20,32,Tamaulipas,-33.257141
+9,29-Mar-20,32,Ciudad de Mexico,-37.028572
+6,29-Mar-20,32,Colima,-35.200001
+8,29-Mar-20,32,Chihuahua,-32.771427
+4,29-Mar-20,32,Campeche,-36.685715
+2,29-Mar-20,32,Baja California,-31.485714
+20,29-Mar-20,32,Oaxaca,-29.742857
+21,29-Mar-20,32,Puebla,-28.914286
+13,29-Mar-20,32,Hidalgo,-30.4
+1,29-Mar-20,32,Aguascalientes,-34.228573
+14,29-Mar-20,32,Jalisco,-38.171429
+24,29-Mar-20,32,San Luis Potosí,-31.914286
+26,29-Mar-20,32,Sonora,-33.114285
+5,29-Mar-20,32,Coahuila,-34.257141
+3,29-Mar-20,32,Baja California Sur,-36.114285
+22,29-Mar-20,32,Querétaro,-28.628571
+7,29-Mar-20,32,Chiapas,-29.200001
+19,29-Mar-20,32,Nuevo León,-36.885715
+23,29-Mar-20,32,Quintana Roo,-44.257141
+27,29-Mar-20,32,Tabasco,-33.171429
+29,29-Mar-20,32,Tlaxcala,-26.200001
+32,29-Mar-20,32,Zacatecas,-37.200001
+18,29-Mar-20,32,Nayarit,-33.42857
+11,29-Mar-20,32,Guanajuato,-27.685715
+25,29-Mar-20,32,Sinaloa,-32.200001
+31,29-Mar-20,32,Yucatán,-43.028572
+16,29-Mar-20,32,Michoacán,-25.685715
+10,29-Mar-20,32,Durango,-31.657143
+15,29-Mar-20,32,Mex,-26.485714
+19,30-Mar-20,33,Nuevo León,-37.285713
+26,30-Mar-20,33,Sonora,-34.171429
+2,30-Mar-20,33,Baja California,-31.914286
+5,30-Mar-20,33,Coahuila,-34.799999
+29,30-Mar-20,33,Tlaxcala,-26.514286
+10,30-Mar-20,33,Durango,-32.371429
+1,30-Mar-20,33,Aguascalientes,-35.314285
+24,30-Mar-20,33,San Luis Potosí,-32.942856
+23,30-Mar-20,33,Quintana Roo,-46.514286
+21,30-Mar-20,33,Puebla,-30.028572
+9,30-Mar-20,33,Ciudad de Mexico,-38.342857
+16,30-Mar-20,33,Michoacán,-26.514286
+18,30-Mar-20,33,Nayarit,-34.200001
+4,30-Mar-20,33,Campeche,-37.685715
+3,30-Mar-20,33,Baja California Sur,-37.628571
+17,30-Mar-20,33,Morelos,-27.114286
+30,30-Mar-20,33,Veracruz,-29.342857
+28,30-Mar-20,33,Tamaulipas,-34.028572
+7,30-Mar-20,33,Chiapas,-30.257143
+20,30-Mar-20,33,Oaxaca,-30.799999
+22,30-Mar-20,33,Querétaro,-29.342857
+6,30-Mar-20,33,Colima,-35.028572
+32,30-Mar-20,33,Zacatecas,-37.971428
+12,30-Mar-20,33,Guerrero,-29.828571
+27,30-Mar-20,33,Tabasco,-34.514286
+15,30-Mar-20,33,Mex,-27.571428
+8,30-Mar-20,33,Chihuahua,-34.42857
+14,30-Mar-20,33,Jalisco,-36.971428
+11,30-Mar-20,33,Guanajuato,-28.857143
+25,30-Mar-20,33,Sinaloa,-33.171429
+31,30-Mar-20,33,Yucatán,-43.942856
+13,30-Mar-20,33,Hidalgo,-31
+27,31-Mar-20,34,Tabasco,-35.42857
+13,31-Mar-20,34,Hidalgo,-31.428572
+10,31-Mar-20,34,Durango,-32.228573
+7,31-Mar-20,34,Chiapas,-31.257143
+17,31-Mar-20,34,Morelos,-27.942858
+9,31-Mar-20,34,Ciudad de Mexico,-39.257141
+25,31-Mar-20,34,Sinaloa,-33.714287
+11,31-Mar-20,34,Guanajuato,-29.685715
+12,31-Mar-20,34,Guerrero,-30.457144
+3,31-Mar-20,34,Baja California Sur,-38.542858
+16,31-Mar-20,34,Michoacán,-26.771429
+1,31-Mar-20,34,Aguascalientes,-36.142857
+15,31-Mar-20,34,Mex,-28.171429
+14,31-Mar-20,34,Jalisco,-35.628571
+18,31-Mar-20,34,Nayarit,-34.342857
+21,31-Mar-20,34,Puebla,-30.657143
+19,31-Mar-20,34,Nuevo León,-37.342857
+6,31-Mar-20,34,Colima,-34.628571
+26,31-Mar-20,34,Sonora,-34.942856
+5,31-Mar-20,34,Coahuila,-34.857143
+4,31-Mar-20,34,Campeche,-38.257141
+20,31-Mar-20,34,Oaxaca,-31.485714
+22,31-Mar-20,34,Querétaro,-29.828571
+30,31-Mar-20,34,Veracruz,-29.771429
+23,31-Mar-20,34,Quintana Roo,-48.228573
+2,31-Mar-20,34,Baja California,-33.142857
+29,31-Mar-20,34,Tlaxcala,-26.542856
+32,31-Mar-20,34,Zacatecas,-38.171429
+24,31-Mar-20,34,San Luis Potosí,-33.542858
+31,31-Mar-20,34,Yucatán,-44.285713
+28,31-Mar-20,34,Tamaulipas,-34.342857
+8,31-Mar-20,34,Chihuahua,-35.714287
+28,1-Apr-20,35,Tamaulipas,-34.228573
+23,1-Apr-20,35,Quintana Roo,-49.714287
+8,1-Apr-20,35,Chihuahua,-36.257141
+20,1-Apr-20,35,Oaxaca,-32.085712
+25,1-Apr-20,35,Sinaloa,-34
+27,1-Apr-20,35,Tabasco,-35.514286
+7,1-Apr-20,35,Chiapas,-31.971428
+6,1-Apr-20,35,Colima,-34.171429
+13,1-Apr-20,35,Hidalgo,-31.714285
+9,1-Apr-20,35,Ciudad de Mexico,-40.114285
+15,1-Apr-20,35,Mex,-28.657143
+1,1-Apr-20,35,Aguascalientes,-36.628571
+32,1-Apr-20,35,Zacatecas,-38.342857
+26,1-Apr-20,35,Sonora,-35.57143
+3,1-Apr-20,35,Baja California Sur,-39.57143
+14,1-Apr-20,35,Jalisco,-34.771427
+12,1-Apr-20,35,Guerrero,-31.085714
+11,1-Apr-20,35,Guanajuato,-30.4
+17,1-Apr-20,35,Morelos,-28.742857
+5,1-Apr-20,35,Coahuila,-34.714287
+29,1-Apr-20,35,Tlaxcala,-26.542856
+10,1-Apr-20,35,Durango,-31.971428
+21,1-Apr-20,35,Puebla,-31.028572
+19,1-Apr-20,35,Nuevo León,-36.942856
+18,1-Apr-20,35,Nayarit,-34.342857
+16,1-Apr-20,35,Michoacán,-27
+2,1-Apr-20,35,Baja California,-33.742859
+24,1-Apr-20,35,San Luis Potosí,-33.942856
+30,1-Apr-20,35,Veracruz,-30
+4,1-Apr-20,35,Campeche,-38.400002
+22,1-Apr-20,35,Querétaro,-30.428572
+31,1-Apr-20,35,Yucatán,-45.314285
+3,2-Apr-20,36,Baja California Sur,-40.685715
+5,2-Apr-20,36,Coahuila,-34.971428
+15,2-Apr-20,36,Mex,-29.285715
+19,2-Apr-20,36,Nuevo León,-37.057144
+2,2-Apr-20,36,Baja California,-34.342857
+29,2-Apr-20,36,Tlaxcala,-26.942858
+32,2-Apr-20,36,Zacatecas,-38.799999
+22,2-Apr-20,36,Querétaro,-31.114286
+10,2-Apr-20,36,Durango,-32.085712
+6,2-Apr-20,36,Colima,-33.942856
+14,2-Apr-20,36,Jalisco,-34.971428
+23,2-Apr-20,36,Quintana Roo,-51.171429
+1,2-Apr-20,36,Aguascalientes,-37.342857
+7,2-Apr-20,36,Chiapas,-32.942856
+26,2-Apr-20,36,Sonora,-36.257141
+31,2-Apr-20,36,Yucatán,-46.628571
+21,2-Apr-20,36,Puebla,-31.714285
+8,2-Apr-20,36,Chihuahua,-36.742859
+24,2-Apr-20,36,San Luis Potosí,-34.57143
+25,2-Apr-20,36,Sinaloa,-34.457142
+11,2-Apr-20,36,Guanajuato,-31.200001
+20,2-Apr-20,36,Oaxaca,-33.028572
+18,2-Apr-20,36,Nayarit,-34.514286
+4,2-Apr-20,36,Campeche,-38.828571
+13,2-Apr-20,36,Hidalgo,-32.285713
+27,2-Apr-20,36,Tabasco,-36.342857
+9,2-Apr-20,36,Ciudad de Mexico,-41.257141
+30,2-Apr-20,36,Veracruz,-30.514286
+16,2-Apr-20,36,Michoacán,-27.428572
+12,2-Apr-20,36,Guerrero,-31.914286
+17,2-Apr-20,36,Morelos,-29.571428
+28,2-Apr-20,36,Tamaulipas,-34.285713
+18,3-Apr-20,37,Nayarit,-35.057144
+5,3-Apr-20,37,Coahuila,-35.714287
+32,3-Apr-20,37,Zacatecas,-39.342857
+22,3-Apr-20,37,Querétaro,-31.885714
+11,3-Apr-20,37,Guanajuato,-32.057144
+9,3-Apr-20,37,Ciudad de Mexico,-42.514286
+20,3-Apr-20,37,Oaxaca,-34.285713
+2,3-Apr-20,37,Baja California,-35.028572
+1,3-Apr-20,37,Aguascalientes,-38.171429
+30,3-Apr-20,37,Veracruz,-31.228571
+10,3-Apr-20,37,Durango,-32.371429
+21,3-Apr-20,37,Puebla,-32.542858
+29,3-Apr-20,37,Tlaxcala,-27.799999
+23,3-Apr-20,37,Quintana Roo,-52.685715
+24,3-Apr-20,37,San Luis Potosí,-35.342857
+16,3-Apr-20,37,Michoacán,-27.828571
+17,3-Apr-20,37,Morelos,-30.6
+25,3-Apr-20,37,Sinaloa,-35.200001
+3,3-Apr-20,37,Baja California Sur,-41.971428
+15,3-Apr-20,37,Mex,-30
+7,3-Apr-20,37,Chiapas,-33.771427
+26,3-Apr-20,37,Sonora,-37.200001
+28,3-Apr-20,37,Tamaulipas,-34.685715
+27,3-Apr-20,37,Tabasco,-37.685715
+19,3-Apr-20,37,Nuevo León,-37.371429
+4,3-Apr-20,37,Campeche,-39.657143
+12,3-Apr-20,37,Guerrero,-33.171429
+14,3-Apr-20,37,Jalisco,-35.457142
+31,3-Apr-20,37,Yucatán,-48.200001
+6,3-Apr-20,37,Colima,-33.885715
+13,3-Apr-20,37,Hidalgo,-33.171429
+8,3-Apr-20,37,Chihuahua,-36.914288
+18,4-Apr-20,38,Nayarit,-35.657143
+5,4-Apr-20,38,Coahuila,-36.714287
+24,4-Apr-20,38,San Luis Potosí,-36.171429
+30,4-Apr-20,38,Veracruz,-31.857143
+31,4-Apr-20,38,Yucatán,-50.114285
+29,4-Apr-20,38,Tlaxcala,-28.628571
+15,4-Apr-20,38,Mex,-30.657143
+3,4-Apr-20,38,Baja California Sur,-43.485714
+1,4-Apr-20,38,Aguascalientes,-38.971428
+22,4-Apr-20,38,Querétaro,-32.885715
+21,4-Apr-20,38,Puebla,-33.400002
+26,4-Apr-20,38,Sonora,-38.42857
+25,4-Apr-20,38,Sinaloa,-36
+10,4-Apr-20,38,Durango,-33
+16,4-Apr-20,38,Michoacán,-28.457144
+12,4-Apr-20,38,Guerrero,-34.657143
+17,4-Apr-20,38,Morelos,-31.799999
+14,4-Apr-20,38,Jalisco,-36.285713
+20,4-Apr-20,38,Oaxaca,-35.57143
+28,4-Apr-20,38,Tamaulipas,-35.685715
+11,4-Apr-20,38,Guanajuato,-33.057144
+27,4-Apr-20,38,Tabasco,-38.914288
+23,4-Apr-20,38,Quintana Roo,-54.142857
+8,4-Apr-20,38,Chihuahua,-37.542858
+9,4-Apr-20,38,Ciudad de Mexico,-43.942856
+32,4-Apr-20,38,Zacatecas,-40.228573
+19,4-Apr-20,38,Nuevo León,-38.142857
+13,4-Apr-20,38,Hidalgo,-33.942856
+2,4-Apr-20,38,Baja California,-35.971428
+6,4-Apr-20,38,Colima,-34.257141
+7,4-Apr-20,38,Chiapas,-34.828571
+4,4-Apr-20,38,Campeche,-40.371429
+32,5-Apr-20,39,Zacatecas,-40.942856
+2,5-Apr-20,39,Baja California,-36.914288
+4,5-Apr-20,39,Campeche,-41.114285
+31,5-Apr-20,39,Yucatán,-51.714287
+13,5-Apr-20,39,Hidalgo,-34.57143
+15,5-Apr-20,39,Mex,-31.314285
+3,5-Apr-20,39,Baja California Sur,-44.885715
+1,5-Apr-20,39,Aguascalientes,-39.771427
+8,5-Apr-20,39,Chihuahua,-38.028572
+21,5-Apr-20,39,Puebla,-34.171429
+26,5-Apr-20,39,Sonora,-39.457142
+25,5-Apr-20,39,Sinaloa,-36.971428
+30,5-Apr-20,39,Veracruz,-32.657143
+28,5-Apr-20,39,Tamaulipas,-36.485714
+11,5-Apr-20,39,Guanajuato,-34.085712
+12,5-Apr-20,39,Guerrero,-36.200001
+23,5-Apr-20,39,Quintana Roo,-55.371429
+5,5-Apr-20,39,Coahuila,-37.599998
+6,5-Apr-20,39,Colima,-34.771427
+20,5-Apr-20,39,Oaxaca,-36.771427
+29,5-Apr-20,39,Tlaxcala,-29.028572
+18,5-Apr-20,39,Nayarit,-36.742859
+19,5-Apr-20,39,Nuevo León,-38.942856
+10,5-Apr-20,39,Durango,-33.514286
+27,5-Apr-20,39,Tabasco,-39.942856
+17,5-Apr-20,39,Morelos,-33.057144
+22,5-Apr-20,39,Querétaro,-33.885715
+7,5-Apr-20,39,Chiapas,-35.742859
+14,5-Apr-20,39,Jalisco,-37.228573
+24,5-Apr-20,39,San Luis Potosí,-36.771427
+16,5-Apr-20,39,Michoacán,-29.171429
+9,5-Apr-20,39,Ciudad de Mexico,-45.228573
+10,6-Apr-20,40,Durango,-34.057144
+4,6-Apr-20,40,Campeche,-42.142857
+2,6-Apr-20,40,Baja California,-38.599998
+30,6-Apr-20,40,Veracruz,-33.628571
+1,6-Apr-20,40,Aguascalientes,-40.457142
+8,6-Apr-20,40,Chihuahua,-39.028572
+9,6-Apr-20,40,Ciudad de Mexico,-46.742859
+24,6-Apr-20,40,San Luis Potosí,-37.771427
+27,6-Apr-20,40,Tabasco,-41.400002
+26,6-Apr-20,40,Sonora,-40.542858
+13,6-Apr-20,40,Hidalgo,-35.314285
+5,6-Apr-20,40,Coahuila,-38.857143
+6,6-Apr-20,40,Colima,-35.371429
+15,6-Apr-20,40,Mex,-32.114285
+11,6-Apr-20,40,Guanajuato,-35.400002
+18,6-Apr-20,40,Nayarit,-37.714287
+23,6-Apr-20,40,Quintana Roo,-56.799999
+7,6-Apr-20,40,Chiapas,-37.114285
+14,6-Apr-20,40,Jalisco,-38.599998
+19,6-Apr-20,40,Nuevo León,-40.057144
+12,6-Apr-20,40,Guerrero,-37.57143
+31,6-Apr-20,40,Yucatán,-53.599998
+21,6-Apr-20,40,Puebla,-34.828571
+29,6-Apr-20,40,Tlaxcala,-29.742857
+22,6-Apr-20,40,Querétaro,-35.285713
+3,6-Apr-20,40,Baja California Sur,-47.171429
+28,6-Apr-20,40,Tamaulipas,-37.485714
+25,6-Apr-20,40,Sinaloa,-38.285713
+17,6-Apr-20,40,Morelos,-34.057144
+16,6-Apr-20,40,Michoacán,-29.771429
+32,6-Apr-20,40,Zacatecas,-41.657143
+20,6-Apr-20,40,Oaxaca,-38.200001
+24,7-Apr-20,41,San Luis Potosí,-38.657143
+9,7-Apr-20,41,Ciudad de Mexico,-48.285713
+20,7-Apr-20,41,Oaxaca,-39.57143
+21,7-Apr-20,41,Puebla,-35.485714
+7,7-Apr-20,41,Chiapas,-38.171429
+3,7-Apr-20,41,Baja California Sur,-49.542858
+23,7-Apr-20,41,Quintana Roo,-58.314285
+4,7-Apr-20,41,Campeche,-43.371429
+6,7-Apr-20,41,Colima,-36
+27,7-Apr-20,41,Tabasco,-42.971428
+11,7-Apr-20,41,Guanajuato,-36.685715
+13,7-Apr-20,41,Hidalgo,-35.885715
+8,7-Apr-20,41,Chihuahua,-40.142857
+10,7-Apr-20,41,Durango,-35.228573
+1,7-Apr-20,41,Aguascalientes,-40.971428
+31,7-Apr-20,41,Yucatán,-55.628571
+12,7-Apr-20,41,Guerrero,-38.885715
+2,7-Apr-20,41,Baja California,-39.942856
+14,7-Apr-20,41,Jalisco,-39.857143
+25,7-Apr-20,41,Sinaloa,-39.685715
+22,7-Apr-20,41,Querétaro,-36.457142
+28,7-Apr-20,41,Tamaulipas,-38.799999
+17,7-Apr-20,41,Morelos,-35
+19,7-Apr-20,41,Nuevo León,-41.371429
+15,7-Apr-20,41,Mex,-33
+5,7-Apr-20,41,Coahuila,-40.200001
+29,7-Apr-20,41,Tlaxcala,-30.514286
+30,7-Apr-20,41,Veracruz,-34.714287
+16,7-Apr-20,41,Michoacán,-30.571428
+32,7-Apr-20,41,Zacatecas,-42.457142
+26,7-Apr-20,41,Sonora,-41.542858
+18,7-Apr-20,41,Nayarit,-39.085712
+24,8-Apr-20,42,San Luis Potosí,-39.314285
+8,8-Apr-20,42,Chihuahua,-40.828571
+3,8-Apr-20,42,Baja California Sur,-51.657143
+1,8-Apr-20,42,Aguascalientes,-41
+10,8-Apr-20,42,Durango,-36.057144
+19,8-Apr-20,42,Nuevo León,-42.57143
+13,8-Apr-20,42,Hidalgo,-36.142857
+4,8-Apr-20,42,Campeche,-44.400002
+5,8-Apr-20,42,Coahuila,-41.342857
+12,8-Apr-20,42,Guerrero,-39.971428
+7,8-Apr-20,42,Chiapas,-39.228573
+2,8-Apr-20,42,Baja California,-41.257141
+30,8-Apr-20,42,Veracruz,-35.514286
+20,8-Apr-20,42,Oaxaca,-40.857143
+15,8-Apr-20,42,Mex,-33.457142
+27,8-Apr-20,42,Tabasco,-44.742859
+16,8-Apr-20,42,Michoacán,-31.028572
+26,8-Apr-20,42,Sonora,-42.285713
+11,8-Apr-20,42,Guanajuato,-37.485714
+17,8-Apr-20,42,Morelos,-35.657143
+18,8-Apr-20,42,Nayarit,-40.285713
+29,8-Apr-20,42,Tlaxcala,-31
+25,8-Apr-20,42,Sinaloa,-41
+21,8-Apr-20,42,Puebla,-35.971428
+23,8-Apr-20,42,Quintana Roo,-59.57143
+9,8-Apr-20,42,Ciudad de Mexico,-49.457142
+32,8-Apr-20,42,Zacatecas,-42.685715
+28,8-Apr-20,42,Tamaulipas,-40.028572
+6,8-Apr-20,42,Colima,-36.714287
+22,8-Apr-20,42,Querétaro,-37.142857
+31,8-Apr-20,42,Yucatán,-56.742859
+14,8-Apr-20,42,Jalisco,-40.657143
+32,9-Apr-20,43,Zacatecas,-43.685715
+3,9-Apr-20,43,Baja California Sur,-53.971428
+15,9-Apr-20,43,Mex,-34.285713
+12,9-Apr-20,43,Guerrero,-41.514286
+23,9-Apr-20,43,Quintana Roo,-60.942856
+2,9-Apr-20,43,Baja California,-42.599998
+26,9-Apr-20,43,Sonora,-43.657143
+22,9-Apr-20,43,Querétaro,-38.514286
+4,9-Apr-20,43,Campeche,-45.685715
+9,9-Apr-20,43,Ciudad de Mexico,-51.228573
+6,9-Apr-20,43,Colima,-38.257141
+5,9-Apr-20,43,Coahuila,-43.028572
+13,9-Apr-20,43,Hidalgo,-36.171429
+10,9-Apr-20,43,Durango,-37.885715
+30,9-Apr-20,43,Veracruz,-36.714287
+11,9-Apr-20,43,Guanajuato,-39.085712
+16,9-Apr-20,43,Michoacán,-32.085712
+18,9-Apr-20,43,Nayarit,-42.57143
+31,9-Apr-20,43,Yucatán,-57.628571
+1,9-Apr-20,43,Aguascalientes,-41.799999
+14,9-Apr-20,43,Jalisco,-42.200001
+17,9-Apr-20,43,Morelos,-36.42857
+7,9-Apr-20,43,Chiapas,-40.685715
+20,9-Apr-20,43,Oaxaca,-42.314285
+29,9-Apr-20,43,Tlaxcala,-31.085714
+25,9-Apr-20,43,Sinaloa,-43.171429
+24,9-Apr-20,43,San Luis Potosí,-40.685715
+21,9-Apr-20,43,Puebla,-36.514286
+19,9-Apr-20,43,Nuevo León,-44.228573
+28,9-Apr-20,43,Tamaulipas,-41.857143
+8,9-Apr-20,43,Chihuahua,-42.057144
+27,9-Apr-20,43,Tabasco,-46.228573
+18,10-Apr-20,44,Nayarit,-45.57143
+28,10-Apr-20,44,Tamaulipas,-44.57143
+17,10-Apr-20,44,Morelos,-38.714287
+6,10-Apr-20,44,Colima,-41.285713
+26,10-Apr-20,44,Sonora,-46.028572
+19,10-Apr-20,44,Nuevo León,-47.314285
+14,10-Apr-20,44,Jalisco,-45.114285
+23,10-Apr-20,44,Quintana Roo,-62.599998
+1,10-Apr-20,44,Aguascalientes,-44.771427
+4,10-Apr-20,44,Campeche,-48.171429
+8,10-Apr-20,44,Chihuahua,-44.885715
+20,10-Apr-20,44,Oaxaca,-45
+15,10-Apr-20,44,Mex,-37.028572
+24,10-Apr-20,44,San Luis Potosí,-43.799999
+31,10-Apr-20,44,Yucatán,-59.685715
+22,10-Apr-20,44,Querétaro,-41.771427
+3,10-Apr-20,44,Baja California Sur,-56.799999
+7,10-Apr-20,44,Chiapas,-43.771427
+9,10-Apr-20,44,Ciudad de Mexico,-53.914288
+30,10-Apr-20,44,Veracruz,-39.200001
+27,10-Apr-20,44,Tabasco,-49.114285
+25,10-Apr-20,44,Sinaloa,-46.085712
+2,10-Apr-20,44,Baja California,-46.485714
+29,10-Apr-20,44,Tlaxcala,-33.857143
+11,10-Apr-20,44,Guanajuato,-42.314285
+12,10-Apr-20,44,Guerrero,-44.057144
+13,10-Apr-20,44,Hidalgo,-38.085712
+32,10-Apr-20,44,Zacatecas,-46.371429
+5,10-Apr-20,44,Coahuila,-45.857143
+10,10-Apr-20,44,Durango,-41.285713
+21,10-Apr-20,44,Puebla,-38.914288
+16,10-Apr-20,44,Michoacán,-34.971428
+14,11-Apr-20,45,Jalisco,-47.114285
+20,11-Apr-20,45,Oaxaca,-46.914288
+18,11-Apr-20,45,Nayarit,-48.42857
+8,11-Apr-20,45,Chihuahua,-46.914288
+31,11-Apr-20,45,Yucatán,-60.542858
+5,11-Apr-20,45,Coahuila,-48.085712
+21,11-Apr-20,45,Puebla,-40.914288
+13,11-Apr-20,45,Hidalgo,-39.771427
+24,11-Apr-20,45,San Luis Potosí,-46.114285
+25,11-Apr-20,45,Sinaloa,-49
+30,11-Apr-20,45,Veracruz,-40.828571
+1,11-Apr-20,45,Aguascalientes,-46.400002
+28,11-Apr-20,45,Tamaulipas,-46.171429
+12,11-Apr-20,45,Guerrero,-45.742859
+11,11-Apr-20,45,Guanajuato,-44.542858
+22,11-Apr-20,45,Querétaro,-44.085712
+19,11-Apr-20,45,Nuevo León,-49.314285
+15,11-Apr-20,45,Mex,-39.371429
+7,11-Apr-20,45,Chiapas,-46.228573
+32,11-Apr-20,45,Zacatecas,-48
+23,11-Apr-20,45,Quintana Roo,-63.799999
+6,11-Apr-20,45,Colima,-43.457142
+3,11-Apr-20,45,Baja California Sur,-59.057144
+17,11-Apr-20,45,Morelos,-40.285713
+10,11-Apr-20,45,Durango,-43.599998
+16,11-Apr-20,45,Michoacán,-36.914288
+29,11-Apr-20,45,Tlaxcala,-36.200001
+27,11-Apr-20,45,Tabasco,-51.085712
+4,11-Apr-20,45,Campeche,-49.914288
+9,11-Apr-20,45,Ciudad de Mexico,-55.942856
+2,11-Apr-20,45,Baja California,-48.114285
+26,11-Apr-20,45,Sonora,-48.228573
+20,12-Apr-20,46,Oaxaca,-47.942856
+2,12-Apr-20,46,Baja California,-49.171429
+8,12-Apr-20,46,Chihuahua,-48.171429
+31,12-Apr-20,46,Yucatán,-60.628571
+29,12-Apr-20,46,Tlaxcala,-37.371429
+19,12-Apr-20,46,Nuevo León,-49.914288
+18,12-Apr-20,46,Nayarit,-49.657143
+22,12-Apr-20,46,Querétaro,-44.914288
+7,12-Apr-20,46,Chiapas,-47.42857
+14,12-Apr-20,46,Jalisco,-47.685715
+24,12-Apr-20,46,San Luis Potosí,-47.200001
+4,12-Apr-20,46,Campeche,-50.799999
+12,12-Apr-20,46,Guerrero,-46.599998
+25,12-Apr-20,46,Sinaloa,-50.457142
+21,12-Apr-20,46,Puebla,-41.742859
+5,12-Apr-20,46,Coahuila,-49.028572
+17,12-Apr-20,46,Morelos,-41.085712
+23,12-Apr-20,46,Quintana Roo,-64.485718
+16,12-Apr-20,46,Michoacán,-37.628571
+11,12-Apr-20,46,Guanajuato,-45.257141
+30,12-Apr-20,46,Veracruz,-41.42857
+6,12-Apr-20,46,Colima,-44.257141
+3,12-Apr-20,46,Baja California Sur,-60.400002
+15,12-Apr-20,46,Mex,-40.42857
+1,12-Apr-20,46,Aguascalientes,-46.885715
+28,12-Apr-20,46,Tamaulipas,-46.857143
+13,12-Apr-20,46,Hidalgo,-40.257141
+26,12-Apr-20,46,Sonora,-49.057144
+32,12-Apr-20,46,Zacatecas,-48.685715
+10,12-Apr-20,46,Durango,-44.628571
+9,12-Apr-20,46,Ciudad de Mexico,-56.828571
+27,12-Apr-20,46,Tabasco,-51.771427
+14,13-Apr-20,47,Jalisco,-47.657143
+25,13-Apr-20,47,Sinaloa,-51.257141
+4,13-Apr-20,47,Campeche,-51.142857
+29,13-Apr-20,47,Tlaxcala,-38
+19,13-Apr-20,47,Nuevo León,-50.171429
+22,13-Apr-20,47,Querétaro,-45
+18,13-Apr-20,47,Nayarit,-50.371429
+2,13-Apr-20,47,Baja California,-49.771427
+3,13-Apr-20,47,Baja California Sur,-61.085712
+24,13-Apr-20,47,San Luis Potosí,-47.485714
+9,13-Apr-20,47,Ciudad de Mexico,-57.057144
+1,13-Apr-20,47,Aguascalientes,-46.771427
+12,13-Apr-20,47,Guerrero,-47.171429
+32,13-Apr-20,47,Zacatecas,-48.685715
+26,13-Apr-20,47,Sonora,-50.57143
+13,13-Apr-20,47,Hidalgo,-40.342857
+17,13-Apr-20,47,Morelos,-41.742859
+11,13-Apr-20,47,Guanajuato,-45.314285
+8,13-Apr-20,47,Chihuahua,-48.514286
+31,13-Apr-20,47,Yucatán,-60.57143
+5,13-Apr-20,47,Coahuila,-49.42857
+21,13-Apr-20,47,Puebla,-42.085712
+6,13-Apr-20,47,Colima,-44.542858
+23,13-Apr-20,47,Quintana Roo,-64.971428
+16,13-Apr-20,47,Michoacán,-37.828571
+28,13-Apr-20,47,Tamaulipas,-47.257141
+15,13-Apr-20,47,Mex,-40.742859
+20,13-Apr-20,47,Oaxaca,-48.285713
+27,13-Apr-20,47,Tabasco,-51.828571
+10,13-Apr-20,47,Durango,-45
+7,13-Apr-20,47,Chiapas,-47.799999
+30,13-Apr-20,47,Veracruz,-41.628571
+17,14-Apr-20,48,Morelos,-42.371429
+23,14-Apr-20,48,Quintana Roo,-65.428574
+12,14-Apr-20,48,Guerrero,-47.742859
+3,14-Apr-20,48,Baja California Sur,-61.599998
+2,14-Apr-20,48,Baja California,-49.599998
+21,14-Apr-20,48,Puebla,-42.314285
+15,14-Apr-20,48,Mex,-40.942856
+27,14-Apr-20,48,Tabasco,-51.685715
+10,14-Apr-20,48,Durango,-45.257141
+11,14-Apr-20,48,Guanajuato,-45.314285
+26,14-Apr-20,48,Sonora,-51.885715
+6,14-Apr-20,48,Colima,-44.799999
+29,14-Apr-20,48,Tlaxcala,-38.42857
+14,14-Apr-20,48,Jalisco,-47.599998
+9,14-Apr-20,48,Ciudad de Mexico,-57.057144
+13,14-Apr-20,48,Hidalgo,-40.542858
+16,14-Apr-20,48,Michoacán,-38.171429
+5,14-Apr-20,48,Coahuila,-49.714287
+4,14-Apr-20,48,Campeche,-51.42857
+28,14-Apr-20,48,Tamaulipas,-47.342857
+1,14-Apr-20,48,Aguascalientes,-46.657143
+19,14-Apr-20,48,Nuevo León,-50.314285
+20,14-Apr-20,48,Oaxaca,-48.657143
+8,14-Apr-20,48,Chihuahua,-48.714287
+18,14-Apr-20,48,Nayarit,-51.057144
+25,14-Apr-20,48,Sinaloa,-51.914288
+32,14-Apr-20,48,Zacatecas,-48.714287
+24,14-Apr-20,48,San Luis Potosí,-47.828571
+31,14-Apr-20,48,Yucatán,-60.57143
+30,14-Apr-20,48,Veracruz,-41.799999
+7,14-Apr-20,48,Chiapas,-48.085712
+22,14-Apr-20,48,Querétaro,-45.171429
+30,15-Apr-20,49,Veracruz,-41.771427
+6,15-Apr-20,49,Colima,-44.514286
+14,15-Apr-20,49,Jalisco,-47.457142
+23,15-Apr-20,49,Quintana Roo,-65.599998
+18,15-Apr-20,49,Nayarit,-51.400002
+25,15-Apr-20,49,Sinaloa,-52.285713
+19,15-Apr-20,49,Nuevo León,-50.714287
+2,15-Apr-20,49,Baja California,-49.457142
+4,15-Apr-20,49,Campeche,-51.257141
+28,15-Apr-20,49,Tamaulipas,-47.200001
+16,15-Apr-20,49,Michoacán,-38.342857
+24,15-Apr-20,49,San Luis Potosí,-47.971428
+21,15-Apr-20,49,Puebla,-42.42857
+12,15-Apr-20,49,Guerrero,-48.057144
+26,15-Apr-20,49,Sonora,-53.114285
+29,15-Apr-20,49,Tlaxcala,-38.714287
+11,15-Apr-20,49,Guanajuato,-45.200001
+17,15-Apr-20,49,Morelos,-42.799999
+20,15-Apr-20,49,Oaxaca,-48.628571
+22,15-Apr-20,49,Querétaro,-45.142857
+8,15-Apr-20,49,Chihuahua,-48.914288
+32,15-Apr-20,49,Zacatecas,-48.771427
+10,15-Apr-20,49,Durango,-45.171429
+9,15-Apr-20,49,Ciudad de Mexico,-56.914288
+5,15-Apr-20,49,Coahuila,-49.857143
+27,15-Apr-20,49,Tabasco,-50.914288
+31,15-Apr-20,49,Yucatán,-60.285713
+15,15-Apr-20,49,Mex,-41
+13,15-Apr-20,49,Hidalgo,-40.599998
+3,15-Apr-20,49,Baja California Sur,-61.314285
+7,15-Apr-20,49,Chiapas,-48
+1,15-Apr-20,49,Aguascalientes,-46.514286
+4,16-Apr-20,50,Campeche,-50.57143
+32,16-Apr-20,50,Zacatecas,-48
+10,16-Apr-20,50,Durango,-43.857143
+30,16-Apr-20,50,Veracruz,-41.057144
+19,16-Apr-20,50,Nuevo León,-50.057144
+3,16-Apr-20,50,Baja California Sur,-60.714287
+6,16-Apr-20,50,Colima,-43.171429
+14,16-Apr-20,50,Jalisco,-46.314285
+5,16-Apr-20,50,Coahuila,-49.057144
+8,16-Apr-20,50,Chihuahua,-48.285713
+16,16-Apr-20,50,Michoacán,-37.714287
+12,16-Apr-20,50,Guerrero,-47.742859
+13,16-Apr-20,50,Hidalgo,-40.685715
+9,16-Apr-20,50,Ciudad de Mexico,-55.885715
+21,16-Apr-20,50,Puebla,-42.228573
+23,16-Apr-20,50,Quintana Roo,-65.514282
+22,16-Apr-20,50,Querétaro,-44.485714
+20,16-Apr-20,50,Oaxaca,-47.914288
+15,16-Apr-20,50,Mex,-40.514286
+2,16-Apr-20,50,Baja California,-49.085712
+27,16-Apr-20,50,Tabasco,-49.742859
+25,16-Apr-20,50,Sinaloa,-51.685715
+18,16-Apr-20,50,Nayarit,-50.542858
+28,16-Apr-20,50,Tamaulipas,-46.371429
+24,16-Apr-20,50,San Luis Potosí,-47.200001
+31,16-Apr-20,50,Yucatán,-59.828571
+17,16-Apr-20,50,Morelos,-42.914288
+11,16-Apr-20,50,Guanajuato,-44.228573
+1,16-Apr-20,50,Aguascalientes,-45.657143
+29,16-Apr-20,50,Tlaxcala,-38.971428
+7,16-Apr-20,50,Chiapas,-47.142857
+26,16-Apr-20,50,Sonora,-53.285713
+18,17-Apr-20,51,Nayarit,-48.828571
+25,17-Apr-20,51,Sinaloa,-50.200001
+17,17-Apr-20,51,Morelos,-41.485714
+4,17-Apr-20,51,Campeche,-48.799999
+2,17-Apr-20,51,Baja California,-46.514286
+28,17-Apr-20,51,Tamaulipas,-44.400002
+29,17-Apr-20,51,Tlaxcala,-36.542858
+23,17-Apr-20,51,Quintana Roo,-65
+6,17-Apr-20,51,Colima,-40.542858
+14,17-Apr-20,51,Jalisco,-43.599998
+11,17-Apr-20,51,Guanajuato,-41.485714
+5,17-Apr-20,51,Coahuila,-46.885715
+10,17-Apr-20,51,Durango,-41.028572
+31,17-Apr-20,51,Yucatán,-58
+21,17-Apr-20,51,Puebla,-40.228573
+3,17-Apr-20,51,Baja California Sur,-59.485714
+27,17-Apr-20,51,Tabasco,-47.200001
+26,17-Apr-20,51,Sonora,-52.200001
+19,17-Apr-20,51,Nuevo León,-47.771427
+22,17-Apr-20,51,Querétaro,-41.828571
+12,17-Apr-20,51,Guerrero,-46.285713
+9,17-Apr-20,51,Ciudad de Mexico,-53.799999
+13,17-Apr-20,51,Hidalgo,-38.857143
+30,17-Apr-20,51,Veracruz,-38.914288
+16,17-Apr-20,51,Michoacán,-35.314285
+7,17-Apr-20,51,Chiapas,-44.885715
+15,17-Apr-20,51,Mex,-38.285713
+20,17-Apr-20,51,Oaxaca,-45.885715
+8,17-Apr-20,51,Chihuahua,-46.085712
+24,17-Apr-20,51,San Luis Potosí,-44.685715
+32,17-Apr-20,51,Zacatecas,-45.628571
+1,17-Apr-20,51,Aguascalientes,-42.599998
+3,18-Apr-20,52,Baja California Sur,-58.914288
+15,18-Apr-20,52,Mex,-36.942856
+13,18-Apr-20,52,Hidalgo,-37.742859
+16,18-Apr-20,52,Michoacán,-34.142857
+25,18-Apr-20,52,Sinaloa,-49.257141
+1,18-Apr-20,52,Aguascalientes,-41.371429
+22,18-Apr-20,52,Querétaro,-40.42857
+4,18-Apr-20,52,Campeche,-48.057144
+14,18-Apr-20,52,Jalisco,-41.885715
+28,18-Apr-20,52,Tamaulipas,-43.314285
+18,18-Apr-20,52,Nayarit,-47.714287
+2,18-Apr-20,52,Baja California,-46.200001
+10,18-Apr-20,52,Durango,-39.171429
+26,18-Apr-20,52,Sonora,-51.400002
+12,18-Apr-20,52,Guerrero,-45.799999
+11,18-Apr-20,52,Guanajuato,-39.942856
+17,18-Apr-20,52,Morelos,-40.942856
+21,18-Apr-20,52,Puebla,-39.085712
+6,18-Apr-20,52,Colima,-38.857143
+23,18-Apr-20,52,Quintana Roo,-65.057144
+31,18-Apr-20,52,Yucatán,-57.400002
+24,18-Apr-20,52,San Luis Potosí,-43.342857
+8,18-Apr-20,52,Chihuahua,-44.828571
+9,18-Apr-20,52,Ciudad de Mexico,-52.542858
+32,18-Apr-20,52,Zacatecas,-44.42857
+7,18-Apr-20,52,Chiapas,-43.514286
+20,18-Apr-20,52,Oaxaca,-44.714287
+19,18-Apr-20,52,Nuevo León,-46.485714
+27,18-Apr-20,52,Tabasco,-46.057144
+30,18-Apr-20,52,Veracruz,-38
+5,18-Apr-20,52,Coahuila,-45.285713
+29,18-Apr-20,52,Tlaxcala,-35.057144
+25,19-Apr-20,53,Sinaloa,-49.457142
+11,19-Apr-20,53,Guanajuato,-39.514286
+8,19-Apr-20,53,Chihuahua,-44.057144
+5,19-Apr-20,53,Coahuila,-44.714287
+4,19-Apr-20,53,Campeche,-47.885715
+21,19-Apr-20,53,Puebla,-39
+15,19-Apr-20,53,Mex,-36.542858
+31,19-Apr-20,53,Yucatán,-57.314285
+20,19-Apr-20,53,Oaxaca,-44.400002
+28,19-Apr-20,53,Tamaulipas,-42.914288
+16,19-Apr-20,53,Michoacán,-33.971428
+1,19-Apr-20,53,Aguascalientes,-41.028572
+19,19-Apr-20,53,Nuevo León,-46.200001
+12,19-Apr-20,53,Guerrero,-45.857143
+27,19-Apr-20,53,Tabasco,-45.799999
+29,19-Apr-20,53,Tlaxcala,-34.942856
+26,19-Apr-20,53,Sonora,-51.514286
+17,19-Apr-20,53,Morelos,-41.171429
+10,19-Apr-20,53,Durango,-38.657143
+13,19-Apr-20,53,Hidalgo,-37.371429
+24,19-Apr-20,53,San Luis Potosí,-43
+18,19-Apr-20,53,Nayarit,-47.714287
+3,19-Apr-20,53,Baja California Sur,-58.885715
+22,19-Apr-20,53,Querétaro,-40.057144
+2,19-Apr-20,53,Baja California,-46.200001
+7,19-Apr-20,53,Chiapas,-43.142857
+9,19-Apr-20,53,Ciudad de Mexico,-52.057144
+32,19-Apr-20,53,Zacatecas,-44
+6,19-Apr-20,53,Colima,-38.400002
+30,19-Apr-20,53,Veracruz,-37.742859
+14,19-Apr-20,53,Jalisco,-41.371429
+23,19-Apr-20,53,Quintana Roo,-65.285713
+24,20-Apr-20,54,San Luis Potosí,-43.257141
+16,20-Apr-20,54,Michoacán,-34.628571
+3,20-Apr-20,54,Baja California Sur,-58.885715
+5,20-Apr-20,54,Coahuila,-44.685715
+15,20-Apr-20,54,Mex,-37.028572
+4,20-Apr-20,54,Campeche,-48.285713
+27,20-Apr-20,54,Tabasco,-46.085712
+19,20-Apr-20,54,Nuevo León,-46.400002
+6,20-Apr-20,54,Colima,-38.542858
+31,20-Apr-20,54,Yucatán,-57.400002
+22,20-Apr-20,54,Querétaro,-40.400002
+13,20-Apr-20,54,Hidalgo,-37.57143
+9,20-Apr-20,54,Ciudad de Mexico,-52.200001
+14,20-Apr-20,54,Jalisco,-41.799999
+32,20-Apr-20,54,Zacatecas,-44.257141
+25,20-Apr-20,54,Sinaloa,-49.914288
+23,20-Apr-20,54,Quintana Roo,-65.771431
+10,20-Apr-20,54,Durango,-38.799999
+1,20-Apr-20,54,Aguascalientes,-41.457142
+30,20-Apr-20,54,Veracruz,-38
+28,20-Apr-20,54,Tamaulipas,-42.828571
+18,20-Apr-20,54,Nayarit,-48.42857
+12,20-Apr-20,54,Guerrero,-46.228573
+7,20-Apr-20,54,Chiapas,-43.285713
+17,20-Apr-20,54,Morelos,-41.485714
+8,20-Apr-20,54,Chihuahua,-44.028572
+2,20-Apr-20,54,Baja California,-46.314285
+20,20-Apr-20,54,Oaxaca,-44.485714
+21,20-Apr-20,54,Puebla,-39.599998
+11,20-Apr-20,54,Guanajuato,-39.657143
+26,20-Apr-20,54,Sonora,-50.942856
+29,20-Apr-20,54,Tlaxcala,-35.799999
+10,21-Apr-20,55,Durango,-39.599998
+8,21-Apr-20,55,Chihuahua,-44.628571
+29,21-Apr-20,55,Tlaxcala,-36.57143
+16,21-Apr-20,55,Michoacán,-35.685715
+3,21-Apr-20,55,Baja California Sur,-59.228573
+9,21-Apr-20,55,Ciudad de Mexico,-52.799999
+17,21-Apr-20,55,Morelos,-42.057144
+27,21-Apr-20,55,Tabasco,-46.799999
+13,21-Apr-20,55,Hidalgo,-38.200001
+26,21-Apr-20,55,Sonora,-50.771427
+32,21-Apr-20,55,Zacatecas,-44.828571
+5,21-Apr-20,55,Coahuila,-45.085712
+28,21-Apr-20,55,Tamaulipas,-43.142857
+11,21-Apr-20,55,Guanajuato,-40.085712
+25,21-Apr-20,55,Sinaloa,-50.828571
+4,21-Apr-20,55,Campeche,-48.914288
+15,21-Apr-20,55,Mex,-37.942856
+12,21-Apr-20,55,Guerrero,-46.828571
+19,21-Apr-20,55,Nuevo León,-46.742859
+14,21-Apr-20,55,Jalisco,-42.485714
+30,21-Apr-20,55,Veracruz,-38.485714
+18,21-Apr-20,55,Nayarit,-49.342857
+2,21-Apr-20,55,Baja California,-47
+1,21-Apr-20,55,Aguascalientes,-42.371429
+20,21-Apr-20,55,Oaxaca,-44.857143
+6,21-Apr-20,55,Colima,-39.171429
+21,21-Apr-20,55,Puebla,-40.342857
+24,21-Apr-20,55,San Luis Potosí,-43.685715
+22,21-Apr-20,55,Querétaro,-41.114285
+23,21-Apr-20,55,Quintana Roo,-66.342857
+7,21-Apr-20,55,Chiapas,-43.57143
+31,21-Apr-20,55,Yucatán,-57.714287
+8,22-Apr-20,56,Chihuahua,-45.542858
+30,22-Apr-20,56,Veracruz,-39.400002
+5,22-Apr-20,56,Coahuila,-45.799999
+6,22-Apr-20,56,Colima,-40.371429
+27,22-Apr-20,56,Tabasco,-48.685715
+11,22-Apr-20,56,Guanajuato,-40.942856
+24,22-Apr-20,56,San Luis Potosí,-44.485714
+18,22-Apr-20,56,Nayarit,-50.485714
+4,22-Apr-20,56,Campeche,-50.142857
+29,22-Apr-20,56,Tlaxcala,-37.514286
+14,22-Apr-20,56,Jalisco,-43.485714
+10,22-Apr-20,56,Durango,-40.971428
+12,22-Apr-20,56,Guerrero,-47.771427
+2,22-Apr-20,56,Baja California,-47.542858
+20,22-Apr-20,56,Oaxaca,-45.657143
+13,22-Apr-20,56,Hidalgo,-39.285713
+7,22-Apr-20,56,Chiapas,-44.371429
+23,22-Apr-20,56,Quintana Roo,-67.199997
+31,22-Apr-20,56,Yucatán,-58.342857
+9,22-Apr-20,56,Ciudad de Mexico,-53.628571
+15,22-Apr-20,56,Mex,-39.257141
+28,22-Apr-20,56,Tamaulipas,-43.742859
+21,22-Apr-20,56,Puebla,-41.371429
+16,22-Apr-20,56,Michoacán,-37.171429
+26,22-Apr-20,56,Sonora,-50.857143
+1,22-Apr-20,56,Aguascalientes,-43.799999
+3,22-Apr-20,56,Baja California Sur,-60.085712
+25,22-Apr-20,56,Sinaloa,-52.028572
+19,22-Apr-20,56,Nuevo León,-47.057144
+32,22-Apr-20,56,Zacatecas,-45.971428
+17,22-Apr-20,56,Morelos,-43.114285
+22,22-Apr-20,56,Querétaro,-42.142857
+27,23-Apr-20,57,Tabasco,-50.485714
+20,23-Apr-20,57,Oaxaca,-46.485714
+18,23-Apr-20,57,Nayarit,-51.457142
+6,23-Apr-20,57,Colima,-41.42857
+10,23-Apr-20,57,Durango,-42.171429
+24,23-Apr-20,57,San Luis Potosí,-45.114285
+1,23-Apr-20,57,Aguascalientes,-44.942856
+13,23-Apr-20,57,Hidalgo,-40.114285
+11,23-Apr-20,57,Guanajuato,-41.685715
+23,23-Apr-20,57,Quintana Roo,-68
+30,23-Apr-20,57,Veracruz,-40.457142
+8,23-Apr-20,57,Chihuahua,-46.457142
+28,23-Apr-20,57,Tamaulipas,-44.314285
+12,23-Apr-20,57,Guerrero,-48.628571
+3,23-Apr-20,57,Baja California Sur,-60.828571
+4,23-Apr-20,57,Campeche,-51.314285
+19,23-Apr-20,57,Nuevo León,-47.457142
+21,23-Apr-20,57,Puebla,-42.342857
+2,23-Apr-20,57,Baja California,-48.028572
+7,23-Apr-20,57,Chiapas,-45.028572
+32,23-Apr-20,57,Zacatecas,-46.914288
+5,23-Apr-20,57,Coahuila,-46.371429
+29,23-Apr-20,57,Tlaxcala,-38.400002
+25,23-Apr-20,57,Sinaloa,-53.142857
+16,23-Apr-20,57,Michoacán,-38.457142
+15,23-Apr-20,57,Mex,-40.714287
+31,23-Apr-20,57,Yucatán,-58.799999
+22,23-Apr-20,57,Querétaro,-43
+17,23-Apr-20,57,Morelos,-44.057144
+26,23-Apr-20,57,Sonora,-50.942856
+9,23-Apr-20,57,Ciudad de Mexico,-54.542858
+14,23-Apr-20,57,Jalisco,-44.342857
+7,24-Apr-20,58,Chiapas,-45.542858
+8,24-Apr-20,58,Chihuahua,-47.142857
+23,24-Apr-20,58,Quintana Roo,-68.628571
+32,24-Apr-20,58,Zacatecas,-47.542858
+3,24-Apr-20,58,Baja California Sur,-61.371429
+5,24-Apr-20,58,Coahuila,-46.771427
+6,24-Apr-20,58,Colima,-42.142857
+10,24-Apr-20,58,Durango,-43.200001
+11,24-Apr-20,58,Guanajuato,-42.285713
+27,24-Apr-20,58,Tabasco,-52.114285
+16,24-Apr-20,58,Michoacán,-39.42857
+13,24-Apr-20,58,Hidalgo,-40.828571
+1,24-Apr-20,58,Aguascalientes,-45.971428
+9,24-Apr-20,58,Ciudad de Mexico,-55.342857
+14,24-Apr-20,58,Jalisco,-45.028572
+19,24-Apr-20,58,Nuevo León,-47.885715
+24,24-Apr-20,58,San Luis Potosí,-45.599998
+2,24-Apr-20,58,Baja California,-48.057144
+12,24-Apr-20,58,Guerrero,-49.228573
+20,24-Apr-20,58,Oaxaca,-47.200001
+22,24-Apr-20,58,Querétaro,-43.742859
+17,24-Apr-20,58,Morelos,-44.799999
+21,24-Apr-20,58,Puebla,-43.142857
+15,24-Apr-20,58,Mex,-42.028572
+18,24-Apr-20,58,Nayarit,-52.171429
+4,24-Apr-20,58,Campeche,-52.228573
+29,24-Apr-20,58,Tlaxcala,-39.228573
+25,24-Apr-20,58,Sinaloa,-54.028572
+26,24-Apr-20,58,Sonora,-51.057144
+30,24-Apr-20,58,Veracruz,-41.285713
+28,24-Apr-20,58,Tamaulipas,-44.971428
+31,24-Apr-20,58,Yucatán,-59.828571
+8,25-Apr-20,59,Chihuahua,-47.400002
+24,25-Apr-20,59,San Luis Potosí,-45.657143
+7,25-Apr-20,59,Chiapas,-45.799999
+2,25-Apr-20,59,Baja California,-47.885715
+21,25-Apr-20,59,Puebla,-43.599998
+3,25-Apr-20,59,Baja California Sur,-61.771427
+4,25-Apr-20,59,Campeche,-52.942856
+31,25-Apr-20,59,Yucatán,-60.714287
+1,25-Apr-20,59,Aguascalientes,-46.457142
+32,25-Apr-20,59,Zacatecas,-47.971428
+11,25-Apr-20,59,Guanajuato,-42.57143
+19,25-Apr-20,59,Nuevo León,-48.028572
+10,25-Apr-20,59,Durango,-44.114285
+12,25-Apr-20,59,Guerrero,-49.628571
+5,25-Apr-20,59,Coahuila,-47.142857
+13,25-Apr-20,59,Hidalgo,-41.314285
+15,25-Apr-20,59,Mex,-42.885715
+14,25-Apr-20,59,Jalisco,-45.485714
+26,25-Apr-20,59,Sonora,-50.828571
+6,25-Apr-20,59,Colima,-42.57143
+9,25-Apr-20,59,Ciudad de Mexico,-55.857143
+20,25-Apr-20,59,Oaxaca,-47.714287
+27,25-Apr-20,59,Tabasco,-53.371429
+25,25-Apr-20,59,Sinaloa,-54.371429
+22,25-Apr-20,59,Querétaro,-44.085712
+30,25-Apr-20,59,Veracruz,-41.599998
+18,25-Apr-20,59,Nayarit,-52.599998
+28,25-Apr-20,59,Tamaulipas,-45.200001
+17,25-Apr-20,59,Morelos,-45.171429
+16,25-Apr-20,59,Michoacán,-40.057144
+23,25-Apr-20,59,Quintana Roo,-69.085716
+29,25-Apr-20,59,Tlaxcala,-39.828571
+1,26-Apr-20,60,Aguascalientes,-47.028572
+2,26-Apr-20,60,Baja California,-47.685715
+8,26-Apr-20,60,Chihuahua,-47.771427
+18,26-Apr-20,60,Nayarit,-52.828571
+7,26-Apr-20,60,Chiapas,-46.200001
+9,26-Apr-20,60,Ciudad de Mexico,-56.285713
+29,26-Apr-20,60,Tlaxcala,-40.028572
+19,26-Apr-20,60,Nuevo León,-48.514286
+11,26-Apr-20,60,Guanajuato,-43
+17,26-Apr-20,60,Morelos,-45.514286
+32,26-Apr-20,60,Zacatecas,-48.599998
+15,26-Apr-20,60,Mex,-43.685715
+14,26-Apr-20,60,Jalisco,-45.885715
+12,26-Apr-20,60,Guerrero,-50.057144
+25,26-Apr-20,60,Sinaloa,-54.657143
+31,26-Apr-20,60,Yucatán,-61.485714
+23,26-Apr-20,60,Quintana Roo,-69.457146
+3,26-Apr-20,60,Baja California Sur,-62.142857
+27,26-Apr-20,60,Tabasco,-54.657143
+16,26-Apr-20,60,Michoacán,-40.57143
+4,26-Apr-20,60,Campeche,-53.371429
+26,26-Apr-20,60,Sonora,-50.685715
+22,26-Apr-20,60,Querétaro,-44.457142
+20,26-Apr-20,60,Oaxaca,-48.228573
+21,26-Apr-20,60,Puebla,-43.771427
+24,26-Apr-20,60,San Luis Potosí,-45.828571
+13,26-Apr-20,60,Hidalgo,-41.885715
+5,26-Apr-20,60,Coahuila,-47.628571
+6,26-Apr-20,60,Colima,-42.828571
+28,26-Apr-20,60,Tamaulipas,-45.42857
+30,26-Apr-20,60,Veracruz,-42
+10,26-Apr-20,60,Durango,-44.828571
+24,27-Apr-20,61,San Luis Potosí,-46.085712
+4,27-Apr-20,61,Campeche,-53.828571
+25,27-Apr-20,61,Sinaloa,-54.914288
+32,27-Apr-20,61,Zacatecas,-49.171429
+16,27-Apr-20,61,Michoacán,-40.857143
+6,27-Apr-20,61,Colima,-43.057144
+21,27-Apr-20,61,Puebla,-43.885715
+11,27-Apr-20,61,Guanajuato,-43.485714
+18,27-Apr-20,61,Nayarit,-52.857143
+17,27-Apr-20,61,Morelos,-45.828571
+28,27-Apr-20,61,Tamaulipas,-45.914288
+13,27-Apr-20,61,Hidalgo,-42.285713
+5,27-Apr-20,61,Coahuila,-48.114285
+19,27-Apr-20,61,Nuevo León,-48.914288
+30,27-Apr-20,61,Veracruz,-42.371429
+26,27-Apr-20,61,Sonora,-50.514286
+3,27-Apr-20,61,Baja California Sur,-62.514286
+14,27-Apr-20,61,Jalisco,-45.885715
+9,27-Apr-20,61,Ciudad de Mexico,-56.742859
+8,27-Apr-20,61,Chihuahua,-48.142857
+10,27-Apr-20,61,Durango,-45.628571
+2,27-Apr-20,61,Baja California,-47.542858
+23,27-Apr-20,61,Quintana Roo,-69.742859
+20,27-Apr-20,61,Oaxaca,-48.771427
+29,27-Apr-20,61,Tlaxcala,-39.857143
+27,27-Apr-20,61,Tabasco,-56.085712
+1,27-Apr-20,61,Aguascalientes,-47.457142
+7,27-Apr-20,61,Chiapas,-46.542858
+12,27-Apr-20,61,Guerrero,-50.514286
+31,27-Apr-20,61,Yucatán,-62.285713
+15,27-Apr-20,61,Mex,-44.371429
+22,27-Apr-20,61,Querétaro,-44.799999
+5,28-Apr-20,62,Coahuila,-48.114285
+18,28-Apr-20,62,Nayarit,-52.42857
+25,28-Apr-20,62,Sinaloa,-54.742859
+8,28-Apr-20,62,Chihuahua,-47.971428
+22,28-Apr-20,62,Querétaro,-44.742859
+2,28-Apr-20,62,Baja California,-47.171429
+32,28-Apr-20,62,Zacatecas,-49.314285
+7,28-Apr-20,62,Chiapas,-46.628571
+29,28-Apr-20,62,Tlaxcala,-39.885715
+13,28-Apr-20,62,Hidalgo,-42.228573
+6,28-Apr-20,62,Colima,-42.914288
+24,28-Apr-20,62,San Luis Potosí,-46
+11,28-Apr-20,62,Guanajuato,-43.514286
+3,28-Apr-20,62,Baja California Sur,-62.514286
+23,28-Apr-20,62,Quintana Roo,-69.771431
+20,28-Apr-20,62,Oaxaca,-48.857143
+10,28-Apr-20,62,Durango,-45.657143
+17,28-Apr-20,62,Morelos,-45.942856
+19,28-Apr-20,62,Nuevo León,-49.228573
+31,28-Apr-20,62,Yucatán,-62.828571
+1,28-Apr-20,62,Aguascalientes,-47.314285
+16,28-Apr-20,62,Michoacán,-40.542858
+21,28-Apr-20,62,Puebla,-43.914288
+9,28-Apr-20,62,Ciudad de Mexico,-56.885715
+14,28-Apr-20,62,Jalisco,-45.514286
+26,28-Apr-20,62,Sonora,-50
+27,28-Apr-20,62,Tabasco,-56.828571
+4,28-Apr-20,62,Campeche,-53.857143
+15,28-Apr-20,62,Mex,-44.599998
+28,28-Apr-20,62,Tamaulipas,-45.914288
+12,28-Apr-20,62,Guerrero,-50.57143
+30,28-Apr-20,62,Veracruz,-42.457142
+20,29-Apr-20,63,Oaxaca,-48.514286
+17,29-Apr-20,63,Morelos,-45.685715
+24,29-Apr-20,63,San Luis Potosí,-45.657143
+27,29-Apr-20,63,Tabasco,-56.457142
+12,29-Apr-20,63,Guerrero,-50.200001
+11,29-Apr-20,63,Guanajuato,-43.142857
+26,29-Apr-20,63,Sonora,-49.114285
+31,29-Apr-20,63,Yucatán,-62.942856
+14,29-Apr-20,63,Jalisco,-44.771427
+5,29-Apr-20,63,Coahuila,-47.628571
+19,29-Apr-20,63,Nuevo León,-49.085712
+23,29-Apr-20,63,Quintana Roo,-69.542854
+22,29-Apr-20,63,Querétaro,-44.42857
+6,29-Apr-20,63,Colima,-42.485714
+13,29-Apr-20,63,Hidalgo,-41.685715
+25,29-Apr-20,63,Sinaloa,-54.200001
+21,29-Apr-20,63,Puebla,-43.57143
+32,29-Apr-20,63,Zacatecas,-48.971428
+3,29-Apr-20,63,Baja California Sur,-62.200001
+29,29-Apr-20,63,Tlaxcala,-39.42857
+1,29-Apr-20,63,Aguascalientes,-46.742859
+8,29-Apr-20,63,Chihuahua,-47.457142
+9,29-Apr-20,63,Ciudad de Mexico,-56.771427
+7,29-Apr-20,63,Chiapas,-46.171429
+10,29-Apr-20,63,Durango,-45.257141
+18,29-Apr-20,63,Nayarit,-51.799999
+15,29-Apr-20,63,Mex,-44.400002
+28,29-Apr-20,63,Tamaulipas,-45.628571
+2,29-Apr-20,63,Baja California,-46.914288
+16,29-Apr-20,63,Michoacán,-39.828571
+30,29-Apr-20,63,Veracruz,-41.971428
+4,29-Apr-20,63,Campeche,-53.314285
+23,30-Apr-20,64,Quintana Roo,-68.771431
+17,30-Apr-20,64,Morelos,-44.628571
+2,30-Apr-20,64,Baja California,-45.714287
+6,30-Apr-20,64,Colima,-41.314285
+11,30-Apr-20,64,Guanajuato,-42.085712
+24,30-Apr-20,64,San Luis Potosí,-44.085712
+20,30-Apr-20,64,Oaxaca,-47.371429
+10,30-Apr-20,64,Durango,-43.599998
+29,30-Apr-20,64,Tlaxcala,-38
+21,30-Apr-20,64,Puebla,-42.200001
+9,30-Apr-20,64,Ciudad de Mexico,-55.857143
+4,30-Apr-20,64,Campeche,-51.828571
+30,30-Apr-20,64,Veracruz,-40.142857
+26,30-Apr-20,64,Sonora,-47.371429
+1,30-Apr-20,64,Aguascalientes,-45.457142
+27,30-Apr-20,64,Tabasco,-55.057144
+14,30-Apr-20,64,Jalisco,-43.457142
+19,30-Apr-20,64,Nuevo León,-47.542858
+7,30-Apr-20,64,Chiapas,-44.685715
+13,30-Apr-20,64,Hidalgo,-40.400002
+22,30-Apr-20,64,Querétaro,-43.542858
+16,30-Apr-20,64,Michoacán,-38.400002
+31,30-Apr-20,64,Yucatán,-62.371429
+25,30-Apr-20,64,Sinaloa,-52.599998
+32,30-Apr-20,64,Zacatecas,-47.657143
+3,30-Apr-20,64,Baja California Sur,-60.914288
+28,30-Apr-20,64,Tamaulipas,-43.942856
+12,30-Apr-20,64,Guerrero,-49.114285
+18,30-Apr-20,64,Nayarit,-50.42857
+15,30-Apr-20,64,Mex,-43.142857
+8,30-Apr-20,64,Chihuahua,-45.857143
+5,30-Apr-20,64,Coahuila,-45.885715
+6,1-May-20,65,Colima,-41.771427
+9,1-May-20,65,Ciudad de Mexico,-56.371429
+24,1-May-20,65,San Luis Potosí,-44.771427
+28,1-May-20,65,Tamaulipas,-44
+1,1-May-20,65,Aguascalientes,-46
+2,1-May-20,65,Baja California,-46.228573
+22,1-May-20,65,Querétaro,-44.200001
+21,1-May-20,65,Puebla,-42.457142
+10,1-May-20,65,Durango,-44.257141
+11,1-May-20,65,Guanajuato,-42.742859
+13,1-May-20,65,Hidalgo,-40.942856
+26,1-May-20,65,Sonora,-47.485714
+23,1-May-20,65,Quintana Roo,-68.714287
+4,1-May-20,65,Campeche,-51.799999
+14,1-May-20,65,Jalisco,-44
+5,1-May-20,65,Coahuila,-46.542858
+20,1-May-20,65,Oaxaca,-47.485714
+31,1-May-20,65,Yucatán,-62.657143
+29,1-May-20,65,Tlaxcala,-38.114285
+16,1-May-20,65,Michoacán,-38.599998
+15,1-May-20,65,Mex,-43.371429
+8,1-May-20,65,Chihuahua,-46.200001
+25,1-May-20,65,Sinaloa,-52.971428
+3,1-May-20,65,Baja California Sur,-60.885715
+17,1-May-20,65,Morelos,-45.057144
+12,1-May-20,65,Guerrero,-49.400002
+19,1-May-20,65,Nuevo León,-48.57143
+18,1-May-20,65,Nayarit,-50.657143
+32,1-May-20,65,Zacatecas,-48
+27,1-May-20,65,Tabasco,-55.085712
+30,1-May-20,65,Veracruz,-40.371429
+7,1-May-20,65,Chiapas,-44.914288
+20,2-May-20,66,Oaxaca,-47
+22,2-May-20,66,Querétaro,-44.228573
+1,2-May-20,66,Aguascalientes,-45.828571
+24,2-May-20,66,San Luis Potosí,-44.828571
+30,2-May-20,66,Veracruz,-39.942856
+6,2-May-20,66,Colima,-41.228573
+10,2-May-20,66,Durango,-44.057144
+5,2-May-20,66,Coahuila,-46.314285
+26,2-May-20,66,Sonora,-47.057144
+21,2-May-20,66,Puebla,-42
+12,2-May-20,66,Guerrero,-49.171429
+11,2-May-20,66,Guanajuato,-42.599998
+8,2-May-20,66,Chihuahua,-45.971428
+3,2-May-20,66,Baja California Sur,-60.200001
+9,2-May-20,66,Ciudad de Mexico,-56.057144
+7,2-May-20,66,Chiapas,-44.457142
+13,2-May-20,66,Hidalgo,-40.685715
+28,2-May-20,66,Tamaulipas,-43.485714
+14,2-May-20,66,Jalisco,-43.599998
+23,2-May-20,66,Quintana Roo,-68.371429
+4,2-May-20,66,Campeche,-51.285713
+25,2-May-20,66,Sinaloa,-52.599998
+31,2-May-20,66,Yucatán,-62.228573
+16,2-May-20,66,Michoacán,-38.114285
+29,2-May-20,66,Tlaxcala,-37.314285
+2,2-May-20,66,Baja California,-45.942856
+15,2-May-20,66,Mex,-43
+27,2-May-20,66,Tabasco,-54.657143
+17,2-May-20,66,Morelos,-44.799999
+32,2-May-20,66,Zacatecas,-47.685715
+18,2-May-20,66,Nayarit,-50.085712
+19,2-May-20,66,Nuevo León,-48.542858
+23,3-May-20,67,Quintana Roo,-68.028572
+13,3-May-20,67,Hidalgo,-40.771427
+5,3-May-20,67,Coahuila,-45.828571
+9,3-May-20,67,Ciudad de Mexico,-55.885715
+25,3-May-20,67,Sinaloa,-52.228573
+12,3-May-20,67,Guerrero,-48.971428
+10,3-May-20,67,Durango,-43.828571
+8,3-May-20,67,Chihuahua,-45.628571
+18,3-May-20,67,Nayarit,-49.57143
+3,3-May-20,67,Baja California Sur,-59.599998
+14,3-May-20,67,Jalisco,-43.057144
+2,3-May-20,67,Baja California,-45.657143
+19,3-May-20,67,Nuevo León,-48.200001
+4,3-May-20,67,Campeche,-50.971428
+32,3-May-20,67,Zacatecas,-47.400002
+22,3-May-20,67,Querétaro,-44.228573
+11,3-May-20,67,Guanajuato,-42.171429
+21,3-May-20,67,Puebla,-41.657143
+7,3-May-20,67,Chiapas,-44.085712
+26,3-May-20,67,Sonora,-46.599998
+27,3-May-20,67,Tabasco,-54.257141
+1,3-May-20,67,Aguascalientes,-45.42857
+15,3-May-20,67,Mex,-42.742859
+30,3-May-20,67,Veracruz,-39.457142
+24,3-May-20,67,San Luis Potosí,-44.742859
+31,3-May-20,67,Yucatán,-61.914288
+16,3-May-20,67,Michoacán,-37.657143
+20,3-May-20,67,Oaxaca,-46.542858
+29,3-May-20,67,Tlaxcala,-36.714287
+28,3-May-20,67,Tamaulipas,-43.257141
+6,3-May-20,67,Colima,-40.714287
+17,3-May-20,67,Morelos,-44.514286
+28,4-May-20,68,Tamaulipas,-42.371429
+11,4-May-20,68,Guanajuato,-41.599998
+2,4-May-20,68,Baja California,-45.057144
+3,4-May-20,68,Baja California Sur,-59.085712
+20,4-May-20,68,Oaxaca,-45.914288
+14,4-May-20,68,Jalisco,-42.400002
+31,4-May-20,68,Yucatán,-61.457142
+6,4-May-20,68,Colima,-40.142857
+23,4-May-20,68,Quintana Roo,-67.685715
+8,4-May-20,68,Chihuahua,-45.028572
+25,4-May-20,68,Sinaloa,-51.771427
+29,4-May-20,68,Tlaxcala,-36.171429
+12,4-May-20,68,Guerrero,-48.742859
+32,4-May-20,68,Zacatecas,-46.942856
+26,4-May-20,68,Sonora,-45.828571
+7,4-May-20,68,Chiapas,-43.57143
+17,4-May-20,68,Morelos,-44.257141
+13,4-May-20,68,Hidalgo,-41.028572
+15,4-May-20,68,Mex,-42.457142
+18,4-May-20,68,Nayarit,-48.885715
+16,4-May-20,68,Michoacán,-37.085712
+21,4-May-20,68,Puebla,-41.228573
+5,4-May-20,68,Coahuila,-45.257141
+27,4-May-20,68,Tabasco,-53.542858
+24,4-May-20,68,San Luis Potosí,-44.457142
+22,4-May-20,68,Querétaro,-44
+30,4-May-20,68,Veracruz,-38.885715
+10,4-May-20,68,Durango,-43.171429
+9,4-May-20,68,Ciudad de Mexico,-55.714287
+4,4-May-20,68,Campeche,-50.42857
+19,4-May-20,68,Nuevo León,-47.514286
+1,4-May-20,68,Aguascalientes,-45.028572
+2,5-May-20,69,Baja California,-44.400002
+13,5-May-20,69,Hidalgo,-41.514286
+23,5-May-20,69,Quintana Roo,-67.485718
+1,5-May-20,69,Aguascalientes,-44.799999
+4,5-May-20,69,Campeche,-50.314285
+7,5-May-20,69,Chiapas,-43.685715
+29,5-May-20,69,Tlaxcala,-35.828571
+9,5-May-20,69,Ciudad de Mexico,-55.914288
+6,5-May-20,69,Colima,-39.599998
+19,5-May-20,69,Nuevo León,-47
+16,5-May-20,69,Michoacán,-36.857143
+28,5-May-20,69,Tamaulipas,-41.828571
+30,5-May-20,69,Veracruz,-38.685715
+31,5-May-20,69,Yucatán,-61.228573
+3,5-May-20,69,Baja California Sur,-58.771427
+14,5-May-20,69,Jalisco,-42.057144
+12,5-May-20,69,Guerrero,-48.885715
+26,5-May-20,69,Sonora,-45.314285
+17,5-May-20,69,Morelos,-44.257141
+21,5-May-20,69,Puebla,-41.085712
+5,5-May-20,69,Coahuila,-44.885715
+20,5-May-20,69,Oaxaca,-45.771427
+22,5-May-20,69,Querétaro,-44.257141
+18,5-May-20,69,Nayarit,-48.42857
+8,5-May-20,69,Chihuahua,-44.657143
+32,5-May-20,69,Zacatecas,-46.799999
+11,5-May-20,69,Guanajuato,-41.514286
+15,5-May-20,69,Mex,-42.485714
+10,5-May-20,69,Durango,-42.885715
+24,5-May-20,69,San Luis Potosí,-44.371429
+25,5-May-20,69,Sinaloa,-51.457142
+27,5-May-20,69,Tabasco,-53.542858
+3,6-May-20,70,Baja California Sur,-58.657143
+20,6-May-20,70,Oaxaca,-45.685715
+2,6-May-20,70,Baja California,-43.828571
+5,6-May-20,70,Coahuila,-44.657143
+4,6-May-20,70,Campeche,-50.485714
+8,6-May-20,70,Chihuahua,-44.485714
+18,6-May-20,70,Nayarit,-48.171429
+14,6-May-20,70,Jalisco,-41.914288
+13,6-May-20,70,Hidalgo,-42.314285
+17,6-May-20,70,Morelos,-44.485714
+11,6-May-20,70,Guanajuato,-41.342857
+9,6-May-20,70,Ciudad de Mexico,-56.371429
+6,6-May-20,70,Colima,-39.028572
+21,6-May-20,70,Puebla,-41.314285
+22,6-May-20,70,Querétaro,-44.514286
+24,6-May-20,70,San Luis Potosí,-44.485714
+28,6-May-20,70,Tamaulipas,-41.599998
+19,6-May-20,70,Nuevo León,-46.714287
+25,6-May-20,70,Sinaloa,-51.42857
+31,6-May-20,70,Yucatán,-61.371429
+23,6-May-20,70,Quintana Roo,-67.542854
+16,6-May-20,70,Michoacán,-36.57143
+12,6-May-20,70,Guerrero,-49.171429
+10,6-May-20,70,Durango,-42.599998
+26,6-May-20,70,Sonora,-45.057144
+32,6-May-20,70,Zacatecas,-46.599998
+29,6-May-20,70,Tlaxcala,-36.171429
+27,6-May-20,70,Tabasco,-53.857143
+7,6-May-20,70,Chiapas,-43.657143
+15,6-May-20,70,Mex,-42.771427
+1,6-May-20,70,Aguascalientes,-44.828571
+30,6-May-20,70,Veracruz,-39.057144
+12,7-May-20,71,Guerrero,-50.171429
+27,7-May-20,71,Tabasco,-54.942856
+7,7-May-20,71,Chiapas,-44.828571
+8,7-May-20,71,Chihuahua,-45.285713
+24,7-May-20,71,San Luis Potosí,-45.685715
+11,7-May-20,71,Guanajuato,-42.057144
+31,7-May-20,71,Yucatán,-62.200001
+30,7-May-20,71,Veracruz,-40.57143
+32,7-May-20,71,Zacatecas,-47.342857
+14,7-May-20,71,Jalisco,-42.314285
+4,7-May-20,71,Campeche,-51.685715
+5,7-May-20,71,Coahuila,-45.657143
+15,7-May-20,71,Mex,-43.799999
+2,7-May-20,71,Baja California,-44.028572
+25,7-May-20,71,Sinaloa,-52.228573
+23,7-May-20,71,Quintana Roo,-68.171425
+10,7-May-20,71,Durango,-43.628571
+6,7-May-20,71,Colima,-39.171429
+28,7-May-20,71,Tamaulipas,-42.371429
+17,7-May-20,71,Morelos,-45.542858
+13,7-May-20,71,Hidalgo,-44.028572
+16,7-May-20,71,Michoacán,-37.142857
+21,7-May-20,71,Puebla,-42.457142
+22,7-May-20,71,Querétaro,-45.542858
+9,7-May-20,71,Ciudad de Mexico,-57.314285
+29,7-May-20,71,Tlaxcala,-37.485714
+3,7-May-20,71,Baja California Sur,-59.285713
+20,7-May-20,71,Oaxaca,-46.342857
+26,7-May-20,71,Sonora,-45.714287
+19,7-May-20,71,Nuevo León,-47.657143
+18,7-May-20,71,Nayarit,-48.828571
+1,7-May-20,71,Aguascalientes,-45.457142
+27,8-May-20,72,Tabasco,-54.657143
+13,8-May-20,72,Hidalgo,-43.685715
+2,8-May-20,72,Baja California,-42.514286
+9,8-May-20,72,Ciudad de Mexico,-56.914288
+28,8-May-20,72,Tamaulipas,-41.085712
+18,8-May-20,72,Nayarit,-47.828571
+5,8-May-20,72,Coahuila,-44.171429
+10,8-May-20,72,Durango,-42.028572
+15,8-May-20,72,Mex,-43.314285
+26,8-May-20,72,Sonora,-44.285713
+21,8-May-20,72,Puebla,-41.657143
+6,8-May-20,72,Colima,-37.685715
+11,8-May-20,72,Guanajuato,-40.885715
+24,8-May-20,72,San Luis Potosí,-44.57143
+30,8-May-20,72,Veracruz,-39.914288
+32,8-May-20,72,Zacatecas,-46.42857
+14,8-May-20,72,Jalisco,-40.771427
+20,8-May-20,72,Oaxaca,-45.457142
+22,8-May-20,72,Querétaro,-44.799999
+19,8-May-20,72,Nuevo León,-46.285713
+8,8-May-20,72,Chihuahua,-44.142857
+4,8-May-20,72,Campeche,-51.200001
+12,8-May-20,72,Guerrero,-49.657143
+29,8-May-20,72,Tlaxcala,-36.799999
+3,8-May-20,72,Baja California Sur,-58.685715
+25,8-May-20,72,Sinaloa,-50.914288
+16,8-May-20,72,Michoacán,-35.914288
+1,8-May-20,72,Aguascalientes,-44.457142
+7,8-May-20,72,Chiapas,-44
+23,8-May-20,72,Quintana Roo,-67.942856
+17,8-May-20,72,Morelos,-45.171429
+31,8-May-20,72,Yucatán,-61.485714
+8,9-May-20,73,Chihuahua,-43.400002
+2,9-May-20,73,Baja California,-41.485714
+23,9-May-20,73,Quintana Roo,-67.914284
+28,9-May-20,73,Tamaulipas,-39.971428
+4,9-May-20,73,Campeche,-50.857143
+29,9-May-20,73,Tlaxcala,-36.142857
+21,9-May-20,73,Puebla,-41.142857
+13,9-May-20,73,Hidalgo,-43.914288
+5,9-May-20,73,Coahuila,-42.628571
+14,9-May-20,73,Jalisco,-39.685715
+24,9-May-20,73,San Luis Potosí,-43.628571
+9,9-May-20,73,Ciudad de Mexico,-57.285713
+30,9-May-20,73,Veracruz,-40.371429
+10,9-May-20,73,Durango,-40.771427
+17,9-May-20,73,Morelos,-45.085712
+12,9-May-20,73,Guerrero,-49.114285
+11,9-May-20,73,Guanajuato,-39.742859
+32,9-May-20,73,Zacatecas,-45.457142
+22,9-May-20,73,Querétaro,-44.457142
+25,9-May-20,73,Sinaloa,-50.285713
+20,9-May-20,73,Oaxaca,-44.714287
+16,9-May-20,73,Michoacán,-34.599998
+31,9-May-20,73,Yucatán,-61.400002
+15,9-May-20,73,Mex,-43.171429
+3,9-May-20,73,Baja California Sur,-58.257141
+6,9-May-20,73,Colima,-36.657143
+1,9-May-20,73,Aguascalientes,-43.371429
+7,9-May-20,73,Chiapas,-43.42857
+18,9-May-20,73,Nayarit,-47.371429
+27,9-May-20,73,Tabasco,-58.857143
+19,9-May-20,73,Nuevo León,-45.342857
+26,9-May-20,73,Sonora,-42.971428
+32,10-May-20,74,Zacatecas,-44.599998
+30,10-May-20,74,Veracruz,-40.171429
+7,10-May-20,74,Chiapas,-42.57143
+8,10-May-20,74,Chihuahua,-42.457142
+5,10-May-20,74,Coahuila,-41.171429
+18,10-May-20,74,Nayarit,-46.714287
+6,10-May-20,74,Colima,-35.285713
+24,10-May-20,74,San Luis Potosí,-42.657143
+25,10-May-20,74,Sinaloa,-49.599998
+15,10-May-20,74,Mex,-42.714287
+16,10-May-20,74,Michoacán,-33.200001
+14,10-May-20,74,Jalisco,-38.57143
+4,10-May-20,74,Campeche,-49.942856
+23,10-May-20,74,Quintana Roo,-67.628571
+28,10-May-20,74,Tamaulipas,-38.714287
+12,10-May-20,74,Guerrero,-48.171429
+11,10-May-20,74,Guanajuato,-38.457142
+10,10-May-20,74,Durango,-39.171429
+1,10-May-20,74,Aguascalientes,-42.085712
+20,10-May-20,74,Oaxaca,-43.400002
+29,10-May-20,74,Tlaxcala,-35.085712
+31,10-May-20,74,Yucatán,-60.742859
+9,10-May-20,74,Ciudad de Mexico,-57.371429
+3,10-May-20,74,Baja California Sur,-57.514286
+27,10-May-20,74,Tabasco,-62
+22,10-May-20,74,Querétaro,-43.914288
+19,10-May-20,74,Nuevo León,-44.285713
+21,10-May-20,74,Puebla,-40.285713
+26,10-May-20,74,Sonora,-41.799999
+13,10-May-20,74,Hidalgo,-43.542858
+2,10-May-20,74,Baja California,-40.400002
+17,10-May-20,74,Morelos,-44.628571
+17,11-May-20,75,Morelos,-45.142857
+15,11-May-20,75,Mex,-42.971428
+29,11-May-20,75,Tlaxcala,-35.342857
+12,11-May-20,75,Guerrero,-48.542858
+3,11-May-20,75,Baja California Sur,-57.628571
+9,11-May-20,75,Ciudad de Mexico,-57.942856
+26,11-May-20,75,Sonora,-41.971428
+30,11-May-20,75,Veracruz,-40.799999
+6,11-May-20,75,Colima,-35.285713
+18,11-May-20,75,Nayarit,-47.028572
+25,11-May-20,75,Sinaloa,-49.942856
+13,11-May-20,75,Hidalgo,-43.885715
+2,11-May-20,75,Baja California,-40.228573
+11,11-May-20,75,Guanajuato,-38.457142
+7,11-May-20,75,Chiapas,-42.828571
+28,11-May-20,75,Tamaulipas,-38.914288
+21,11-May-20,75,Puebla,-40.742859
+20,11-May-20,75,Oaxaca,-43.628571
+32,11-May-20,75,Zacatecas,-44.628571
+19,11-May-20,75,Nuevo León,-44.457142
+22,11-May-20,75,Querétaro,-44.228573
+5,11-May-20,75,Coahuila,-40.942856
+23,11-May-20,75,Quintana Roo,-67.885712
+31,11-May-20,75,Yucatán,-60.914288
+27,11-May-20,75,Tabasco,-62.200001
+4,11-May-20,75,Campeche,-50.228573
+24,11-May-20,75,San Luis Potosí,-42.742859
+8,11-May-20,75,Chihuahua,-42.685715
+1,11-May-20,75,Aguascalientes,-42
+10,11-May-20,75,Durango,-39.200001
+14,11-May-20,75,Jalisco,-38.599998
+16,11-May-20,75,Michoacán,-33.085712
+21,12-May-20,76,Puebla,-40.799999
+9,12-May-20,76,Ciudad de Mexico,-57.828571
+31,12-May-20,76,Yucatán,-60.828571
+27,12-May-20,76,Tabasco,-61.885715
+14,12-May-20,76,Jalisco,-38.314285
+24,12-May-20,76,San Luis Potosí,-42.485714
+2,12-May-20,76,Baja California,-39.914288
+8,12-May-20,76,Chihuahua,-42.599998
+13,12-May-20,76,Hidalgo,-43.742859
+6,12-May-20,76,Colima,-35.200001
+12,12-May-20,76,Guerrero,-48.371429
+18,12-May-20,76,Nayarit,-47.057144
+10,12-May-20,76,Durango,-38.828571
+28,12-May-20,76,Tamaulipas,-38.657143
+11,12-May-20,76,Guanajuato,-37.971428
+19,12-May-20,76,Nuevo León,-44.114285
+15,12-May-20,76,Mex,-42.771427
+4,12-May-20,76,Campeche,-50.057144
+1,12-May-20,76,Aguascalientes,-41.799999
+32,12-May-20,76,Zacatecas,-44.314285
+20,12-May-20,76,Oaxaca,-43.514286
+29,12-May-20,76,Tlaxcala,-35.257141
+23,12-May-20,76,Quintana Roo,-67.942856
+7,12-May-20,76,Chiapas,-42.400002
+5,12-May-20,76,Coahuila,-40.485714
+3,12-May-20,76,Baja California Sur,-57.514286
+30,12-May-20,76,Veracruz,-40.914288
+22,12-May-20,76,Querétaro,-43.942856
+17,12-May-20,76,Morelos,-45.200001
+26,12-May-20,76,Sonora,-41.771427
+16,12-May-20,76,Michoacán,-32.685715
+25,12-May-20,76,Sinaloa,-49.799999
+12,13-May-20,77,Guerrero,-48.085712
+4,13-May-20,77,Campeche,-49.857143
+17,13-May-20,77,Morelos,-45.142857
+32,13-May-20,77,Zacatecas,-44.42857
+19,13-May-20,77,Nuevo León,-43.942856
+1,13-May-20,77,Aguascalientes,-41.514286
+25,13-May-20,77,Sinaloa,-49.771427
+31,13-May-20,77,Yucatán,-60.657143
+18,13-May-20,77,Nayarit,-47.028572
+24,13-May-20,77,San Luis Potosí,-42.257141
+5,13-May-20,77,Coahuila,-40.228573
+29,13-May-20,77,Tlaxcala,-35.028572
+15,13-May-20,77,Mex,-42.599998
+21,13-May-20,77,Puebla,-40.714287
+9,13-May-20,77,Ciudad de Mexico,-57.657143
+28,13-May-20,77,Tamaulipas,-38.257141
+11,13-May-20,77,Guanajuato,-37.942856
+23,13-May-20,77,Quintana Roo,-68
+16,13-May-20,77,Michoacán,-32.57143
+10,13-May-20,77,Durango,-38.628571
+14,13-May-20,77,Jalisco,-38.171429
+13,13-May-20,77,Hidalgo,-43.742859
+30,13-May-20,77,Veracruz,-40.799999
+7,13-May-20,77,Chiapas,-42.485714
+3,13-May-20,77,Baja California Sur,-57.400002
+22,13-May-20,77,Querétaro,-43.971428
+27,13-May-20,77,Tabasco,-61.57143
+6,13-May-20,77,Colima,-35.171429
+20,13-May-20,77,Oaxaca,-43.400002
+26,13-May-20,77,Sonora,-41.828571
+8,13-May-20,77,Chihuahua,-42.514286
+2,13-May-20,77,Baja California,-39.742859
