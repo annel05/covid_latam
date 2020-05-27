@@ -9,7 +9,7 @@
   - `Date`
   - `Days`
   - `State_Name`
-  - `State_Code`
+  - `State_Code`: I used 3-letter codes from [this](https://en.wikipedia.org/wiki/Template:Mexico_State-Abbreviation_Codes)
   - Policy Index Column: something consistent
   - Mobility Data Column: something consistent, `google_avg_7d` is fine as long as it doesn't change in the future.
   - `Ranking_Policy`: a daily ranking of states by their policy index value. 1 is for the state with the highest index value, last is for the state with the lowest.

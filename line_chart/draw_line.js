@@ -2,8 +2,8 @@
 // TODO add 0 baseline
 // TODO hide x-baseline
 // TODO extend ticks to make grid
-// TODO add class for each line
-// TODO extend 
+// TODO extend
+// TODO use State_Code for each line's class.
 async function drawLine() {
   // 1. access data
   const dataset = await d3.csv('../data/mexico_through20200513.csv');
@@ -12,6 +12,7 @@ async function drawLine() {
   const dateParser = d3.timeParse('%d-%b-%y');
   const xAccessor = d => dateParser(d.Date);
   const stateAccessor = d => d.State_Name;
+  const stateCodeAccessor = d => d.State_Code;
 
   const datasetByState = d3.nest().key(stateAccessor).entries(dataset);
   console.log(datasetByState[0]);
@@ -73,6 +74,7 @@ async function drawLine() {
     .data(datasetByState)
     .enter()
     .append('path')
+    .attr('class', d => d.key)
     .attr('fill', 'none')
     .attr('stroke', 'lightgrey')
     .attr('stroke-width', 2)
