@@ -79,6 +79,7 @@ async function drawLine() {
   const xAxisGenerator = d3
     .axisBottom()
     .scale(xScale)
+    // .tickFormat(d3.timeFormat('%Y-%m-%d'));
     .tickFormat(d3.timeFormat('%d %b %Y'));
 
   const xAxis = bounds

@@ -1,5 +1,7 @@
 # Notes on data formatting
 
+## English
+
 - File format should be `csv` with the text encoded as `utf-8`. This should preserve the accents in the state names.
 - Date should ideally be formatted as `YYYY-mm-dd`. If the program takes some date format string, it would be: `%Y-%m-%d`
 - In terms of variables for making graphics we need the following:
