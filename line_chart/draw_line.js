@@ -6,6 +6,8 @@
 // TODO calculate rank 1 and rank last from latest day
 // TODO activate the colors for rank 1 and rank last
 // TODO draw national average
+// TODO add sidebar with state check boxes
+// TODO toggle line color based on check box
 
 async function drawLine() {
   // 1. access data
