@@ -2,8 +2,11 @@
 // TODO add 0 baseline
 // TODO hide x-baseline
 // TODO extend ticks to make grid
-// TODO extend
-// TODO use State_Code for each line's class.
+// TODO calculate latest day
+// TODO calculate rank 1 and rank last from latest day
+// TODO activate the colors for rank 1 and rank last
+// TODO draw national average
+
 async function drawLine() {
   // 1. access data
   const dataset = await d3.csv('../data/mexico_through20200513.csv');
@@ -13,9 +16,11 @@ async function drawLine() {
   const xAccessor = d => dateParser(d.Date);
   const stateAccessor = d => d.State_Name;
   const stateCodeAccessor = d => d.State_Code;
+  const dayAccessor = d => d.Days;
 
-  const datasetByState = d3.nest().key(stateAccessor).entries(dataset);
-  console.log(datasetByState[0]);
+  const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
+
+  console.log(datasetByState[0].values[0]['State_Code']);
 
   // 2. create dimensions
 
@@ -64,21 +69,23 @@ async function drawLine() {
 
   // 5. draw data
 
+  // this will generate a line using the x and y Accessor functions
   const lineGenerator = d3
     .line()
     .x(d => xScale(xAccessor(d)))
     .y(d => yScale(yAccessor(d)));
 
+  // this part generates all the grey lines
   bounds
     .selectAll('.line')
     .data(datasetByState)
     .enter()
     .append('path')
-    .attr('class', d => d.key)
     .attr('fill', 'none')
     .attr('stroke', 'lightgrey')
     .attr('stroke-width', 2)
-    .attr('d', d => lineGenerator(d.values));
+    .attr('d', d => lineGenerator(d.values))
+    .attr('class', (d, i) => d.values[i].State_Code);
 
   // 6. draw peripherals
   const yAxisGenerator = d3.axisLeft().scale(yScale);
