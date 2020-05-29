@@ -14,7 +14,7 @@ async function drawLine() {
   const dataset = await d3.csv('../data/mexico_through20200513.csv');
 
   const yAccessor = d => +d.avg_google_7d;
-  const dateParser = d3.timeParse('%d-%b-%y');
+  const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.Date);
   const stateAccessor = d => d.State_Name;
   const stateCodeAccessor = d => d.State_Code;
@@ -22,7 +22,6 @@ async function drawLine() {
 
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
 
-  console.log(datasetByState[0].values[0]['State_Code']);
 
   // 2. create dimensions
 
