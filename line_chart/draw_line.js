@@ -11,23 +11,26 @@
 
 async function drawLine() {
   // 1. access data
-  const dataset = await d3.csv('../data/mexico_through20200513.csv');
+  const dataset = await d3.csv('../data/mexico_20200521.csv');
 
-  const yAccessor = d => +d.avg_google_7d;
+  const yAccessor = d => +d.mobility_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
-  const xAccessor = d => dateParser(d.Date);
-  const stateAccessor = d => d.State_Name;
-  const stateCodeAccessor = d => d.State_Code;
-  const dayAccessor = d => d.Days;
+  const xAccessor = d => dateParser(d.date);
+  const stateAccessor = d => d.state_name;
+  const stateCodeAccessor = d => d.state_short;
+  const dayAccessor = d => d.days;
 
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
 
+  const country = datasetByState.filter(d => d.key == 'Nacional');
+
+  const states = datasetByState.filter(d => d.key !== 'Nacional');
 
   // 2. create dimensions
 
   let dimensions = {
     width: window.innerWidth * 0.9,
-    height: 400,
+    height: 600,
     margin: {
       top: 15,
       right: 15,
@@ -55,13 +58,13 @@ async function drawLine() {
       'transform',
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
-
   // 4. create scales
 
   const yScale = d3
     .scaleLinear()
     .domain(d3.extent(dataset, yAccessor))
-    .range([dimensions.boundedHeight, 0]);
+    .range([dimensions.boundedHeight, 0])
+    .nice();
 
   const xScale = d3
     .scaleTime()
@@ -76,17 +79,25 @@ async function drawLine() {
     .x(d => xScale(xAccessor(d)))
     .y(d => yScale(yAccessor(d)));
 
-  // this part generates all the grey lines
+  // this part generates all the grey lines for all the states
   bounds
-    .selectAll('.line')
-    .data(datasetByState)
+    .selectAll('.states')
+    .data(states)
     .enter()
     .append('path')
     .attr('fill', 'none')
     .attr('stroke', 'lightgrey')
     .attr('stroke-width', 2)
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', (d, i) => d.values[i].State_Code);
+    .attr('class', d => d.values[0].state_short.toLowerCase());
+
+  bounds
+    .append('path')
+    .attr('class', 'national')
+    .attr('fill', 'none')
+    .attr('stroke', '#171717')
+    .attr('stroke-width', 2)
+    .attr('d', () => lineGenerator(country[0].values));
 
   // 6. draw peripherals
   const yAxisGenerator = d3.axisLeft().scale(yScale);
