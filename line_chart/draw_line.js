@@ -105,7 +105,7 @@ async function drawLine() {
   const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
 
   const test = colorScale.domain()[32];
-  console.log(test, colorScale(test));
+
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
@@ -124,7 +124,7 @@ async function drawLine() {
     .attr('stroke-width', 2.5)
     .attr('stroke', d => colorScale(stateCodeAccessor(d.values[0])))
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => d.values[0].state_short.toLowerCase() + '');
+    .attr('class', d => d.values[0].state_short.toLowerCase() + ' inactive');
 
   // 6. draw peripherals
   const yAxisGenerator = d3
@@ -176,8 +176,11 @@ async function drawLine() {
   const rankLastState = latestData.filter(
     d => metricAccessor(d) == d3.max(dataset, metricAccessor)
   );
-  const rankOne = rankLastState[0]['state_short'].toLowerCase();
-  // TODO activate the colors for rank 1 and rank last
+  const rankOne = rankOneState[0]['state_short'].toLowerCase();
+  bounds.select(`.${rankOne}`).classed('inactive', false);
+
+  const rankLast = rankLastState[0]['state_short'].toLowerCase();
+  bounds.select(`.${rankLast}`).classed('inactive', false);
 
   // 7. act interactivity
   // TODO add sidebar with state check boxes
