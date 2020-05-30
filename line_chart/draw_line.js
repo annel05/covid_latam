@@ -20,7 +20,7 @@ async function drawLine() {
   // 2. create dimensions
 
   let dimensions = {
-    width: window.innerWidth * 0.9,
+    width: window.innerWidth * 0.7,
     height: 600,
     margin: {
       top: 15,
@@ -65,7 +65,6 @@ async function drawLine() {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  // TODO add color scale based on state colors
   const stateCodes = d3.map(dataset, stateCodeAccessor).keys();
   const stateColors = [
     '#171717',
@@ -183,8 +182,49 @@ async function drawLine() {
   bounds.select(`.${rankLast}`).classed('inactive', false);
 
   // 7. act interactivity
+
   // TODO add sidebar with state check boxes
+
+  const states_on = d3
+    .select('#states_on')
+    .selectAll('input')
+    .data(states)
+    .enter()
+    .append('li');
+  // .attr('id', d => stateCodeAccessor(d.values[0]).toLowerCase());
+  states_on
+    .append('input')
+    .attr('class', 'input_box')
+    .attr('type', 'checkbox')
+    .attr('name', d => stateCodeAccessor(d.values[0]));
+  states_on
+    .append('label')
+    .attr('class', 'input_label')
+    .attr('for', d => stateCodeAccessor(d.values[0]))
+    .html(d => stateAccessor(d.values[0]));
+
+  states_on.select(`[name=${rankOne}]`).property('checked', true);
+  states_on.select(`[name=${rankLast}]`).property('checked', true);
+
   // TODO toggle line color based on check box
+  d3.selectAll('.input_box').on('input', toggleStateLine);
+  function toggleStateLine() {
+    name = this.name.toLowerCase();
+    line = bounds.select(`.${name}`);
+    label = states_on.select(`[for=${name}]`);
+    console.log(this.name, this.checked);
+    if (this.checked) {
+      // input box has been checked
+      // 1 - turn on state line
+      line.classed('inactive', false);
+      // 2 - turn on label to match color
+    } else {
+      // input box has been unchecked
+      // 1 - turn off state line
+      line.classed('inactive', true);
+      // 2 - turn off label to match colors
+    }
+  }
 }
 
 drawLine();
