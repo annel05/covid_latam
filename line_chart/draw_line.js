@@ -66,10 +66,20 @@ async function drawLine() {
     .range([0, dimensions.boundedWidth]);
 
   // TODO add color scale based on state colors
-  const stateCodes = dataset.map(stateCodeAccessor);
-  const stateColors = [];
-  const colorScale = d3.scaleLinear().domain(stateCodes).range(stateColors);
-  console.log(stateCodes);
+  const stateCodes = d3.map(dataset, stateCodeAccessor).keys();
+  const stateColors = [
+    '#171717',
+    '#4A72B8',
+    '#ED7D30',
+    '#A5A5A5',
+    '#FDC010',
+    '#5D9BD3',
+    '#71AD46',
+  ];
+  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
+
+  const test = colorScale.domain()[6];
+  console.log(test, colorScale(test));
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
@@ -85,7 +95,8 @@ async function drawLine() {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 1)
+    .attr('stroke-width', 2.5)
+    .attr('stroke', d => colorScale(stateCodeAccessor(d.values)))
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => d.values[0].state_short.toLowerCase() + ' inactive');
 
@@ -124,9 +135,9 @@ async function drawLine() {
     .append('path')
     .attr('class', 'national')
     .attr('fill', 'none')
-    .attr('stroke', '#171717')
+    .attr('stroke', colorScale('Nacional'))
     .attr('stroke-dasharray', '5px 2px')
-    .attr('stroke-width', 1)
+    .attr('stroke-width', 2.5)
     .attr('d', () => lineGenerator(country[0].values));
 
   // highlight the first and last ranks.
