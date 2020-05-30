@@ -75,10 +75,36 @@ async function drawLine() {
     '#FDC010',
     '#5D9BD3',
     '#71AD46',
+    '#264579',
+    '#9E4B23',
+    '#646464',
+    '#98752B',
+    '#255F92',
+    '#446931',
+    '#6C8EC9',
+    '#F2975B',
+    '#939697',
+    '#FFCF34',
+    '#7DAFDD',
+    '#8DC268',
+    '#3A5829',
+    '#ED7D30',
+    '#848484',
+    '#CA9A2C',
+    '#347EC1',
+    '#C55C28',
+    '#91ABD9',
+    '#F3B183',
+    '#8A8F90',
+    '#FFDA68',
+    '#9DC3E5',
+    '#AAD18D',
+    '#213964',
+    '#4A72B8',
   ];
   const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
 
-  const test = colorScale.domain()[6];
+  const test = colorScale.domain()[32];
   console.log(test, colorScale(test));
   // 5. draw data
 
@@ -96,9 +122,9 @@ async function drawLine() {
     .append('path')
     .attr('fill', 'none')
     .attr('stroke-width', 2.5)
-    .attr('stroke', d => colorScale(stateCodeAccessor(d.values)))
+    .attr('stroke', d => colorScale(stateCodeAccessor(d.values[0])))
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => d.values[0].state_short.toLowerCase() + ' inactive');
+    .attr('class', d => d.values[0].state_short.toLowerCase() + '');
 
   // 6. draw peripherals
   const yAxisGenerator = d3
