@@ -1,5 +1,94 @@
-// TODO add spanish locale so months show up in spanish
+let es_ES = {
+  dateTime: '%A, %e de %B de %Y, %X',
+  date: '%d/%m/%Y',
+  time: '%H:%M:%S',
+  periods: ['AM', 'PM'],
+  days: [
+    'domingo',
+    'lunes',
+    'martes',
+    'miércoles',
+    'jueves',
+    'viernes',
+    'sábado',
+  ],
+  shortDays: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+  months: [
+    'enero',
+    'febrero',
+    'marzo',
+    'abril',
+    'mayo',
+    'junio',
+    'julio',
+    'agosto',
+    'septiembre',
+    'octubre',
+    'noviembre',
+    'diciembre',
+  ],
+  shortMonths: [
+    'ene',
+    'feb',
+    'mar',
+    'abr',
+    'may',
+    'jun',
+    'jul',
+    'ago',
+    'sep',
+    'oct',
+    'nov',
+    'dic',
+  ],
+};
+
+let pt_BR = {
+  dateTime: '%A, %e de %B de %Y. %X',
+  date: '%d/%m/%Y',
+  time: '%H:%M:%S',
+  periods: ['AM', 'PM'],
+  days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+  shortDays: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+  months: [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ],
+  shortMonths: [
+    'Jan',
+    'Fev',
+    'Mar',
+    'Abr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Set',
+    'Out',
+    'Nov',
+    'Dez',
+  ],
+};
 async function drawMobility() {
+  // 0. check for locale
+  const lang = d3.select('html').property('lang');
+  if (lang == 'es_ES') {
+    d3.timeFormatDefaultLocale(es_ES);
+  }
+  if (lang == 'pt_BR') {
+    d3.timeFormatDefaultLocale(pt_BR);
+  }
+
   // 1. access data
   const dataset_all = await d3.csv('../data/data_20200521.csv');
   const dataset = dataset_all.filter(d => d.country == 'Mexico');
