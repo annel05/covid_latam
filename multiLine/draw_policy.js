@@ -1,8 +1,8 @@
 // TODO add spanish locale so months show up in spanish
 async function drawPolicy() {
   // 1. access data
-  const dataset = await d3.csv('../data/mexico_20200521.csv');
-
+  const dataset_all = await d3.csv('../data/data_20200521.csv');
+  const dataset = dataset_all.filter(d => d.country == 'Mexico');
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
@@ -64,9 +64,9 @@ async function drawPolicy() {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  const stateCodes = d3.map(dataset, stateCodeAccessor).keys();
+  const statesData = dataset.filter(d => d.state_short !== 'Nacional');
+  const stateCodes = d3.map(statesData, stateCodeAccessor).keys();
   const stateColors = [
-    '#171717',
     '#4A72B8',
     '#ED7D30',
     '#A5A5A5',
@@ -101,7 +101,6 @@ async function drawPolicy() {
     '#4A72B8',
   ];
   const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
-
   // 6. draw peripherals -- part 1
   const yAxisGenerator = d3
     .axisLeft()
@@ -154,7 +153,7 @@ async function drawPolicy() {
     .append('path')
     .attr('class', 'national')
     .attr('fill', 'none')
-    .attr('stroke', colorScale('Nacional'))
+    .attr('stroke', '#171717')
     .attr('stroke-dasharray', '5px 2px')
     .attr('stroke-width', 2.5)
     .attr('d', () => lineGenerator(country[0].values));
@@ -210,7 +209,16 @@ async function drawPolicy() {
     .html(d => stateAccessor(d.values[0]));
 
   states_on.select(`[name=${firstRankCode}]`).property('checked', true);
+  states_on
+    .select(`[for=${firstRankCode}]`)
+    .style('color', colorScale(firstRankCode))
+    .style('font-weight', 'bold');
+
   states_on.select(`[name=${lastRankCode}]`).property('checked', true);
+  states_on
+    .select(`[for=${lastRankCode}]`)
+    .style('color', colorScale(lastRankCode))
+    .style('font-weight', 'bold');
 
   d3.selectAll('.input_box').on('input', toggleStateLine);
   function toggleStateLine() {
@@ -220,10 +228,12 @@ async function drawPolicy() {
       // 1 - turn on state line
       addStateLine(this.name);
       // 2 - turn on label to match color
+      label.style('color', colorScale(this.name)).style('font-weight', 'bold');
     } else {
       // input box has been unchecked
       // 1 - turn off state line
       bounds.select(`.${this.name}_temp`).remove();
+      label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }
   }
