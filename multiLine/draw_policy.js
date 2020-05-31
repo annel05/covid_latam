@@ -3,6 +3,7 @@ async function drawPolicy() {
   // 1. access data
   const dataset_all = await d3.csv('../data/data_20200521.csv');
   const dataset = dataset_all.filter(d => d.country == 'Mexico');
+
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
@@ -101,6 +102,7 @@ async function drawPolicy() {
     '#4A72B8',
   ];
   const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
+
   // 6. draw peripherals -- part 1
   const yAxisGenerator = d3
     .axisLeft()
