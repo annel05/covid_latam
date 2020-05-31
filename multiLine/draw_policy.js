@@ -164,6 +164,7 @@ async function drawPolicy() {
   // 2 - filter data to only have this day
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
   // 3 - get the rank 1 state
+  console.log(latestData.filter(d => metricAccessor(d) == 1));
   const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
   const firstRankCode = firstRankState[0].state_short;
   // 4 - get the last rank state
