@@ -184,7 +184,7 @@ async function drawLine() {
 
     bounds
       .append('path')
-      .attr('class', `${_stateCode}_active`)
+      .attr('class', `${_stateCode}_temp`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -219,17 +219,16 @@ async function drawLine() {
 
   d3.selectAll('.input_box').on('input', toggleStateLine);
   function toggleStateLine() {
-    const code = this.name;
-    label = states_on.select(`[for=${name}]`);
+    label = states_on.select(`[for=${this.name}]`);
     if (this.checked) {
       // input box has been checked
       // 1 - turn on state line
-      addStateLine(code);
+      addStateLine(this.name);
       // 2 - turn on label to match color
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds.select(`.${code}_active`).remove();
+      bounds.select(`.${this.name}_temp`).remove();
       // 2 - turn off label to match colors
     }
   }
