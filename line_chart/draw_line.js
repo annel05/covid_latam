@@ -102,9 +102,6 @@ async function drawLine() {
     '#4A72B8',
   ];
   const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
-
-  const test = colorScale.domain()[32];
-
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
@@ -121,9 +118,10 @@ async function drawLine() {
     .append('path')
     .attr('fill', 'none')
     .attr('stroke-width', 2.5)
-    .attr('stroke', d => colorScale(stateCodeAccessor(d.values[0])))
+    .attr('stroke', 'lightgrey')
+    // .attr('stroke', d => colorScale(stateCodeAccessor(d.values[0])))
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => d.values[0].state_short.toLowerCase() + ' inactive');
+    .attr('class', d => d.values[0].state_short);
 
   // 6. draw peripherals
   const yAxisGenerator = d3
@@ -132,6 +130,7 @@ async function drawLine() {
     .tickFormat(d => d + '%');
 
   const yAxis = bounds.append('g').call(yAxisGenerator);
+  // TODO extend ticks to make grid
 
   const xAxisGenerator = d3
     .axisBottom()
@@ -148,8 +147,8 @@ async function drawLine() {
   // add 0-baseline
   bounds
     .select('.baseline')
-    .attr('stroke-width', 2)
-    .attr('stroke', '#171717')
+    .attr('stroke-width', 1)
+    .attr('stroke', '#000')
     .attr('x1', 0)
     .attr('x2', dimensions.boundedWidth)
     .attr('y1', yScale(0))
@@ -170,28 +169,40 @@ async function drawLine() {
   const latestDay = d3.max(dataset.map(dayAccessor));
   // 2 - filter data to only have this day
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
-  // 3 - get the rank 1 and rank last states
-  const rankOneState = latestData.filter(d => metricAccessor(d) == 1);
-  const rankLastState = latestData.filter(
-    d => metricAccessor(d) == d3.max(dataset, metricAccessor)
+  // 3 - get the rank 1 state
+  const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
+  const firstRankCode = firstRankState[0].state_short;
+  // 4 - get the last rank state
+  const lastRankState = latestData.filter(
+    d => metricAccessor(d) == d3.max(latestData, metricAccessor)
   );
-  const rankOne = rankOneState[0]['state_short'].toLowerCase();
-  bounds.select(`.${rankOne}`).classed('inactive', false);
+  const lastRankCode = lastRankState[0].state_short;
 
-  const rankLast = rankLastState[0]['state_short'].toLowerCase();
-  bounds.select(`.${rankLast}`).classed('inactive', false);
+  // This function draws the temporary state line given a state code.
+  const addStateLine = _stateCode => {
+    const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
+
+    bounds
+      .append('path')
+      .attr('class', `${_stateCode}_active`)
+      .attr('fill', 'none')
+      .attr('stroke', colorScale(_stateCode))
+      .attr('stroke-width', 3)
+      .attr('d', () => lineGenerator(stateData));
+  };
+
+  addStateLine(firstRankCode);
+  addStateLine(lastRankCode);
 
   // 7. act interactivity
-
-  // TODO add sidebar with state check boxes
 
   const states_on = d3
     .select('#states_on')
     .selectAll('input')
     .data(states)
     .enter()
-    .append('li');
-  // .attr('id', d => stateCodeAccessor(d.values[0]).toLowerCase());
+    .append('li')
+    .attr('class', d => `${stateCodeAccessor(d.values[0])}_state off`);
   states_on
     .append('input')
     .attr('class', 'input_box')
@@ -203,25 +214,22 @@ async function drawLine() {
     .attr('for', d => stateCodeAccessor(d.values[0]))
     .html(d => stateAccessor(d.values[0]));
 
-  states_on.select(`[name=${rankOne}]`).property('checked', true);
-  states_on.select(`[name=${rankLast}]`).property('checked', true);
+  states_on.select(`[name=${firstRankCode}]`).property('checked', true);
+  states_on.select(`[name=${lastRankCode}]`).property('checked', true);
 
-  // TODO toggle line color based on check box
   d3.selectAll('.input_box').on('input', toggleStateLine);
   function toggleStateLine() {
-    name = this.name.toLowerCase();
-    line = bounds.select(`.${name}`);
+    const code = this.name;
     label = states_on.select(`[for=${name}]`);
-    console.log(this.name, this.checked);
     if (this.checked) {
       // input box has been checked
       // 1 - turn on state line
-      line.classed('inactive', false);
+      addStateLine(code);
       // 2 - turn on label to match color
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      line.classed('inactive', true);
+      bounds.select(`.${code}_active`).remove();
       // 2 - turn off label to match colors
     }
   }

@@ -2,14 +2,15 @@
   stroke: lightgrey;
 }
 
-body {
+.bounding_area {
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
 
-#states {
-  height: 600px;
-  border: 1px solid black;
+#state_list {
+  height: 500px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 #states_on {
