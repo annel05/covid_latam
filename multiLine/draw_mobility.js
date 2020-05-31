@@ -1,5 +1,5 @@
 // TODO add spanish locale so months show up in spanish
-async function drawLine() {
+async function drawMobility() {
   // 1. access data
   const dataset = await d3.csv('../data/mexico_20200521.csv');
 
@@ -239,4 +239,4 @@ async function drawLine() {
   }
 }
 
-drawLine();
+drawMobility();
