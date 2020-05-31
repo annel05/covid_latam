@@ -50,7 +50,6 @@ async function drawLine() {
     );
 
   // init static items
-  bounds.append('line').attr('class', 'baseline');
 
   // 4. create scales
 
@@ -102,6 +101,34 @@ async function drawLine() {
     '#4A72B8',
   ];
   const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
+
+  // 6. draw peripherals -- part 1
+  const yAxisGenerator = d3
+    .axisLeft()
+    .scale(yScale)
+    .tickFormat(d => d + '%')
+    .tickSize(-dimensions.boundedWidth);
+
+  const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
+
+  const xAxisGenerator = d3
+    .axisBottom()
+    .scale(xScale)
+    .tickSize(-dimensions.boundedHeight)
+    .tickFormat(d3.timeFormat('%d \n %b %Y'));
+
+  const xAxis = bounds
+    .append('g')
+    .attr('class', 'x_axis')
+    .call(xAxisGenerator)
+    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+
+  const xAxisText = xAxis.selectAll('text').attr('dy', 20);
+  bounds.append('line').attr('class', 'baseline');
+  const xAxisTicks = xAxis
+    .selectAll('.tick line')
+    .attr('y1', dimensions.margin.bottom * 0.25);
+
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
@@ -118,36 +145,14 @@ async function drawLine() {
     .append('path')
     .attr('fill', 'none')
     .attr('stroke-width', 2.5)
-    .attr('stroke', 'lightgrey')
-    // .attr('stroke', d => colorScale(stateCodeAccessor(d.values[0])))
+    .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => d.values[0].state_short);
-
-  // 6. draw peripherals
-  const yAxisGenerator = d3
-    .axisLeft()
-    .scale(yScale)
-    .tickFormat(d => d + '%');
-
-  const yAxis = bounds.append('g').call(yAxisGenerator);
-  // TODO extend ticks to make grid
-
-  const xAxisGenerator = d3
-    .axisBottom()
-    .scale(xScale)
-    .tickFormat(d3.timeFormat('%d %b %Y'));
-
-  const xAxis = bounds
-    .append('g')
-    .call(xAxisGenerator)
-    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
-  // TODO hide x-baseline
-  // TODO extend ticks to make grid
 
   // add 0-baseline
   bounds
     .select('.baseline')
-    .attr('stroke-width', 1)
+    .attr('stroke-width', 2)
     .attr('stroke', '#000')
     .attr('x1', 0)
     .attr('x2', dimensions.boundedWidth)
