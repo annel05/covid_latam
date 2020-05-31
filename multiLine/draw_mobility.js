@@ -205,7 +205,7 @@ async function drawMobility() {
     .axisBottom()
     .scale(xScale)
     .tickSize(-dimensions.boundedHeight)
-    .tickFormat(d3.timeFormat('%d \n %b %Y'));
+    .tickFormat(d3.timeFormat('%d %B %Y'));
 
   const xAxis = bounds
     .append('g')
