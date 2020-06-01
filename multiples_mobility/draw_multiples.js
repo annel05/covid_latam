@@ -83,10 +83,10 @@ let pt_BR = {
 async function drawPolicy() {
   // 0. check for language locale
   const lang = d3.select('html').property('lang');
-  if (lang == 'es_ES') {
+  if (lang == 'es-ES') {
     d3.timeFormatDefaultLocale(es_ES);
   }
-  if (lang == 'pt_BR') {
+  if (lang == 'pt-br') {
     d3.timeFormatDefaultLocale(pt_BR);
   }
   // 1. access data
@@ -109,7 +109,7 @@ async function drawPolicy() {
 
   // 2. create dimensions
 
-  const width = 400;
+  const width = 350;
   let dimensions = {
     width: width,
     height: width * 0.6,
@@ -130,12 +130,12 @@ async function drawPolicy() {
 
   const drawMultiple = _data => {
     const card = d3
-      .select('.container')
+      .select('#chart_container')
       .append('section')
       .attr('class', 'state_card');
 
     const card_title = card
-      .append('h3')
+      .append('h4')
       .attr('class', 'state_title')
       .html(_data.values[0].state_name);
 
@@ -152,7 +152,6 @@ async function drawPolicy() {
         'transform',
         `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
       );
-
     // create scales
     const yScale = d3
       .scaleLinear()
@@ -226,6 +225,60 @@ async function drawPolicy() {
       .attr('class', 'x_axis')
       .call(xAxisGenerator)
       .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+
+    // add comparison lines
+    bounds
+      .append('line')
+      .attr('class', 'line_zero comparison_line')
+      .attr('stroke-width', 1.5)
+      .attr('stroke', '#000')
+      .attr('x1', -5)
+      .attr('x2', dimensions.boundedWidth)
+      .attr('y1', yScale(0))
+      .attr('y2', yScale(0));
+
+    bounds
+      .append('line')
+      .attr('class', 'line_min comparison_line')
+      .attr('stroke-width', 1.5)
+      .attr('stroke', '#000')
+      .attr('x1', -5)
+      .attr('x2', dimensions.boundedWidth)
+      .attr('y1', yScale(yScale.domain()[0]))
+      .attr('y2', yScale(yScale.domain()[0]));
+
+    bounds
+      .append('line')
+      .attr('class', 'line_max comparison_line')
+      .attr('stroke-width', 1.5)
+      .attr('stroke', '#171717')
+      .attr('x1', -5)
+      .attr('x2', dimensions.boundedWidth)
+      .attr('y1', yScale(yScale.domain()[1]))
+      .attr('y2', yScale(yScale.domain()[1]));
+
+    bounds
+      .append('text')
+      .attr('x', -15)
+      .attr('y', yScale(-2.5))
+      .attr('text-anchor', 'middle')
+      .text('0')
+      .attr('class', 'small_anchor');
+    bounds
+      .append('text')
+      .attr('x', -25)
+      .attr('y', yScale(yScale.domain()[0] - 2.5))
+      .attr('text-anchor', 'middle')
+      .text('-70%')
+      .attr('class', 'small_anchor');
+
+    bounds
+      .append('text')
+      .attr('x', -27)
+      .attr('y', yScale(yScale.domain()[1] - 2.5))
+      .attr('text-anchor', 'middle')
+      .text('+20%')
+      .attr('class', 'small_anchor');
 
     // draw data
     const lineGenerator = d3
