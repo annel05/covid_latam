@@ -4,6 +4,10 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
+.chart {
+  text-align: left;
+}
+
 .domain {
   display: none;
 }

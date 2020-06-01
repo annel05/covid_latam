@@ -1,4 +1,4 @@
-let es_ES = {
+var es_ES = {
   dateTime: '%A, %e de %B de %Y, %X',
   date: '%d/%m/%Y',
   time: '%H:%M:%S',
@@ -43,7 +43,7 @@ let es_ES = {
   ],
 };
 
-let pt_BR = {
+var pt_BR = {
   dateTime: '%A, %e de %B de %Y. %X',
   date: '%d/%m/%Y',
   time: '%H:%M:%S',
@@ -111,7 +111,7 @@ async function drawMobility() {
 
   // 2. create dimensions
 
-  const width = document.getElementById('chart_wrapper').parentElement
+  const width = document.getElementById('chart_wrapper_mobility').parentElement
     .clientWidth;
   let dimensions = {
     width: width,
@@ -131,7 +131,7 @@ async function drawMobility() {
   // 3. draw canvas
 
   const wrapper = d3
-    .select('#chart_wrapper')
+    .select('#chart_wrapper_mobility')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
