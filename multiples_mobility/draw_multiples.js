@@ -130,7 +130,7 @@ async function drawPolicy() {
 
   const drawMultiple = _data => {
     const card = d3
-      .select('#chart_container')
+      .select('#chart_container_mobility')
       .append('section')
       .attr('class', 'state_card');
 
