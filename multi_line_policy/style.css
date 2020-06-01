@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.domain {
+  display: none;
+}
+
+.y_axis {
+  font-size: 13px;
+}
+
+.tick line {
+  stroke: #d2d3d4;
+  stroke-dasharray: 4px 2px;
+}
+
+.x_axis .tick text {
+  font-size: 11px;
+}
+
+#state_list {
+  height: 520px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+#states_on {
+  list-style: none;
+  margin: 0;
+}
+
+#states {
+  background-color: #f2f2f2;
+  padding: 20px 0;
+  height: 550px;
+  align-items: center;
+}
