@@ -79,9 +79,8 @@ let pt_BR = {
     'Dez',
   ],
 };
-
-async function drawPolicy() {
-  // 0. check for language locale
+async function drawMobility() {
+  // 0. check for locale
   const lang = d3.select('html').property('lang');
   if (lang == 'es_ES') {
     d3.timeFormatDefaultLocale(es_ES);
@@ -89,18 +88,21 @@ async function drawPolicy() {
   if (lang == 'pt_BR') {
     d3.timeFormatDefaultLocale(pt_BR);
   }
+
   // 1. access data
-  const dataset_all = await d3.csv('../data/data_20200521.csv');
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
+  const dataset_all = await d3.csv(
+    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
+  );
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.policy_index;
+  const yAccessor = d => +d.mobility_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_daily;
+  const metricAccessor = d => +d.ranking_mobility_daily;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
@@ -109,8 +111,10 @@ async function drawPolicy() {
 
   // 2. create dimensions
 
+  const width = document.getElementById('chart_wrapper').parentElement
+    .clientWidth;
   let dimensions = {
-    width: window.innerWidth * 0.7,
+    width: width,
     height: 600,
     margin: {
       top: 15,
@@ -127,7 +131,7 @@ async function drawPolicy() {
   // 3. draw canvas
 
   const wrapper = d3
-    .select('#wrapper')
+    .select('#chart_wrapper')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -138,6 +142,8 @@ async function drawPolicy() {
       'transform',
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
+
+  // init static items
 
   // 4. create scales
 
@@ -203,7 +209,7 @@ async function drawPolicy() {
     .axisBottom()
     .scale(xScale)
     .tickSize(-dimensions.boundedHeight)
-    .tickFormat(d3.timeFormat('%d %b %Y'));
+    .tickFormat(d3.timeFormat('%d %B'));
 
   const xAxis = bounds
     .append('g')
@@ -212,7 +218,7 @@ async function drawPolicy() {
     .style('transform', `translateY(${dimensions.boundedHeight}px)`);
 
   const xAxisText = xAxis.selectAll('text').attr('dy', 20);
-
+  bounds.append('line').attr('class', 'baseline');
   const xAxisTicks = xAxis
     .selectAll('.tick line')
     .attr('y1', dimensions.margin.bottom * 0.25);
@@ -236,6 +242,16 @@ async function drawPolicy() {
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => d.values[0].state_short);
+
+  // add 0-baseline
+  bounds
+    .select('.baseline')
+    .attr('stroke-width', 2)
+    .attr('stroke', '#000')
+    .attr('x1', 0)
+    .attr('x2', dimensions.boundedWidth)
+    .attr('y1', yScale(0))
+    .attr('y2', yScale(0));
 
   // add national average
   bounds
@@ -310,6 +326,7 @@ async function drawPolicy() {
     .style('font-weight', 'bold');
 
   d3.selectAll('.input_box').on('input', toggleStateLine);
+
   function toggleStateLine() {
     label = states_on.select(`[for=${this.name}]`);
     if (this.checked) {
@@ -328,4 +345,4 @@ async function drawPolicy() {
   }
 }
 
-drawPolicy();
+drawMobility();
