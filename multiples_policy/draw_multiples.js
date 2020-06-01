@@ -83,10 +83,10 @@ let pt_BR = {
 async function drawPolicy() {
   // 0. check for language locale
   const lang = d3.select('html').property('lang');
-  if (lang == 'es_ES') {
+  if (lang == 'es-ES') {
     d3.timeFormatDefaultLocale(es_ES);
   }
-  if (lang == 'pt_BR') {
+  if (lang == 'pt-br') {
     d3.timeFormatDefaultLocale(pt_BR);
   }
   // 1. access data
