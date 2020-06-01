@@ -94,13 +94,13 @@ async function drawPolicy() {
   const dataset = dataset_all.filter(d => d.country == 'Mexico');
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.policy_index;
+  const yAccessor = d => +d.mobility_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_daily;
+  const metricAccessor = d => +d.ranking_mobility_daily;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);

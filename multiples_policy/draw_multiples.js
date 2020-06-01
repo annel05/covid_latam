@@ -91,7 +91,7 @@ async function drawPolicy() {
   }
   // 1. access data
   const dataset_all = await d3.csv('../data/data_20200521.csv');
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
