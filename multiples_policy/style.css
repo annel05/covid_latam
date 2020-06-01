@@ -6,4 +6,16 @@ html {
 
 .container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.domain,
+.tick text {
+  display: none;
+}
+
+.tick line {
+  stroke: #d2d3d4;
+  stroke-dasharray: 4px 2px;
 }

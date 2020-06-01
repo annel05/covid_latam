@@ -139,8 +139,6 @@ async function drawPolicy() {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
-  // init static items
-
   // 4. create scales
 
   const yScale = d3
