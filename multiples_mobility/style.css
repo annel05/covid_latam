@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.domain,
+.tick text {
+  display: none;
+}
+
+.tick line {
+  stroke: #d2d3d4;
+  stroke-dasharray: 4px 2px;
+}
+
+.state_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+}
+
+h3 {
+  margin-bottom: 0;
+}
