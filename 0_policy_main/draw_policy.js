@@ -204,7 +204,7 @@ async function drawPolicy() {
   // 7. act interactivity
 
   const state_list = d3
-    .select('#state_list')
+    .select('#state_list_policy')
     .selectAll('input')
     .data(states)
     .enter()

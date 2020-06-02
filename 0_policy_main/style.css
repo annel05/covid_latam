@@ -19,18 +19,18 @@
   font-size: 11px;
 }
 
-#state_wrapper {
+#state_wrapper_policy {
   height: 520px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
-#state_list {
+#state_list_policy {
   list-style: none;
   margin-top: 20px;
 }
 
-#states_container {
+#state_container_policy {
   background-color: #f2f2f2;
   height: 550px;
 }
