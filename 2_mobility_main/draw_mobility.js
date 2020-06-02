@@ -30,7 +30,7 @@ async function drawMobility() {
 
   // 2. create dimensions
 
-  const width = document.getElementById('chart_wrapper_mobility').parentElement
+  const width = document.getElementById('wrapper_mobility_main').parentElement
     .clientWidth;
   let dimensions = {
     width: width,
@@ -50,7 +50,7 @@ async function drawMobility() {
   // 3. draw canvas
 
   const wrapper = d3
-    .select('#chart_wrapper_mobility')
+    .select('#wrapper_mobility_main')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -214,50 +214,55 @@ async function drawMobility() {
 
   // 7. act interactivity
 
-  const states_on = d3
-    .select('#states_on_mobility')
+  const state_list = d3
+    .select('#state_list_mobility')
     .selectAll('input')
     .data(states)
     .enter()
     .append('li')
-    .attr('class', d => `${stateCodeAccessor(d.values[0])}_state off`);
-  states_on
+    .attr('class', d => `${stateCodeAccessor(d.values[0])}_state`);
+  state_list
     .append('input')
     .attr('class', 'input_box')
     .attr('type', 'checkbox')
-    .attr('name', d => stateCodeAccessor(d.values[0]));
-  states_on
+    .attr('name', d => `${stateCodeAccessor(d.values[0])}_mobility`);
+  state_list
     .append('label')
     .attr('class', 'input_label')
-    .attr('for', d => stateCodeAccessor(d.values[0]))
+    .attr('for', d => `${stateCodeAccessor(d.values[0])}_mobility`)
     .html(d => stateAccessor(d.values[0]));
 
-  states_on.select(`[name=${firstRankCode}]`).property('checked', true);
-  states_on
-    .select(`[for=${firstRankCode}]`)
+  state_list
+    .select(`[name=${firstRankCode}_mobility]`)
+    .property('checked', true);
+  state_list
+    .select(`[for=${firstRankCode}_mobility]`)
     .style('color', colorScale(firstRankCode))
     .style('font-weight', 'bold');
 
-  states_on.select(`[name=${lastRankCode}]`).property('checked', true);
-  states_on
-    .select(`[for=${lastRankCode}]`)
+  state_list
+    .select(`[name=${lastRankCode}_mobility]`)
+    .property('checked', true);
+  state_list
+    .select(`[for=${lastRankCode}_mobility]`)
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
   d3.selectAll('.input_box').on('input', toggleStateLine);
 
   function toggleStateLine() {
-    label = states_on.select(`[for=${this.name}]`);
+    const code = this.name.split('_')[0];
+    const label = state_list.select(`[for=${this.name}]`);
     if (this.checked) {
       // input box has been checked
       // 1 - turn on state line
-      addStateLine(this.name);
+      addStateLine(code);
       // 2 - turn on label to match color
-      label.style('color', colorScale(this.name)).style('font-weight', 'bold');
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds.select(`.${this.name}_temp`).remove();
+      bounds.select(`.${code}_temp`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }
