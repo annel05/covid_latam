@@ -166,7 +166,7 @@ async function drawMobility() {
   bounds
     .select('.baseline')
     .attr('stroke-width', 2)
-    .attr('stroke', '#000')
+    .attr('stroke', '#333333')
     .attr('x1', 0)
     .attr('x2', dimensions.boundedWidth)
     .attr('y1', yScale(0))
@@ -215,7 +215,7 @@ async function drawMobility() {
   // 7. act interactivity
 
   const states_on = d3
-    .select('#states_on')
+    .select('#states_on_mobility')
     .selectAll('input')
     .data(states)
     .enter()

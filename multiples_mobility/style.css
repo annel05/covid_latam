@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-html {
-  font-family: 'Open Sans', sans-serif;
-}
-
 #chart_container_mobility {
   display: flex;
   flex-direction: row;
