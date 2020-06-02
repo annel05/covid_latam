@@ -1,85 +1,3 @@
-let es_ES = {
-  dateTime: '%A, %e de %B de %Y, %X',
-  date: '%d/%m/%Y',
-  time: '%H:%M:%S',
-  periods: ['AM', 'PM'],
-  days: [
-    'domingo',
-    'lunes',
-    'martes',
-    'miércoles',
-    'jueves',
-    'viernes',
-    'sábado',
-  ],
-  shortDays: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
-  months: [
-    'enero',
-    'febrero',
-    'marzo',
-    'abril',
-    'mayo',
-    'junio',
-    'julio',
-    'agosto',
-    'septiembre',
-    'octubre',
-    'noviembre',
-    'diciembre',
-  ],
-  shortMonths: [
-    'ene',
-    'feb',
-    'mar',
-    'abr',
-    'may',
-    'jun',
-    'jul',
-    'ago',
-    'sep',
-    'oct',
-    'nov',
-    'dic',
-  ],
-};
-
-let pt_BR = {
-  dateTime: '%A, %e de %B de %Y. %X',
-  date: '%d/%m/%Y',
-  time: '%H:%M:%S',
-  periods: ['AM', 'PM'],
-  days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-  shortDays: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-  months: [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro',
-  ],
-  shortMonths: [
-    'Jan',
-    'Fev',
-    'Mar',
-    'Abr',
-    'Mai',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Set',
-    'Out',
-    'Nov',
-    'Dez',
-  ],
-};
-
 async function drawPolicy() {
   // 0. check for language locale
   const lang = d3.select('html').property('lang');
@@ -90,7 +8,9 @@ async function drawPolicy() {
     d3.timeFormatDefaultLocale(pt_BR);
   }
   // 1. access data
-  const dataset_all = await d3.csv('../data/data_20200521.csv');
+  const dataset_all = await d3.csv(
+    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
+  );
   const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
@@ -109,7 +29,7 @@ async function drawPolicy() {
 
   // 2. create dimensions
 
-  const width = 400;
+  const width = 350;
   let dimensions = {
     width: width,
     height: width * 0.6,
@@ -130,12 +50,12 @@ async function drawPolicy() {
 
   const drawMultiple = _data => {
     const card = d3
-      .select('.container')
+      .select('#chart_container_policy')
       .append('section')
       .attr('class', 'state_card');
 
     const card_title = card
-      .append('h3')
+      .append('h4')
       .attr('class', 'state_title')
       .html(_data.values[0].state_name);
 
@@ -226,6 +146,42 @@ async function drawPolicy() {
       .attr('class', 'x_axis')
       .call(xAxisGenerator)
       .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+
+    bounds
+      .append('line')
+      .attr('class', 'line_max comparison_line')
+      .attr('stroke-width', 1.5)
+      .attr('stroke', '#000')
+      .attr('x1', -5)
+      .attr('x2', dimensions.boundedWidth)
+      .attr('y1', yScale.range()[1])
+      .attr('y2', yScale.range()[1]);
+
+    bounds
+      .append('line')
+      .attr('class', 'line_min comparison_line')
+      .attr('stroke-width', 1.5)
+      .attr('stroke', '#000')
+      .attr('x1', -5)
+      .attr('x2', dimensions.boundedWidth)
+      .attr('y1', yScale.range()[0])
+      .attr('y2', yScale.range()[0]);
+
+    bounds
+      .append('text')
+      .attr('x', -20)
+      .attr('y', yScale(yScale.domain()[0] - 1))
+      .attr('text-anchor', 'middle')
+      .text(`${yScale.domain()[0]}`)
+      .attr('class', 'small_anchor');
+
+    bounds
+      .append('text')
+      .attr('x', -20)
+      .attr('y', yScale(yScale.domain()[1] - 1))
+      .attr('text-anchor', 'middle')
+      .text(`${yScale.domain()[1]}`)
+      .attr('class', 'small_anchor');
 
     // draw data
     const lineGenerator = d3

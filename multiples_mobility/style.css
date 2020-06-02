@@ -29,7 +29,8 @@ h3 {
 
 .small_anchor {
   font-size: 14px;
-  fill: #333;
+  fill: #333333;
+  stroke: #333333;
 }
 
 .comparison_line {

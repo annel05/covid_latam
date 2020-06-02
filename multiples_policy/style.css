@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.container {
+#chart_container_policy {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -23,6 +23,16 @@
   padding: 3px;
 }
 
-h3 {
+section > h4 {
   margin-bottom: 0;
+}
+
+.comparison_line {
+  stroke: #333333;
+}
+
+.small_anchor {
+  font-size: 14px;
+  fill: #333333;
+  stroke: #333333;
 }
