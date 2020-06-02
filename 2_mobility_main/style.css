@@ -2,7 +2,7 @@
 .chart {
   text-align: left;
 }
-.domain {
+#wrapper_mobility_main .domain {
   display: none;
 }
 
@@ -19,18 +19,18 @@
   font-size: 11px;
 }
 
-#state_list_mobility {
+#state_wrapper_mobility {
   height: 520px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
-#states_on_mobility {
+#state_list_mobility {
   list-style: none;
   margin-top: 20px;
 }
 
-#states_mobility {
+#state_container_mobility {
   background-color: #f2f2f2;
   height: 550px;
 }
