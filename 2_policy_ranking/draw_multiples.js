@@ -11,7 +11,7 @@ async function drawPolicyRanking() {
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
   );
-  const dataset = dataset_all.filter(d => d.country == 'Brasil');
+  const dataset = dataset_all.filter(d => d.country == 'Mexico');
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
