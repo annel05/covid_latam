@@ -210,11 +210,13 @@ async function drawPolicy() {
     .enter()
     .append('li')
     .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
+
   state_list
     .append('input')
     .attr('class', 'input_box')
     .attr('type', 'checkbox')
     .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
+
   state_list
     .append('label')
     .attr('class', 'input_label')
@@ -223,13 +225,13 @@ async function drawPolicy() {
 
   state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
   state_list
-    .select(`[for=${firstRankCode}]`)
+    .select(`[for=${firstRankCode}_policy]`)
     .style('color', colorScale(firstRankCode))
     .style('font-weight', 'bold');
 
   state_list.select(`[name=${lastRankCode}_policy]`).property('checked', true);
   state_list
-    .select(`[for=${lastRankCode}]`)
+    .select(`[for=${lastRankCode}_policy]`)
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
