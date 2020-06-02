@@ -1,12 +1,16 @@
 async function drawPolicy() {
   // 0. check for language locale
-  const lang = d3.select('html').property('lang');
-  if (lang == 'es-ES') {
-    d3.timeFormatDefaultLocale(es_locale);
-  }
-  if (lang == 'pt-br') {
-    d3.timeFormatDefaultLocale(pt_locale);
-  }
+  let setLocale = () => {
+    const lang = d3.select('html').property('lang');
+    if (lang == 'es-ES') {
+      d3.timeFormatDefaultLocale(es_locale);
+    }
+    if (lang == 'pt-br') {
+      d3.timeFormatDefaultLocale(pt_locale);
+    }
+  };
+  setLocale();
+
   // 1. access data
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
@@ -29,7 +33,7 @@ async function drawPolicy() {
 
   // 2. create dimensions
 
-  const width = document.getElementById('chart_wrapper_policy').parentElement
+  const width = document.getElementById('wrapper_policy_main').parentElement
     .clientWidth;
   let dimensions = {
     width: width,
@@ -49,7 +53,7 @@ async function drawPolicy() {
   // 3. draw canvas
 
   const wrapper = d3
-    .select('#chart_wrapper_policy')
+    .select('#wrapper_policy_main')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -146,7 +150,6 @@ async function drawPolicy() {
     .x(d => xScale(xAccessor(d)))
     .y(d => yScale(yAccessor(d)));
 
-  // this part generates all the grey lines for all the states
   bounds
     .selectAll('.states')
     .data(states)
@@ -200,49 +203,51 @@ async function drawPolicy() {
 
   // 7. act interactivity
 
-  const states_on = d3
-    .select('#states_on')
+  const state_list = d3
+    .select('#state_list')
     .selectAll('input')
     .data(states)
     .enter()
     .append('li')
-    .attr('class', d => `${stateCodeAccessor(d.values[0])}_state off`);
-  states_on
+    .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
+  state_list
     .append('input')
     .attr('class', 'input_box')
     .attr('type', 'checkbox')
-    .attr('name', d => stateCodeAccessor(d.values[0]));
-  states_on
+    .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
+  state_list
     .append('label')
     .attr('class', 'input_label')
-    .attr('for', d => stateCodeAccessor(d.values[0]))
+    .attr('for', d => `${stateCodeAccessor(d.values[0])}_policy`)
     .html(d => stateAccessor(d.values[0]));
 
-  states_on.select(`[name=${firstRankCode}]`).property('checked', true);
-  states_on
+  state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
+  state_list
     .select(`[for=${firstRankCode}]`)
     .style('color', colorScale(firstRankCode))
     .style('font-weight', 'bold');
 
-  states_on.select(`[name=${lastRankCode}]`).property('checked', true);
-  states_on
+  state_list.select(`[name=${lastRankCode}_policy]`).property('checked', true);
+  state_list
     .select(`[for=${lastRankCode}]`)
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
   d3.selectAll('.input_box').on('input', toggleStateLine);
   function toggleStateLine() {
-    label = states_on.select(`[for=${this.name}]`);
+    const code = this.name.split('_')[0];
+    const label = state_list.select(`[for=${this.name}]`);
+    console.log(code, label);
     if (this.checked) {
       // input box has been checked
       // 1 - turn on state line
-      addStateLine(this.name);
+      addStateLine(code);
       // 2 - turn on label to match color
-      label.style('color', colorScale(this.name)).style('font-weight', 'bold');
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds.select(`.${this.name}_temp`).remove();
+      bounds.select(`.${code}_temp`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }
