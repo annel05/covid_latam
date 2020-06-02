@@ -6,8 +6,8 @@
   flex-wrap: wrap;
 }
 
-.domain,
-.tick text {
+#chart_container_mobility .domain,
+#chart_container_mobility .tick text {
   display: none;
 }
 
