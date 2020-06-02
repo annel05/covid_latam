@@ -2,16 +2,16 @@ async function drawPolicyRanking() {
   // 0. check for language locale
   const lang = d3.select('html').property('lang');
   if (lang == 'es-ES') {
-    d3.timeFormatDefaultLocale(es_ES);
+    d3.timeFormatDefaultLocale(es_locale);
   }
   if (lang == 'pt-br') {
-    d3.timeFormatDefaultLocale(pt_BR);
+    d3.timeFormatDefaultLocale(pt_locale);
   }
   // 1. access data
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
   );
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;

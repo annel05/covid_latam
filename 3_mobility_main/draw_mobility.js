@@ -12,7 +12,7 @@ async function drawMobility() {
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
   );
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.mobility_index;
