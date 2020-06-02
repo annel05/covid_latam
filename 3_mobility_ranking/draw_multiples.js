@@ -1,4 +1,4 @@
-async function drawPolicy() {
+async function drawMobilityRanking() {
   // 0. check for language locale
   const lang = d3.select('html').property('lang');
   if (lang == 'es-ES') {
@@ -245,4 +245,4 @@ async function drawPolicy() {
   states.forEach(drawMultiple);
 }
 
-drawPolicy();
+drawMobilityRanking();
