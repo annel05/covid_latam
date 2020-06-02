@@ -17,10 +17,7 @@ async function drawPolicy() {
   const yAccessor = d => +d.policy_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
-  const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
-  const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_daily;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
@@ -86,6 +83,7 @@ async function drawPolicy() {
       .range([0, dimensions.boundedWidth]);
 
     const statesData = dataset.filter(d => d.state_short !== 'Nacional');
+
     const stateCodes = d3.map(statesData, stateCodeAccessor).keys();
     const stateColors = [
       '#4A72B8',
