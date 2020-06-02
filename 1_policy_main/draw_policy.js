@@ -58,7 +58,7 @@ async function drawPolicy() {
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
 
-  const bounds = wrapper
+  const bounds_policy = wrapper
     .append('g')
     .style(
       'transform',
@@ -122,7 +122,10 @@ async function drawPolicy() {
     .scale(yScale)
     .tickSize(-dimensions.boundedWidth);
 
-  const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
+  const yAxis = bounds_policy
+    .append('g')
+    .attr('class', 'y_axis')
+    .call(yAxisGenerator);
 
   const xAxisGenerator = d3
     .axisBottom()
@@ -130,7 +133,7 @@ async function drawPolicy() {
     .tickSize(-dimensions.boundedHeight)
     .tickFormat(d3.timeFormat('%d %B'));
 
-  const xAxis = bounds
+  const xAxis = bounds_policy
     .append('g')
     .attr('class', 'x_axis')
     .call(xAxisGenerator)
@@ -150,7 +153,7 @@ async function drawPolicy() {
     .x(d => xScale(xAccessor(d)))
     .y(d => yScale(yAccessor(d)));
 
-  bounds
+  bounds_policy
     .selectAll('.states')
     .data(states)
     .enter()
@@ -162,7 +165,7 @@ async function drawPolicy() {
     .attr('class', d => d.values[0].state_short);
 
   // add national average
-  bounds
+  bounds_policy
     .append('path')
     .attr('class', 'national')
     .attr('fill', 'none')
@@ -189,9 +192,9 @@ async function drawPolicy() {
   const addStateLine = _stateCode => {
     const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
 
-    bounds
+    bounds_policy
       .append('path')
-      .attr('class', `${_stateCode}_temp`)
+      .attr('class', `${_stateCode}_temp_policy`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -213,7 +216,7 @@ async function drawPolicy() {
 
   state_list
     .append('input')
-    .attr('class', 'input_box')
+    .attr('class', 'input_box_policy')
     .attr('type', 'checkbox')
     .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
 
@@ -235,7 +238,7 @@ async function drawPolicy() {
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
-  d3.selectAll('.input_box').on('input', toggleStateLine);
+  d3.selectAll('.input_box_policy').on('input', toggleStateLine);
   function toggleStateLine() {
     const code = this.name.split('_')[0];
     const label = state_list.select(`[for=${this.name}]`);
@@ -249,7 +252,7 @@ async function drawPolicy() {
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds.select(`.${code}_temp`).remove();
+      bounds_policy.select(`.${code}_temp_policy`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }

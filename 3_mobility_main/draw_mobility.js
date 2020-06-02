@@ -55,7 +55,7 @@ async function drawMobility() {
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
 
-  const bounds = wrapper
+  const bounds_mobility = wrapper
     .append('g')
     .style(
       'transform',
@@ -122,7 +122,10 @@ async function drawMobility() {
     .tickFormat(d => d + '%')
     .tickSize(-dimensions.boundedWidth);
 
-  const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
+  const yAxis = bounds_mobility
+    .append('g')
+    .attr('class', 'y_axis')
+    .call(yAxisGenerator);
 
   const xAxisGenerator = d3
     .axisBottom()
@@ -130,14 +133,14 @@ async function drawMobility() {
     .tickSize(-dimensions.boundedHeight)
     .tickFormat(d3.timeFormat('%d %B'));
 
-  const xAxis = bounds
+  const xAxis = bounds_mobility
     .append('g')
     .attr('class', 'x_axis')
     .call(xAxisGenerator)
     .style('transform', `translateY(${dimensions.boundedHeight}px)`);
 
   const xAxisText = xAxis.selectAll('text').attr('dy', 20);
-  bounds.append('line').attr('class', 'baseline');
+  bounds_mobility.append('line').attr('class', 'baseline');
   const xAxisTicks = xAxis
     .selectAll('.tick line')
     .attr('y1', dimensions.margin.bottom * 0.25);
@@ -151,7 +154,7 @@ async function drawMobility() {
     .y(d => yScale(yAccessor(d)));
 
   // this part generates all the grey lines for all the states
-  bounds
+  bounds_mobility
     .selectAll('.states')
     .data(states)
     .enter()
@@ -163,7 +166,7 @@ async function drawMobility() {
     .attr('class', d => d.values[0].state_short);
 
   // add 0-baseline
-  bounds
+  bounds_mobility
     .select('.baseline')
     .attr('stroke-width', 2)
     .attr('stroke', '#333333')
@@ -173,7 +176,7 @@ async function drawMobility() {
     .attr('y2', yScale(0));
 
   // add national average
-  bounds
+  bounds_mobility
     .append('path')
     .attr('class', 'national')
     .attr('fill', 'none')
@@ -200,9 +203,9 @@ async function drawMobility() {
   const addStateLine = _stateCode => {
     const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
 
-    bounds
+    bounds_mobility
       .append('path')
-      .attr('class', `${_stateCode}_temp`)
+      .attr('class', `${_stateCode}_temp_mobility`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -223,7 +226,7 @@ async function drawMobility() {
     .attr('class', d => `${stateCodeAccessor(d.values[0])}_state`);
   state_list
     .append('input')
-    .attr('class', 'input_box')
+    .attr('class', 'input_box_mobility')
     .attr('type', 'checkbox')
     .attr('name', d => `${stateCodeAccessor(d.values[0])}_mobility`);
   state_list
@@ -248,7 +251,7 @@ async function drawMobility() {
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
-  d3.selectAll('.input_box').on('input', toggleStateLine);
+  d3.selectAll('.input_box_mobility').on('input', toggleStateLine);
 
   function toggleStateLine() {
     const code = this.name.split('_')[0];
@@ -262,7 +265,7 @@ async function drawMobility() {
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds.select(`.${code}_temp`).remove();
+      bounds_mobility.select(`.${code}_temp_mobility`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }
