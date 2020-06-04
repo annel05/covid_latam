@@ -45,4 +45,5 @@
 
 .listening-rect {
   fill: transparent;
+  z-index: 0;
 }
