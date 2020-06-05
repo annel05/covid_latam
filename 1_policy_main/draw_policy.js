@@ -58,7 +58,7 @@ async function drawPolicy() {
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
 
-  const bounds_policy = wrapper
+  const bounds = wrapper
     .append('g')
     .style(
       'transform',
@@ -122,10 +122,7 @@ async function drawPolicy() {
     .scale(yScale)
     .tickSize(-dimensions.boundedWidth);
 
-  const yAxis = bounds_policy
-    .append('g')
-    .attr('class', 'y_axis')
-    .call(yAxisGenerator);
+  const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
 
   const xAxisGenerator = d3
     .axisBottom()
@@ -133,7 +130,7 @@ async function drawPolicy() {
     .tickSize(-dimensions.boundedHeight)
     .tickFormat(d3.timeFormat('%d %B'));
 
-  const xAxis = bounds_policy
+  const xAxis = bounds
     .append('g')
     .attr('class', 'x_axis')
     .call(xAxisGenerator)
@@ -153,7 +150,7 @@ async function drawPolicy() {
     .x(d => xScale(xAccessor(d)))
     .y(d => yScale(yAccessor(d)));
 
-  bounds_policy
+  bounds
     .selectAll('.states')
     .data(states)
     .enter()
@@ -164,13 +161,17 @@ async function drawPolicy() {
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => d.values[0].state_short);
 
+  const tooltipLine = bounds
+    .append('line')
+    .attr('class', '.tooltipLine_policy');
+
   // add national average
-  bounds_policy
+  bounds
     .append('path')
     .attr('class', 'national')
     .attr('fill', 'none')
     .attr('stroke', '#171717')
-    .attr('stroke-dasharray', '5px 2px')
+    .attr('stroke-dasharray', '9px 2px')
     .attr('stroke-width', 2.5)
     .attr('d', () => lineGenerator(country[0].values));
 
@@ -192,9 +193,9 @@ async function drawPolicy() {
   const addStateLine = _stateCode => {
     const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
 
-    bounds_policy
+    bounds
       .append('path')
-      .attr('class', `${_stateCode}_temp_policy`)
+      .attr('class', `${_stateCode}_temp_policy active_policy`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -252,10 +253,145 @@ async function drawPolicy() {
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds_policy.select(`.${code}_temp_policy`).remove();
+      bounds.select(`.${code}_temp_policy`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }
+  }
+  const tooltipDate = bounds
+    .append('text')
+    .attr('class', 'tooltipDate_policy')
+    .style('opacity', 0);
+  // tooltip interactivity:
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight)
+    .on('mousemove', onMouseMove)
+    .on('mouseleave', onMouseLeave);
+
+  const tooltip = d3
+    .select('#tooltip')
+    .style('opacity', 0)
+    .style('top', `${dimensions.margin.top * 2}px`)
+    .style('left', `${dimensions.margin.left * 1.25}px`);
+  const tooltipHeader = tooltip.select('#tooltipHeader_policy');
+  const tooltipContent = tooltip.select('#tooltipContent_policy');
+  let activeStates;
+
+  function onMouseMove() {
+    tooltip.style('opacity', 1);
+    // Translate mouse position into a date and y-value
+    const mousePosition = d3.mouse(this);
+    const hoveredDate = xScale.invert(mousePosition[0]);
+
+    const getDistanceFromHoveredDate = d =>
+      Math.abs(xAccessor(d) - hoveredDate);
+
+    const closestIndex = d3.scan(
+      dataset,
+      (a, b) => getDistanceFromHoveredDate(a) - getDistanceFromHoveredDate(b)
+    );
+    const closestDate = dataset[closestIndex];
+
+    const data = states.filter(d => d.date == closestDate.date);
+    const closestXValue = xAccessor(closestDate);
+    const closestYValue = yAccessor(closestDate);
+
+    activeStates = ['Nacional'];
+    // get a list of all the active states
+    const allActive = document
+      .getElementById('wrapper_policy_main')
+      .getElementsByClassName('active_policy');
+
+    Array.from(allActive).forEach(element => {
+      code = element.getAttribute('class').split('_')[0];
+      activeStates.push(code);
+    });
+
+    // clear the tooltip box
+    tooltipHeader.selectAll('*').remove();
+    tooltipContent.selectAll('*').remove();
+    d3.selectAll('.temp_circle_policy').remove();
+
+    const displayFormat = d3.timeFormat('%d %B');
+
+    // Update tooltipDate with current date:
+    tooltipDate
+      .attr('x', xScale(closestXValue) + 15)
+      .attr('y', mousePosition[1])
+      .text(displayFormat(dateParser(closestDate.date)))
+      .attr('font-weight', 700)
+      .style('opacity', 1);
+    // Add date to tooltip
+    tooltipHeader
+      .append('span')
+      .html(displayFormat(dateParser(closestDate.date)));
+
+    tooltipLine
+      .attr('x1', xScale(closestXValue))
+      .attr('x2', xScale(closestXValue))
+      .attr('y1', 0)
+      .attr('y2', dimensions.boundedHeight)
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', '7px 2px')
+      .attr('stroke', '#000')
+      .style('opacity', 1);
+
+    // add value for each active state to the tooltip
+    activeStates.forEach(element => {
+      // filter for the state's data on that day.
+      const point = dataset
+        .filter(d => d.state_short == element)
+        .filter(d => d.date == closestDate.date);
+
+      const yValue = yAccessor(point[0]);
+      const xValue = xAccessor(point[0]);
+      const stateName = stateCodeAccessor(point[0]);
+      const getColor = _code => {
+        if (_code == 'Nacional') {
+          return '#171717';
+        } else {
+          return colorScale(stateName);
+        }
+      };
+      const pointInfo = tooltipContent
+        .append('tr')
+        .attr('class', 'tooltip_state');
+      pointInfo
+        .append('td')
+        .attr('class', 'tooltip_state_name')
+        .html(point[0].state_name)
+        .style('color', getColor(element));
+      pointInfo
+        .append('td')
+        .attr('class', 'tooltip_value')
+        .html(yValue.toFixed(1));
+
+      // add a dot for each state
+      bounds
+        .append('circle')
+        .attr('cx', xScale(xValue))
+        .attr('cy', yScale(yValue))
+        .attr('r', 7)
+        .attr('fill', getColor(element))
+        .attr('class', 'temp_circle_policy');
+    });
+
+    //
+  }
+
+  function onMouseLeave() {
+    // reset activeState array
+    // turn tooltip opacity to 0
+    // destroy circles
+    // turn tooltip line opacity to 0
+    activeStates = ['Nacional'];
+    tooltip.style('opacity', 0);
+    tooltipLine.style('opacity', 0);
+    bounds.selectAll('.temp_circle_policy').remove();
+    tooltipDate.style('opacity', 0);
   }
 }
 

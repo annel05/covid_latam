@@ -1,6 +1,9 @@
-@charset "UTF-8";
 .chart {
   text-align: left;
+}
+#wrapper_mobility_main {
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
 }
 #wrapper_mobility_main .domain {
   display: none;
@@ -30,7 +33,48 @@
   margin-top: 20px;
 }
 
+#state_list_mobility li {
+  /* display: flex;
+  align-items: center; */
+}
+#state_list_mobility input[type='checkbox'] {
+  vertical-align: ;
+}
+
 #state_container_mobility {
   background-color: #f2f2f2;
   height: 550px;
+}
+
+#tooltip {
+  position: absolute;
+  background-color: lightgray;
+  padding: 5px;
+}
+
+.listening-rect {
+  fill: transparent;
+  z-index: 0;
+}
+
+#tooltip {
+  padding: 7px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#tooltipHeader_mobility {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#tooltipContent_mobility .tooltip_state {
+  font-weight: 700;
+}
+#tooltipContent_mobility .tooltip_value {
+  padding-left: 30px;
+  font-weight: 700;
+  text-align: right;
 }
