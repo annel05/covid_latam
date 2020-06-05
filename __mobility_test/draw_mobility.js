@@ -272,6 +272,7 @@ async function drawPolicy() {
       label.style('color', '#000').style('font-weight', 'normal');
     }
   }
+
   const tooltipDate = bounds
     .append('text')
     .attr('class', 'tooltipDate_mobility');

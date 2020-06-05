@@ -165,10 +165,6 @@ async function drawPolicy() {
     .append('line')
     .attr('class', '.tooltipLine_policy');
 
-  const tooltipDate = bounds
-    .append('text')
-    .attr('class', 'tooltipDate_policy')
-    .style('opacity', 0);
   // add national average
   bounds
     .append('path')
@@ -262,7 +258,10 @@ async function drawPolicy() {
       // 2 - turn off label to match colors
     }
   }
-
+  const tooltipDate = bounds
+    .append('text')
+    .attr('class', 'tooltipDate_policy')
+    .style('opacity', 0);
   // tooltip interactivity:
   const listeningRect = bounds
     .append('rect')
