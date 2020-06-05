@@ -174,9 +174,6 @@ async function drawPolicy() {
     .append('line')
     .attr('class', '.tooltipLine_mobility');
 
-  const tooltipDate = bounds
-    .append('text')
-    .attr('class', 'tooltipDate_mobility');
   // add national average
   bounds
     .append('path')
@@ -269,12 +266,15 @@ async function drawPolicy() {
     } else {
       // input box has been unchecked
       // 1 - turn off state line
+      // 2 - turn off label to match colors
+
       bounds.select(`.${code}_temp_mobility`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
-      // 2 - turn off label to match colors
     }
   }
-
+  const tooltipDate = bounds
+    .append('text')
+    .attr('class', 'tooltipDate_mobility');
   // tooltip interactivity:
   const listeningRect = bounds
     .append('rect')
