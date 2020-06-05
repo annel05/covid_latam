@@ -120,7 +120,8 @@ async function drawMobility() {
   const yAxisGenerator = d3
     .axisLeft()
     .scale(yScale)
-    .tickSize(-dimensions.boundedWidth);
+    .tickSize(-dimensions.boundedWidth)
+    .tickFormat(d => d + '%');
 
   const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
 
@@ -381,7 +382,7 @@ async function drawMobility() {
       pointInfo
         .append('td')
         .attr('class', 'tooltip_value')
-        .html(yValue.toFixed(1));
+        .html(yValue.toFixed(1) + '%');
 
       // add a dot for each state
       bounds

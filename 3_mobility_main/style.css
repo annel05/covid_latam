@@ -46,18 +46,13 @@
   height: 550px;
 }
 
-#tooltip {
-  position: absolute;
-  background-color: lightgray;
-  padding: 5px;
-}
-
 .listening-rect {
   fill: transparent;
   z-index: 0;
 }
 
-#tooltip {
+#tooltip_mobility {
+  position: absolute;
   padding: 7px;
   background-color: white;
   border: 1px solid black;
