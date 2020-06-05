@@ -18,13 +18,13 @@ async function drawPolicy() {
   const dataset = dataset_all.filter(d => d.country == 'Mexico');
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.policy_index;
+  const yAccessor = d => +d.mobility_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_daily;
+  const metricAccessor = d => +d.ranking_mobility_daily;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
@@ -33,7 +33,7 @@ async function drawPolicy() {
 
   // 2. create dimensions
 
-  const width = document.getElementById('wrapper_policy_main').parentElement
+  const width = document.getElementById('wrapper_mobility_main').parentElement
     .clientWidth;
   let dimensions = {
     width: width,
@@ -53,7 +53,7 @@ async function drawPolicy() {
   // 3. draw canvas
 
   const wrapper = d3
-    .select('#wrapper_policy_main')
+    .select('#wrapper_mobility_main')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -163,12 +163,11 @@ async function drawPolicy() {
 
   const tooltipLine = bounds
     .append('line')
-    .attr('class', '.tooltipLine_policy');
+    .attr('class', '.tooltipLine_mobility');
 
   const tooltipDate = bounds
     .append('text')
-    .attr('class', 'tooltipDate_policy')
-    .style('opacity', 0);
+    .attr('class', 'tooltipDate_mobility');
   // add national average
   bounds
     .append('path')
@@ -199,7 +198,7 @@ async function drawPolicy() {
 
     bounds
       .append('path')
-      .attr('class', `${_stateCode}_temp_policy active_policy`)
+      .attr('class', `${_stateCode}_temp_mobility active_mobility`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -212,7 +211,7 @@ async function drawPolicy() {
   // 7. act interactivity
 
   const state_list = d3
-    .select('#state_list_policy')
+    .select('#state_list_mobility')
     .selectAll('input')
     .data(states)
     .enter()
@@ -221,29 +220,33 @@ async function drawPolicy() {
 
   state_list
     .append('input')
-    .attr('class', 'input_box_policy')
+    .attr('class', 'input_box_mobility')
     .attr('type', 'checkbox')
-    .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
+    .attr('name', d => `${stateCodeAccessor(d.values[0])}_mobility`);
 
   state_list
     .append('label')
     .attr('class', 'input_label')
-    .attr('for', d => `${stateCodeAccessor(d.values[0])}_policy`)
+    .attr('for', d => `${stateCodeAccessor(d.values[0])}_mobility`)
     .html(d => stateAccessor(d.values[0]));
 
-  state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
   state_list
-    .select(`[for=${firstRankCode}_policy]`)
+    .select(`[name=${firstRankCode}_mobility]`)
+    .property('checked', true);
+  state_list
+    .select(`[for=${firstRankCode}_mobility]`)
     .style('color', colorScale(firstRankCode))
     .style('font-weight', 'bold');
 
-  state_list.select(`[name=${lastRankCode}_policy]`).property('checked', true);
   state_list
-    .select(`[for=${lastRankCode}_policy]`)
+    .select(`[name=${lastRankCode}_mobility]`)
+    .property('checked', true);
+  state_list
+    .select(`[for=${lastRankCode}_mobility]`)
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
-  d3.selectAll('.input_box_policy').on('input', toggleStateLine);
+  d3.selectAll('.input_box_mobility').on('input', toggleStateLine);
   function toggleStateLine() {
     const code = this.name.split('_')[0];
     const label = state_list.select(`[for=${this.name}]`);
@@ -257,7 +260,7 @@ async function drawPolicy() {
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      bounds.select(`.${code}_temp_policy`).remove();
+      bounds.select(`.${code}_temp_mobility`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
       // 2 - turn off label to match colors
     }
@@ -276,9 +279,10 @@ async function drawPolicy() {
     .select('#tooltip')
     .style('opacity', 0)
     .style('top', `${dimensions.margin.top * 2}px`)
-    .style('left', `${dimensions.margin.left * 1.25}px`);
-  const tooltipHeader = tooltip.select('#tooltipHeader_policy');
-  const tooltipContent = tooltip.select('#tooltipContent_policy');
+    .style('right', `${dimensions.margin.right * 1.25}px`);
+
+  const tooltipHeader = tooltip.select('#tooltipHeader_mobility');
+  const tooltipContent = tooltip.select('#tooltipContent_mobility');
   let activeStates;
 
   function onMouseMove() {
@@ -303,8 +307,8 @@ async function drawPolicy() {
     activeStates = ['Nacional'];
     // get a list of all the active states
     const allActive = document
-      .getElementById('wrapper_policy_main')
-      .getElementsByClassName('active_policy');
+      .getElementById('wrapper_mobility_main')
+      .getElementsByClassName('active_mobility');
 
     Array.from(allActive).forEach(element => {
       code = element.getAttribute('class').split('_')[0];
@@ -314,7 +318,7 @@ async function drawPolicy() {
     // clear the tooltip box
     tooltipHeader.selectAll('*').remove();
     tooltipContent.selectAll('*').remove();
-    d3.selectAll('.temp_circle_policy').remove();
+    d3.selectAll('.temp_circle_mobility').remove();
 
     const displayFormat = d3.timeFormat('%d %B');
 
@@ -323,8 +327,7 @@ async function drawPolicy() {
       .attr('x', xScale(closestXValue) + 15)
       .attr('y', mousePosition[1])
       .text(displayFormat(dateParser(closestDate.date)))
-      .attr('font-weight', 700)
-      .style('opacity', 1);
+      .attr('font-weight', 700);
     // Add date to tooltip
     tooltipHeader
       .append('span')
@@ -377,7 +380,7 @@ async function drawPolicy() {
         .attr('cy', yScale(yValue))
         .attr('r', 7)
         .attr('fill', getColor(element))
-        .attr('class', 'temp_circle_policy');
+        .attr('class', 'temp_circle_mobility');
     });
 
     //
@@ -389,10 +392,9 @@ async function drawPolicy() {
     // destroy circles
     // turn tooltip line opacity to 0
     activeStates = ['Nacional'];
-    tooltip.style('opacity', 0);
+    // tooltip.style('opacity', 0);
     tooltipLine.style('opacity', 0);
-    bounds.selectAll('.temp_circle_policy').remove();
-    tooltipDate.style('opacity', 0);
+    bounds.selectAll('.temp_circle_mobility').remove();
   }
 }
 
