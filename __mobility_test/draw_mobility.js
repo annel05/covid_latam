@@ -142,6 +142,15 @@ async function drawPolicy() {
     .selectAll('.tick line')
     .attr('y1', dimensions.margin.bottom * 0.25);
 
+  bounds
+    .append('line')
+    .attr('class', 'baseline')
+    .attr('stroke-width', 2)
+    .attr('stroke', '#333333')
+    .attr('x1', 0)
+    .attr('x2', dimensions.boundedWidth)
+    .attr('y1', yScale(0))
+    .attr('y2', yScale(0));
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
