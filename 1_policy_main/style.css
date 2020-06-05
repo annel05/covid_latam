@@ -3,6 +3,7 @@
 }
 #wrapper_policy_main {
   position: relative;
+  font-family: 'Open Sans', sans-serif;
 }
 #wrapper_policy_main .domain {
   display: none;
@@ -32,6 +33,14 @@
   margin-top: 20px;
 }
 
+#state_list_policy li {
+  /* display: flex;
+  align-items: center; */
+}
+#state_list_policy input[type='checkbox'] {
+  vertical-align: 
+}
+
 #state_container_policy {
   background-color: #f2f2f2;
   height: 550px;
@@ -46,4 +55,26 @@
 .listening-rect {
   fill: transparent;
   z-index: 0;
+}
+
+#tooltip {
+  padding: 7px;
+  background-color: white;
+  border: 1px solid black;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#tooltipHeader_policy {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#tooltipContent_policy .tooltip_state {
+  font-weight: 700;
+}
+#tooltipContent_policy .tooltip_value {
+  padding-left: 30px;
+  font-weight: 700;
+  text-align: right;
 }

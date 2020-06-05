@@ -164,13 +164,15 @@ async function drawPolicy() {
   const tooltipLine = bounds
     .append('line')
     .attr('class', '.tooltipLine_policy');
+
+  const tooltipDate = bounds.append('text').attr('class', 'tooltipDate_policy');
   // add national average
   bounds
     .append('path')
     .attr('class', 'national')
     .attr('fill', 'none')
     .attr('stroke', '#171717')
-    .attr('stroke-dasharray', '5px 2px')
+    .attr('stroke-dasharray', '9px 2px')
     .attr('stroke-width', 2.5)
     .attr('d', () => lineGenerator(country[0].values));
 
@@ -311,8 +313,15 @@ async function drawPolicy() {
     tooltipContent.selectAll('*').remove();
     d3.selectAll('.temp_circle_policy').remove();
 
-    // Add date to tooltip
     const displayFormat = d3.timeFormat('%d %B');
+
+    // Update tooltipDate with current date:
+    tooltipDate
+      .attr('x', xScale(closestXValue) + 15)
+      .attr('y', mousePosition[1])
+      .text(displayFormat(dateParser(closestDate.date)))
+      .attr('font-weight', 700);
+    // Add date to tooltip
     tooltipHeader
       .append('span')
       .html(displayFormat(dateParser(closestDate.date)));
@@ -323,9 +332,9 @@ async function drawPolicy() {
       .attr('y1', 0)
       .attr('y2', dimensions.boundedHeight)
       .attr('stroke-width', 2)
-      .attr('stroke-dasharray', '3px 2px')
+      .attr('stroke-dasharray', '7px 2px')
       .attr('stroke', '#000')
-      .attr('opacity', 1);
+      .style('opacity', 1);
 
     // add value for each active state to the tooltip
     activeStates.forEach(element => {
@@ -345,15 +354,15 @@ async function drawPolicy() {
         }
       };
       const pointInfo = tooltipContent
-        .append('p')
+        .append('tr')
         .attr('class', 'tooltip_state');
       pointInfo
-        .append('span')
+        .append('td')
         .attr('class', 'tooltip_state_name')
         .html(point[0].state_name)
         .style('color', getColor(element));
       pointInfo
-        .append('span')
+        .append('td')
         .attr('class', 'tooltip_value')
         .html(yValue.toFixed(1));
 
@@ -376,7 +385,8 @@ async function drawPolicy() {
     // destroy circles
     // turn tooltip line opacity to 0
     activeStates = ['Nacional'];
-    tooltipLine.attr('opacity', 0);
+    tooltip.style('opacity', 0);
+    tooltipLine.style('opacity', 0);
     bounds.selectAll('.temp_circle_policy').remove();
   }
 }
