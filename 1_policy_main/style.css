@@ -38,7 +38,7 @@
   align-items: center; */
 }
 #state_list_policy input[type='checkbox'] {
-  vertical-align: 
+  vertical-align: ;
 }
 
 #state_container_policy {
@@ -46,7 +46,7 @@
   height: 550px;
 }
 
-#tooltip {
+#tooltip_policy {
   position: absolute;
   background-color: lightgray;
   padding: 5px;
@@ -57,7 +57,7 @@
   z-index: 0;
 }
 
-#tooltip {
+#tooltip_policy {
   padding: 7px;
   background-color: white;
   border: 1px solid black;
