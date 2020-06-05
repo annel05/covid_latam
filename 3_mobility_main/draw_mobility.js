@@ -276,7 +276,8 @@ async function drawMobility() {
 
   const tooltipDate = bounds
     .append('text')
-    .attr('class', 'tooltipDate_mobility');
+    .attr('class', 'tooltipDate_mobility')
+    .style('opacity', 0);
   // tooltip interactivity:
   const listeningRect = bounds
     .append('rect')
@@ -338,7 +339,8 @@ async function drawMobility() {
       .attr('x', xScale(closestXValue) + 15)
       .attr('y', mousePosition[1])
       .text(displayFormat(dateParser(closestDate.date)))
-      .attr('font-weight', 700);
+      .attr('font-weight', 700)
+      .style('opacity', 1);
     // Add date to tooltip
     tooltipHeader
       .append('span')
@@ -403,8 +405,9 @@ async function drawMobility() {
     // destroy circles
     // turn tooltip line opacity to 0
     activeStates = ['Nacional'];
-    // tooltip.style('opacity', 0);
+    tooltip.style('opacity', 0);
     tooltipLine.style('opacity', 0);
+    tooltipDate.style('opacity', 0);
     bounds.selectAll('.temp_circle_mobility').remove();
   }
 }
