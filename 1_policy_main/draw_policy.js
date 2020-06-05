@@ -15,7 +15,7 @@ async function drawPolicy() {
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
   );
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
@@ -272,7 +272,7 @@ async function drawPolicy() {
     .on('mouseleave', onMouseLeave);
 
   const tooltip = d3
-    .select('#tooltip')
+    .select('#tooltip_policy')
     .style('opacity', 0)
     .style('top', `${dimensions.margin.top * 2}px`)
     .style('left', `${dimensions.margin.left * 1.25}px`);

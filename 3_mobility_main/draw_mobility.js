@@ -1,4 +1,4 @@
-async function drawPolicy() {
+async function drawMobility() {
   // 0. check for language locale
   let setLocale = () => {
     const lang = d3.select('html').property('lang');
@@ -15,7 +15,7 @@ async function drawPolicy() {
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_20200521.csv'
   );
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.mobility_index;
@@ -286,7 +286,7 @@ async function drawPolicy() {
     .on('mouseleave', onMouseLeave);
 
   const tooltip = d3
-    .select('#tooltip')
+    .select('#tooltip_mobility')
     .style('opacity', 0)
     .style('top', `${dimensions.margin.top * 2}px`)
     .style('right', `${dimensions.margin.right * 1.25}px`);
@@ -408,4 +408,4 @@ async function drawPolicy() {
   }
 }
 
-drawPolicy();
+drawMobility();
