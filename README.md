@@ -2,7 +2,6 @@
 
 This repo contains development code for charts related to "OBSERVATORIO PARA LA CONTENCIÓN DEL COVID-19 EN AMÉRICA LATINA".
 
-
 ## What to check when updating data
 
 1. Columns are named properly
@@ -17,12 +16,11 @@ This repo contains development code for charts related to "OBSERVATORIO PARA LA 
 - some typos in columns that were fixed
 - Quintana Roo state_short was changed to QRoo so we can use it for CSS
 
-
 ### data through 2020-05-29
 
-- no column typos
+- no column typos but the country column name was missing.
 - renamed Brazil to be Brasil to stay consistent with previous data
 - changed naming pattern for data files. Current file will always be `data_latest.csv`. When we update the data, we have to rename the old file based on the last date it included and put in the new file as `data_latest.csv`
 - renamed Q.Roo to QRoo for CSS purposes. Must be mindful there is already Qro.
 - remove Nacional from any rankings. That breaks the code.
-- Brazil had no policy index data for the national level
+- Brazil had no policy index data for the national level. This has been rectified.
