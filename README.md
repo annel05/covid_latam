@@ -25,3 +25,4 @@ This repo contains development code for charts related to "OBSERVATORIO PARA LA 
 - changed naming pattern for data files. Current file will always be `data_latest.csv`. When we update the data, we have to rename the old file based on the last date it included and put in the new file as `data_latest.csv`
 - renamed Q.Roo to QRoo for CSS purposes. Must be mindful there is already Qro.
 - remove Nacional from any rankings. That breaks the code.
+- Brazil had no policy index data for the national level
