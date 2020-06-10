@@ -8,7 +8,29 @@ async function countCases() {
   );
 
   const ourDate = '5/21/20';
-  const countryList = ['Mexico', 'Brazil'];
+  const countryList = [
+    ,
+    'Argentina',
+    'Belize',
+    'Bolivia',
+    'Brazil',
+    'Chile',
+    'Colombia',
+    'Costa Rica',
+    'Cuba',
+    'Dominican Republic',
+    'Ecuador',
+    'El Salvador',
+    'Guatemala',
+    'Honduras',
+    'Mexico',
+    'Nicaragua',
+    'Panama',
+    'Paraguay',
+    'Peru',
+    'Uruguay',
+    'Venezuela',
+  ];
   const countryAccessor = d => d['Country/Region'];
 
   const getLatestColumn = (_dataset, _country) => {
@@ -23,11 +45,11 @@ async function countCases() {
     // );
     // const columnsCases = Object.getOwnPropertyNames(countryCases[0]);
     // const latestCases = columnsCases[columnsCases.length - 1];
-    d3.select(`#${element.toLowerCase()}_cases`).html(
+    d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_cases`).html(
       getLatestColumn(datasetCases, element)
     );
 
-    d3.select(`#${element.toLowerCase()}_deaths`).html(
+    d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_deaths`).html(
       getLatestColumn(datasetDeaths, element)
     );
   });

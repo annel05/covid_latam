@@ -4,30 +4,317 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Updating counts by country</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h2>Mexico</h2>
-    <table>
-      <tr>
-        <td>Confirmed Cases</td>
-        <td><span id="mexico_cases"></span></td>
-      </tr>
-      <tr>
-        <td>Deaths</td>
-        <td><span id="mexico_deaths"></span></td>
-      </tr>
-    </table>
-    <h2>Brazil</h2>
-    <table>
-      <tr>
-        <td>Confirmed Cases</td>
-        <td><span id="brazil_cases"></span></td>
-      </tr>
-      <tr>
-        <td>Deaths</td>
-        <td><span id="brazil_deaths"></span></td>
-      </tr>
-    </table>
+    <div class="container">
+      <!-- argentina start -->
+      <div class="row">
+        <div class="col-12"><h4>Argentina</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="argentina_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="argentina_deaths"></span></div>
+      </div>
+      <!-- argentina end -->
+      <!-- belize start -->
+      <div class="row">
+        <div class="col-12"><h4>Belize</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="belize_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="belize_deaths"></span></div>
+      </div>
+      <!-- belize end -->
+      <!-- bolivia start -->
+      <div class="row">
+        <div class="col-12"><h4>Bolivia</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="bolivia_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="bolivia_deaths"></span></div>
+      </div>
+      <!-- bolivia end -->
+      <!-- brazil start -->
+      <div class="row">
+        <div class="col-12"><h4>Brazil</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="brazil_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="brazil_deaths"></span></div>
+      </div>
+      <!-- brazil end -->
+      <!-- chile start -->
+      <div class="row">
+        <div class="col-12"><h4>Chile</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="chile_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="chile_deaths"></span></div>
+      </div>
+      <!-- chile end -->
+      <!-- colombia start -->
+      <div class="row">
+        <div class="col-12"><h4>Colombia</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="colombia_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="colombia_deaths"></span></div>
+      </div>
+      <!-- colombia end -->
+      <!-- costa rica start -->
+      <div class="row">
+        <div class="col-12"><h4>Costa Rica</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="costarica_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="costarica_deaths"></span></div>
+      </div>
+      <!-- costa rica end -->
+      <!-- cuba start -->
+      <div class="row">
+        <div class="col-12"><h4>Cuba</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="cuba_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="cuba_deaths"></span></div>
+      </div>
+      <!-- cuba end -->
+      <!-- cuba start -->
+      <div class="row">
+        <div class="col-12"><h4>Dominican Republic</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="dominicanrepublic_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="dominicanrepublic_deaths"></span>
+        </div>
+      </div>
+      <!-- cuba end -->
+      <!-- ecuador start -->
+      <div class="row">
+        <div class="col-12"><h4>Ecuador</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="ecuador_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="ecuador_deaths"></span></div>
+      </div>
+      <!-- ecuador end -->
+      <!-- el salvador start -->
+      <div class="row">
+        <div class="col-12"><h4>El Salvador</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right"><span id="elsalvador_cases"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right"><span id="elsalvador_deaths"></span></div>
+      </div>
+      <!-- el salvador end -->
+
+      <!-- guatemala start -->
+      <div class="row">
+        <div class="col-12"><h4>Guatemala</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="guatemala_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="guatemala_deaths"></span>
+        </div>
+      </div>
+      <!-- guatemala end -->
+      <!-- honduras start -->
+      <div class="row">
+        <div class="col-12"><h4>Honduras</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="honduras_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="honduras_deaths"></span>
+        </div>
+      </div>
+      <!-- honduras end -->
+      <!-- mexico start -->
+      <div class="row">
+        <div class="col-12"><h4>Mexico</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="mexico_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="mexico_deaths"></span>
+        </div>
+      </div>
+      <!-- mexico end -->
+      <!-- nicaragua start -->
+      <div class="row">
+        <div class="col-12"><h4>Nicaragua</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="nicaragua_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="nicaragua_deaths"></span>
+        </div>
+      </div>
+      <!-- nicaragua end -->
+      <!-- panama start -->
+      <div class="row">
+        <div class="col-12"><h4>Panama</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="panama_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="panama_deaths"></span>
+        </div>
+      </div>
+      <!-- panama end -->
+      <!-- paraguay start -->
+      <div class="row">
+        <div class="col-12"><h4>Paraguay</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="paraguay_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="paraguay_deaths"></span>
+        </div>
+      </div>
+      <!-- paraguay end -->
+      <!-- peru start -->
+      <div class="row">
+        <div class="col-12"><h4>Peru</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="peru_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="peru_deaths"></span>
+        </div>
+      </div>
+      <!-- peru end -->
+      <!-- uruguay start -->
+      <div class="row">
+        <div class="col-12"><h4>Uruguay</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="uruguay_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="uruguay_deaths"></span>
+        </div>
+      </div>
+      <!-- uruguay end -->
+      <!-- venezuela start -->
+      <div class="row">
+        <div class="col-12"><h4>Venezuela</h4></div>
+      </div>
+      <div class="row">
+        <div class="col-6">Confirmed Cases</div>
+        <div class="col-6 text-right">
+          <span id="venezuela_cases"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">Deaths</div>
+        <div class="col-6 text-right">
+          <span id="venezuela_deaths"></span>
+        </div>
+      </div>
+      <!-- venezuela end -->
+    </div>
 
     <script src="./../d3.v5.js"></script>
     <script src="./countCases.js"></script>
