@@ -15,8 +15,9 @@ async function drawPolicy() {
   const dataset_all = await d3.csv(
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
   );
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
 
+  // const dataset_all = await d3.csv('./../data/data_latest.csv');
+  const dataset = dataset_all.filter(d => d.country == 'Brasil');
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
@@ -28,7 +29,7 @@ async function drawPolicy() {
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
-  const country = datasetByState.filter(d => d.key == 'Nacional');
+  const country_data = datasetByState.filter(d => d.key == 'Nacional');
   const states = datasetByState.filter(d => d.key !== 'Nacional');
 
   // 2. create dimensions
@@ -165,7 +166,6 @@ async function drawPolicy() {
     .append('line')
     .attr('class', '.tooltipLine_policy');
 
-  console.log(country[0].values);
   // add national average
   bounds
     .append('path')
@@ -174,7 +174,7 @@ async function drawPolicy() {
     .attr('stroke', '#171717')
     .attr('stroke-dasharray', '9px 2px')
     .attr('stroke-width', 2.5)
-    .attr('d', () => lineGenerator(country[0].values));
+    .attr('d', () => lineGenerator(country_data[0].values));
 
   // highlight the first and last ranks.
   // 1 - get the latest day
@@ -244,7 +244,6 @@ async function drawPolicy() {
   function toggleStateLine() {
     const code = this.name.split('_')[0];
     const label = state_list.select(`[for=${this.name}]`);
-    console.log(code, label);
     if (this.checked) {
       // input box has been checked
       // 1 - turn on state line

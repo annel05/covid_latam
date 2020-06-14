@@ -24,3 +24,9 @@ This repo contains development code for charts related to "OBSERVATORIO PARA LA 
 - renamed Q.Roo to QRoo for CSS purposes. Must be mindful there is already Qro.
 - remove Nacional from any rankings. That breaks the code.
 - Brazil had no policy index data for the national level. This has been rectified.
+
+## data through 2020-06-03
+
+- `country` column name had an extra space in it
+- renamed Q.Roo to QRoo
+- National data had no ranking, but state_short had been changed to `0`. This is off and should be `Nacional` for the purposes of keeping the code consistent.
