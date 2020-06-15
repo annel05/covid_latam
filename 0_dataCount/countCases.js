@@ -40,22 +40,21 @@ async function countCases() {
     return data[0][latest];
   };
   countryList.forEach(element => {
-    // const countryCases = datasetCases.filter(
-    //   d => countryAccessor(d) == element
-    // );
-    // const columnsCases = Object.getOwnPropertyNames(countryCases[0]);
-    // const latestCases = columnsCases[columnsCases.length - 1];
     d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_cases`).html(
       getLatestColumn(datasetCases, element)
     );
-
     d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_deaths`).html(
       getLatestColumn(datasetDeaths, element)
     );
   });
 
-  // const columns = Object.getOwnPropertyNames(data[0]);
-  // const latest = columns[columns.length - 1];
-  // console.table(data[0][latest]);
+  // Modify last updated section
+  const cases_columns = Object.getOwnPropertyNames(datasetCases[0]);
+  const latest_date_cases = cases_columns[cases_columns.length - 1];
+  const dateParser = d3.timeParse('%-m/%-d/%y');
+  const dateFormat = d3.timeFormat('%d %B %Y');
+  console.log(dateParser(latest_date_cases));
+
+  d3.select('#last_updated').html(dateFormat(dateParser(latest_date_cases)));
 }
 countCases();
