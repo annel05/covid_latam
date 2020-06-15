@@ -53,7 +53,6 @@ async function countCases() {
   const latest_date_cases = cases_columns[cases_columns.length - 1];
   const dateParser = d3.timeParse('%-m/%-d/%y');
   const dateFormat = d3.timeFormat('%d %B %Y');
-  console.log(dateParser(latest_date_cases));
 
   d3.select('#last_updated').html(dateFormat(dateParser(latest_date_cases)));
 }
