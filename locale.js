@@ -79,3 +79,13 @@ var pt_locale = {
     'Dez',
   ],
 };
+
+let setLocale = () => {
+  const lang = d3.select('html').property('lang');
+  if (lang == 'es-ES') {
+    d3.timeFormatDefaultLocale(es_locale);
+  }
+  if (lang == 'pt-br') {
+    d3.timeFormatDefaultLocale(pt_locale);
+  }
+};
