@@ -7,11 +7,11 @@ async function drawPolicy() {
 
   // data accessors: shorthand for different columns.
   const yAccessor = d => +d.policy_index;
-  const xAccessor = d => +d.days;
-  // const dateParser = d3.timeParse('%Y-%m-%d');
-  // const dateAccessor = d => dateParser(d.date);
+  // const xAccessor = d => +d.days;
+  const dateParser = d3.timeParse('%Y-%m-%d');
+  const xAccessor = d => dateParser(d.date);
   const countryCodeAccessor = d => d.country_short;
-  // const countryAccessor = d => d.country;
+  const countryAccessor = d => d.country;
 
   const datasetByCountry = d3
     .nest()
@@ -30,7 +30,7 @@ async function drawPolicy() {
     height: 600,
     margin: {
       top: 15,
-      right: 15,
+      right: 20,
       bottom: 40,
       left: 60,
     },
@@ -64,10 +64,9 @@ async function drawPolicy() {
     .nice();
 
   const xScale = d3
-    .scaleLinear()
+    .scaleTime()
     .domain(d3.extent(dataset_all, xAccessor))
-    .range([0, dimensions.boundedWidth])
-    .nice();
+    .range([0, dimensions.boundedWidth]);
 
   const countryData = dataset_all.filter(d => d.country_short !== 'LatAm');
   const countryCodes = d3.map(countryData, countryCodeAccessor).keys();
@@ -151,134 +150,108 @@ async function drawPolicy() {
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values));
 
-  // bounds
-  //   .selectAll('.states')
-  //   .data(states)
-  //   .enter()
-  //   .append('path')
-  //   .attr('fill', 'none')
-  //   .attr('stroke-width', 2.5)
-  //   .attr('stroke', '#d2d3d4')
-  //   .attr('d', d => lineGenerator(d.values))
-  //   .attr('class', d => d.values[0].state_short);
+  const tooltipLine = bounds
+    .append('line')
+    .attr('class', '.tooltipLine_policy_latam');
 
-  // const tooltipLine = bounds
-  //   .append('line')
-  //   .attr('class', '.tooltipLine_policy');
+  // highlight the countries we track
+  const addCountryLine = _countryCode => {
+    const data = dataset_all.filter(
+      d => countryCodeAccessor(d) == _countryCode
+    );
 
-  // // add national average
-  // bounds
-  //   .append('path')
-  //   .attr('class', 'national')
-  //   .attr('fill', 'none')
-  //   .attr('stroke', '#171717')
-  //   .attr('stroke-dasharray', '9px 2px')
-  //   .attr('stroke-width', 2.5)
-  //   .attr('d', () => lineGenerator(country_data[0].values));
+    bounds
+      .append('path')
+      .attr('class', `${_countryCode}_temp_policy_latam active_policy`)
+      .attr('fill', 'none')
+      .attr('stroke', colorScale(_countryCode))
+      .attr('stroke-width', 3)
+      .attr('d', () => lineGenerator(data));
+  };
 
-  // // highlight the first and last ranks.
-  // // 1 - get the latest day
-  // const latestDay = d3.max(dataset.map(xAccessor));
-  // // 2 - filter data to only have this day
-  // const latestData = dataset.filter(d => xAccessor(d) == latestDay);
-  // // 3 - get the rank 1 state
-  // const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
-  // const firstRankCode = firstRankState[0].state_short;
-  // // 4 - get the last rank state
-  // const lastRankState = latestData.filter(
-  //   d => metricAccessor(d) == d3.max(latestData, metricAccessor)
-  // );
-  // const lastRankCode = lastRankState[0].state_short;
+  // 7. add interactivity
 
-  // // This function draws the temporary state line given a state code.
-  // const addStateLine = _stateCode => {
-  //   const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
+  const country_list = d3
+    .select('#country_list_policy_latam')
+    .selectAll('input')
+    .data(countries)
+    .enter()
+    .append('li');
 
-  //   bounds
-  //     .append('path')
-  //     .attr('class', `${_stateCode}_temp_policy active_policy`)
-  //     .attr('fill', 'none')
-  //     .attr('stroke', colorScale(_stateCode))
-  //     .attr('stroke-width', 3)
-  //     .attr('d', () => lineGenerator(stateData));
-  // };
+  country_list
+    .append('input')
+    .attr('class', 'input_box_policy')
+    .attr('type', 'checkbox')
+    .attr('name', d => `${countryCodeAccessor(d.values[0])}_policy_latam`);
 
-  // addStateLine(firstRankCode);
-  // addStateLine(lastRankCode);
+  country_list
+    .append('label')
+    .attr('class', 'input_label')
+    .attr('for', d => `${countryCodeAccessor(d.values[0])}_policy_latam`)
+    .html(d => countryAccessor(d.values[0]));
 
-  // // 7. act interactivity
+  activeStartCountries = ['MEX', 'BRA'];
 
-  // const state_list = d3
-  //   .select('#state_list_policy')
-  //   .selectAll('input')
-  //   .data(states)
-  //   .enter()
-  //   .append('li')
-  //   .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
+  activeStartCountries.forEach(element => {
+    addCountryLine(element);
+    country_list
+      .select(`[name=${element}_policy_latam]`)
+      .property('checked', true);
 
-  // state_list
-  //   .append('input')
-  //   .attr('class', 'input_box_policy')
-  //   .attr('type', 'checkbox')
-  //   .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
+    country_list
+      .select(`[for=${element}_policy_latam]`)
+      .style('color', colorScale(element))
+      .style('font-weight', 'bold');
+  });
 
-  // state_list
-  //   .append('label')
-  //   .attr('class', 'input_label')
-  //   .attr('for', d => `${stateCodeAccessor(d.values[0])}_policy`)
-  //   .html(d => stateAccessor(d.values[0]));
+  d3.selectAll('.input_box_policy').on('input', toggleCountryLine);
 
-  // state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
-  // state_list
-  //   .select(`[for=${firstRankCode}_policy]`)
-  //   .style('color', colorScale(firstRankCode))
-  //   .style('font-weight', 'bold');
+  function toggleCountryLine() {
+    const code = this.name.split('_')[0];
+    const label = country_list.select(`[for=${this.name}]`);
+    if (this.checked) {
+      // input box has been checked. draw country line & style label
+      addCountryLine(code);
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
+    } else {
+      // input box has been unchecked. remove country line and label style
+      bounds.select(`.${code}_temp_policy_latam`).remove();
+      label.style('color', '#000').style('font-weight', 'normal');
+    }
+  }
 
-  // state_list.select(`[name=${lastRankCode}_policy]`).property('checked', true);
-  // state_list
-  //   .select(`[for=${lastRankCode}_policy]`)
-  //   .style('color', colorScale(lastRankCode))
-  //   .style('font-weight', 'bold');
+  // set up for tooltip interactivity
+  // this is the date that shows up next to the cursor
+  const tooltipDate = bounds
+    .append('text')
+    .attr('class', 'tooltipDate_policy_latam')
+    .style('opacity', 0);
 
-  // d3.selectAll('.input_box_policy').on('input', toggleStateLine);
-  // function toggleStateLine() {
-  //   const code = this.name.split('_')[0];
-  //   const label = state_list.select(`[for=${this.name}]`);
-  //   if (this.checked) {
-  //     // input box has been checked
-  //     // 1 - turn on state line
-  //     addStateLine(code);
-  //     // 2 - turn on label to match color
-  //     label.style('color', colorScale(code)).style('font-weight', 'bold');
-  //   } else {
-  //     // input box has been unchecked
-  //     // 1 - turn off state line
-  //     bounds.select(`.${code}_temp_policy`).remove();
-  //     label.style('color', '#000').style('font-weight', 'normal');
-  //     // 2 - turn off label to match colors
-  //   }
-  // }
-  // const tooltipDate = bounds
-  //   .append('text')
-  //   .attr('class', 'tooltipDate_policy')
-  //   .style('opacity', 0);
-  // // tooltip interactivity:
-  // const listeningRect = bounds
-  //   .append('rect')
-  //   .attr('class', 'listening-rect')
-  //   .attr('width', dimensions.boundedWidth)
-  //   .attr('height', dimensions.boundedHeight)
-  //   .on('mousemove', onMouseMove)
-  //   .on('mouseleave', onMouseLeave);
+  const tooltip = d3
+    .select('#tooltip_policy_latam')
+    .style('opacity', 0)
+    .style('top', `${dimensions.margin.top * 2}px`)
+    .style('left', `${dimensions.margin.left * 1.25}px`);
 
-  // const tooltip = d3
-  //   .select('#tooltip_policy')
-  //   .style('opacity', 0)
-  //   .style('top', `${dimensions.margin.top * 2}px`)
-  //   .style('left', `${dimensions.margin.left * 1.25}px`);
-  // const tooltipHeader = tooltip.select('#tooltipHeader_policy');
-  // const tooltipContent = tooltip.select('#tooltipContent_policy');
-  // let activeStates;
+  const tooltipHeader = tooltip.select('#tooltipHeader_policy_latam');
+  const tooltipContent = tooltip.select('#tooltipContent_policy_latam');
+
+  let activeCountries;
+
+  // this rect is used to calculate dates.
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening_rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight)
+    .on('mousemove', onMouseMove)
+    .on('mouseleave', onMouseLeave);
+
+  function onMouseMove() {
+    tooltip.style('opacity', 1);
+    
+    // translate 
+  }
 
   // function onMouseMove() {
   //   tooltip.style('opacity', 1);
