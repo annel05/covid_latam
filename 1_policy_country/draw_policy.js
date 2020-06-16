@@ -25,7 +25,7 @@ async function drawPolicy() {
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_daily;
+  const metricAccessor = d => +d.ranking_policy_accumulated;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);

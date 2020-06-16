@@ -24,7 +24,7 @@ async function drawMobility() {
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_mobility_daily;
+  const metricAccessor = d => +d.ranking_mobility_accumulated;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
