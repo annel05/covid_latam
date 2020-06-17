@@ -17,7 +17,6 @@ async function drawMobility() {
 
   const datasetByCountry = d3.nest().key(countryCodeAccessor).entries(dataset);
 
-  // const region_data = datasetByCountry.filter(d => d.key == 'LatAm');
   const countries = datasetByCountry.filter(d => d.key !== 'LatAm');
 
   // 2. create dimensions
@@ -110,14 +109,16 @@ async function drawMobility() {
   const yAxisGenerator = d3
     .axisLeft()
     .scale(yScale)
-    .tickSize(-dimensions.boundedWidth);
+    .tickSize(-dimensions.boundedWidth)
+    .tickFormat(d => d + '%');
 
   const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
 
   const xAxisGenerator = d3
     .axisBottom()
     .scale(xScale)
-    .tickSize(-dimensions.boundedHeight);
+    .tickSize(-dimensions.boundedHeight)
+    .tickFormat(d3.timeFormat('%d %B'));
 
   const xAxis = bounds
     .append('g')
@@ -128,9 +129,20 @@ async function drawMobility() {
   const xAxisText = xAxis.selectAll('text').attr('dy', 20);
 
   // the below code extends ticks down a bit
-  // const xAxisTicks = xAxis
-  //   .selectAll('.tick line')
-  //   .attr('y1', dimensions.margin.bottom * 0.25);
+  const xAxisTicks = xAxis
+    .selectAll('.tick line')
+    .attr('y1', dimensions.margin.bottom * 0.25);
+
+  // add the zero baseline for mobility
+  bounds
+    .append('line')
+    .attr('class', 'baseline')
+    .attr('stroke-width', 2)
+    .attr('stroke', '#333333')
+    .attr('x1', 0)
+    .attr('x2', dimensions.boundedWidth)
+    .attr('y1', yScale(0))
+    .attr('y2', yScale(0));
 
   // 5. draw data
 
@@ -150,6 +162,17 @@ async function drawMobility() {
     .attr('stroke-width', 2.5)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values));
+
+  // add the weighted average
+  const region = datasetByCountry.filter(d => d.key == 'LatAm');
+  bounds
+    .append('path')
+    .attr('class', 'national')
+    .attr('fill', 'none')
+    .attr('stroke', '#171717')
+    .attr('stroke-dasharray', '9px 2px')
+    .attr('stroke-width', 2.5)
+    .attr('d', () => lineGenerator(region[0].values));
 
   const tooltipLine = bounds
     .append('line')
@@ -233,7 +256,7 @@ async function drawMobility() {
     .select('#tooltip_mobility_latam')
     .style('opacity', 0)
     .style('top', `${dimensions.margin.top * 2}px`)
-    .style('left', `${dimensions.margin.left * 1.25}px`);
+    .style('right', `${dimensions.margin.right * 1.25}px`);
 
   const tooltipHeader = tooltip.select('#tooltipHeader_mobility_latam');
   const tooltipContent = tooltip.select('#tooltipContent_mobility_latam');
@@ -269,7 +292,7 @@ async function drawMobility() {
     const closestYValue = yAccessor(closestDate);
 
     // get all the active countries to include in the tooltip
-    activeCountries = [];
+    activeCountries = ['LatAm'];
     const allActive = document
       .getElementById('wrapper_mobility_latam_main')
       .getElementsByClassName('active_mobility_latam');
@@ -337,7 +360,7 @@ async function drawMobility() {
       countryInfo
         .append('td')
         .attr('class', 'tooltip_country_value')
-        .html(yValue.toFixed(1));
+        .html(yValue.toFixed(1) + '%');
 
       // draw a circle on the plot
       bounds
@@ -352,7 +375,7 @@ async function drawMobility() {
 
   function onMouseLeave() {
     // reset the list of active countries, remove drawn circles and hide all tooltip related visuals.
-    activeCountries = [];
+    activeCountries = ['LatAm'];
     tooltip.style('opacity', 0);
     tooltipLine.style('opacity', 0);
     bounds.selectAll('.temp_circle_mobility_latam').remove();
