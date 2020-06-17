@@ -7,4 +7,4 @@
 5. Para la data del promedio del pais, los variables relacionados a rankings deberian estar vacios.
 6. Para data de México, el valor de `state_short` para Quintana Roo deberia ser `QRoo` y no `Q.Roo`.
 7. Data sobre Brasil deberia tener `Brasil` como valor de `country`.
-8. El archivo csv se deberia llamar `data_latest.csv` y estar en la carpeta de `data` del repositorio.
+8. El archivo csv se deberia llamar `data_latest.csv` y estar en la carpeta de `data` del repositorio. Si despues rompemos la data de paises en diferentes archivos, podemos cambiar esto.
