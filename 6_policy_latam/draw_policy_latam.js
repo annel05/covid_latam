@@ -3,7 +3,9 @@ async function drawPolicy() {
   setLocale();
 
   // 1. access data
-  const dataset = await d3.csv('./../data/latam_20200603.csv');
+  const dataset = await d3.csv(
+    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/latam_latest.csv'
+  );
 
   // data accessors: shorthand for different columns.
   const yAccessor = d => +d.policy_index;
