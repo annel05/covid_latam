@@ -3,7 +3,7 @@ async function drawPolicy() {
   setLocale();
 
   // 1. access data
-  const dataset_all = await d3.csv('./../data/latam_20200603.csv');
+  const dataset = await d3.csv('./../data/latam_20200603.csv');
 
   // data accessors: shorthand for different columns.
   const yAccessor = d => +d.policy_index;
@@ -13,12 +13,9 @@ async function drawPolicy() {
   const countryCodeAccessor = d => d.country_short;
   const countryAccessor = d => d.country;
 
-  const datasetByCountry = d3
-    .nest()
-    .key(countryCodeAccessor)
-    .entries(dataset_all);
+  const datasetByCountry = d3.nest().key(countryCodeAccessor).entries(dataset);
 
-  const region_data = datasetByCountry.filter(d => d.key == 'LatAm');
+  // const region_data = datasetByCountry.filter(d => d.key == 'LatAm');
   const countries = datasetByCountry.filter(d => d.key !== 'LatAm');
 
   // 2. create dimensions
@@ -59,16 +56,16 @@ async function drawPolicy() {
 
   const yScale = d3
     .scaleLinear()
-    .domain(d3.extent(dataset_all, yAccessor))
+    .domain(d3.extent(dataset, yAccessor))
     .range([dimensions.boundedHeight, 0])
     .nice();
 
   const xScale = d3
     .scaleTime()
-    .domain(d3.extent(dataset_all, xAccessor))
+    .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  const countryData = dataset_all.filter(d => d.country_short !== 'LatAm');
+  const countryData = dataset.filter(d => d.country_short !== 'LatAm');
   const countryCodes = d3.map(countryData, countryCodeAccessor).keys();
   const colors = [
     '#4A72B8',
@@ -115,8 +112,10 @@ async function drawPolicy() {
 
   const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
 
-  const xAxisGenerator = d3.axisBottom().scale(xScale).tickSize(0);
-  // an alternative tickSize if we want to get vertical grid would be: .tickSize(-dimensions.boundedHeight)
+  const xAxisGenerator = d3
+    .axisBottom()
+    .scale(xScale)
+    .tickSize(-dimensions.boundedHeight);
 
   const xAxis = bounds
     .append('g')
@@ -156,13 +155,11 @@ async function drawPolicy() {
 
   // highlight the countries we track
   const addCountryLine = _countryCode => {
-    const data = dataset_all.filter(
-      d => countryCodeAccessor(d) == _countryCode
-    );
+    const data = dataset.filter(d => countryCodeAccessor(d) == _countryCode);
 
     bounds
       .append('path')
-      .attr('class', `${_countryCode}_temp_policy_latam active_policy`)
+      .attr('class', `${_countryCode}_temp_policy_latam active_policy_latam`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_countryCode))
       .attr('stroke-width', 3)
@@ -249,123 +246,113 @@ async function drawPolicy() {
 
   function onMouseMove() {
     tooltip.style('opacity', 1);
-    
-    // translate 
+
+    // translate mouse position into a date (and y value)
+    const mousePosition = d3.mouse(this);
+    const hoveredDate = xScale.invert(mousePosition[0]);
+
+    // find the closest data point
+    const getDistanceFromHoveredDated = d =>
+      Math.abs(xAccessor(d) - hoveredDate);
+    const closestIndex = d3.scan(
+      dataset,
+      (a, b) => getDistanceFromHoveredDated(a) - getDistanceFromHoveredDated(b)
+    );
+    const closestDate = dataset[closestIndex];
+    const data = countries.filter(d => d.date == closestDate.date);
+    const closestXValue = xAccessor(closestDate);
+    const closestYValue = yAccessor(closestDate);
+
+    // get all the active countries to include in the tooltip
+    activeCountries = [];
+    const allActive = document
+      .getElementById('wrapper_policy_latam_main')
+      .getElementsByClassName('active_policy_latam');
+    Array.from(allActive).forEach(element => {
+      code = element.getAttribute('class').split('_')[0];
+      activeCountries.push(code);
+    });
+
+    // clear tooltip content
+    tooltipHeader.selectAll('*').remove();
+    tooltipContent.selectAll('*').remove();
+    d3.selectAll('.temp_circle_policy_latam').remove();
+
+    // set a display format for tooltip's date.
+    const displayFormat = d3.timeFormat('%d %B');
+    const dateShown = displayFormat(dateParser(closestDate.date));
+    // update tooltip date shown near cursor
+    tooltipDate
+      .attr('x', mousePosition[0] + 15)
+      .attr('y', mousePosition[1])
+      .text(dateShown)
+      .attr('font-weight', 700)
+      .style('opacity', 1);
+
+    // draw the line for the date we're on
+    tooltipLine
+      .attr('x1', xScale(closestXValue))
+      .attr('x2', xScale(closestXValue))
+      .attr('y1', 0)
+      .attr('y2', dimensions.boundedHeight)
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', '7px 2px')
+      .attr('stroke', '#000')
+      .style('opacity', 1);
+
+    // update the tooltip box. add the date
+    tooltipHeader.append('span').html(dateShown);
+    // for each state, add the values to the tooltip box and draw the circle
+    activeCountries.forEach(element => {
+      // filter data so we only have country on a specific date
+      const point = dataset
+        .filter(d => countryCodeAccessor(d) == element)
+        .filter(d => d.date == closestDate.date);
+      // shortcuts we'll use to add values
+      const yValue = yAccessor(point[0]);
+      const xValue = xAccessor(point[0]);
+      const countryCode = countryCodeAccessor(point[0]);
+      const getColor = _code => {
+        if (_code == 'LatAm') {
+          return '#171717';
+        } else {
+          return colorScale(_code);
+        }
+      };
+
+      // add data to tooltip box
+      const countryInfo = tooltipContent
+        .append('tr')
+        .attr('class', 'tooltip_country');
+      countryInfo
+        .append('td')
+        .attr('class', 'tooltip_country_name')
+        .html(point[0].country)
+        .style('color', getColor(element));
+      countryInfo
+        .append('td')
+        .attr('class', 'tooltip_country_value')
+        .html(yValue.toFixed(1));
+
+      // draw a circle on the plot
+      bounds
+        .append('circle')
+        .attr('cx', xScale(xValue))
+        .attr('cy', yScale(yValue))
+        .attr('r', 7)
+        .attr('fill', getColor(element))
+        .attr('class', 'temp_circle_policy_latam');
+    });
   }
 
-  // function onMouseMove() {
-  //   tooltip.style('opacity', 1);
-  //   // Translate mouse position into a date and y-value
-  //   const mousePosition = d3.mouse(this);
-  //   const hoveredDate = xScale.invert(mousePosition[0]);
-
-  //   const getDistanceFromHoveredDate = d =>
-  //     Math.abs(xAccessor(d) - hoveredDate);
-
-  //   const closestIndex = d3.scan(
-  //     dataset,
-  //     (a, b) => getDistanceFromHoveredDate(a) - getDistanceFromHoveredDate(b)
-  //   );
-  //   const closestDate = dataset[closestIndex];
-
-  //   const data = states.filter(d => d.date == closestDate.date);
-  //   const closestXValue = xAccessor(closestDate);
-  //   const closestYValue = yAccessor(closestDate);
-
-  //   activeStates = ['Nacional'];
-  //   // get a list of all the active states
-  //   const allActive = document
-  //     .getElementById('wrapper_policy_main')
-  //     .getElementsByClassName('active_policy');
-
-  //   Array.from(allActive).forEach(element => {
-  //     code = element.getAttribute('class').split('_')[0];
-  //     activeStates.push(code);
-  //   });
-
-  //   // clear the tooltip box
-  //   tooltipHeader.selectAll('*').remove();
-  //   tooltipContent.selectAll('*').remove();
-  //   d3.selectAll('.temp_circle_policy').remove();
-
-  //   const displayFormat = d3.timeFormat('%d %B');
-
-  //   // Update tooltipDate with current date:
-  //   tooltipDate
-  //     .attr('x', xScale(closestXValue) + 15)
-  //     .attr('y', mousePosition[1])
-  //     .text(displayFormat(dateParser(closestDate.date)))
-  //     .attr('font-weight', 700)
-  //     .style('opacity', 1);
-  //   // Add date to tooltip
-  //   tooltipHeader
-  //     .append('span')
-  //     .html(displayFormat(dateParser(closestDate.date)));
-
-  //   tooltipLine
-  //     .attr('x1', xScale(closestXValue))
-  //     .attr('x2', xScale(closestXValue))
-  //     .attr('y1', 0)
-  //     .attr('y2', dimensions.boundedHeight)
-  //     .attr('stroke-width', 2)
-  //     .attr('stroke-dasharray', '7px 2px')
-  //     .attr('stroke', '#000')
-  //     .style('opacity', 1);
-
-  //   // add value for each active state to the tooltip
-  //   activeStates.forEach(element => {
-  //     // filter for the state's data on that day.
-  //     const point = dataset
-  //       .filter(d => d.state_short == element)
-  //       .filter(d => d.date == closestDate.date);
-
-  //     const yValue = yAccessor(point[0]);
-  //     const xValue = xAccessor(point[0]);
-  //     const stateName = stateCodeAccessor(point[0]);
-  //     const getColor = _code => {
-  //       if (_code == 'Nacional') {
-  //         return '#171717';
-  //       } else {
-  //         return colorScale(stateName);
-  //       }
-  //     };
-  //     const pointInfo = tooltipContent
-  //       .append('tr')
-  //       .attr('class', 'tooltip_state');
-  //     pointInfo
-  //       .append('td')
-  //       .attr('class', 'tooltip_state_name')
-  //       .html(point[0].state_name)
-  //       .style('color', getColor(element));
-  //     pointInfo
-  //       .append('td')
-  //       .attr('class', 'tooltip_value')
-  //       .html(yValue.toFixed(1));
-
-  //     // add a dot for each state
-  //     bounds
-  //       .append('circle')
-  //       .attr('cx', xScale(xValue))
-  //       .attr('cy', yScale(yValue))
-  //       .attr('r', 7)
-  //       .attr('fill', getColor(element))
-  //       .attr('class', 'temp_circle_policy');
-  //   });
-
-  //   //
-  // }
-
-  // function onMouseLeave() {
-  //   // reset activeState array
-  //   // turn tooltip opacity to 0
-  //   // destroy circles
-  //   // turn tooltip line opacity to 0
-  //   activeStates = ['Nacional'];
-  //   tooltip.style('opacity', 0);
-  //   tooltipLine.style('opacity', 0);
-  //   bounds.selectAll('.temp_circle_policy').remove();
-  //   tooltipDate.style('opacity', 0);
-  // }
+  function onMouseLeave() {
+    // reset the list of active countries, remove drawn circles and hide all tooltip related visuals.
+    activeCountries = [];
+    tooltip.style('opacity', 0);
+    tooltipLine.style('opacity', 0);
+    bounds.selectAll('.temp_circle_policy_latam').remove();
+    tooltipDate.style('opacity', 0);
+  }
 }
 
 drawPolicy();

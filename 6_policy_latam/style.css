@@ -57,10 +57,10 @@
   font-size: 1.5em;
 }
 
-#tooltipContent_policy_latam .tooltip_state {
+#tooltipContent_policy_latam .tooltip_country {
   font-weight: 700;
 }
-#tooltipContent_policy_latam .tooltip_value {
+#tooltipContent_policy_latam .tooltip_country_value {
   padding-left: 30px;
   font-weight: 700;
   text-align: right;
