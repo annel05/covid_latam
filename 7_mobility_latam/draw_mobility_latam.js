@@ -205,7 +205,7 @@ async function drawMobility() {
 
   country_list
     .append('input')
-    .attr('class', 'input_box_policy')
+    .attr('class', 'input_box_mobility')
     .attr('type', 'checkbox')
     .attr('name', d => `${countryCodeAccessor(d.values[0])}_mobility_latam`);
 
@@ -229,7 +229,7 @@ async function drawMobility() {
       .style('font-weight', 'bold');
   });
 
-  d3.selectAll('.input_box_policy').on('input', toggleCountryLine);
+  d3.selectAll('.input_box_mobility').on('input', toggleCountryLine);
 
   function toggleCountryLine() {
     const code = this.name.split('_')[0];
