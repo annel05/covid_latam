@@ -36,12 +36,43 @@ async function countCases() {
     const latest = columns[columns.length - 1];
     return data[0][latest];
   };
+
+  const getPreviousColumn = (_dataset, _country) => {
+    const data = _dataset.filter(d => countryAccessor(d) == _country);
+    const columns = Object.getOwnPropertyNames(data[0]);
+    const previous = columns[columns.length - 2];
+    return data[0][previous];
+  };
+  const computeDelta = (_dataset, _country) => {
+    const a = +getLatestColumn(_dataset, _country);
+    const b = +getPreviousColumn(_dataset, _country);
+    const value = Math.abs(a - b);
+    let output;
+    if (value > 0) {
+      // add a + sign in front
+      output = '+' + value;
+    } else if (value < 0) {
+      // add a - sign in front
+      output = '-' + value;
+    } else {
+      // add no sign bc value is 0
+      output = '0';
+    }
+    return output;
+  };
+  console.log(computeDelta(datasetCases, 'Venezuela'));
   countryList.forEach(element => {
     d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_cases`).html(
       getLatestColumn(datasetCases, element)
     );
     d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_deaths`).html(
       getLatestColumn(datasetDeaths, element)
+    );
+    d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_deltaCases`).html(
+      computeDelta(datasetCases, element)
+    );
+    d3.select(`#${element.toLowerCase().replace(/\s+/g, '')}_deltaDeaths`).html(
+      computeDelta(datasetDeaths, element)
     );
   });
 
