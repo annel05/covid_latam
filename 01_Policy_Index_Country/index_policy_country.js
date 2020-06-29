@@ -7,7 +7,6 @@ async function PolicyIndexCountry() {
     'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
   );
 
-  // const dataset_all = await d3.csv('./../data/data_latest.csv');
   const dataset = dataset_all.filter(d => d.country == 'Brasil');
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
