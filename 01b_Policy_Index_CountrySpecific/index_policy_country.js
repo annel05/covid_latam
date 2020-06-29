@@ -1,13 +1,12 @@
-async function PolicyIndexCountry() {
+async function PolicyIndexCountry(_country) {
   // 0. check for language locale
   setLocale();
 
   // 1. access data
-  const dataset_all = await d3.csv(
-    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
+  const dataset = await d3.csv(
+    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/${_country}_data_latest.csv`
   );
 
-  const dataset = dataset_all.filter(d => d.country == 'Brasil');
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.policy_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
@@ -385,4 +384,4 @@ async function PolicyIndexCountry() {
   }
 }
 
-PolicyIndexCountry();
+PolicyIndexCountry('bolivia');
