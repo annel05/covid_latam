@@ -1,4 +1,4 @@
-async function drawPolicy() {
+async function PolicyIndexLatam() {
   // 0. check for language locale
   setLocale();
 
@@ -17,7 +17,6 @@ async function drawPolicy() {
 
   const datasetByCountry = d3.nest().key(countryCodeAccessor).entries(dataset);
 
-  // const region_data = datasetByCountry.filter(d => d.key == 'LatAm');
   const countries = datasetByCountry.filter(d => d.key !== 'LatAm');
 
   // 2. create dimensions
@@ -358,4 +357,4 @@ async function drawPolicy() {
   }
 }
 
-drawPolicy();
+PolicyIndexLatam();
