@@ -152,7 +152,7 @@ async function PolicyIndexCountry() {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 2.5)
+    .attr('stroke-width', 3)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => `${d.values[0].state_short}_policy states`);
@@ -194,7 +194,7 @@ async function PolicyIndexCountry() {
       .attr('class', `${_stateCode}_temp_policy active_policy`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
-      .attr('stroke-width', 3)
+      .attr('stroke-width', 4)
       .attr('d', () => lineGenerator(stateData));
   };
 
