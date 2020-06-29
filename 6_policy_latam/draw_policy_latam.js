@@ -117,7 +117,8 @@ async function drawPolicy() {
   const xAxisGenerator = d3
     .axisBottom()
     .scale(xScale)
-    .tickSize(-dimensions.boundedHeight);
+    .tickSize(-dimensions.boundedHeight)
+    .tickFormat(d3.timeFormat('%d %b'));
 
   const xAxis = bounds
     .append('g')
