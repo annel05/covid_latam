@@ -384,4 +384,4 @@ async function PolicyIndexCountry(_country) {
   }
 }
 
-PolicyIndexCountry('bolivia');
+PolicyIndexCountry('mexico');
