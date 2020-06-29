@@ -161,10 +161,10 @@ async function MobilityIndexCountry(_country) {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 2.5)
+    .attr('stroke-width', 3)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => d.values[0].state_short);
+    .attr('class', d => `${d.values[0].state_short}_policy states`);
 
   const tooltipLine = bounds
     .append('line')
@@ -398,6 +398,25 @@ async function MobilityIndexCountry(_country) {
     tooltipLine.style('opacity', 0);
     tooltipDate.style('opacity', 0);
     bounds.selectAll('.temp_circle_mobility').remove();
+  }
+
+  d3.selectAll('.states').on('click', toggleStateLineManually);
+  d3.selectAll('.active_mobility').on('click', toggleStateLineManually);
+  function toggleStateLineManually() {
+    const ourClass = this.classList[0];
+    const code = ourClass.split('_')[0];
+    // find the input box associated with this line
+    const inputBox = d3.select(`[name=${code}_mobility`);
+    const isActive = inputBox._groups[0][0].checked;
+    const label = d3.select(`[for=${code}_mobility]`);
+    if (isActive) {
+      // remove the state line, turn off the label, and uncheck the box
+    } else {
+      // draw the state line, turn on the label, and check the box
+      addStateLine(code);
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
+      inputBox.property('checked', true);
+    }
   }
 }
 
