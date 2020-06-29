@@ -144,6 +144,11 @@ async function MobilityIndexLatam() {
     .attr('y1', yScale(0))
     .attr('y2', yScale(0));
 
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening_rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight);
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
@@ -157,11 +162,11 @@ async function MobilityIndexLatam() {
     .data(countries)
     .enter()
     .append('path')
-    .attr('class', 'country')
     .attr('fill', 'none')
-    .attr('stroke-width', 2.5)
+    .attr('stroke-width', 3)
     .attr('stroke', '#d2d3d4')
-    .attr('d', d => lineGenerator(d.values));
+    .attr('d', d => lineGenerator(d.values))
+    .attr('class', d => `${d.values[0].country_short}_mobility_latam country`);
 
   // add the weighted average
   const region = datasetByCountry.filter(d => d.key == 'LatAm');
@@ -264,13 +269,7 @@ async function MobilityIndexLatam() {
   let activeCountries;
 
   // this rect is used to calculate dates.
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening_rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight)
-    .on('mousemove', onMouseMove)
-    .on('mouseleave', onMouseLeave);
+  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
 
   function onMouseMove() {
     tooltip.style('opacity', 1);
@@ -380,6 +379,25 @@ async function MobilityIndexLatam() {
     tooltipLine.style('opacity', 0);
     bounds.selectAll('.temp_circle_mobility_latam').remove();
     tooltipDate.style('opacity', 0);
+  }
+
+  d3.selectAll('.country').on('click', toggleCountryLineManually);
+  d3.selectAll('.active_mobility_latam').on('click', toggleCountryLineManually);
+  function toggleCountryLineManually() {
+    const ourClass = this.classList[0];
+    const code = ourClass.split('_')[0];
+    // find the input box associated with this line
+    const inputBox = d3.select(`[name=${code}_mobility_latam`);
+    const isActive = inputBox._groups[0][0].checked;
+    const label = d3.select(`[for=${code}_mobility_latam]`);
+    if (isActive) {
+      // remove the state line, turn off the label, and uncheck the box
+    } else {
+      // draw the state line, turn on the label, and check the box
+      addCountryLine(code);
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
+      inputBox.property('checked', true);
+    }
   }
 }
 

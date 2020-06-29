@@ -127,10 +127,11 @@ async function PolicyIndexLatam() {
 
   const xAxisText = xAxis.selectAll('text').attr('dy', 20);
 
-  // the below code extends ticks down a bit
-  // const xAxisTicks = xAxis
-  //   .selectAll('.tick line')
-  //   .attr('y1', dimensions.margin.bottom * 0.25);
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight);
 
   // 5. draw data
 
@@ -145,11 +146,11 @@ async function PolicyIndexLatam() {
     .data(countries)
     .enter()
     .append('path')
-    .attr('class', 'country')
     .attr('fill', 'none')
-    .attr('stroke-width', 2.5)
+    .attr('stroke-width', 3)
     .attr('stroke', '#d2d3d4')
-    .attr('d', d => lineGenerator(d.values));
+    .attr('d', d => lineGenerator(d.values))
+    .attr('class', d => `${d.values[0].country_short}_policy country`);
 
   const tooltipLine = bounds
     .append('line')
@@ -238,13 +239,7 @@ async function PolicyIndexLatam() {
   let activeCountries;
 
   // this rect is used to calculate dates.
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening_rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight)
-    .on('mousemove', onMouseMove)
-    .on('mouseleave', onMouseLeave);
+  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
 
   function onMouseMove() {
     tooltip.style('opacity', 1);
@@ -354,6 +349,24 @@ async function PolicyIndexLatam() {
     tooltipLine.style('opacity', 0);
     bounds.selectAll('.temp_circle_policy_latam').remove();
     tooltipDate.style('opacity', 0);
+  }
+  d3.selectAll('.country').on('click', toggleCountryLineManually);
+  d3.selectAll('.active_policy_latam').on('click', toggleCountryLineManually);
+  function toggleCountryLineManually() {
+    const ourClass = this.classList[0];
+    const code = ourClass.split('_')[0];
+    // find the input box associated with this line
+    const inputBox = d3.select(`[name=${code}_policy_latam`);
+    const isActive = inputBox._groups[0][0].checked;
+    const label = d3.select(`[for=${code}_policy_latam]`);
+    if (isActive) {
+      // remove the state line, turn off the label, and uncheck the box
+    } else {
+      // draw the state line, turn on the label, and check the box
+      addCountryLine(code);
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
+      inputBox.property('checked', true);
+    }
   }
 }
 
