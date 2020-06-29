@@ -1,14 +1,5 @@
-async function drawPolicy() {
+async function PolicyIndexCountry() {
   // 0. check for language locale
-  let setLocale = () => {
-    const lang = d3.select('html').property('lang');
-    if (lang == 'es-ES') {
-      d3.timeFormatDefaultLocale(es_locale);
-    }
-    if (lang == 'pt-br') {
-      d3.timeFormatDefaultLocale(pt_locale);
-    }
-  };
   setLocale();
 
   // 1. access data
@@ -395,4 +386,4 @@ async function drawPolicy() {
   }
 }
 
-drawPolicy();
+PolicyIndexCountry();
