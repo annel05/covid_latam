@@ -55,6 +55,11 @@ async function MobilityIndexCountry(_country) {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight);
   // 4. create scales
 
   const yScale = d3
@@ -269,13 +274,7 @@ async function MobilityIndexCountry(_country) {
     .attr('class', 'tooltipDate_mobility')
     .style('opacity', 0);
   // tooltip interactivity:
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening-rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight)
-    .on('mousemove', onMouseMove)
-    .on('mouseleave', onMouseLeave);
+  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
 
   const tooltip = d3
     .select('#tooltip_mobility')

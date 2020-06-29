@@ -53,6 +53,11 @@ async function MobilityIndexLatam() {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight);
   // 4. create scales
 
   const yScale = d3
@@ -264,13 +269,7 @@ async function MobilityIndexLatam() {
   let activeCountries;
 
   // this rect is used to calculate dates.
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening_rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight)
-    .on('mousemove', onMouseMove)
-    .on('mouseleave', onMouseLeave);
+  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
 
   function onMouseMove() {
     tooltip.style('opacity', 1);
