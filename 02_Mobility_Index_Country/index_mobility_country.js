@@ -1,21 +1,11 @@
-async function drawMobility() {
+async function MobilityIndexCountry() {
   // 0. check for language locale
-  let setLocale = () => {
-    const lang = d3.select('html').property('lang');
-    if (lang == 'es-ES') {
-      d3.timeFormatDefaultLocale(es_locale);
-    }
-    if (lang == 'pt-br') {
-      d3.timeFormatDefaultLocale(pt_locale);
-    }
-  };
   setLocale();
 
   // 1. access data
-  // const dataset_all = await d3.csv(
-  //   'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
-  // );
-  const dataset_all = await d3.csv('./../data/data_latest.csv');
+  const dataset_all = await d3.csv(
+    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
+  );
   const dataset = dataset_all.filter(d => d.country == 'Mexico');
 
   // data accessors, shorthand for different columns
@@ -413,4 +403,4 @@ async function drawMobility() {
   }
 }
 
-drawMobility();
+MobilityIndexCountry();
