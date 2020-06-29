@@ -33,14 +33,6 @@
   margin-top: 20px;
 }
 
-#state_list_policy li {
-  /* display: flex;
-  align-items: center; */
-}
-#state_list_policy input[type='checkbox'] {
-  vertical-align: ;
-}
-
 #state_container_policy {
   background-color: #f2f2f2;
   height: 550px;
