@@ -1,4 +1,4 @@
-async function drawMobility() {
+async function MobilityIndexLatam() {
   // 0. check for language locale
   setLocale();
 
@@ -383,4 +383,4 @@ async function drawMobility() {
   }
 }
 
-drawMobility();
+MobilityIndexLatam();
