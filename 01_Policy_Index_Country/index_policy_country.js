@@ -56,11 +56,6 @@ async function PolicyIndexCountry() {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening-rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight);
   // 4. create scales
 
   const yScale = d3
@@ -152,7 +147,7 @@ async function PolicyIndexCountry() {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 3)
+    .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => `${d.values[0].state_short}_policy states`);
@@ -168,7 +163,7 @@ async function PolicyIndexCountry() {
     .attr('fill', 'none')
     .attr('stroke', '#171717')
     .attr('stroke-dasharray', '9px 2px')
-    .attr('stroke-width', 2.5)
+    .attr('stroke-width', 2)
     .attr('d', () => lineGenerator(country_data[0].values));
 
   // highlight the first and last ranks.
@@ -194,7 +189,7 @@ async function PolicyIndexCountry() {
       .attr('class', `${_stateCode}_temp_policy active_policy`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
-      .attr('stroke-width', 4)
+      .attr('stroke-width', 3)
       .attr('d', () => lineGenerator(stateData));
   };
 
@@ -259,7 +254,13 @@ async function PolicyIndexCountry() {
     .style('opacity', 0);
 
   // tooltip interactivity:
-  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight)
+    .on('mousemove', onMouseMove)
+    .on('mouseleave', onMouseLeave);
 
   const tooltip = d3
     .select('#tooltip_policy')
@@ -378,25 +379,6 @@ async function PolicyIndexCountry() {
     tooltipLine.style('opacity', 0);
     bounds.selectAll('.temp_circle_policy').remove();
     tooltipDate.style('opacity', 0);
-  }
-
-  d3.selectAll('.states').on('click', toggleStateLineManually);
-  d3.selectAll('.active_policy').on('click', toggleStateLineManually);
-  function toggleStateLineManually() {
-    const ourClass = this.classList[0];
-    const code = ourClass.split('_')[0];
-    // find the input box associated with this line
-    const inputBox = d3.select(`[name=${code}_policy`);
-    const isActive = inputBox._groups[0][0].checked;
-    const label = d3.select(`[for=${code}_policy]`);
-    if (isActive) {
-      // remove the state line, turn off the label, and uncheck the box
-    } else {
-      // draw the state line, turn on the label, and check the box
-      addStateLine(code);
-      label.style('color', colorScale(code)).style('font-weight', 'bold');
-      inputBox.property('checked', true);
-    }
   }
 }
 
