@@ -8,7 +8,7 @@ async function PolicyIndexCountry(_country) {
   );
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.policy_index;
+  const yAccessor = d => +d.face_mask_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
