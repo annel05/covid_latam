@@ -169,7 +169,7 @@ async function MobilityIndexLatam() {
     .attr('class', d => `${d.values[0].country_short}_mobility_latam country`);
 
   // add the weighted average
-  const region = datasetByCountry.filter(d => d.key == 'LatAm');
+  const region = datasetByCountry.filter(d => d.key == 'LATAM');
   bounds
     .append('path')
     .attr('class', 'national')
