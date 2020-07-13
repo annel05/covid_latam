@@ -1,30 +1,30 @@
-async function MobilityIndexCountry() {
+async function PolicyIndexCountry(_country) {
   // 0. check for language locale
   setLocale();
 
   // 1. access data
-  const dataset_all = await d3.csv(
-    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
+  const dataset = await d3.csv(
+    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/${_country}_data_latest.csv`
   );
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.mobility_index;
+  const yAccessor = d => +d.face_mask_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_mobility_accumulated;
+  const metricAccessor = d => +d.ranking_policy_accumulated;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
-  const country = datasetByState.filter(d => d.key == 'Nacional');
-  const states = datasetByState.filter(d => d.key !== 'Nacional');
+
+  const country_data = datasetByState.filter(d => d.key == 'Nacional');
+  const states = datasetByState.filter(d => d.key != 'Nacional');
 
   // 2. create dimensions
 
-  const width = document.getElementById('wrapper_mobility_main').parentElement
+  const width = document.getElementById('wrapper_policy_main').parentElement
     .clientWidth;
   let dimensions = {
     width: width,
@@ -42,9 +42,8 @@ async function MobilityIndexCountry() {
     dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
   // 3. draw canvas
-
   const wrapper = d3
-    .select('#wrapper_mobility_main')
+    .select('#wrapper_policy_main')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -55,11 +54,13 @@ async function MobilityIndexCountry() {
       'transform',
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
+
   const listeningRect = bounds
     .append('rect')
     .attr('class', 'listening-rect')
     .attr('width', dimensions.boundedWidth)
     .attr('height', dimensions.boundedHeight);
+
   // 4. create scales
 
   const yScale = d3
@@ -73,50 +74,15 @@ async function MobilityIndexCountry() {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  const statesData = dataset.filter(d => d.state_short !== 'Nacional');
+  const statesData = dataset.filter(d => d.state_short != 'Nacional');
   const stateCodes = d3.map(statesData, stateCodeAccessor).keys();
-  const stateColors = [
-    '#4A72B8',
-    '#ED7D30',
-    '#A5A5A5',
-    '#FDC010',
-    '#5D9BD3',
-    '#71AD46',
-    '#264579',
-    '#9E4B23',
-    '#646464',
-    '#98752B',
-    '#255F92',
-    '#446931',
-    '#6C8EC9',
-    '#F2975B',
-    '#939697',
-    '#FFCF34',
-    '#7DAFDD',
-    '#8DC268',
-    '#3A5829',
-    '#ED7D30',
-    '#848484',
-    '#CA9A2C',
-    '#347EC1',
-    '#C55C28',
-    '#91ABD9',
-    '#F3B183',
-    '#8A8F90',
-    '#FFDA68',
-    '#9DC3E5',
-    '#AAD18D',
-    '#213964',
-    '#4A72B8',
-  ];
-  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
+  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
 
   // 6. draw peripherals -- part 1
   const yAxisGenerator = d3
     .axisLeft()
     .scale(yScale)
-    .tickSize(-dimensions.boundedWidth)
-    .tickFormat(d => d + '%');
+    .tickSize(-dimensions.boundedWidth);
 
   const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
 
@@ -124,7 +90,7 @@ async function MobilityIndexCountry() {
     .axisBottom()
     .scale(xScale)
     .tickSize(-dimensions.boundedHeight)
-    .tickFormat(d3.timeFormat('%d %b'));
+    .tickFormat(d3.timeFormat('%-d %b'));
 
   const xAxis = bounds
     .append('g')
@@ -138,15 +104,6 @@ async function MobilityIndexCountry() {
     .selectAll('.tick line')
     .attr('y1', dimensions.margin.bottom * 0.25);
 
-  bounds
-    .append('line')
-    .attr('class', 'baseline')
-    .attr('stroke-width', 2)
-    .attr('stroke', '#333333')
-    .attr('x1', 0)
-    .attr('x2', dimensions.boundedWidth)
-    .attr('y1', yScale(0))
-    .attr('y2', yScale(0));
   // 5. draw data
 
   // this will generate a line using the x and y Accessor functions
@@ -161,14 +118,14 @@ async function MobilityIndexCountry() {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 3)
+    .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.values[0].state_short}_policy states`);
+    .attr('class', d => `${d.key}_facemask states`);
 
   const tooltipLine = bounds
     .append('line')
-    .attr('class', '.tooltipLine_mobility');
+    .attr('class', '.tooltipLine_policy');
 
   // add national average
   bounds
@@ -178,7 +135,7 @@ async function MobilityIndexCountry() {
     .attr('stroke', '#171717')
     .attr('stroke-dasharray', '9px 2px')
     .attr('stroke-width', 2.5)
-    .attr('d', () => lineGenerator(country[0].values));
+    .attr('d', () => lineGenerator(country_data[0].values));
 
   // highlight the first and last ranks.
   // 1 - get the latest day
@@ -200,7 +157,7 @@ async function MobilityIndexCountry() {
 
     bounds
       .append('path')
-      .attr('class', `${_stateCode}_temp_mobility active_mobility`)
+      .attr('class', `${_stateCode}_temp_policy active_policy`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -213,7 +170,7 @@ async function MobilityIndexCountry() {
   // 7. act interactivity
 
   const state_list = d3
-    .select('#state_list_mobility')
+    .select('#state_list_policy')
     .selectAll('input')
     .data(states)
     .enter()
@@ -222,37 +179,33 @@ async function MobilityIndexCountry() {
 
   state_list
     .append('input')
-    .attr('class', 'input_box_mobility')
+    .attr('class', 'input_box_policy')
     .attr('type', 'checkbox')
-    .attr('name', d => `${stateCodeAccessor(d.values[0])}_mobility`);
+    .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
 
   state_list
     .append('label')
     .attr('class', 'input_label')
-    .attr('for', d => `${stateCodeAccessor(d.values[0])}_mobility`)
+    .attr('for', d => `${stateCodeAccessor(d.values[0])}_policy`)
     .html(d => stateAccessor(d.values[0]));
 
+  state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
   state_list
-    .select(`[name=${firstRankCode}_mobility]`)
-    .property('checked', true);
-  state_list
-    .select(`[for=${firstRankCode}_mobility]`)
+    .select(`[for=${firstRankCode}_policy]`)
     .style('color', colorScale(firstRankCode))
     .style('font-weight', 'bold');
 
+  state_list.select(`[name=${lastRankCode}_policy]`).property('checked', true);
   state_list
-    .select(`[name=${lastRankCode}_mobility]`)
-    .property('checked', true);
-  state_list
-    .select(`[for=${lastRankCode}_mobility]`)
+    .select(`[for=${lastRankCode}_policy]`)
     .style('color', colorScale(lastRankCode))
     .style('font-weight', 'bold');
 
-  d3.selectAll('.input_box_mobility').on('input', toggleStateLine);
+  d3.selectAll('.input_box_policy').on('input', toggleStateLine);
+
   function toggleStateLine() {
     const code = this.name.split('_')[0];
     const label = state_list.select(`[for=${this.name}]`);
-    console.log(code, label);
     if (this.checked) {
       // input box has been checked
       // 1 - turn on state line
@@ -262,28 +215,25 @@ async function MobilityIndexCountry() {
     } else {
       // input box has been unchecked
       // 1 - turn off state line
-      // 2 - turn off label to match colors
-
-      bounds.select(`.${code}_temp_mobility`).remove();
+      bounds.select(`.${code}_temp_policy`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
+      // 2 - turn off label to match colors
     }
   }
-
   const tooltipDate = bounds
     .append('text')
-    .attr('class', 'tooltipDate_mobility')
+    .attr('class', 'tooltipDate_policy')
     .style('opacity', 0);
   // tooltip interactivity:
   listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
 
   const tooltip = d3
-    .select('#tooltip_mobility')
+    .select('#tooltip_policy')
     .style('opacity', 0)
     .style('top', `${dimensions.margin.top * 2}px`)
-    .style('right', `${dimensions.margin.right * 1.25}px`);
-
-  const tooltipHeader = tooltip.select('#tooltipHeader_mobility');
-  const tooltipContent = tooltip.select('#tooltipContent_mobility');
+    .style('left', `${dimensions.margin.left * 1.25}px`);
+  const tooltipHeader = tooltip.select('#tooltipHeader_policy');
+  const tooltipContent = tooltip.select('#tooltipContent_policy');
   let activeStates;
 
   function onMouseMove() {
@@ -308,8 +258,8 @@ async function MobilityIndexCountry() {
     activeStates = ['Nacional'];
     // get a list of all the active states
     const allActive = document
-      .getElementById('wrapper_mobility_main')
-      .getElementsByClassName('active_mobility');
+      .getElementById('wrapper_policy_main')
+      .getElementsByClassName('active_policy');
 
     Array.from(allActive).forEach(element => {
       code = element.getAttribute('class').split('_')[0];
@@ -319,7 +269,7 @@ async function MobilityIndexCountry() {
     // clear the tooltip box
     tooltipHeader.selectAll('*').remove();
     tooltipContent.selectAll('*').remove();
-    d3.selectAll('.temp_circle_mobility').remove();
+    d3.selectAll('.temp_circle_policy').remove();
 
     const displayFormat = d3.timeFormat('%d %B');
 
@@ -373,7 +323,7 @@ async function MobilityIndexCountry() {
       pointInfo
         .append('td')
         .attr('class', 'tooltip_value')
-        .html(yValue.toFixed(1) + '%');
+        .html(yValue.toFixed(1));
 
       // add a dot for each state
       bounds
@@ -382,7 +332,7 @@ async function MobilityIndexCountry() {
         .attr('cy', yScale(yValue))
         .attr('r', 7)
         .attr('fill', getColor(element))
-        .attr('class', 'temp_circle_mobility');
+        .attr('class', 'temp_circle_policy');
     });
 
     //
@@ -392,19 +342,19 @@ async function MobilityIndexCountry() {
     activeStates = ['Nacional'];
     tooltip.style('opacity', 0);
     tooltipLine.style('opacity', 0);
+    bounds.selectAll('.temp_circle_policy').remove();
     tooltipDate.style('opacity', 0);
-    bounds.selectAll('.temp_circle_mobility').remove();
   }
 
   d3.selectAll('.states').on('click', toggleStateLineManually);
-  d3.selectAll('.active_mobility').on('click', toggleStateLineManually);
+  d3.selectAll('.active_policy').on('click', toggleStateLineManually);
   function toggleStateLineManually() {
     const ourClass = this.classList[0];
     const code = ourClass.split('_')[0];
     // find the input box associated with this line
-    const inputBox = d3.select(`[name=${code}_mobility`);
+    const inputBox = d3.select(`[name=${code}_policy`);
     const isActive = inputBox._groups[0][0].checked;
-    const label = d3.select(`[for=${code}_mobility]`);
+    const label = d3.select(`[for=${code}_policy]`);
     if (isActive) {
       // remove the state line, turn off the label, and uncheck the box
     } else {
@@ -416,4 +366,4 @@ async function MobilityIndexCountry() {
   }
 }
 
-MobilityIndexCountry();
+PolicyIndexCountry('brazil');

@@ -1,15 +1,14 @@
-async function PolicyIndexCountry() {
+async function PolicyIndexCountry(_country) {
   // 0. check for language locale
   setLocale();
 
   // 1. access data
-  const dataset_all = await d3.csv(
-    'https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/data_latest.csv'
+  const dataset = await d3.csv(
+    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/${_country}_data_latest.csv`
   );
 
-  const dataset = dataset_all.filter(d => d.country == 'Mexico');
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.policy_index;
+  const yAccessor = d => +d.face_mask_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
@@ -19,8 +18,9 @@ async function PolicyIndexCountry() {
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
+
   const country_data = datasetByState.filter(d => d.key == 'Nacional');
-  const states = datasetByState.filter(d => d.key !== 'Nacional');
+  const states = datasetByState.filter(d => d.key != 'Nacional');
 
   // 2. create dimensions
 
@@ -42,7 +42,6 @@ async function PolicyIndexCountry() {
     dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
   // 3. draw canvas
-
   const wrapper = d3
     .select('#wrapper_policy_main')
     .append('svg')
@@ -55,6 +54,12 @@ async function PolicyIndexCountry() {
       'transform',
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
+
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight);
 
   // 4. create scales
 
@@ -69,43 +74,9 @@ async function PolicyIndexCountry() {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  const statesData = dataset.filter(d => d.state_short !== 'Nacional');
+  const statesData = dataset.filter(d => d.state_short != 'Nacional');
   const stateCodes = d3.map(statesData, stateCodeAccessor).keys();
-  const stateColors = [
-    '#4A72B8',
-    '#ED7D30',
-    '#A5A5A5',
-    '#FDC010',
-    '#5D9BD3',
-    '#71AD46',
-    '#264579',
-    '#9E4B23',
-    '#646464',
-    '#98752B',
-    '#255F92',
-    '#446931',
-    '#6C8EC9',
-    '#F2975B',
-    '#939697',
-    '#FFCF34',
-    '#7DAFDD',
-    '#8DC268',
-    '#3A5829',
-    '#ED7D30',
-    '#848484',
-    '#CA9A2C',
-    '#347EC1',
-    '#C55C28',
-    '#91ABD9',
-    '#F3B183',
-    '#8A8F90',
-    '#FFDA68',
-    '#9DC3E5',
-    '#AAD18D',
-    '#213964',
-    '#4A72B8',
-  ];
-  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
+  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
 
   // 6. draw peripherals -- part 1
   const yAxisGenerator = d3
@@ -119,7 +90,7 @@ async function PolicyIndexCountry() {
     .axisBottom()
     .scale(xScale)
     .tickSize(-dimensions.boundedHeight)
-    .tickFormat(d3.timeFormat('%d %b'));
+    .tickFormat(d3.timeFormat('%-d %b'));
 
   const xAxis = bounds
     .append('g')
@@ -150,7 +121,7 @@ async function PolicyIndexCountry() {
     .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.values[0].state_short}_policy states`);
+    .attr('class', d => `${d.key}_facemask states`);
 
   const tooltipLine = bounds
     .append('line')
@@ -163,7 +134,7 @@ async function PolicyIndexCountry() {
     .attr('fill', 'none')
     .attr('stroke', '#171717')
     .attr('stroke-dasharray', '9px 2px')
-    .attr('stroke-width', 2)
+    .attr('stroke-width', 2.5)
     .attr('d', () => lineGenerator(country_data[0].values));
 
   // highlight the first and last ranks.
@@ -231,6 +202,7 @@ async function PolicyIndexCountry() {
     .style('font-weight', 'bold');
 
   d3.selectAll('.input_box_policy').on('input', toggleStateLine);
+
   function toggleStateLine() {
     const code = this.name.split('_')[0];
     const label = state_list.select(`[for=${this.name}]`);
@@ -252,15 +224,8 @@ async function PolicyIndexCountry() {
     .append('text')
     .attr('class', 'tooltipDate_policy')
     .style('opacity', 0);
-
   // tooltip interactivity:
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening-rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight)
-    .on('mousemove', onMouseMove)
-    .on('mouseleave', onMouseLeave);
+  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
 
   const tooltip = d3
     .select('#tooltip_policy')
@@ -380,6 +345,25 @@ async function PolicyIndexCountry() {
     bounds.selectAll('.temp_circle_policy').remove();
     tooltipDate.style('opacity', 0);
   }
+
+  d3.selectAll('.states').on('click', toggleStateLineManually);
+  d3.selectAll('.active_policy').on('click', toggleStateLineManually);
+  function toggleStateLineManually() {
+    const ourClass = this.classList[0];
+    const code = ourClass.split('_')[0];
+    // find the input box associated with this line
+    const inputBox = d3.select(`[name=${code}_policy`);
+    const isActive = inputBox._groups[0][0].checked;
+    const label = d3.select(`[for=${code}_policy]`);
+    if (isActive) {
+      // remove the state line, turn off the label, and uncheck the box
+    } else {
+      // draw the state line, turn on the label, and check the box
+      addStateLine(code);
+      label.style('color', colorScale(code)).style('font-weight', 'bold');
+      inputBox.property('checked', true);
+    }
+  }
 }
 
-PolicyIndexCountry();
+PolicyIndexCountry('brazil');
