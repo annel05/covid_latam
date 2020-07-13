@@ -19,7 +19,7 @@ async function PolicyIndexCountry(_country) {
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
   const country_data = datasetByState.filter(d => d.key == 'Nacional');
-  const states = datasetByState.filter(d => d.key !== 'Nacional');
+  const states = datasetByState.filter(d => d.key != 'Nacional');
 
   // 2. create dimensions
 
@@ -151,10 +151,10 @@ async function PolicyIndexCountry(_country) {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 3)
+    .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.values[0].state_short}_policy states`);
+    .attr('class', d => `${d.key}_policy states`);
 
   const tooltipLine = bounds
     .append('line')

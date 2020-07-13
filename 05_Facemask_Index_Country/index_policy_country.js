@@ -157,7 +157,7 @@ async function PolicyIndexCountry(_country) {
 
     bounds
       .append('path')
-      .attr('class', `${_stateCode}_temp_policy active_policy`)
+      .attr('class', `${_stateCode}_temp_facemask active_facemask`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -207,17 +207,13 @@ async function PolicyIndexCountry(_country) {
     const code = this.name.split('_')[0];
     const label = state_list.select(`[for=${this.name}]`);
     if (this.checked) {
-      // input box has been checked
-      // 1 - turn on state line
+      // input box has just been clicked. Add the state line and make label match color.
       addStateLine(code);
-      // 2 - turn on label to match color
       label.style('color', colorScale(code)).style('font-weight', 'bold');
     } else {
-      // input box has been unchecked
-      // 1 - turn off state line
+      // input box has just been unchecked. Remove state line and turn off label color
       bounds.select(`.${code}_temp_policy`).remove();
       label.style('color', '#000').style('font-weight', 'normal');
-      // 2 - turn off label to match colors
     }
   }
   const tooltipDate = bounds

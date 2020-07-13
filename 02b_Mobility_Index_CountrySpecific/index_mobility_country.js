@@ -161,10 +161,10 @@ async function MobilityIndexCountry(_country) {
     .enter()
     .append('path')
     .attr('fill', 'none')
-    .attr('stroke-width', 3)
+    .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.values[0].state_short}_policy states`);
+    .attr('class', d => `${d.key}_policy states`);
 
   const tooltipLine = bounds
     .append('line')
