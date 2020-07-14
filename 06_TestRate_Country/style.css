@@ -1,11 +1,11 @@
 .chart {
   text-align: left;
 }
-#wrapper_policy_main {
+#wrapper_testrate_main {
   position: relative;
   font-family: 'Open Sans', sans-serif;
 }
-#wrapper_policy_main .domain {
+#wrapper_testrate_main .domain {
   display: none;
 }
 
@@ -22,18 +22,18 @@
   font-size: 11px;
 }
 
-#state_wrapper_policy {
+#state_wrapper_testrate {
   height: 520px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
-#state_list_policy {
+#state_list_testrate {
   list-style: none;
   margin-top: 20px;
 }
 
-#state_container_policy {
+#state_container_testrate {
   background-color: #f2f2f2;
   height: 550px;
 }
@@ -43,7 +43,7 @@
   z-index: 0;
 }
 
-#tooltip_policy {
+#tooltip_testrate {
   position: absolute;
   padding: 7px;
   background-color: white;
@@ -52,15 +52,15 @@
   font-weight: 700;
 }
 
-#tooltipHeader_policy {
+#tooltipHeader_testrate {
   font-weight: bold;
   font-size: 1.5em;
 }
 
-#tooltipContent_policy .tooltip_state {
+#tooltipContent_testrate .tooltip_state {
   font-weight: 700;
 }
-#tooltipContent_policy .tooltip_value {
+#tooltipContent_testrate .tooltip_value {
   padding-left: 30px;
   font-weight: 700;
   text-align: right;

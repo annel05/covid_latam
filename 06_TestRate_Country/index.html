@@ -16,6 +16,7 @@
     />
     <link rel="stylesheet" href="./../general.css" />
     <link rel="stylesheet" href="./style.css" />
+    <script src="./../d3.v5.js"></script>
     <script src="./../pais.js"></script>
   </head>
   <body>
@@ -23,28 +24,31 @@
       <!-- copy after this -->
       <div class="row">
         <div class="col-md-9">
-          <figure id="wrapper_policy_main">
-            <div id="tooltip_policy">
-              <div id="tooltipHeader_policy">
+          <figure id="wrapper_testrate_main">
+            <div id="tooltip_testrate">
+              <div id="tooltipHeader_testrate">
                 <span></span>
               </div>
-              <table id="tooltipContent_policy">
+              <table id="tooltipContent_testrate">
                 <tr></tr>
               </table>
             </div>
           </figure>
         </div>
         <div class="col-md-3">
-          <div id="state_container_policy">
-            <div id="state_wrapper_policy">
-              <ul id="state_list_policy"></ul>
+          <div id="state_container_testrate">
+            <div id="state_wrapper_testrate">
+              <ul id="state_list_testrate"></ul>
             </div>
           </div>
         </div>
       </div>
       <!-- copy before this -->
     </div>
-    <script src="./../d3.v5.js"></script>
-    <script src="./index_policy_country.js"></script>
+    <!-- Chart code -->
+    <script src="./testrate_country.js"></script>
+    <script>
+      TestRateCountry('mexico');
+    </script>
   </body>
 </html>
