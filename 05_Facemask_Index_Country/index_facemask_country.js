@@ -218,6 +218,7 @@ async function FacemaskIndexCountry(_country) {
     .append('text')
     .attr('class', 'tooltipDate_facemask')
     .style('opacity', 0);
+
   // tooltip interactivity:
   const listeningRect = bounds
     .append('rect')
