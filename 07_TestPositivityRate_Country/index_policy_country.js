@@ -8,7 +8,7 @@ async function PolicyIndexCountry(_country) {
   );
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.face_mask_index;
+  const yAccessor = d => +d.testpositivityrate;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
@@ -121,7 +121,7 @@ async function PolicyIndexCountry(_country) {
     .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.key}_facemask states`);
+    .attr('class', d => `${d.key}_testpositivityrate states`);
 
   const tooltipLine = bounds
     .append('line')
@@ -366,4 +366,4 @@ async function PolicyIndexCountry(_country) {
   }
 }
 
-PolicyIndexCountry('brazil');
+PolicyIndexCountry('bolivia');
