@@ -55,11 +55,6 @@ async function PolicyIndexCountry(_country) {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
-  const listeningRect = bounds
-    .append('rect')
-    .attr('class', 'listening-rect')
-    .attr('width', dimensions.boundedWidth)
-    .attr('height', dimensions.boundedHeight);
   // 4. create scales
 
   const yScale = d3
@@ -75,41 +70,7 @@ async function PolicyIndexCountry(_country) {
 
   const statesData = dataset.filter(d => d.state_short !== 'Nacional');
   const stateCodes = d3.map(statesData, stateCodeAccessor).keys();
-  const stateColors = [
-    '#4A72B8',
-    '#ED7D30',
-    '#A5A5A5',
-    '#FDC010',
-    '#5D9BD3',
-    '#71AD46',
-    '#264579',
-    '#9E4B23',
-    '#646464',
-    '#98752B',
-    '#255F92',
-    '#446931',
-    '#6C8EC9',
-    '#F2975B',
-    '#939697',
-    '#FFCF34',
-    '#7DAFDD',
-    '#8DC268',
-    '#3A5829',
-    '#ED7D30',
-    '#848484',
-    '#CA9A2C',
-    '#347EC1',
-    '#C55C28',
-    '#91ABD9',
-    '#F3B183',
-    '#8A8F90',
-    '#FFDA68',
-    '#9DC3E5',
-    '#AAD18D',
-    '#213964',
-    '#4A72B8',
-  ];
-  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(stateColors);
+  const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
 
   // 6. draw peripherals -- part 1
   const yAxisGenerator = d3
@@ -257,7 +218,14 @@ async function PolicyIndexCountry(_country) {
     .attr('class', 'tooltipDate_policy')
     .style('opacity', 0);
   // tooltip interactivity:
-  listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
+
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening-rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight)
+    .on('mousemove', onMouseMove)
+    .on('mouseleave', onMouseLeave);
 
   const tooltip = d3
     .select('#tooltip_policy')
@@ -397,5 +365,3 @@ async function PolicyIndexCountry(_country) {
     }
   }
 }
-
-PolicyIndexCountry('mexico');
