@@ -1,4 +1,11 @@
 @charset "UTF-8";
+
+#policy_index_explanation {
+  color: #f9423a;
+  font-weight: 500;
+  font-size: 1.3em;
+}
+
 label {
   margin-left: 3px;
 }
