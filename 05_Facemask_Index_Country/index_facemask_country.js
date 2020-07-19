@@ -14,7 +14,7 @@ async function FacemaskIndexCountry(_country) {
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_accumulated;
+  const metricAccessor = +d.rank_face_mask;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);

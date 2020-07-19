@@ -14,7 +14,7 @@ async function TestRatePositivityCountry(_country) {
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.ranking_policy_accumulated;
+  const metricAccessor = yAccessor;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
@@ -138,11 +138,13 @@ async function TestRatePositivityCountry(_country) {
   // 2 - filter data to only have this day
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
   // 3 - get the rank 1 state
-  const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
+  const firstRankState = latestData.filter(
+    d => metricAccessor(d) == d3.max(latestData, metricAccessor)
+  );
   const firstRankCode = firstRankState[0].state_short;
   // 4 - get the last rank state
   const lastRankState = latestData.filter(
-    d => metricAccessor(d) == d3.max(latestData, metricAccessor)
+    d => metricAccessor(d) == d3.min(latestData, metricAccessor)
   );
   const lastRankCode = lastRankState[0].state_short;
 
