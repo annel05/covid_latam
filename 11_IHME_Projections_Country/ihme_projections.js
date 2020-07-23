@@ -19,14 +19,11 @@ async function PolicyIndexCountry(_country) {
   const datasetByCountry = d3.nest().key(countryAccessor).entries(dataset);
 
   // TODO filter the countries we're tracking. Only keep countries in our list. Keep line only if country is an item in country_list
-  country_list = ['Brazil', 'Mexico', 'Bolivia', 'Colombia'];
-
-  const country_data = datasetByCountry.filter(
-    d => d.key == 'United States of America'
-  );
+  country_list = ['Bolivia', 'Brazil', 'Mexico', 'Colombia'];
+  const country_data = datasetByCountry.filter( d => country_list.some( i => d.key == i ));
+  console.log(country_data);
 
   // 2. create dimensions
-
   const width = document.getElementById('wrapper_policy_main').parentElement
     .clientWidth;
   let dimensions = {
@@ -65,7 +62,6 @@ async function PolicyIndexCountry(_country) {
   //   .attr('height', dimensions.boundedHeight);
 
   // 4. create scales
-
   const yScale = d3
     .scaleLinear()
     .domain([0, d3.max(dataset, yAccessor)])
@@ -78,11 +74,11 @@ async function PolicyIndexCountry(_country) {
     .range([0, dimensions.boundedWidth]);
 
   // TODO filter whole dataset by country name. Out of dataset variable keep only rows of data where location_name is an item in country_list
-  // const statesData = dataset.filter(d => d.location_name != 'Nacional');
-  // const stateCodes = d3.map(statesData, stateCodeAccessor).keys();
+  const countryData = dataset.filter( d => country_list.some( i => d.location_name == i ));
+  console.log(countryData);
   // const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
 
-  // 6. draw peripherals -- part 1
+  // 5. draw peripherals -- part 1
   const yAxisGenerator = d3
     .axisLeft()
     .scale(yScale)
@@ -108,7 +104,7 @@ async function PolicyIndexCountry(_country) {
     .selectAll('.tick line')
     .attr('y1', dimensions.margin.bottom * 0.25);
 
-  // 5. draw data
+  // 6. draw data
 
   // this will generate a line using the x and y Accessor functions
   const lineGenerator = d3
@@ -119,7 +115,7 @@ async function PolicyIndexCountry(_country) {
   // TODO change dataset to be country_data. Make sure the to change the input to d.values in the lineGenerator function
   bounds
     .selectAll('.countries')
-    .data(datasetByCountry)
+    .data(country_data)
     .enter()
     .append('path')
     .attr('fill', 'none')
