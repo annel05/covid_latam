@@ -19,8 +19,10 @@ async function PolicyIndexCountry(_country) {
   const datasetByCountry = d3.nest().key(countryAccessor).entries(dataset);
 
   // TODO filter the countries we're tracking. Only keep countries in our list. Keep line only if country is an item in country_list
-  country_list = ['Bolivia', 'Brazil', 'Mexico', 'Colombia'];
-  const country_data = datasetByCountry.filter( d => country_list.some( i => d.key == i ));
+  country_list = ['Mexico'];
+  const country_data = datasetByCountry.filter(d =>
+    country_list.some(i => d.key == i)
+  );
   console.log(country_data);
 
   // 2. create dimensions
@@ -74,7 +76,9 @@ async function PolicyIndexCountry(_country) {
     .range([0, dimensions.boundedWidth]);
 
   // TODO filter whole dataset by country name. Out of dataset variable keep only rows of data where location_name is an item in country_list
-  const countryData = dataset.filter( d => country_list.some( i => d.location_name == i ));
+  const countryData = dataset.filter(d =>
+    country_list.some(i => d.location_name == i)
+  );
   console.log(countryData);
   // const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
 
@@ -121,7 +125,8 @@ async function PolicyIndexCountry(_country) {
     .attr('fill', 'none')
     .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
-    .attr('d', d => lineGenerator(d.values));
+    .attr('d', d => lineGenerator(d.values))
+    .attr('class', d => `${d.key}`);
   // .attr('class', d => `${d.key}_testpositivityrate countries`);
 
   // const tooltipLine = bounds
