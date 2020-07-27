@@ -8,14 +8,13 @@ async function FacemaskIndexCountry(_country) {
   );
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.face_mask_index;
+  const yAccessor = d => +d.facemask_index;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = yAccessor
-  ;
+  const metricAccessor = d => +d.ranking_facemask;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
@@ -132,17 +131,20 @@ async function FacemaskIndexCountry(_country) {
     .attr('stroke-width', 2.5)
     .attr('d', () => lineGenerator(country_data[0].values));
 
-  // highlight the first and last ranks.
-  // 1 - get the latest day
+  // Highlight the first and last ranked states for this variable.
   const latestDay = d3.max(dataset.map(dayAccessor));
   // 2 - filter data to only have this day
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
+  const rankedStates = d3.nest().key(metricAccessor).entries(latestData);
+  console.log(latestData);
+  console.log(rankedStates);
   // 3 - get the rank 1 state
   const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
+
   const firstRankCode = firstRankState[0].state_short;
   // 4 - get the last rank state
   const lastRankState = latestData.filter(
-    d => metricAccessor(d) == d3.max(latestData, metricAccessor)
+    d => metricAccessor(d) == states.length
   );
   const lastRankCode = lastRankState[0].state_short;
 

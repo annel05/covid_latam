@@ -14,7 +14,7 @@ async function TestRateCountry(_country) {
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d.rank_test;
+  const metricAccessor = d => +d.ranking_testrate;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);

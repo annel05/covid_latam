@@ -8,20 +8,19 @@ async function TestRatePositivityCountry(_country) {
   );
 
   // data accessors, shorthand for different columns
-  const yAccessor = d => +d.testpositivityrate;
+  const yAccessor = d => +d.testpositivity_rate;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = yAccessor;
+  const metricAccessor = d => +d.ranking_testpositivity;
 
   // sorting and organizing data
   const datasetByState = d3.nest().key(stateCodeAccessor).entries(dataset);
 
   const country_data = datasetByState.filter(d => d.key == 'Nacional');
   const states = datasetByState.filter(d => d.key != 'Nacional');
-
   // 2. create dimensions
 
   const width = document.getElementById('wrapper_positivity_main').parentElement
@@ -138,13 +137,11 @@ async function TestRatePositivityCountry(_country) {
   // 2 - filter data to only have this day
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
   // 3 - get the rank 1 state
-  const firstRankState = latestData.filter(
-    d => metricAccessor(d) == d3.max(latestData, metricAccessor)
-  );
+  const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
   const firstRankCode = firstRankState[0].state_short;
   // 4 - get the last rank state
   const lastRankState = latestData.filter(
-    d => metricAccessor(d) == d3.min(latestData, metricAccessor)
+    d => metricAccessor(d) == states.length
   );
   const lastRankCode = lastRankState[0].state_short;
 
