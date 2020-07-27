@@ -6,6 +6,7 @@ async function PolicyIndexCountry(_country) {
   const dataset = await d3.csv(
     `./../data/ihme/Reference_hospitalization_all_locs.csv`
   );
+  // TODO find and replace Bolivia's long name with the short name right at the start so we can use "Bolivia" instead of long stuff.
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.deaths_mean_smoothed;
@@ -18,12 +19,12 @@ async function PolicyIndexCountry(_country) {
   // sorting and organizing data
   const datasetByCountry = d3.nest().key(countryAccessor).entries(dataset);
 
-  // TODO filter the countries we're tracking. Only keep countries in our list. Keep line only if country is an item in country_list
+  // TODO add all the countries once this works for Mexico
+
   country_list = ['Mexico'];
   const country_data = datasetByCountry.filter(d =>
     country_list.some(i => d.key == i)
   );
-  console.log(country_data);
 
   // 2. create dimensions
   const width = document.getElementById('wrapper_policy_main').parentElement
@@ -75,11 +76,9 @@ async function PolicyIndexCountry(_country) {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  // TODO filter whole dataset by country name. Out of dataset variable keep only rows of data where location_name is an item in country_list
   const countryData = dataset.filter(d =>
     country_list.some(i => d.location_name == i)
   );
-  console.log(countryData);
   // const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
 
   // 5. draw peripherals -- part 1
@@ -116,7 +115,24 @@ async function PolicyIndexCountry(_country) {
     .x(d => xScale(xAccessor(d)))
     .y(d => yScale(yAccessor(d)));
 
-  // TODO change dataset to be country_data. Make sure the to change the input to d.values in the lineGenerator function
+  const areaGenerator = d3
+    .area()
+    .x(d => xScale(xAccessor(d)))
+    .y0(d => yScale(lowerProjectionAccessor(d)))
+    .y1(d => yScale(upperProjectionAccessor(d)));
+
+  // draw area test
+  bounds
+    .append('path')
+    .attr('fill', '#bada55')
+    .attr('fill-opacity', 0.3)
+    .attr('stroke', 'none')
+    .attr('d', areaGenerator(country_data[0].values));
+
+  const mexico = country_data[0].values;
+  projections = [];
+  mexico.forEach;
+  console.log();
   bounds
     .selectAll('.countries')
     .data(country_data)
@@ -127,7 +143,6 @@ async function PolicyIndexCountry(_country) {
     .attr('stroke', '#d2d3d4')
     .attr('d', d => lineGenerator(d.values))
     .attr('class', d => `${d.key}`);
-  // .attr('class', d => `${d.key}_testpositivityrate countries`);
 
   // const tooltipLine = bounds
   //   .append('line')
