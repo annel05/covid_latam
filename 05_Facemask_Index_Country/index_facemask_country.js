@@ -132,21 +132,17 @@ async function FacemaskIndexCountry(_country) {
     .attr('d', () => lineGenerator(country_data[0].values));
 
   // Highlight the first and last ranked states for this variable.
+  // We do this by first getting the lastest day.
+  // Then we filter loaded dataset to keep lines where day == latestDay.
+  // Then we nest this filtered dataset using the metricAccessor.
+  // Rank 1 state will be d.key == 1 and last-ranked state will be d.key == states.length.
   const latestDay = d3.max(dataset.map(dayAccessor));
-  // 2 - filter data to only have this day
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
   const rankedStates = d3.nest().key(metricAccessor).entries(latestData);
-  console.log(latestData);
-  console.log(rankedStates);
-  // 3 - get the rank 1 state
-  const firstRankState = latestData.filter(d => metricAccessor(d) == 1);
-
-  const firstRankCode = firstRankState[0].state_short;
-  // 4 - get the last rank state
-  const lastRankState = latestData.filter(
-    d => metricAccessor(d) == states.length
-  );
-  const lastRankCode = lastRankState[0].state_short;
+  const firstRankState = rankedStates.filter(d => d.key == 1);
+  const lastRankState = rankedStates.filter(d => d.key == states.length);
+  const firstRankCode = firstRankState[0].values[0].state_short;
+  const lastRankCode = lastRankState[0].values[0].state_short;
 
   // This function draws the temporary state line given a state code.
   const addStateLine = _stateCode => {
