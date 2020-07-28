@@ -140,6 +140,7 @@ async function FacemaskIndexCountry(_country) {
   const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
   const rankedStates = d3.nest().key(metricAccessor).entries(latestData);
   const firstRankState = rankedStates.filter(d => d.key == 1);
+  console.log(states.length);
   const lastRankState = rankedStates.filter(d => d.key == states.length);
   const firstRankCode = firstRankState[0].values[0].state_short;
   const lastRankCode = lastRankState[0].values[0].state_short;
