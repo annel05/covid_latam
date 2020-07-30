@@ -6,7 +6,6 @@ async function TestRatePositivityCountry(_country) {
   const dataset = await d3.csv(
     `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/${_country}_data_latest.csv`
   );
-
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.testpositivity_rate;
   const dateParser = d3.timeParse('%Y-%m-%d');
