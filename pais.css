@@ -41,21 +41,12 @@ label {
   z-index: 0;
 }
 
-/* #wrapper_policy_main,
-#wrapper_mobility_main,
-#wrapper_facemask_main,
-#wrapper_testrate_main,
-#wrapper_positivity_main, */
 .lenny_chart_wrapper {
   position: relative;
   font-family: 'Open Sans', sans-serif;
 }
 
-#wrapper_policy_main .domain,
-#wrapper_mobility_main .domain,
-#wrapper_facemask_main .domain,
-#wrapper_testrate_main .domain,
-#wrapper_positivity_main .domain {
+.domain {
   display: none;
 }
 
