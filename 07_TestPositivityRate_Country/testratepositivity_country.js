@@ -142,6 +142,8 @@ async function TestRatePositivityCountry(_country) {
   const lastRankState = rankedStates.filter(d => d.key == states.length);
   const firstRankCode = firstRankState[0].values[0].state_short;
   const lastRankCode = lastRankState[0].values[0].state_short;
+
+  
   // This function draws the temporary state line given a state code.
   const addStateLine = _stateCode => {
     const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
