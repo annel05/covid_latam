@@ -132,15 +132,15 @@ async function genericIndex(
     .y(d => yScale(yAccessor(d)));
 
   bounds
-    .selectAll('.states')
+    .selectAll('.state')
     .data(states)
     .enter()
     .append('path')
+    .attr('class', d => `state ${d.key}_${_keyword}`)
     .attr('fill', 'none')
     .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
-    .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.key}_policy states`);
+    .attr('d', d => lineGenerator(d.values));
 
   // add national data
   bounds
@@ -170,7 +170,7 @@ async function genericIndex(
 
   const addStateLine = _stateCode => {
     // This function draws the active version of a state line.
-    const specificStateData = dataset.filter(
+    const specificState = dataset.filter(
       d => stateCodeAccessor(d) == _stateCode
     );
 
@@ -181,7 +181,7 @@ async function genericIndex(
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
-      .attr('d', () => lineGenerator(specificStateData));
+      .attr('d', () => lineGenerator(specificState));
   };
 
   addStateLine(bestStateCode);
@@ -199,9 +199,47 @@ async function genericIndex(
     .append('li')
     .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
 
-  state_list
+  stateList
     .append('input')
     .attr('class', `input_box_${_keyword}`)
     .attr('type', 'checkbox')
     .attr('name', d => `${stateCodeAccessor(d.values[0])}_${_keyword}`);
+
+  stateList
+    .append('label')
+    .attr('class', 'input_label')
+    .attr('for', d => `${stateCodeAccessor(d.values[0])}_${_keyword}`)
+    .html(d => stateAccessor(d.values[0]));
+  // part 1 end
+
+  // part 2 start - turn on the boxes for the state we highlighted earlier.
+  [bestStateCode, worstStateCode].forEach(element => {
+    const inputBox = stateList.select(`[name=${element}_${_keyword}]`);
+    const inputLabel = stateList.select(`[for=${element}_${_keyword}]`);
+
+    inputBox.property('checked', true);
+    inputLabel.style('color', colorScale(element)).style('font-weight', 'bold');
+  });
+  // part 2 end
+
+  // part 3 start - toggle on/off any state by checking the corresponding input box.
+  d3.selectAll(`.input_box_${_keyword}`).on('input', toggleStateLine);
+
+  function toggleStateLine() {
+    const stateCode = this.name.split('_')[0];
+    const inputLabel = stateList.select(`[for=${this.name}]`);
+
+    if (this.checked) {
+      // input box has become active. Draw the color line and have the inputLabel match.
+      addStateLine(stateCode);
+      inputLabel
+        .style('color', colorScale(stateCode))
+        .style('font-weight', 'bold');
+    } else {
+      // input box has become inactive. Remove the color line and the inputLabel styles.
+      const line = bounds.select(`#${stateCode}_${_keyword}`);
+      line.remove();
+      inputLabel.style('color', '#000').style('font-weight', 'normal');
+    }
+  }
 }

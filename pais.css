@@ -26,10 +26,9 @@ label {
   stroke-dasharray: 4px 2px;
 }
 
-.states,
+.state,
 .country {
   opacity: 0.75;
-  stroke-width: 1.25;
 }
 
 .chart {
@@ -41,7 +40,7 @@ label {
   z-index: 0;
 }
 
-.lenny_chart_wrapper {
+.lenny_chartWrapper {
   position: relative;
   font-family: 'Open Sans', sans-serif;
 }
@@ -50,34 +49,39 @@ label {
   display: none;
 }
 
-#state_wrapper_policy,
-#state_wrapper_mobility,
-#state_wrapper_facemask,
-#state_wrapper_testrate,
-#state_wrapper_positivity {
+#stateWrapper_policy,
+#stateWrapper_mobility,
+#stateWrapper_facemask,
+#stateWrapper_testrate,
+#stateWrapper_positivity {
   height: 520px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
-#state_list_policy,
+/* #state_list_policy,
 #state_list_mobility,
 #state_list_facemask,
 #state_list_testrate,
-#state_list_positivity {
+#state_list_positivity*/
+.lenny_stateContainer ul {
   list-style: none;
   margin-top: 20px;
 }
 
-#state_container_policy,
+/* #state_container_policy,
 #state_container_mobility,
 #state_container_facemask,
 #state_container_testrate,
-#state_container_positivity {
+#state_container_positivity, */
+.lenny_stateContainer {
   background-color: #f2f2f2;
   height: 550px;
 }
 
+.input_label {
+  margin-left: 7px;
+}
 /* #tooltip_policy,
 #tooltip_mobility,
 #tooltip_facemask,
@@ -90,6 +94,7 @@ label {
   border: 1px solid black;
   font-size: 16px;
   font-weight: 700;
+  opacity: 0;
 }
 
 /* #tooltipHeader_policy,
