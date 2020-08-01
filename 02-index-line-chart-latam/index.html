@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es-ES">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,40 +14,50 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./../pais.css" />
     <script src="./../d3.v5.js"></script>
     <script src="./../pais.js"></script>
+    <link rel="stylesheet" href="./../pais.css" />
   </head>
   <body>
     <div class="container">
       <!-- copy after this -->
       <div class="row">
         <div class="col-md-9">
-          <figure id="wrapper_positivity_main" class="lenny_chart_wrapper">
-            <div id="tooltip_positivity" class="lenny_chart_tooltip">
-              <div id="tooltipHeader_positivity" class="lenny_tooltipHeader">
+          <figure id="wrapper_policy" class="lenny_chartWrapper">
+            <!-- start tooltip -->
+            <div id="tooltip_policy" class="lenny_chartTooltip">
+              <div id="tooltipHeader_policy" class="lenny_tooltipHeader">
                 <span></span>
               </div>
-              <table id="tooltipContent_positivity">
+              <table id="tooltipContent_policy">
                 <tr></tr>
               </table>
             </div>
+            <!-- end tooltip -->
           </figure>
         </div>
         <div class="col-md-3">
-          <div id="state_container_positivity">
-            <div id="state_wrapper_positivity">
-              <ul id="state_list_positivity"></ul>
+          <div class="lenny_stateContainer" id="stateContainer_policy">
+            <div id="stateWrapper_policy">
+              <ul id="stateList_policy"></ul>
             </div>
           </div>
         </div>
       </div>
       <!-- copy before this -->
     </div>
+
     <!-- chart code -->
-    <script src="./testratepositivity_country.js"></script>
+    <script src="./draw-index.js"></script>
     <script>
-      TestRatePositivityCountry('brazil');
+      indexLineChart({
+        country: 'mexico',
+        yVariable: 'policy_index',
+        yRank: 'ranking_policy_accumulated',
+        useBaseline: false,
+        usePercentage: false,
+        chartKeyword: 'policy',
+      });
     </script>
   </body>
 </html>
