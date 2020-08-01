@@ -26,7 +26,7 @@ async function genericIndex(
   const yAccessor = d => +d[`${_y}`];
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
-  const stateAccessor = d => d.state_name;
+  const stateNameAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
   const metricAccessor = d => +d[`${_ranking}`];
@@ -187,9 +187,13 @@ async function genericIndex(
   addStateLine(bestStateCode);
   addStateLine(worstStateCode);
 
+  const tooltipLine = bounds
+    .append('line')
+    .attr('id', `tooltipLine_${_keyword}`);
+
   // 7. add interactivity
 
-  // part 1 start -- populate state checklist
+  // Toggle State Lines, part 1 start -- populate state checklist
 
   const stateList = d3
     .select(`#stateList_${_keyword}`)
@@ -209,10 +213,10 @@ async function genericIndex(
     .append('label')
     .attr('class', 'input_label')
     .attr('for', d => `${stateCodeAccessor(d.values[0])}_${_keyword}`)
-    .html(d => stateAccessor(d.values[0]));
-  // part 1 end
+    .html(d => stateNameAccessor(d.values[0]));
+  // Toggle State Lines, part 1 end
 
-  // part 2 start - turn on the boxes for the state we highlighted earlier.
+  // Toggle State Lines, part 2 start -- turn on the boxes for the state we highlighted earlier.
   [bestStateCode, worstStateCode].forEach(element => {
     const inputBox = stateList.select(`[name=${element}_${_keyword}]`);
     const inputLabel = stateList.select(`[for=${element}_${_keyword}]`);
@@ -220,9 +224,9 @@ async function genericIndex(
     inputBox.property('checked', true);
     inputLabel.style('color', colorScale(element)).style('font-weight', 'bold');
   });
-  // part 2 end
+  // Toggle State Lines, part 2 end
 
-  // part 3 start - toggle on/off any state by checking the corresponding input box.
+  // Toggle State Lines, part 3 start -- toggle on/off any state by checking the corresponding input box.
   d3.selectAll(`.input_box_${_keyword}`).on('input', toggleStateLine);
 
   function toggleStateLine() {
@@ -241,5 +245,157 @@ async function genericIndex(
       line.remove();
       inputLabel.style('color', '#000').style('font-weight', 'normal');
     }
+  }
+  // Toggle State Lines, part 3 end
+
+  // Tooltip, part 1 start -- create listening rect and tooltip
+
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening_rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight)
+    .on('mousemove', onMouseMove)
+    .on('mouseleave', onMouseLeave);
+
+  const tooltip = d3
+    .select(`#tooltip_${_keyword}`)
+    .style('top', `${dimensions.margin.top * 2}px`)
+    .style('left', `${dimensions.margin.left * 1.25}px`);
+
+  const tooltipHeader = tooltip.select(`#tooltipHeader_${_keyword}`);
+  const tooltipContent = tooltip.select(`#tooltipContent_${_keyword}`);
+
+  function onMouseMove() {
+    tooltip.style('opacity', 1);
+
+    // 1. get mouse position and translate it into date and y-value. Use this to find the closest date to your mouse position in the dataset.
+    const mousePosition = d3.mouse(this);
+    const hoveredDate = xScale.invert(mousePosition[0]);
+
+    const getDistanceFromHoveredDate = d =>
+      Math.abs(xAccessor(d) - hoveredDate);
+
+    const closestIndex = d3.scan(
+      dataset,
+      (a, b) => getDistanceFromHoveredDate(a) - getDistanceFromHoveredDate(b)
+    );
+    const closestDate = dataset[closestIndex];
+
+    // 2. Filter data from the closest date to get X and Y values
+    // const data = states.filter(d => d.date == closestDate.date);
+
+    const closestXValue = xAccessor(closestDate);
+    const closestYValue = yAccessor(closestDate);
+
+    // 3. Get list of all active states into one array. Make sure national data is first, and then every other thing that follows is alphabetized
+    const activeStates = ['Nacional'];
+    const unsortedStates = [];
+    let displayFormat;
+    let nationalSpelling;
+    if (_lang == 'pt-br' || _lang == 'es-ES') {
+      displayFormat = d3.timeFormat('%d %B');
+      nationalSpelling = 'Nacional';
+    } else {
+      displayFormat = d3.timeFormat('%B %d');
+      nationalSpelling = 'National';
+    }
+
+    const activeElements = document.getElementsByClassName(
+      `active_${_keyword}`
+    );
+
+    Array.from(activeElements).forEach(element => {
+      const code = element.getAttribute('id').split('_')[0];
+      unsortedStates.push(code);
+    });
+    unsortedStates.sort().forEach(element => {
+      activeStates.push(element);
+    });
+
+    // 4. clear any tooltip information
+    tooltipHeader.selectAll('*').remove();
+    tooltipContent.selectAll('*').remove();
+    bounds.selectAll(`.intersection_${_keyword}`).remove();
+
+    // 5. add display date to tooltip box.
+
+    tooltipHeader
+      .append('span')
+      .html(displayFormat(dateParser(closestDate.date)));
+
+    // 6. position tooltipLine
+    tooltipLine
+      .attr('x1', xScale(closestXValue))
+      .attr('x2', xScale(closestXValue))
+      .attr('y1', 0)
+      .attr('y2', dimensions.boundedHeight)
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', '7px 2px')
+      .attr('stroke', '#000')
+      .style('opacity', 1);
+
+    // 7. add value for each active state to the tooltip
+
+    activeStates.forEach(element => {
+      // a) get the data for the specific state filtered on that specific day
+      const point = dataset
+        .filter(d => stateCodeAccessor(d) == element)
+        .filter(d => d.date == closestDate.date);
+
+      const yValue = yAccessor(point[0]);
+      const xValue = xAccessor(point[0]);
+      const stateName = stateNameAccessor(point[0]);
+
+      const getColor = _code => {
+        if (_code == 'Nacional') {
+          return '#171717';
+        } else {
+          return colorScale(stateCodeAccessor(point[0]));
+        }
+      };
+
+      // add data to tooltip table
+      const pointInfo = tooltipContent
+        .append('tr')
+        .attr('class', 'tooltip_state');
+
+      pointInfo
+        .append('td')
+        .attr('class', 'tooltip_state_name')
+        .html(() => {
+          if (stateName == 'Nacional') {
+            return nationalSpelling;
+          } else {
+            return stateName;
+          }
+        })
+        .style('color', getColor(element));
+
+      pointInfo
+        .append('td')
+        .attr('class', 'tooltip_value')
+        .html(() => {
+          const suffix = _percentage ? '%' : '';
+          return yValue.toFixed(1) + suffix;
+        });
+
+      // create a temporary dot on the line chat for that day
+      bounds
+        .append('circle')
+        .attr('cx', xScale(xValue))
+        .attr('cy', yScale(yValue))
+        .attr('r', 7)
+        .attr('fill', getColor(element))
+        .attr('class', `intersection_${_keyword}`);
+    });
+  }
+
+  // pause
+  function onMouseLeave() {
+    activeStates = ['Nacional'];
+    tooltip.style('opacity', 0);
+    tooltipLine.style('opacity', 1);
+    bounds.selectAll(`intersection_${keyword}`).remove();
   }
 }

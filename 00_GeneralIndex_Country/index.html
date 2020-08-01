@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es-ES">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +24,8 @@
       <div class="row">
         <div class="col-md-9">
           <figure id="wrapper_policy" class="lenny_chartWrapper">
-            <div id="tooltip_policy" class="lenny_chart_tooltip">
+            <!-- start tooltip -->
+            <div id="tooltip_policy" class="lenny_chartTooltip">
               <div id="tooltipHeader_policy" class="lenny_tooltipHeader">
                 <span></span>
               </div>
@@ -32,6 +33,7 @@
                 <tr></tr>
               </table>
             </div>
+            <!-- end tooltip -->
           </figure>
         </div>
         <div class="col-md-3">
@@ -48,10 +50,11 @@
     <!-- chart code -->
     <script src="./index_generic_country.js"></script>
     <script>
+      // The order of arguments is: country, y-variable, y-ranking, boolean baseline, boolean percentage, keyword for html selection
       genericIndex(
         'mexico',
-        'policy_index',
-        'ranking_policy_accumulated',
+        'facemask_index',
+        'ranking_facemask',
         false,
         false,
         'policy'

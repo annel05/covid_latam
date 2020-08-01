@@ -35,7 +35,7 @@ label {
   text-align: left;
 }
 
-.listening-rect {
+.listening_rect {
   fill: transparent;
   z-index: 0;
 }
@@ -87,7 +87,7 @@ label {
 #tooltip_facemask,
 #tooltip_testrate,
 #tooltip_positivity, */
-.lenny_chart_tooltip {
+.lenny_chartTooltip {
   position: absolute;
   padding: 7px;
   background-color: white;

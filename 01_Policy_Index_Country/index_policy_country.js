@@ -251,15 +251,14 @@ async function PolicyIndexCountry(_country) {
     );
     const closestDate = dataset[closestIndex];
 
-    const data = states.filter(d => d.date == closestDate.date);
+    // const data = states.filter(d => d.date == closestDate.date);
     const closestXValue = xAccessor(closestDate);
     const closestYValue = yAccessor(closestDate);
 
     activeStates = ['Nacional'];
     // get a list of all the active states
-    const allActive = document
-      .getElementById('wrapper_policy_main')
-      .getElementsByClassName('active_policy');
+    //       .getElementById('wrapper_policy_main')
+    const allActive = document.getElementsByClassName('active_policy');
 
     Array.from(allActive).forEach(element => {
       code = element.getAttribute('class').split('_')[0];
