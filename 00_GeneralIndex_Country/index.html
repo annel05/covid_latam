@@ -48,17 +48,16 @@
     </div>
 
     <!-- chart code -->
-    <script src="./index_generic_country.js"></script>
+    <script src="./draw-index.js"></script>
     <script>
-      // The order of arguments is: country, y-variable, y-ranking, boolean baseline, boolean percentage, keyword for html selection
-      genericIndex(
-        'mexico',
-        'facemask_index',
-        'ranking_facemask',
-        false,
-        false,
-        'policy'
-      );
+      indexLineChart({
+        country: 'mexico',
+        yVariable: 'policy_index',
+        yRank: 'ranking_policy_accumulated',
+        useBaseline: false,
+        usePercentage: false,
+        chartKeyword: 'policy',
+      });
     </script>
   </body>
 </html>

@@ -1,35 +1,35 @@
-async function genericIndex(
-  _country,
-  _y,
-  _ranking,
-  _baseline,
-  _percentage,
-  _keyword
-) {
+async function indexLineChart({
+  country,
+  yVariable,
+  yRank,
+  useBaseline,
+  usePercentage,
+  chartKeyword,
+}) {
   // This function works with country datasets and takes in the following to create a chart
-  // _country: name of country to load data file
-  // _y: y-axis variable
-  // _ranking: ranking variable for highlighting best and worst for whatever y-axis variable is.
-  // _baseline: boolean for drawing a 0 baseline or not.
-  // _percentage: boolean for using % symbol in y axis.
-  // _keyword: keyword for picking the ids from the document.
+  // country: name of country to load data file
+  // yVariable: y-axis variable
+  // yRank: ranking variable for highlighting best and worst for whatever y-axis variable is.
+  // useBaseline: boolean for drawing a 0 baseline or not.
+  // usePercentage: boolean for using % symbol in y axis.
+  // chartKeyword: keyword for picking the ids from the document.
 
   // 0. set language for dates
   setLocale();
 
   // 1. Get data
   const dataset = await d3.csv(
-    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/${_country}_data_latest.csv`
+    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/${country}_data_latest.csv`
   );
 
   // set data accessors
-  const yAccessor = d => +d[`${_y}`];
+  const yAccessor = d => +d[`${yVariable}`];
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d.date);
   const stateNameAccessor = d => d.state_name;
   const stateCodeAccessor = d => d.state_short;
   const dayAccessor = d => +d.days;
-  const metricAccessor = d => +d[`${_ranking}`];
+  const metricAccessor = d => +d[`${yRank}`];
 
   // organize data into country data and state data
   const datasetByStateCode = d3.nest().key(stateCodeAccessor).entries(dataset);
@@ -37,7 +37,7 @@ async function genericIndex(
   const states = datasetByStateCode.filter(d => d.key != 'Nacional');
 
   // 2. create dimensions
-  const wrapperElt = `wrapper_${_keyword}`;
+  const wrapperElt = `wrapper_${chartKeyword}`;
   const width = document.getElementById(wrapperElt).parentElement.clientWidth;
 
   let dimensions = {
@@ -90,7 +90,7 @@ async function genericIndex(
     .tickSize(-dimensions.boundedWidth);
 
   // add percentage to tick values if true
-  if (_percentage) {
+  if (usePercentage) {
     yAxisGenerator.tickFormat(d => d + '%');
   }
 
@@ -112,7 +112,7 @@ async function genericIndex(
   xAxis.selectAll('.tick line').attr('y1', dimensions.margin.bottom * 0.25);
 
   // draw 0-baseline if true
-  if (_baseline) {
+  if (useBaseline) {
     bounds
       .append('line')
       .attr('class', 'baseline')
@@ -136,7 +136,7 @@ async function genericIndex(
     .data(states)
     .enter()
     .append('path')
-    .attr('class', d => `state ${d.key}_${_keyword}`)
+    .attr('class', d => `state ${d.key}_${chartKeyword}`)
     .attr('fill', 'none')
     .attr('stroke-width', 1.25)
     .attr('stroke', '#d2d3d4')
@@ -176,8 +176,8 @@ async function genericIndex(
 
     bounds
       .append('path')
-      .attr('id', `${_stateCode}_${_keyword}`)
-      .attr('class', `active_${_keyword}`)
+      .attr('id', `${_stateCode}_${chartKeyword}`)
+      .attr('class', `active_${chartKeyword}`)
       .attr('fill', 'none')
       .attr('stroke', colorScale(_stateCode))
       .attr('stroke-width', 3)
@@ -189,14 +189,14 @@ async function genericIndex(
 
   const tooltipLine = bounds
     .append('line')
-    .attr('id', `tooltipLine_${_keyword}`);
+    .attr('id', `tooltipLine_${chartKeyword}`);
 
   // 7. add interactivity
 
   // Toggle State Lines, part 1 start -- populate state checklist
 
   const stateList = d3
-    .select(`#stateList_${_keyword}`)
+    .select(`#stateList_${chartKeyword}`)
     .selectAll('input')
     .data(states)
     .enter()
@@ -205,21 +205,21 @@ async function genericIndex(
 
   stateList
     .append('input')
-    .attr('class', `input_box_${_keyword}`)
+    .attr('class', `input_box_${chartKeyword}`)
     .attr('type', 'checkbox')
-    .attr('name', d => `${stateCodeAccessor(d.values[0])}_${_keyword}`);
+    .attr('name', d => `${stateCodeAccessor(d.values[0])}_${chartKeyword}`);
 
   stateList
     .append('label')
     .attr('class', 'input_label')
-    .attr('for', d => `${stateCodeAccessor(d.values[0])}_${_keyword}`)
+    .attr('for', d => `${stateCodeAccessor(d.values[0])}_${chartKeyword}`)
     .html(d => stateNameAccessor(d.values[0]));
   // Toggle State Lines, part 1 end
 
   // Toggle State Lines, part 2 start -- turn on the boxes for the state we highlighted earlier.
   [bestStateCode, worstStateCode].forEach(element => {
-    const inputBox = stateList.select(`[name=${element}_${_keyword}]`);
-    const inputLabel = stateList.select(`[for=${element}_${_keyword}]`);
+    const inputBox = stateList.select(`[name=${element}_${chartKeyword}]`);
+    const inputLabel = stateList.select(`[for=${element}_${chartKeyword}]`);
 
     inputBox.property('checked', true);
     inputLabel.style('color', colorScale(element)).style('font-weight', 'bold');
@@ -227,7 +227,7 @@ async function genericIndex(
   // Toggle State Lines, part 2 end
 
   // Toggle State Lines, part 3 start -- toggle on/off any state by checking the corresponding input box.
-  d3.selectAll(`.input_box_${_keyword}`).on('input', toggleStateLine);
+  d3.selectAll(`.input_box_${chartKeyword}`).on('input', toggleStateLine);
 
   function toggleStateLine() {
     const stateCode = this.name.split('_')[0];
@@ -241,7 +241,7 @@ async function genericIndex(
         .style('font-weight', 'bold');
     } else {
       // input box has become inactive. Remove the color line and the inputLabel styles.
-      const line = bounds.select(`#${stateCode}_${_keyword}`);
+      const line = bounds.select(`#${stateCode}_${chartKeyword}`);
       line.remove();
       inputLabel.style('color', '#000').style('font-weight', 'normal');
     }
@@ -259,12 +259,12 @@ async function genericIndex(
     .on('mouseleave', onMouseLeave);
 
   const tooltip = d3
-    .select(`#tooltip_${_keyword}`)
+    .select(`#tooltip_${chartKeyword}`)
     .style('top', `${dimensions.margin.top * 2}px`)
     .style('left', `${dimensions.margin.left * 1.25}px`);
 
-  const tooltipHeader = tooltip.select(`#tooltipHeader_${_keyword}`);
-  const tooltipContent = tooltip.select(`#tooltipContent_${_keyword}`);
+  const tooltipHeader = tooltip.select(`#tooltipHeader_${chartKeyword}`);
+  const tooltipContent = tooltip.select(`#tooltipContent_${chartKeyword}`);
 
   function onMouseMove() {
     tooltip.style('opacity', 1);
@@ -302,7 +302,7 @@ async function genericIndex(
     }
 
     const activeElements = document.getElementsByClassName(
-      `active_${_keyword}`
+      `active_${chartKeyword}`
     );
 
     Array.from(activeElements).forEach(element => {
@@ -316,7 +316,7 @@ async function genericIndex(
     // 4. clear any tooltip information
     tooltipHeader.selectAll('*').remove();
     tooltipContent.selectAll('*').remove();
-    bounds.selectAll(`.intersection_${_keyword}`).remove();
+    bounds.selectAll(`.intersection_${chartKeyword}`).remove();
 
     // 5. add display date to tooltip box.
 
@@ -376,7 +376,7 @@ async function genericIndex(
         .append('td')
         .attr('class', 'tooltip_value')
         .html(() => {
-          const suffix = _percentage ? '%' : '';
+          const suffix = usePercentage ? '%' : '';
           return yValue.toFixed(1) + suffix;
         });
 
@@ -387,7 +387,7 @@ async function genericIndex(
         .attr('cy', yScale(yValue))
         .attr('r', 7)
         .attr('fill', getColor(element))
-        .attr('class', `intersection_${_keyword}`);
+        .attr('class', `intersection_${chartKeyword}`);
     });
   }
 
