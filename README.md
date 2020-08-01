@@ -1,32 +1,22 @@
-# charts
+# Graphics for COVID-19 Observatory
 
-This repo contains development code for charts related to "OBSERVATORIO PARA LA CONTENCIÓN DEL COVID-19 EN AMÉRICA LATINA".
+This repo contains development code for charts related to [this COVID-19 project](http://observcovid.miami.edu/).
 
-## What to check when updating data
+## indexLineChart()
 
-1. Columns are named properly
-2. Quintana Roo has state_short as `QRoo`, not `Q.Roo`
-3. National Average data must not be ranked.
-4. Use `Brasil` vs `Brazil` for country.
+For the various indices and rates being graphed, I consolidated different charts into one function that covers all their use cases: `indexLineChart()`. This function takes the following object argument,
 
-## Notes about data
+```javascript
+{
+  country: 'mexico',
+  yVariable: 'policy_index',
+  yRank: 'ranking_policy_accumulated',
+  useBaseline: false,
+  usePercentage: false,
+  chartKeyword: 'policy',
+}
+```
 
-### data through 2020-05-21
+This object can be modified for each use case.
 
-- some typos in columns that were fixed
-- Quintana Roo state_short was changed to QRoo so we can use it for CSS
-
-### data through 2020-05-29
-
-- no column typos but the country column name was missing.
-- renamed Brazil to be Brasil to stay consistent with previous data
-- changed naming pattern for data files. Current file will always be `data_latest.csv`. When we update the data, we have to rename the old file based on the last date it included and put in the new file as `data_latest.csv`
-- renamed Q.Roo to QRoo for CSS purposes. Must be mindful there is already Qro.
-- remove Nacional from any rankings. That breaks the code.
-- Brazil had no policy index data for the national level. This has been rectified.
-
-## data through 2020-06-03
-
-- `country` column name had an extra space in it
-- renamed Q.Roo to QRoo
-- National data had no ranking, but state_short had been changed to `0`. This is off and should be `Nacional` for the purposes of keeping the code consistent.
+I'm now working on a version of this chart that works with latin America data.
