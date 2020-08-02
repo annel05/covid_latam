@@ -200,18 +200,18 @@ async function indexLineChart({
     .data(states)
     .enter()
     .append('li')
-    .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
+    .attr('class', d => `${d.key}_input`);
 
   stateList
     .append('input')
     .attr('class', `input_box_${chartKeyword}`)
     .attr('type', 'checkbox')
-    .attr('name', d => `${stateCodeAccessor(d.values[0])}_${chartKeyword}`);
+    .attr('name', d => `${d.key}_${chartKeyword}`);
 
   stateList
     .append('label')
     .attr('class', 'input_label')
-    .attr('for', d => `${stateCodeAccessor(d.values[0])}_${chartKeyword}`)
+    .attr('for', d => `${d.key}_${chartKeyword}`)
     .html(d => stateNameAccessor(d.values[0]));
   // Toggle State Lines, part 1 end
 

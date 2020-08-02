@@ -176,9 +176,11 @@ async function indexLineChart_LATAM({
       .attr('stroke-width', 3)
       .attr('d', () => lineGenerator(specificCountry));
   };
+  const watchedCountries = ['MEX', 'BRA', 'BOL'];
 
-  addCountryLine('MEX');
-  addCountryLine('BRA');
+  watchedCountries.forEach(element => {
+    addCountryLine(element);
+  });
 
   const tooltipLine = bounds
     .append('line')
@@ -188,58 +190,59 @@ async function indexLineChart_LATAM({
 
   // Toggle Country Lines, part 1 start -- populate country checklist
 
-  // const stateList = d3
-  //   .select(`#stateList_${chartKeyword}`)
-  //   .selectAll('input')
-  //   .data(states)
-  //   .enter()
-  //   .append('li')
-  //   .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
+  const countryList = d3
+    .select(`#countryList_${chartKeyword}`)
+    .selectAll('input')
+    .data(countries)
+    .enter()
+    .append('li')
+    .attr('class', d => `${d.key}_input`);
 
-  // stateList
-  //   .append('input')
-  //   .attr('class', `input_box_${chartKeyword}`)
-  //   .attr('type', 'checkbox')
-  //   .attr('name', d => `${stateCodeAccessor(d.values[0])}_${chartKeyword}`);
+  countryList
+    .append('input')
+    .attr('class', `input_box_${chartKeyword}`)
+    .attr('type', 'checkbox')
+    .attr('name', d => `${d.key}_${chartKeyword}`);
 
-  // stateList
-  //   .append('label')
-  //   .attr('class', 'input_label')
-  //   .attr('for', d => `${stateCodeAccessor(d.values[0])}_${chartKeyword}`)
-  //   .html(d => stateNameAccessor(d.values[0]));
-  // // Toggle State Lines, part 1 end
+  countryList
+    .append('label')
+    .attr('class', 'input_label;')
+    .attr('for', d => `${d.key}_${chartKeyword}`)
+    .html(d => countryNameAccessor(d.values[0]));
 
-  // // Toggle State Lines, part 2 start -- turn on the boxes for the state we highlighted earlier.
-  // [bestStateCode, worstStateCode].forEach(element => {
-  //   const inputBox = stateList.select(`[name=${element}_${chartKeyword}]`);
-  //   const inputLabel = stateList.select(`[for=${element}_${chartKeyword}]`);
+  // Toggle State Lines, part 1 end
 
-  //   inputBox.property('checked', true);
-  //   inputLabel.style('color', colorScale(element)).style('font-weight', 'bold');
-  // });
-  // // Toggle State Lines, part 2 end
+  // Toggle State Lines, part 2 start -- turn on the boxes for the state we highlighted earlier.
+  watchedCountries.forEach(element => {
+    const inputBox = countryList.select(`[name=${element}_${chartKeyword}]`);
+    const inputLabel = countryList.select(`[for=${element}_${chartKeyword}]`);
 
-  // // Toggle State Lines, part 3 start -- toggle on/off any state by checking the corresponding input box.
-  // d3.selectAll(`.input_box_${chartKeyword}`).on('input', toggleStateLine);
+    inputBox.property('checked', true);
+    inputLabel.style('color', colorScale(element)).style('font-weight', 'bold');
+  });
+  // Toggle State Lines, part 2 end
 
-  // function toggleStateLine() {
-  //   const stateCode = this.name.split('_')[0];
-  //   const inputLabel = stateList.select(`[for=${this.name}]`);
+  // Toggle State Lines, part 3 start -- toggle on/off any state by checking the corresponding input box.
+  d3.selectAll(`.input_box_${chartKeyword}`).on('input', toggleCountryLine);
 
-  //   if (this.checked) {
-  //     // input box has become active. Draw the color line and have the inputLabel match.
-  //     addStateLine(stateCode);
-  //     inputLabel
-  //       .style('color', colorScale(stateCode))
-  //       .style('font-weight', 'bold');
-  //   } else {
-  //     // input box has become inactive. Remove the color line and the inputLabel styles.
-  //     const line = bounds.select(`#${stateCode}_${chartKeyword}`);
-  //     line.remove();
-  //     inputLabel.style('color', '#000').style('font-weight', 'normal');
-  //   }
-  // }
-  // // Toggle State Lines, part 3 end
+  function toggleCountryLine() {
+    const countryCode = this.name.split('_')[0];
+    const inputLabel = countryList.select(`[for=${this.name}]`);
+
+    if (this.checked) {
+      // input box has become active. Draw the color line and have the inputLabel match.
+      addCountryLine(countryCode);
+      inputLabel
+        .style('color', colorScale(countryCode))
+        .style('font-weight', 'bold');
+    } else {
+      // input box has become inactive. Remove the color line and the inputLabel styles.
+      const line = bounds.select(`#${countryCode}_${chartKeyword}`);
+      line.remove();
+      inputLabel.style('color', '#000').style('font-weight', 'normal');
+    }
+  }
+  // Toggle State Lines, part 3 end
 
   // // Tooltip, part 1 start -- create listening rect and tooltip
 

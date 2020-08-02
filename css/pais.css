@@ -28,7 +28,7 @@ label {
 
 .state,
 .country {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .chart {
@@ -49,23 +49,21 @@ label {
   display: none;
 }
 
-.lenny_stateWrapper,
-.lenny_countryWrapper {
+.lenny_stateWrapper {
   height: 520px;
   overflow: hidden;
   overflow-y: scroll;
+}
+
+.lenny_stateContainer {
+  background-color: #f2f2f2;
+  height: 550px;
 }
 
 .lenny_stateContainer ul,
 .lenny_countryContainer ul {
   list-style: none;
   margin-top: 20px;
-}
-
-.lenny_stateContainer,
-.lenny_countryContainer {
-  background-color: #f2f2f2;
-  height: 550px;
 }
 
 .input_label {
