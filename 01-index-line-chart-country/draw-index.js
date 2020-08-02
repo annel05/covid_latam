@@ -76,8 +76,7 @@ async function indexLineChart({
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(dataset, xAccessor))
-    .range([0, dimensions.boundedWidth])
-    .nice();
+    .range([0, dimensions.boundedWidth]);
 
   const statesOnly = dataset.filter(d => stateCodeAccessor(d) != 'Nacional');
   const stateCodes = d3.map(statesOnly, stateCodeAccessor).keys();
