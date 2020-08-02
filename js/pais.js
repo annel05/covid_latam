@@ -80,6 +80,7 @@ var pt_locale = {
   ],
 };
 var _lang = document.documentElement.lang;
+
 let setLocale = () => {
   if (_lang == 'es-ES') {
     d3.timeFormatDefaultLocale(es_locale);

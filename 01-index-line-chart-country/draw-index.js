@@ -395,7 +395,7 @@ async function indexLineChart({
   function onMouseLeave() {
     activeStates = ['Nacional'];
     tooltip.style('opacity', 0);
-    tooltipLine.style('opacity', 1);
-    bounds.selectAll(`intersection_${keyword}`).remove();
+    tooltipLine.style('opacity', 0);
+    bounds.selectAll(`.intersection_${chartKeyword}`).remove();
   }
 }

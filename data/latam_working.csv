@@ -1,4 +1,4 @@
-﻿country_short,country,date,days,mobility_index,policy_index,facemask_index,test_rate,testpositivity_rate,ranking_facemask,ranking_testrate,ranking_testpositivity
+﻿country_short,country,date,days,mobility_index,policy_index,facemask_index,test_rate,testpositivityrate,rank_face_mask,ranking_testrate,ranking_testpositivity
 ARG,Argentina,2020-02-25,0,-22.8,,0,6.135269,0.00000000000000,,,
 ARG,Argentina,2020-02-26,0,6,,0,6.391142,0.00001540770000,,,
 ARG,Argentina,2020-02-27,0,2.8,,0,6.647064,0.00001540770000,,,
