@@ -1,5 +1,4 @@
 async function indexLineChart({
-  country,
   yVariable,
   yRank,
   useBaseline,
