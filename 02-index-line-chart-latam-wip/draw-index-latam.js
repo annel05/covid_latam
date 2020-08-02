@@ -1,6 +1,6 @@
-async function indexLineChart({
+async function indexLineChart_LATAM({
   yVariable,
-  yRank,
+  useRegion,
   useBaseline,
   usePercentage,
   chartKeyword,
@@ -8,7 +8,7 @@ async function indexLineChart({
   // This function works with country datasets and takes in the following to create a chart
   // country: name of country to load data file
   // yVariable: y-axis variable
-  // yRank: ranking variable for highlighting best and worst for whatever y-axis variable is.
+  // useRegion: boolean for drawing latam/region data.
   // useBaseline: boolean for drawing a 0 baseline or not.
   // usePercentage: boolean for using % symbol in y axis.
   // chartKeyword: keyword for picking the ids from the document.
@@ -28,8 +28,6 @@ async function indexLineChart({
   const xAccessor = d => dateParser(d.date);
   const countryCodeAccessor = d => d.country_short;
   const countryNameAccessor = d => d.country;
-  const dayAccessor = d => +d.days;
-  const metricAccesor = d => +d[`${yRank}`];
 
   // organize data into country and region
   const datasetByCountryCode = d3
@@ -37,8 +35,8 @@ async function indexLineChart({
     .key(countryCodeAccessor)
     .entries(dataset);
 
-  const latam = dataset.filter(d => d.key == 'LATAM');
-  const countries = dataset.filter(d => d.key != 'LATAM');
+  const latam = datasetByCountryCode.filter(d => d.key == 'LATAM');
+  const countries = datasetByCountryCode.filter(d => d.key != 'LATAM');
 
   // 2. create dimensions
   const wrapperElt = `wrapper_${chartKeyword}`;
@@ -69,135 +67,126 @@ async function indexLineChart({
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
-  // // 4. create scales
+  // 4. create scales
 
-  // const yScale = d3
-  //   .scaleLinear()
-  //   .domain(d3.extent(dataset, yAccessor))
-  //   .range([dimensions.boundedHeight, 0])
-  //   .nice();
+  const yScale = d3
+    .scaleLinear()
+    .domain(d3.extent(dataset, yAccessor))
+    .range([dimensions.boundedHeight, 0])
+    .nice();
 
-  // const xScale = d3
-  //   .scaleTime()
-  //   .domain(d3.extent(dataset, xAccessor))
-  //   .range([0, dimensions.boundedWidth])
-  //   .nice();
+  const xScale = d3
+    .scaleTime()
+    .domain(d3.extent(dataset, xAccessor))
+    .range([0, dimensions.boundedWidth]);
 
-  // const statesOnly = dataset.filter(d => stateCodeAccessor(d) != 'Nacional');
-  // const stateCodes = d3.map(statesOnly, stateCodeAccessor).keys();
-  // const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
+  const countriesOnly = dataset.filter(d => countryCodeAccessor(d) != 'LATAM');
+  const countryCodeList = d3.map(countriesOnly, countryCodeAccessor).keys();
+  const colorScale = d3
+    .scaleOrdinal()
+    .domain(countryCodeList)
+    .range(colorGroup);
 
-  // // 6. draw peripherals -- axes
-  // const yAxisGenerator = d3
-  //   .axisLeft()
-  //   .scale(yScale)
-  //   .tickSize(-dimensions.boundedWidth);
+  // 6. draw peripherals -- axes
+  const yAxisGenerator = d3
+    .axisLeft()
+    .scale(yScale)
+    .tickSize(-dimensions.boundedWidth);
 
-  // // add percentage to tick values if true
-  // if (usePercentage) {
-  //   yAxisGenerator.tickFormat(d => d + '%');
-  // }
+  // add percentage to tick values if true
+  if (usePercentage) {
+    yAxisGenerator.tickFormat(d => d + '%');
+  }
 
-  // const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
+  const yAxis = bounds.append('g').attr('class', 'y_axis').call(yAxisGenerator);
 
-  // const xAxisGenerator = d3
-  //   .axisBottom()
-  //   .scale(xScale)
-  //   .tickSize(-dimensions.boundedHeight)
-  //   .tickFormat(d3.timeFormat('%d %b'));
+  const xAxisGenerator = d3
+    .axisBottom()
+    .scale(xScale)
+    .tickSize(-dimensions.boundedHeight)
+    .tickFormat(d3.timeFormat('%d %b'));
 
-  // const xAxis = bounds
-  //   .append('g')
-  //   .attr('class', 'x_axis')
-  //   .call(xAxisGenerator)
-  //   .style('transform', `translateY(${dimensions.boundedHeight}px)`);
+  const xAxis = bounds
+    .append('g')
+    .attr('class', 'x_axis')
+    .call(xAxisGenerator)
+    .style('transform', `translateY(${dimensions.boundedHeight}px)`);
 
-  // xAxis.selectAll('text').attr('dy', 20);
-  // xAxis.selectAll('.tick line').attr('y1', dimensions.margin.bottom * 0.25);
+  xAxis.selectAll('text').attr('dy', 20);
+  xAxis.selectAll('.tick line').attr('y1', dimensions.margin.bottom * 0.25);
 
-  // // draw 0-baseline if true
-  // if (useBaseline) {
-  //   bounds
-  //     .append('line')
-  //     .attr('class', 'baseline')
-  //     .attr('stroke-width', 2)
-  //     .attr('stroke', '#333333')
-  //     .attr('x1', 0)
-  //     .attr('x2', dimensions.boundedWidth)
-  //     .attr('y1', yScale(0))
-  //     .attr('y2', yScale(0));
-  // }
+  // draw 0-baseline if true
+  if (useBaseline) {
+    bounds
+      .append('line')
+      .attr('class', 'baseline')
+      .attr('stroke-width', 2)
+      .attr('stroke', '#333333')
+      .attr('x1', 0)
+      .attr('x2', dimensions.boundedWidth)
+      .attr('y1', yScale(0))
+      .attr('y2', yScale(0));
+  }
 
-  // // 5. draw data
+  // 5. draw data
 
-  // const lineGenerator = d3
-  //   .line()
-  //   .x(d => xScale(xAccessor(d)))
-  //   .y(d => yScale(yAccessor(d)));
+  const lineGenerator = d3
+    .line()
+    .x(d => xScale(xAccessor(d)))
+    .y(d => yScale(yAccessor(d)));
 
-  // bounds
-  //   .selectAll('.state')
-  //   .data(states)
-  //   .enter()
-  //   .append('path')
-  //   .attr('class', d => `state ${d.key}_${chartKeyword}`)
-  //   .attr('fill', 'none')
-  //   .attr('stroke-width', 1.25)
-  //   .attr('stroke', '#d2d3d4')
-  //   .attr('d', d => lineGenerator(d.values));
+  bounds
+    .selectAll('.country')
+    .data(countries)
+    .enter()
+    .append('path')
+    .attr('class', d => `country ${d.key}_${chartKeyword}`)
+    .attr('fill', 'none')
+    .attr('stroke-width', 1.25)
+    .attr('stroke', '#d2d3d4')
+    .attr('d', d => lineGenerator(d.values));
 
-  // // add national data
-  // bounds
-  //   .selectAll('.national')
-  //   .data(national)
-  //   .enter()
-  //   .append('path')
-  //   .attr('class', 'national')
-  //   .attr('fill', 'none')
-  //   .attr('stroke', '#333333')
-  //   .attr('stroke-dasharray', '9px 2px')
-  //   .attr('stroke-width', 2.5)
-  //   .attr('d', d => lineGenerator(d.values));
+  // add national data
+  if (useRegion) {
+    bounds
+      .selectAll('.region')
+      .data(latam)
+      .enter()
+      .append('path')
+      .attr('class', 'region')
+      .attr('fill', 'none')
+      .attr('stroke', '#333333')
+      .attr('stroke-dasharray', '9px 2px')
+      .attr('stroke-width', 2.5)
+      .attr('d', d => lineGenerator(d.values));
+  }
 
-  // // Highlight the first and last ranked states for this variable.
-  // // We do this by first getting the latest day.
-  // // Then we filter loaded dataset to keep lines where day == latestDay.
-  // // Then we nest this filtered dataset using the metricAccessor.
-  // // Rank 1 state will be d.key == 1 and last-ranked state will be d.key == states.length.
-  // const latestDay = d3.max(dataset.map(dayAccessor));
-  // const latestData = dataset.filter(d => dayAccessor(d) == latestDay);
-  // const statesRanked = d3.nest().key(metricAccessor).entries(latestData);
-  // const bestState = statesRanked.filter(d => d.key == 1);
-  // const worstState = statesRanked.filter(d => d.key == states.length);
-  // const bestStateCode = stateCodeAccessor(bestState[0].values[0]);
-  // const worstStateCode = stateCodeAccessor(worstState[0].values[0]);
+  const addCountryLine = _countryCode => {
+    // This function draws the active version of a country line.
+    const specificCountry = dataset.filter(
+      d => countryCodeAccessor(d) == _countryCode
+    );
 
-  // const addStateLine = _stateCode => {
-  //   // This function draws the active version of a state line.
-  //   const specificState = dataset.filter(
-  //     d => stateCodeAccessor(d) == _stateCode
-  //   );
+    bounds
+      .append('path')
+      .attr('id', `${_countryCode}_${chartKeyword}`)
+      .attr('class', `active_${chartKeyword}`)
+      .attr('fill', 'none')
+      .attr('stroke', colorScale(_countryCode))
+      .attr('stroke-width', 3)
+      .attr('d', () => lineGenerator(specificCountry));
+  };
 
-  //   bounds
-  //     .append('path')
-  //     .attr('id', `${_stateCode}_${chartKeyword}`)
-  //     .attr('class', `active_${chartKeyword}`)
-  //     .attr('fill', 'none')
-  //     .attr('stroke', colorScale(_stateCode))
-  //     .attr('stroke-width', 3)
-  //     .attr('d', () => lineGenerator(specificState));
-  // };
+  addCountryLine('MEX');
+  addCountryLine('BRA');
 
-  // addStateLine(bestStateCode);
-  // addStateLine(worstStateCode);
+  const tooltipLine = bounds
+    .append('line')
+    .attr('id', `tooltipLine_${chartKeyword}`);
 
-  // const tooltipLine = bounds
-  //   .append('line')
-  //   .attr('id', `tooltipLine_${chartKeyword}`);
+  // 7. add interactivity
 
-  // // 7. add interactivity
-
-  // // Toggle State Lines, part 1 start -- populate state checklist
+  // Toggle Country Lines, part 1 start -- populate country checklist
 
   // const stateList = d3
   //   .select(`#stateList_${chartKeyword}`)

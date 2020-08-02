@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-ES">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,9 +37,9 @@
           </figure>
         </div>
         <div class="col-md-3">
-          <div class="lenny_stateContainer" id="stateContainer_policy">
-            <div id="stateWrapper_policy">
-              <ul id="stateList_policy"></ul>
+          <div class="lenny_countryContainer" id="countryContainer_policy">
+            <div id="countryWrapper_policy" class="lenny_countryWrapper">
+              <ul id="countryList_policy"></ul>
             </div>
           </div>
         </div>
@@ -50,9 +50,9 @@
     <!-- chart code -->
     <script src="./draw-index-latam.js"></script>
     <script>
-      indexLineChart({
+      indexLineChart_LATAM({
         yVariable: 'mobility_index',
-        yRank: '',
+        useRegion: true,
         useBaseline: true,
         usePercentage: true,
         chartKeyword: 'policy',
