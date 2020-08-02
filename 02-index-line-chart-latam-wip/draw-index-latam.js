@@ -22,54 +22,52 @@ async function indexLineChart({
     `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/latam_working.csv`
   );
 
-  if (yRank) {
-    console.log('true');
-  } else {
-    console.log('false');
-  }
+  // set data accessors
+  const yAccessor = d => +d[`${yVariable}`];
+  const dateParser = d3.timeParse('%Y-%m-%d');
+  const xAccessor = d => dateParser(d.date);
+  const countryCodeAccessor = d => d.country_short;
+  const countryNameAccessor = d => d.country;
+  const dayAccessor = d => +d.days;
+  const metricAccesor = d => +d[`${yRank}`];
 
-  // // set data accessors
-  // const yAccessor = d => +d[`${yVariable}`];
-  // const dateParser = d3.timeParse('%Y-%m-%d');
-  // const xAccessor = d => dateParser(d.date);
-  // const stateNameAccessor = d => d.state_name;
-  // const countryCodeAccessor = d => d.state_short;
-  // const dayAccessor = d => +d.days;
-  // const metricAccessor = d => +d[`${yRank}`];
+  // organize data into country and region
+  const datasetByCountryCode = d3
+    .nest()
+    .key(countryCodeAccessor)
+    .entries(dataset);
 
-  // // organize data into country data and state data
-  // const datasetByStateCode = d3.nest().key(stateCodeAccessor).entries(dataset);
-  // const national = datasetByStateCode.filter(d => d.key == 'Nacional');
-  // const states = datasetByStateCode.filter(d => d.key != 'Nacional');
+  const latam = dataset.filter(d => d.key == 'LATAM');
+  const countries = dataset.filter(d => d.key != 'LATAM');
 
-  // // 2. create dimensions
-  // const wrapperElt = `wrapper_${chartKeyword}`;
-  // const width = document.getElementById(wrapperElt).parentElement.clientWidth;
+  // 2. create dimensions
+  const wrapperElt = `wrapper_${chartKeyword}`;
+  const width = document.getElementById(wrapperElt).parentElement.clientWidth;
 
-  // let dimensions = {
-  //   width: width,
-  //   height: 600,
-  //   margin: {top: 15, right: 15, bottom: 40, left: 60},
-  // };
-  // dimensions.boundedWidth =
-  //   dimensions.width - dimensions.margin.left - dimensions.margin.right;
-  // dimensions.boundedHeight =
-  //   dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
+  let dimensions = {
+    width: width,
+    height: 600,
+    margin: {top: 15, right: 15, bottom: 40, left: 60},
+  };
+  dimensions.boundedWidth =
+    dimensions.width - dimensions.margin.left - dimensions.margin.right;
+  dimensions.boundedHeight =
+    dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
-  // // 3. draw canvas
+  // 3. draw canvas
 
-  // const wrapper = d3
-  //   .select(`#${wrapperElt}`)
-  //   .append('svg')
-  //   .attr('width', dimensions.width)
-  //   .attr('height', dimensions.height);
+  const wrapper = d3
+    .select(`#${wrapperElt}`)
+    .append('svg')
+    .attr('width', dimensions.width)
+    .attr('height', dimensions.height);
 
-  // const bounds = wrapper
-  //   .append('g')
-  //   .style(
-  //     'transform',
-  //     `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
-  //   );
+  const bounds = wrapper
+    .append('g')
+    .style(
+      'transform',
+      `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
+    );
 
   // // 4. create scales
 
