@@ -79,6 +79,7 @@ var pt_locale = {
     'Dez',
   ],
 };
+
 var _lang = document.documentElement.lang;
 
 let setLocale = () => {

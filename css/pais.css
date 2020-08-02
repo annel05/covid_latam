@@ -49,32 +49,21 @@ label {
   display: none;
 }
 
-#stateWrapper_policy,
-#stateWrapper_mobility,
-#stateWrapper_facemask,
-#stateWrapper_testrate,
-#stateWrapper_positivity {
+.lenny_stateWrapper,
+.lenny_countryWrapper {
   height: 520px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
-/* #state_list_policy,
-#state_list_mobility,
-#state_list_facemask,
-#state_list_testrate,
-#state_list_positivity*/
-.lenny_stateContainer ul {
+.lenny_stateContainer ul,
+.lenny_countryContainer ul {
   list-style: none;
   margin-top: 20px;
 }
 
-/* #state_container_policy,
-#state_container_mobility,
-#state_container_facemask,
-#state_container_testrate,
-#state_container_positivity, */
-.lenny_stateContainer {
+.lenny_stateContainer,
+.lenny_countryContainer {
   background-color: #f2f2f2;
   height: 550px;
 }
@@ -82,11 +71,7 @@ label {
 .input_label {
   margin-left: 7px;
 }
-/* #tooltip_policy,
-#tooltip_mobility,
-#tooltip_facemask,
-#tooltip_testrate,
-#tooltip_positivity, */
+
 .lenny_chartTooltip {
   position: absolute;
   padding: 7px;
@@ -97,20 +82,10 @@ label {
   opacity: 0;
 }
 
-/* #tooltipHeader_policy,
-#tooltipHeader_mobility,
-#tooltipHeader_facemask,
-#tooltipHeader_testrate,
-#tooltipHeader_positivity, */
 .lenny_tooltipHeader {
   font-size: 1.5em;
 }
 
-/* #tooltipContent_policy .tooltip_value,
-#tooltipContent_mobility .tooltip_value,
-#tooltipContent_facemask .tooltip_value,
-#tooltipContent_testrate .tooltip_value,
-#tooltipContent_positivity .tooltip_value, */
 .tooltip_value {
   padding-left: 30px;
   text-align: right;
