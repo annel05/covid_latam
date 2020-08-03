@@ -77,7 +77,7 @@ label {
   border: 1px solid black;
   font-size: 16px;
   font-weight: 700;
-  opacity: 0;
+  opacity: 1;
 }
 
 .lenny_tooltipHeader {

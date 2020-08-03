@@ -259,8 +259,14 @@ async function indexLineChart({
 
   const tooltip = d3
     .select(`#tooltip_${chartKeyword}`)
-    .style('top', `${dimensions.margin.top * 2}px`)
-    .style('left', `${dimensions.margin.left * 1.25}px`);
+    .style('top', `${dimensions.margin.top * 2}px`);
+
+  // if we are using baseline & percentage, it's likely mobility so put the tooltip box on the right
+  if (useBaseline && usePercentage) {
+    tooltip.style('right', `${dimensions.margin.right * 1.25}px`);
+  } else {
+    tooltip.style('left', `${dimensions.margin.left * 1.25}px`);
+  }
 
   const tooltipHeader = tooltip.select(`#tooltipHeader_${chartKeyword}`);
   const tooltipContent = tooltip.select(`#tooltipContent_${chartKeyword}`);

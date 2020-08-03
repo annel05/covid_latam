@@ -244,154 +244,155 @@ async function indexLineChart_LATAM({
   }
   // Toggle State Lines, part 3 end
 
-  // // Tooltip, part 1 start -- create listening rect and tooltip
+  // Tooltip, part 1 start -- create listening rect and tooltip
 
-  // const listeningRect = bounds
-  //   .append('rect')
-  //   .attr('class', 'listening_rect')
-  //   .attr('width', dimensions.boundedWidth)
-  //   .attr('height', dimensions.boundedHeight)
-  //   .on('mousemove', onMouseMove)
-  //   .on('mouseleave', onMouseLeave);
+  const listeningRect = bounds
+    .append('rect')
+    .attr('class', 'listening_rect')
+    .attr('width', dimensions.boundedWidth)
+    .attr('height', dimensions.boundedHeight)
+    .on('mousemove', onMouseMove)
+    .on('mouseleave', onMouseLeave);
 
-  // const tooltip = d3
-  //   .select(`#tooltip_${chartKeyword}`)
-  //   .style('top', `${dimensions.margin.top * 2}px`)
-  //   .style('left', `${dimensions.margin.left * 1.25}px`);
+  const tooltip = d3
+    .select(`#tooltip_${chartKeyword}`)
+    .style('top', `${dimensions.margin.top * 2}px`);
 
-  // const tooltipHeader = tooltip.select(`#tooltipHeader_${chartKeyword}`);
-  // const tooltipContent = tooltip.select(`#tooltipContent_${chartKeyword}`);
+  // if we are using baseline & percentage, it's likely mobility so put the tooltip box on the right
+  if (useBaseline && usePercentage) {
+    tooltip.style('right', `${dimensions.margin.right * 1.25}px`);
+  } else {
+    tooltip.style('left', `${dimensions.margin.left * 1.25}px`);
+  }
 
-  // function onMouseMove() {
-  //   tooltip.style('opacity', 1);
+  const tooltipHeader = tooltip.select(`#tooltipHeader_${chartKeyword}`);
+  const tooltipContent = tooltip.select(`#tooltipContent_${chartKeyword}`);
 
-  //   // 1. get mouse position and translate it into date and y-value. Use this to find the closest date to your mouse position in the dataset.
-  //   const mousePosition = d3.mouse(this);
-  //   const hoveredDate = xScale.invert(mousePosition[0]);
+  function onMouseMove() {
+    tooltip.style('opacity', 1);
 
-  //   const getDistanceFromHoveredDate = d =>
-  //     Math.abs(xAccessor(d) - hoveredDate);
+    // 1. get mouse position and translate it into date and y-value. Use this to find the closest date to your mouse position in the dataset.
+    const mousePosition = d3.mouse(this);
+    const hoveredDate = xScale.invert(mousePosition[0]);
 
-  //   const closestIndex = d3.scan(
-  //     dataset,
-  //     (a, b) => getDistanceFromHoveredDate(a) - getDistanceFromHoveredDate(b)
-  //   );
-  //   const closestDate = dataset[closestIndex];
+    const getDistanceFromHoveredDate = d =>
+      Math.abs(xAccessor(d) - hoveredDate);
 
-  //   // 2. Filter data from the closest date to get X and Y values
-  //   // const data = states.filter(d => d.date == closestDate.date);
+    const closestIndex = d3.scan(
+      dataset,
+      (a, b) => getDistanceFromHoveredDate(a) - getDistanceFromHoveredDate(b)
+    );
 
-  //   const closestXValue = xAccessor(closestDate);
-  //   const closestYValue = yAccessor(closestDate);
+    const closestDate = dataset[closestIndex];
+    const closestXValue = xAccessor(closestDate);
+    const closestYValue = yAccessor(closestDate);
 
-  //   // 3. Get list of all active states into one array. Make sure national data is first, and then every other thing that follows is alphabetized
-  //   const activeStates = ['Nacional'];
-  //   const unsortedStates = [];
-  //   let displayFormat;
-  //   let nationalSpelling;
-  //   if (_lang == 'pt-br' || _lang == 'es-ES') {
-  //     displayFormat = d3.timeFormat('%d %B');
-  //     nationalSpelling = 'Nacional';
-  //   } else {
-  //     displayFormat = d3.timeFormat('%B %d');
-  //     nationalSpelling = 'National';
-  //   }
+    // 2. Get list of all active states into one array. Make sure national data is first, and then every other thing that follows is alphabetized
+    const unsortedCountries = [];
+    const activeCountries = useRegion ? ['LATAM'] : [];
+    let displayFormat, regionalSpelling;
+    if (_lang == 'pt-br' || _lang == 'es-ES') {
+      displayFormat = d3.timeFormat('%d %B');
+      regionalSpelling = 'América Latina';
+    } else {
+      displayFormat = d3.timeFormat('%B %d');
+      regionalSpelling = 'Latin America';
+    }
 
-  //   const activeElements = document.getElementsByClassName(
-  //     `active_${chartKeyword}`
-  //   );
+    const activeElements = document.getElementsByClassName(
+      `active_${chartKeyword}`
+    );
 
-  //   Array.from(activeElements).forEach(element => {
-  //     const code = element.getAttribute('id').split('_')[0];
-  //     unsortedStates.push(code);
-  //   });
-  //   unsortedStates.sort().forEach(element => {
-  //     activeStates.push(element);
-  //   });
+    Array.from(activeElements).forEach(element => {
+      const countryCode = element.getAttribute('id').split('_')[0];
+      unsortedCountries.push(countryCode);
+    });
+    unsortedCountries.sort().forEach(element => {
+      activeCountries.push(element);
+    });
 
-  //   // 4. clear any tooltip information
-  //   tooltipHeader.selectAll('*').remove();
-  //   tooltipContent.selectAll('*').remove();
-  //   bounds.selectAll(`.intersection_${chartKeyword}`).remove();
+    // 3. clear any tooltip information
+    tooltipHeader.selectAll('*').remove();
+    tooltipContent.selectAll('*').remove();
+    bounds.selectAll(`.intersection_${chartKeyword}`).remove();
 
-  //   // 5. add display date to tooltip box.
+    // 4. add display date to tooltip box.
 
-  //   tooltipHeader
-  //     .append('span')
-  //     .html(displayFormat(dateParser(closestDate.date)));
+    tooltipHeader
+      .append('span')
+      .html(displayFormat(dateParser(closestDate.date)));
 
-  //   // 6. position tooltipLine
-  //   tooltipLine
-  //     .attr('x1', xScale(closestXValue))
-  //     .attr('x2', xScale(closestXValue))
-  //     .attr('y1', 0)
-  //     .attr('y2', dimensions.boundedHeight)
-  //     .attr('stroke-width', 2)
-  //     .attr('stroke-dasharray', '7px 2px')
-  //     .attr('stroke', '#000')
-  //     .style('opacity', 1);
+    // 5. position tooltipLine
+    tooltipLine
+      .attr('x1', xScale(closestXValue))
+      .attr('x2', xScale(closestXValue))
+      .attr('y1', 0)
+      .attr('y2', dimensions.boundedHeight)
+      .attr('stroke-width', 2)
+      .attr('stroke-dasharray', '7px 2px')
+      .attr('stroke', '#000')
+      .style('opacity', 1);
 
-  //   // 7. add value for each active state to the tooltip
+    // 6. add value for each active country to the tooltip
 
-  //   activeStates.forEach(element => {
-  //     // a) get the data for the specific state filtered on that specific day
-  //     const point = dataset
-  //       .filter(d => stateCodeAccessor(d) == element)
-  //       .filter(d => d.date == closestDate.date);
+    activeCountries.forEach(element => {
+      // a) get the data for the specific country filtered on that specific day
+      const point = dataset
+        .filter(d => countryCodeAccessor(d) == element)
+        .filter(d => d.date == closestDate.date);
 
-  //     const yValue = yAccessor(point[0]);
-  //     const xValue = xAccessor(point[0]);
-  //     const stateName = stateNameAccessor(point[0]);
+      const yValue = yAccessor(point[0]);
+      const xValue = xAccessor(point[0]);
+      const countryName = countryNameAccessor(point[0]);
 
-  //     const getColor = _code => {
-  //       if (_code == 'Nacional') {
-  //         return '#171717';
-  //       } else {
-  //         return colorScale(stateCodeAccessor(point[0]));
-  //       }
-  //     };
+      const getColor = _code => {
+        if (_code == 'LATAM') {
+          return '#171717';
+        } else {
+          return colorScale(countryCodeAccessor(point[0]));
+        }
+      };
 
-  //     // add data to tooltip table
-  //     const pointInfo = tooltipContent
-  //       .append('tr')
-  //       .attr('class', 'tooltip_state');
+      // add data to tooltip table
+      const pointInfo = tooltipContent
+        .append('tr')
+        .attr('class', 'tooltip_state');
 
-  //     pointInfo
-  //       .append('td')
-  //       .attr('class', 'tooltip_state_name')
-  //       .html(() => {
-  //         if (stateName == 'Nacional') {
-  //           return nationalSpelling;
-  //         } else {
-  //           return stateName;
-  //         }
-  //       })
-  //       .style('color', getColor(element));
+      pointInfo
+        .append('td')
+        .attr('class', 'tooltip_state_name')
+        .html(() => {
+          if (countryName == 'LATAM') {
+            return regionalSpelling;
+          } else {
+            return countryName;
+          }
+        })
+        .style('color', getColor(element));
 
-  //     pointInfo
-  //       .append('td')
-  //       .attr('class', 'tooltip_value')
-  //       .html(() => {
-  //         const suffix = usePercentage ? '%' : '';
-  //         return yValue.toFixed(1) + suffix;
-  //       });
+      pointInfo
+        .append('td')
+        .attr('class', 'tooltip_value')
+        .html(() => {
+          const suffix = usePercentage ? '%' : '';
+          return yValue.toFixed(1) + suffix;
+        });
 
-  //     // create a temporary dot on the line chat for that day
-  //     bounds
-  //       .append('circle')
-  //       .attr('cx', xScale(xValue))
-  //       .attr('cy', yScale(yValue))
-  //       .attr('r', 7)
-  //       .attr('fill', getColor(element))
-  //       .attr('class', `intersection_${chartKeyword}`);
-  //   });
-  // }
+      // create a temporary dot on the line chat for that day
+      bounds
+        .append('circle')
+        .attr('cx', xScale(xValue))
+        .attr('cy', yScale(yValue))
+        .attr('r', 7)
+        .attr('fill', getColor(element))
+        .attr('class', `intersection_${chartKeyword}`);
+    });
+  }
 
-  // // pause
-  // function onMouseLeave() {
-  //   activeStates = ['Nacional'];
-  //   tooltip.style('opacity', 0);
-  //   tooltipLine.style('opacity', 1);
-  //   bounds.selectAll(`intersection_${keyword}`).remove();
-  // }
+  function onMouseLeave() {
+    const activeCountries = useRegion ? ['LATAM'] : [];
+    tooltip.style('opacity', 0);
+    tooltipLine.style('opacity', 0);
+    bounds.selectAll(`intersection_${chartKeyword}`).remove();
+  }
 }
