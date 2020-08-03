@@ -17,9 +17,8 @@ async function indexLineChart_LATAM({
   setLocale();
 
   // 1. Get data
-  // TODO replace with latest data once it works
   const dataset = await d3.csv(
-    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/latam_working.csv`
+    `https://raw.githubusercontent.com/lennymartinez/covid_latam/master/data/latam_latest_2.csv`
   );
 
   // set data accessors
