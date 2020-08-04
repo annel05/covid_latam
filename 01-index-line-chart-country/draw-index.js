@@ -99,7 +99,8 @@ async function indexLineChart({
     .axisBottom()
     .scale(xScale)
     .tickSize(-dimensions.boundedHeight)
-    .tickFormat(d3.timeFormat('%d %b'));
+    .tickFormat(d3.timeFormat('%d %b'))
+    .ticks(7);
 
   const xAxis = bounds
     .append('g')
@@ -398,7 +399,7 @@ async function indexLineChart({
 
   // pause
   function onMouseLeave() {
-    activeStates = ['Nacional'];
+    const activeStates = ['Nacional'];
     tooltip.style('opacity', 0);
     tooltipLine.style('opacity', 0);
     bounds.selectAll(`.intersection_${chartKeyword}`).remove();
