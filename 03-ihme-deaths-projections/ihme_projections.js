@@ -1,4 +1,4 @@
-async function PolicyIndexCountry(_country) {
+async function ihmeChart() {
   // 0. check for language locale
   setLocale();
 
@@ -13,17 +13,27 @@ async function PolicyIndexCountry(_country) {
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d['date']);
   const countryAccessor = d => d.location_name;
+  const locationIDAccessor = d => d.location_id;
   const upperProjectionAccessor = d => +d.deaths_upper_smoothed;
   const lowerProjectionAccessor = d => +d.deaths_lower_smoothed;
 
   // sorting and organizing data
   const datasetByCountry = d3.nest().key(countryAccessor).entries(dataset);
 
-  // TODO add all the countries once this works for Mexico
+  const cutoffString = '2020-07-18';
+  const cutoffDate = dateParser(cutoffString);
 
-  country_list = ['Mexico'];
-  const country_data = datasetByCountry.filter(d =>
-    country_list.some(i => d.key == i)
+  countryWatchList = [
+    'Mexico',
+    'Brazil',
+    'Chile',
+    'Colombia',
+    'Dominican Republic',
+    'Argentina',
+  ].sort();
+
+  const countryData = datasetByCountry.filter(d =>
+    countryWatchList.some(i => d.key == i)
   );
 
   // 2. create dimensions
@@ -76,10 +86,10 @@ async function PolicyIndexCountry(_country) {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
-  const countryData = dataset.filter(d =>
-    country_list.some(i => d.location_name == i)
-  );
-  // const colorScale = d3.scaleOrdinal().domain(stateCodes).range(colorGroup);
+  const colorScale = d3
+    .scaleOrdinal()
+    .domain(countryWatchList)
+    .range(colorGroup);
 
   // 5. draw peripherals -- part 1
   const yAxisGenerator = d3
@@ -122,33 +132,45 @@ async function PolicyIndexCountry(_country) {
     .y1(d => yScale(upperProjectionAccessor(d)));
 
   // draw area test
-  bounds
-    .append('path')
-    .attr('fill', '#bada55')
-    .attr('fill-opacity', 0.3)
-    .attr('stroke', 'none')
-    .attr('d', areaGenerator(country_data[0].values));
+  // bounds
+  //   .append('path')
+  //   .attr('fill', '#bada55')
+  //   .attr('fill-opacity', 0.3)
+  //   .attr('stroke', 'none')
+  //   .attr('d', areaGenerator(countryData[0].values));
 
-  const mexico = country_data[0].values;
-  projections = [];
-  mexico.forEach;
-  console.log();
-  bounds
-    .selectAll('.countries')
-    .data(country_data)
-    .enter()
-    .append('path')
-    .attr('fill', 'none')
-    .attr('stroke-width', 1.25)
-    .attr('stroke', '#d2d3d4')
-    .attr('d', d => lineGenerator(d.values))
-    .attr('class', d => `${d.key}`);
+  countryWatchList.forEach(element => {
+    // keep only data for 1 country
+    const countrySpecific = countryData.filter(d => d.key == element);
+    const country = countrySpecific[0].values;
+    // locationID will be used for classes and ids to select the country since names are messier to work with
+    const locationID = locationIDAccessor(country[0]);
 
-  // const tooltipLine = bounds
-  //   .append('line')
-  //   .attr('class', '.tooltipLine_policy');
+    // segment data into real and projection
+    const realData = country.filter(d => xAccessor(d) <= cutoffDate);
+    const projectionData = country.filter(d => xAccessor(d) > cutoffDate);
 
-  // // This function draws the temporary state line given a state code.
+    // TODO draw path for real data
+
+    // draw path for projection
+    bounds
+      .append('path')
+      .attr('fill', 'none')
+      .attr('class', `country_${locationID} projectionData`)
+      .attr('id', `country_${locationID}_projection`)
+      .attr('stroke-width', 1.25)
+      .attr('stroke', '#d2d3d4')
+      .attr('stroke-dasharray', '9px 2px')
+      .attr('d', d => lineGenerator(projectionData));
+  });
+
+  // TODO add a vertical line for the cutoffDate
+
+  const tooltipLine = bounds
+    .append('line')
+    .attr('class', '.tooltipLine_policy');
+
+  // This function draws the temporary state line given a state code.
   // const addStateLine = _stateCode => {
   //   const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
 
@@ -362,5 +384,4 @@ async function PolicyIndexCountry(_country) {
   //   }
   // }
 }
-
-PolicyIndexCountry('bolivia');
+ihmeChart();
