@@ -23,13 +23,16 @@
       <!-- copy after this -->
       <div class="row">
         <div class="col-md-9">
-          <figure id="wrapper_policy" class="lenny_chartWrapper">
+          <figure id="wrapper_positivity-latam" class="lenny_chartWrapper">
             <!-- start tooltip -->
-            <div id="tooltip_policy" class="lenny_chartTooltip">
-              <div id="tooltipHeader_policy" class="lenny_tooltipHeader">
+            <div id="tooltip_positivity-latam" class="lenny_chartTooltip">
+              <div
+                id="tooltipHeader_positivity-latam"
+                class="lenny_tooltipHeader"
+              >
                 <span></span>
               </div>
-              <table id="tooltipContent_policy">
+              <table id="tooltipContent_positivity-latam">
                 <tr></tr>
               </table>
             </div>
@@ -37,9 +40,15 @@
           </figure>
         </div>
         <div class="col-md-3">
-          <div class="lenny_stateContainer" id="countryContainer_policy">
-            <div id="countryWrapper_policy" class="lenny_stateWrapper">
-              <ul id="countryList_policy"></ul>
+          <div
+            class="lenny_stateContainer"
+            id="countryContainer_positivity-latam"
+          >
+            <div
+              id="countryWrapper_positivity-latam"
+              class="lenny_stateWrapper"
+            >
+              <ul id="countryList_positivity-latam"></ul>
             </div>
           </div>
         </div>
@@ -51,11 +60,11 @@
     <script src="./draw-index-latam.js"></script>
     <script>
       indexLineChart_LATAM({
-        yVariable: 'policy_index',
-        useRegion: false,
+        yVariable: 'testpositivity_rate',
+        useRegion: true,
         useBaseline: false,
-        usePercentage: false,
-        chartKeyword: 'policy',
+        usePercentage: true,
+        chartKeyword: 'positivity-latam',
       });
     </script>
   </body>

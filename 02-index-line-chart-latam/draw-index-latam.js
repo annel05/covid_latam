@@ -392,6 +392,6 @@ async function indexLineChart_LATAM({
     const activeCountries = useRegion ? ['LATAM'] : [];
     tooltip.style('opacity', 0);
     tooltipLine.style('opacity', 0);
-    bounds.selectAll(`intersection_${chartKeyword}`).remove();
+    bounds.selectAll(`.intersection_${chartKeyword}`).remove();
   }
 }
