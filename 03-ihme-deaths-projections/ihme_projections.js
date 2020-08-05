@@ -6,26 +6,24 @@ async function ihmeChart() {
   const dataset = await d3.csv(
     `./../data/ihme/Reference_hospitalization_all_locs.csv`
   );
-  // TODO find and replace Bolivia's long name with the short name right at the start so we can use "Bolivia" instead of long stuff.
-  const replace = dataset.filter(d => (d.location_name == 'Bolivia (Plurinational State of)'));
-  replace.forEach(i => { i.location_name = 'Bolivia' });
-  console.log(replace);
+
+  const replace = dataset.filter(
+    d => d.location_name == 'Bolivia (Plurinational State of)'
+  );
+  replace.forEach(i => {
+    i.location_name = 'Bolivia';
+  });
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.deaths_mean_smoothed;
   const dateParser = d3.timeParse('%Y-%m-%d');
   const xAccessor = d => dateParser(d['date']);
-  const countryAccessor = d => d.location_name;
+  const countryNameAccessor = d => d.location_name;
   const locationIDAccessor = d => d.location_id;
   const upperProjectionAccessor = d => +d.deaths_upper_smoothed;
   const lowerProjectionAccessor = d => +d.deaths_lower_smoothed;
 
   // sorting and organizing data
-  const datasetByCountry = d3.nest().key(countryAccessor).entries(dataset);
-
-  const cutoffString = '2020-07-18';
-  const cutoffDate = dateParser(cutoffString);
-
   countryWatchList = [
     'Mexico',
     'Brazil',
@@ -33,11 +31,20 @@ async function ihmeChart() {
     'Colombia',
     'Dominican Republic',
     'Argentina',
+    'Bolivia',
   ].sort();
 
-  const countryData = datasetByCountry.filter(d =>
-    countryWatchList.some(i => d.key == i)
+  const countryData = dataset.filter(d =>
+    countryWatchList.some(i => countryNameAccessor(d) == i)
   );
+
+  const datasetByCountry = d3
+    .nest()
+    .key(countryNameAccessor)
+    .entries(countryData);
+
+  const cutoffString = '2020-07-18';
+  const cutoffDate = dateParser(cutoffString);
 
   // 2. create dimensions
   const width = document.getElementById('wrapper_policy_main').parentElement
@@ -71,16 +78,11 @@ async function ihmeChart() {
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
 
-  // const listeningRect = bounds
-  //   .append('rect')
-  //   .attr('class', 'listening-rect')
-  //   .attr('width', dimensions.boundedWidth)
-  //   .attr('height', dimensions.boundedHeight);
-
   // 4. create scales
+
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(dataset, yAccessor)])
+    .domain([0, d3.max(countryData, yAccessor)])
     .range([dimensions.boundedHeight, 0])
     .nice();
 
@@ -134,34 +136,26 @@ async function ihmeChart() {
     .y0(d => yScale(lowerProjectionAccessor(d)))
     .y1(d => yScale(upperProjectionAccessor(d)));
 
-  // draw area test
-  // bounds
-  //   .append('path')
-  //   .attr('fill', '#bada55')
-  //   .attr('fill-opacity', 0.3)
-  //   .attr('stroke', 'none')
-  //   .attr('d', areaGenerator(countryData[0].values));
-
   countryWatchList.forEach(element => {
     // keep only data for 1 country
-    const countrySpecific = countryData.filter(d => d.key == element);
+    const countrySpecific = datasetByCountry.filter(d => d.key == element);
     const country = countrySpecific[0].values;
     // locationID will be used for classes and ids to select the country since names are messier to work with
     const locationID = locationIDAccessor(country[0]);
 
     // segment data into real and projection
-    const realData = country.filter(d => xAccessor(d) <= cutoffDate);
+    const confirmedData = country.filter(d => xAccessor(d) <= cutoffDate);
     const projectionData = country.filter(d => xAccessor(d) > cutoffDate);
 
-    // TODO draw path for real data
+    // draw path for real confirmed/real data
     bounds
       .append('path')
       .attr('fill', 'none')
-      .attr('class', `country_${locationID} projectionData`)
-      .attr('id', `country_${locationID}_projection`)
+      .attr('class', `country_${locationID} confirmedData`)
+      .attr('id', `country_${locationID}_confirmed`)
       .attr('stroke-width', 1.25)
       .attr('stroke', '#d2d3d4')
-      .attr('d', d => lineGenerator(realData));
+      .attr('d', d => lineGenerator(confirmedData));
 
     // draw path for projection
     bounds
@@ -171,40 +165,59 @@ async function ihmeChart() {
       .attr('id', `country_${locationID}_projection`)
       .attr('stroke-width', 1.25)
       .attr('stroke', '#d2d3d4')
-      .attr('stroke-dasharray', '9px 2px')
+      .attr('stroke-dasharray', '7px 2px')
       .attr('d', d => lineGenerator(projectionData));
   });
 
-  // TODO add a vertical line for the cutoffDate
+  const projectBoundaries = function () {
+    // TODO select #cutoffDate_line and remove()
+    // TODO select #projectionBox and remove()
+    // TODO draw projectionBox: Rectangle with grey low opacity. X1 is cutoffdate, y1 is top ?. Width is something? xScale.range()[1] - xScale(cutoffDate) and height is dimensions.boundedHeight
+
     bounds
-    .append('line')
-		.attr("x1", xScale(cutoffDate)) 
-		.attr("x2", xScale(cutoffDate)) 
-		.attr("y1", 0)
-    .attr("y2", dimensions.boundedHeight)
-    .attr('stroke', 'cornflowerblue');
+      .append('line')
+      .attr('x1', xScale(cutoffDate))
+      .attr('x2', xScale(cutoffDate))
+      .attr('y1', 0)
+      .attr('y2', dimensions.boundedHeight)
+      .attr('id', 'cutoffDate_line')
+      .attr('stroke', 'cornflowerblue');
+  };
+
+  projectBoundaries();
 
   const tooltipLine = bounds
     .append('line')
     .attr('class', '.tooltipLine_policy');
 
-  // This function draws the temporary state line given a state code.
-  // const addStateLine = _stateCode => {
-  //   const stateData = dataset.filter(d => stateCodeAccessor(d) == _stateCode);
+  // TODO function for adding active Countries
+  const activateCountry = _locationID => {
+    // select data from all the rows we already filtered
+    const countrySpecific = countryData.filter(
+      d => locationIDAccessor(d) == _locationID
+    );
+    // draw area
+    bounds
+      .append('path')
+      .attr('fill', colorScale(countryNameAccessor(countrySpecific[0])))
+      .attr('fill-opacity', 0.15)
+      .attr('stroke', 'none')
+      .attr('d', areaGenerator(countrySpecific));
+    // TODO draw real line
+    // TODO draw projection line
+    projectBoundaries();
+  };
 
-  //   bounds
-  //     .append('path')
-  //     .attr('class', `${_stateCode}_temp_policy active_policy`)
-  //     .attr('fill', 'none')
-  //     .attr('stroke', colorScale(_stateCode))
-  //     .attr('stroke-width', 3)
-  //     .attr('d', () => lineGenerator(stateData));
-  // };
+  activateCountry(111);
+  const ownCountries = ['Mexico', 'Brazil', 'Bolivia', 'Chile'];
+  const ownCountryIdArray = [];
+  ownCountries.forEach(_element => {
+    // TODO filter data for that country
+    // TODO get the locationID for the first row
+    // TODO push locationIDs to a new array
+  });
 
-  // addStateLine();
-  // addStateLine(lastRankCode);
-
-  // // 7. act interactivity
+  // 7. act interactivity
 
   // const state_list = d3
   //   .select('#state_list_policy')
@@ -225,6 +238,12 @@ async function ihmeChart() {
   //   .attr('class', 'input_label')
   //   .attr('for', d => `${stateCodeAccessor(d.values[0])}_policy`)
   //   .html(d => stateAccessor(d.values[0]));
+
+  ownCountryIdArray.forEach(_element => {
+    activateCountry(_element);
+    // TODO future -- checkbox clicked
+    // TODO future -- label active
+  });
 
   // state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
   // state_list
