@@ -7,6 +7,9 @@ async function ihmeChart() {
     `./../data/ihme/Reference_hospitalization_all_locs.csv`
   );
   // TODO find and replace Bolivia's long name with the short name right at the start so we can use "Bolivia" instead of long stuff.
+  const replace = dataset.filter(d => (d.location_name == 'Bolivia (Plurinational State of)'));
+  replace.forEach(i => { i.location_name = 'Bolivia' });
+  console.log(replace);
 
   // data accessors, shorthand for different columns
   const yAccessor = d => +d.deaths_mean_smoothed;
@@ -151,6 +154,14 @@ async function ihmeChart() {
     const projectionData = country.filter(d => xAccessor(d) > cutoffDate);
 
     // TODO draw path for real data
+    bounds
+      .append('path')
+      .attr('fill', 'none')
+      .attr('class', `country_${locationID} projectionData`)
+      .attr('id', `country_${locationID}_projection`)
+      .attr('stroke-width', 1.25)
+      .attr('stroke', '#d2d3d4')
+      .attr('d', d => lineGenerator(realData));
 
     // draw path for projection
     bounds
@@ -165,6 +176,13 @@ async function ihmeChart() {
   });
 
   // TODO add a vertical line for the cutoffDate
+    bounds
+    .append('line')
+		.attr("x1", xScale(cutoffDate)) 
+		.attr("x2", xScale(cutoffDate)) 
+		.attr("y1", 0)
+    .attr("y2", dimensions.boundedHeight)
+    .attr('stroke', 'cornflowerblue');
 
   const tooltipLine = bounds
     .append('line')
