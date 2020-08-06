@@ -10,8 +10,8 @@ async function ihmeChart() {
   const replace = dataset.filter(
     d => d.location_name == 'Bolivia (Plurinational State of)'
   );
-  replace.forEach(i => {
-    i.location_name = 'Bolivia';
+  replace.forEach(_element => {
+    _element.location_name = 'Bolivia';
   });
 
   // data accessors, shorthand for different columns
@@ -82,7 +82,7 @@ async function ihmeChart() {
 
   const yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(countryData, yAccessor)])
+    .domain([0, d3.max(countryData, upperProjectionAccessor)])
     .range([dimensions.boundedHeight, 0])
     .nice();
 
@@ -171,8 +171,19 @@ async function ihmeChart() {
 
   const projectBoundaries = function () {
     // TODO select #cutoffDate_line and remove()
+    d3.select('#cutOffDate_line').remove()
     // TODO select #projectionBox and remove()
+    d3.select('#projectionBox').remove()
     // TODO draw projectionBox: Rectangle with grey low opacity. X1 is cutoffdate, y1 is top ?. Width is something? xScale.range()[1] - xScale(cutoffDate) and height is dimensions.boundedHeight
+    bounds
+      .append('rect')
+      .attr('id', '#projectionBox')
+      .attr('fill', '#eeeeee')
+      .attr('opacity', '0.15')
+      .attr('x', xScale(cutoffDate))
+      .attr('y', 0)
+      .attr('width', xScale.range()[1] - xScale(cutoffDate))
+      .attr('height', dimensions.boundedHeight);
 
     bounds
       .append('line')
@@ -196,6 +207,9 @@ async function ihmeChart() {
     const countrySpecific = countryData.filter(
       d => locationIDAccessor(d) == _locationID
     );
+    // segment data into real and projection
+    const confirmedData = countrySpecific.filter(d => xAccessor(d) <= cutoffDate);
+    const projectionData = countrySpecific.filter(d => xAccessor(d) > cutoffDate);
     // draw area
     bounds
       .append('path')
@@ -203,18 +217,39 @@ async function ihmeChart() {
       .attr('fill-opacity', 0.15)
       .attr('stroke', 'none')
       .attr('d', areaGenerator(countrySpecific));
-    // TODO draw real line
+    // TODO draw confirmed line
+    bounds
+      .append('path')
+      .attr('fill', 'none')
+      .attr('class', `country_${_locationID} confirmedData`)
+      .attr('id', `country_${_locationID}_confirmed`)
+      .attr('stroke-width', 1.25)
+      .attr('stroke', colorScale(countryNameAccessor(countrySpecific[0])))
+      .attr('d', d => lineGenerator(confirmedData));
     // TODO draw projection line
+    bounds
+      .append('path')
+      .attr('fill', 'none')
+      .attr('class', `country_${_locationID} projectionData`)
+      .attr('id', `country_${_locationID}_projection`)
+      .attr('stroke-width', 1.25)
+      .attr('stroke', colorScale(countryNameAccessor(countrySpecific[0])))
+      .attr('stroke-dasharray', '7px 2px')
+      .attr('d', d => lineGenerator(projectionData));
+
     projectBoundaries();
   };
 
-  activateCountry(111);
+  activateCountry(98);
   const ownCountries = ['Mexico', 'Brazil', 'Bolivia', 'Chile'];
   const ownCountryIdArray = [];
   ownCountries.forEach(_element => {
     // TODO filter data for that country
+    const filtered = countryData.filter(d => countryNameAccessor(d) == _element);
     // TODO get the locationID for the first row
+    const filteredId = locationIDAccessor(filtered[0]);
     // TODO push locationIDs to a new array
+    ownCountryIdArray.push(filteredId);
   });
 
   // 7. act interactivity
