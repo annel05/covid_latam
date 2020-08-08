@@ -1,27 +1,23 @@
-async function drawMap() {
+async function drawMap({metric}) {
   // 1. load data
   // load country shapes
   // TODO change to latam geojson
   const countryShapes = await d3.json('./../data/world-geojson.json');
   console.log(countryShapes);
 
-  // TODO load JHU dataset
-  // step 1. calculate yesterday's date
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const formatTime = d3.timeFormat('%m-%d-%Y');
-
-  // step 2. turn it into a string of format mm-dd-yyyy
-  const date = formatTime(yesterday);
+  // load JHU dataset
+  let urlData;
+  if (metric == 'deaths') {
+    // load deaths time series
+    urlData =
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv';
+  } else {
+    // load cases time series
+    urlData =
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv';
+  }
   // step 3. feed it into url
-  const dataset = await d3.csv(
-    `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/${date}.csv`
-  );
-
-  // data accessors
-  const countryNameAccessor = d.properties['Country_Region'];
-  const provinceNameAccessor = d.properties['Province_State'];
-  const combinedKeyAccessor = d.properties['Combined_Key'];
+  const dataset = await d3.csv(urlData);
+  
 }
-drawMap();
+drawMap({metric: 'deaths'});
