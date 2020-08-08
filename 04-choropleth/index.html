@@ -23,11 +23,15 @@
     <div class="container">
       <!-- copy after this -->
       <div class="row">
-        <div class="col-md-9"></div>
+        <div class="col-md-9">
+          <figure id="wrapper_deathRate"></figure>
+        </div>
       </div>
       <!-- copy before this -->
       <script src="./choropleth-map.js"></script>
-      <script></script>
+      <script>
+        drawMap({metric: 'deaths', chartKeyword: 'deathRate'});
+      </script>
     </div>
   </body>
 </html>

@@ -39,10 +39,9 @@ async function indexLineChart_LATAM({
 
   // 2. create dimensions
   const wrapperElt = `wrapper_${chartKeyword}`;
-  const width = document.getElementById(wrapperElt).parentElement.clientWidth;
 
   let dimensions = {
-    width: width,
+    width: document.getElementById(wrapperElt).parentElement.clientWidth,
     height: 600,
     margin: {top: 15, right: 15, bottom: 40, left: 60},
   };

@@ -47,10 +47,10 @@ async function ihmeChart() {
   const cutoffDate = dateParser(cutoffString);
 
   // 2. create dimensions
-  const width = document.getElementById('wrapper_policy_main').parentElement
-    .clientWidth;
+
   let dimensions = {
-    width: width,
+    width: document.getElementById('wrapper_policy_main').parentElement
+      .clientWidth,
     height: 600,
     margin: {
       top: 15,
