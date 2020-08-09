@@ -2,7 +2,7 @@ async function drawMap({metric, chartKeyword}) {
   // 1. load data
   // load country shapes
   // TODO change to latam geojson
-  const countryShapes = await d3.json('./../data/world-geojson.json');
+  const countryShapes = await d3.json('./../data/map.geojson');
 
   // load JHU dataset
   let urlData;
@@ -21,7 +21,7 @@ async function drawMap({metric, chartKeyword}) {
 
   //  create data accessors
   const countryNameAccessor = d => d['Country/Region'];
-
+  const countryNameAccessorJson = d => d.properties['admin'];
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
@@ -32,6 +32,11 @@ async function drawMap({metric, chartKeyword}) {
     const country = populationData.filter(d => d['Country'] == _country);
     const population = country[0]['2019'];
     return +population;
+  };
+
+  const getMetric = _country => {
+    const country = countryData.filter(d => countryNameAccessor(d) == _country);
+    return latestMetricAccessor(country[0]);
   };
 
   // filter dataset to only keep rows of countries we care about
@@ -45,6 +50,7 @@ async function drawMap({metric, chartKeyword}) {
     'Colombia',
     'Brazil',
     'Trinidad and Tobago',
+    'Costa Rica',
     'Panama',
     'Nicaragua',
     'Honduras',
@@ -58,18 +64,12 @@ async function drawMap({metric, chartKeyword}) {
     'Dominican Republic',
     'Guatemala',
     'Haiti',
-    'Puerto Rico',
     'El Salvador',
   ].sort();
 
   const countryData = dataset.filter(d =>
     countryWatchList.some(i => countryNameAccessor(d) == i)
   );
-
-  const getMetric = _country => {
-    const country = countryData.filter(d => countryNameAccessor(d) == _country);
-    return latestMetricAccessor(country[0]);
-  };
 
   // 2. create dimensions
   const wrapperElt = `wrapper_${chartKeyword}`;
@@ -87,14 +87,12 @@ async function drawMap({metric, chartKeyword}) {
     dimensions.width - dimensions.margin.left - dimensions.margin.right;
 
   const sphere = {type: 'Sphere'};
-  const projection = d3
-    .geoEqualEarth()
-    .fitWidth(dimensions.boundedWidth, sphere);
+  const projection = d3.geoWinkel3().fitWidth(dimensions.boundedWidth, sphere);
 
   const pathGenerator = d3.geoPath(projection);
   const [[x0, y0], [x1, y1]] = pathGenerator.bounds(sphere);
 
-  dimensions.boundedHeight = y1;
+  dimensions.boundedHeight = y1 * 2;
   dimensions.height =
     dimensions.boundedHeight + dimensions.margin.top + dimensions.margin.bottom;
   // 3. draw canvas
@@ -111,25 +109,52 @@ async function drawMap({metric, chartKeyword}) {
       'transform',
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
-
+  const t = 'Costa Rica';
+  const a = getPopulation(t);
+  // const b = parseFloat(getPopulation(t));
+  console.table(a);
   // 4. create scales
-  const latestMetricValues = [];
-  const latestPopulation = [];
-  const metricRate = [];
-  const metricRateNormalized = [];
-  countryWatchList.forEach(element => {
-    // const metric = getMetric(element);
-    const metric = 0;
-    const population = getPopulation(element);
-    const rate = metric / parseFloat(population);
-    // latestMetricValues.push(metric);
-    latestPopulation.push(population);
-    metricRate.push(rate);
-    metricRateNormalized.push(rate * 100000);
+  // do the metric calculation.
+  const normalizedRates = [];
+  countryWatchList.forEach(_element => {
+    const a = getMetric(_element);
+    const b = parseFloat(getPopulation(_element));
+    const rate = a / b;
+    const rateNormalized = rate * 100000;
+    console.log(_element, rateNormalized);
+    normalizedRates.push(rateNormalized);
   });
-  console.log(countryWatchList);
-  console.log(latestPopulation);
-  console.log(latestMetricValues);
-  console.log(metricRate);
-  console.log(metricRateNormalized);
+  const metricValueExtent = d3.extent(normalizedRates);
+  const maxChange = d3.max([-metricValueExtent[0], metricValueExtent]);
+
+  const colorScale = d3
+    .scaleLinear()
+    .domain([-maxChange, 0, maxChange])
+    .range(['indigo', 'white', 'darkgreen']);
+
+  // 5. draw data
+
+  const earth = bounds
+    .append('path')
+    .attr('class', 'earth')
+    .attr('d', pathGenerator(sphere));
+
+  const graticuleJson = d3.geoGraticule10();
+  const graticule = bounds
+    .append('path')
+    .attr('class', 'graticule')
+    .attr('d', pathGenerator(graticuleJson));
+
+  const countries = bounds
+    .selectAll('.country')
+    .data(countryShapes.features)
+    .enter()
+    .append('path')
+    .attr('class', 'country')
+    .attr('d', pathGenerator)
+    .attr('fill', d => {
+      const countryName = countryNameAccessorJson(d);
+      // const measuredMetric = getMetric(countryName);
+      console.log(countryName);
+    });
 }
