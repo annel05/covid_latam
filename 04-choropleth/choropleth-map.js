@@ -39,7 +39,13 @@ async function drawMap({metric, chartKeyword}) {
     return latestMetricAccessor(country[0]);
   };
 
+  const computeNormalizedRate = _country => {
+    const rate = getMetric(_country) / parseFloat(getPopulation(_country));
+    return rate * 100000;
+  };
+
   // filter dataset to only keep rows of countries we care about
+  // TODO move this watchlist to the pais.js level since we use it often
   const countryWatchList = [
     'Mexico',
     'Ecuador',
@@ -109,28 +115,20 @@ async function drawMap({metric, chartKeyword}) {
       'transform',
       `translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`
     );
-  const t = 'Costa Rica';
-  const a = getPopulation(t);
-  // const b = parseFloat(getPopulation(t));
-  console.table(a);
+
   // 4. create scales
   // do the metric calculation.
   const normalizedRates = [];
   countryWatchList.forEach(_element => {
-    const a = getMetric(_element);
-    const b = parseFloat(getPopulation(_element));
-    const rate = a / b;
-    const rateNormalized = rate * 100000;
-    console.log(_element, rateNormalized);
+    const rateNormalized = computeNormalizedRate(_element);
     normalizedRates.push(rateNormalized);
   });
   const metricValueExtent = d3.extent(normalizedRates);
-  const maxChange = d3.max([-metricValueExtent[0], metricValueExtent]);
-
+  const maxChange = d3.max([-metricValueExtent[0], metricValueExtent[1]]);
   const colorScale = d3
     .scaleLinear()
-    .domain([-maxChange, 0, maxChange])
-    .range(['indigo', 'white', 'darkgreen']);
+    .domain([metricValueExtent[0], 0, metricValueExtent[1]])
+    .range(['darkgreen', 'white', 'indigo']);
 
   // 5. draw data
 
@@ -154,7 +152,7 @@ async function drawMap({metric, chartKeyword}) {
     .attr('d', pathGenerator)
     .attr('fill', d => {
       const countryName = countryNameAccessorJson(d);
-      // const measuredMetric = getMetric(countryName);
-      console.log(countryName);
+      console.log(countryName, colorScale(computeNormalizedRate(countryName)));
+      return colorScale(computeNormalizedRate(countryName));
     });
 }
