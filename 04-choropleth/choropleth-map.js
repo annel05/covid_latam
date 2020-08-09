@@ -93,12 +93,14 @@ async function drawMap({metric, chartKeyword}) {
     dimensions.width - dimensions.margin.left - dimensions.margin.right;
 
   const sphere = {type: 'Sphere'};
-  const projection = d3.geoWinkel3().fitWidth(dimensions.boundedWidth, sphere);
+  const projection = d3
+    .geoMercator()
+    .fitWidth(dimensions.boundedWidth, countryShapes);
 
   const pathGenerator = d3.geoPath(projection);
-  const [[x0, y0], [x1, y1]] = pathGenerator.bounds(sphere);
+  const [[x0, y0], [x1, y1]] = pathGenerator.bounds(countryShapes);
 
-  dimensions.boundedHeight = y1 * 2;
+  dimensions.boundedHeight = y1;
   dimensions.height =
     dimensions.boundedHeight + dimensions.margin.top + dimensions.margin.bottom;
   // 3. draw canvas
@@ -137,11 +139,11 @@ async function drawMap({metric, chartKeyword}) {
     .attr('class', 'earth')
     .attr('d', pathGenerator(sphere));
 
-  const graticuleJson = d3.geoGraticule10();
-  const graticule = bounds
-    .append('path')
-    .attr('class', 'graticule')
-    .attr('d', pathGenerator(graticuleJson));
+  // const graticuleJson = d3.geoGraticule10();
+  // const graticule = bounds
+  //   .append('path')
+  //   .attr('class', 'graticule')
+  //   .attr('d', pathGenerator(graticuleJson));
 
   const countries = bounds
     .selectAll('.country')
@@ -152,7 +154,6 @@ async function drawMap({metric, chartKeyword}) {
     .attr('d', pathGenerator)
     .attr('fill', d => {
       const countryName = countryNameAccessorJson(d);
-      console.log(countryName, colorScale(computeNormalizedRate(countryName)));
       return colorScale(computeNormalizedRate(countryName));
     });
 }
