@@ -35,7 +35,7 @@ async function indexLineChart({
   const datasetByStateCode = d3.nest().key(stateCodeAccessor).entries(dataset);
   const national = datasetByStateCode.filter(d => d.key == 'Nacional');
   const states = datasetByStateCode.filter(d => d.key != 'Nacional');
-
+  console.log(states);
   // 2. create dimensions
   const wrapperElt = `wrapper_${chartKeyword}`;
   const width = document.getElementById(wrapperElt).parentElement.clientWidth;
@@ -165,6 +165,9 @@ async function indexLineChart({
   const statesRanked = d3.nest().key(metricAccessor).entries(latestData);
   const bestState = statesRanked.filter(d => d.key == 1);
   const worstState = statesRanked.filter(d => d.key == states.length);
+
+  console.log(worstState);
+
   const bestStateCode = stateCodeAccessor(bestState[0].values[0]);
   const worstStateCode = stateCodeAccessor(worstState[0].values[0]);
 
