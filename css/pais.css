@@ -9,6 +9,12 @@
 label {
   margin-left: 3px;
 }
+.tick line {
+  stroke: #171717;
+  stroke-dasharray: 1px 3px;
+  opacity: 0.75;
+}
+
 .x_axis .tick line {
   opacity: 0.3;
 }
@@ -19,11 +25,6 @@ label {
 
 .y_axis {
   font-size: 13px;
-}
-
-.tick line {
-  stroke: #d2d3d4;
-  stroke-dasharray: 4px 2px;
 }
 
 .state,
