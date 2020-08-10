@@ -204,7 +204,7 @@ async function indexLineChart_LATAM({
 
   countryList
     .append('label')
-    .attr('class', 'input_label;')
+    .attr('class', `input_label input_label_${chartKeyword}`)
     .attr('for', d => `${d.key}_${chartKeyword}`)
     .html(d => countryNameAccessor(d.values[0]));
 
@@ -241,6 +241,31 @@ async function indexLineChart_LATAM({
     }
   }
   // Toggle State Lines, part 3 end
+
+  // click on labels -- start
+  d3.selectAll(`.input_label_${chartKeyword}`).on('click', triggerStateLine);
+  function triggerStateLine() {
+    const inputLabel = d3.select(this);
+    const _name = inputLabel.attr('for');
+    const _countryCode = _name.split('_')[0];
+    const _inputBox = d3.select(`[name=${_name}]`);
+    const isBoxChecked = _inputBox.property('checked');
+    if (isBoxChecked) {
+      // this click means turns things off
+      _inputBox.property('checked', false);
+      const line = bounds.select(`#${_countryCode}_${chartKeyword}`);
+      line.remove();
+      inputLabel.style('color', '#000').style('font-weight', 'normal');
+    } else {
+      // this click means turns things on
+      _inputBox.property('checked', true);
+      addCountryLine(_countryCode);
+      inputLabel
+        .style('color', colorScale(_countryCode))
+        .style('font-weight', 'bold');
+    }
+  }
+  // click on labels -- end
 
   // Tooltip, part 1 start -- create listening rect and tooltip
 
@@ -354,11 +379,11 @@ async function indexLineChart_LATAM({
       // add data to tooltip table
       const pointInfo = tooltipContent
         .append('tr')
-        .attr('class', 'tooltip_state');
+        .attr('class', 'tooltip_country');
 
       pointInfo
         .append('td')
-        .attr('class', 'tooltip_state_name')
+        .attr('class', 'tooltip_country_name')
         .html(() => {
           if (countryName == 'LATAM') {
             return regionalSpelling;

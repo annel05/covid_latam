@@ -35,7 +35,6 @@ async function indexLineChart({
   const datasetByStateCode = d3.nest().key(stateCodeAccessor).entries(dataset);
   const national = datasetByStateCode.filter(d => d.key == 'Nacional');
   const states = datasetByStateCode.filter(d => d.key != 'Nacional');
-  console.log(states);
   // 2. create dimensions
   const wrapperElt = `wrapper_${chartKeyword}`;
   const width = document.getElementById(wrapperElt).parentElement.clientWidth;
@@ -165,9 +164,6 @@ async function indexLineChart({
   const statesRanked = d3.nest().key(metricAccessor).entries(latestData);
   const bestState = statesRanked.filter(d => d.key == 1);
   const worstState = statesRanked.filter(d => d.key == states.length);
-
-  console.log(worstState);
-
   const bestStateCode = stateCodeAccessor(bestState[0].values[0]);
   const worstStateCode = stateCodeAccessor(worstState[0].values[0]);
 
@@ -214,7 +210,7 @@ async function indexLineChart({
 
   stateList
     .append('label')
-    .attr('class', 'input_label')
+    .attr('class', `input_label input_label_${chartKeyword}`)
     .attr('for', d => `${d.key}_${chartKeyword}`)
     .html(d => stateNameAccessor(d.values[0]));
   // Toggle State Lines, part 1 end
@@ -250,6 +246,31 @@ async function indexLineChart({
     }
   }
   // Toggle State Lines, part 3 end
+
+  // click on labels -- start
+  d3.selectAll(`.input_label_${chartKeyword}`).on('click', triggerStateLine);
+  function triggerStateLine() {
+    const inputLabel = d3.select(this);
+    const _name = inputLabel.attr('for');
+    const _stateCode = _name.split('_')[0];
+    const _inputBox = d3.select(`[name=${_name}]`);
+    const isBoxChecked = _inputBox.property('checked');
+    if (isBoxChecked) {
+      // this click means turns things off
+      _inputBox.property('checked', false);
+      const line = bounds.select(`#${_stateCode}_${chartKeyword}`);
+      line.remove();
+      inputLabel.style('color', '#000').style('font-weight', 'normal');
+    } else {
+      // this click means turns things on
+      _inputBox.property('checked', true);
+      addStateLine(_stateCode);
+      inputLabel
+        .style('color', colorScale(_stateCode))
+        .style('font-weight', 'bold');
+    }
+  }
+  // click on labels -- end
 
   // Tooltip, part 1 start -- create listening rect and tooltip
 
