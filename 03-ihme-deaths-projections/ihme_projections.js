@@ -49,7 +49,7 @@ async function ihmeChart() {
   // 2. create dimensions
 
   let dimensions = {
-    width: document.getElementById('wrapper_policy_main').parentElement
+    width: document.getElementById('wrapper_ihme').parentElement
       .clientWidth,
     height: 600,
     margin: {
@@ -66,7 +66,7 @@ async function ihmeChart() {
 
   // 3. draw canvas
   const wrapper = d3
-    .select('#wrapper_policy_main')
+    .select('#wrapper_ihme')
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -199,7 +199,7 @@ async function ihmeChart() {
 
   const tooltipLine = bounds
     .append('line')
-    .attr('class', '.tooltipLine_policy');
+    .attr('class', '.tooltipLine_ihme');
 
   // TODO function for adding active Countries
   const activateCountry = _locationID => {

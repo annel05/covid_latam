@@ -1,11 +1,11 @@
 .chart {
     text-align: left;
   }
-  #wrapper_policy_main {
+  #wrapper_ihme {
     position: relative;
     font-family: 'Open Sans', sans-serif;
   }
-  #wrapper_policy_main .domain {
+  #wrapper_ihme .domain {
     display: none;
   }
   
@@ -14,26 +14,31 @@
   }
   
   .tick line {
-    stroke: #d2d3d4;
-    stroke-dasharray: 4px 2px;
+    stroke: #171717;
+    stroke-dasharray: 1px 3px;
+    opacity: 0.75;
   }
   
   .x_axis .tick text {
     font-size: 11px;
   }
-  
-  #state_wrapper_policy {
+
+  .x_axis .tick line {
+    opacity: 0.3;
+  }  
+
+  #countryWrapper_ihme {
     height: 520px;
     overflow: hidden;
     overflow-y: scroll;
   }
   
-  #state_list_policy {
+  #countryList_ihme {
     list-style: none;
     margin-top: 20px;
   }
   
-  #state_container_policy {
+  #countryContainter_ihme {
     background-color: #f2f2f2;
     height: 550px;
   }
@@ -43,7 +48,7 @@
     z-index: 0;
   }
   
-  #tooltip_policy {
+  #tooltip_ihme {
     position: absolute;
     padding: 7px;
     background-color: white;
@@ -52,15 +57,15 @@
     font-weight: 700;
   }
   
-  #tooltipHeader_policy {
+  #tooltipHeader_ihme {
     font-weight: bold;
     font-size: 1.5em;
   }
   
-  #tooltipContent_policy .tooltip_state {
+  #tooltipContent_ihme .tooltip_state {
     font-weight: 700;
   }
-  #tooltipContent_policy .tooltip_value {
+  #tooltipContent_ihme .tooltip_value {
     padding-left: 30px;
     font-weight: 700;
     text-align: right;
