@@ -91,7 +91,7 @@ let setLocale = () => {
   }
 };
 
-const colorGroup = [
+let colorGroup = [
   '#4A72B8',
   '#ED7D30',
   '#A5A5A5',
@@ -125,3 +125,30 @@ const colorGroup = [
   '#213964',
   '#4A72B8',
 ];
+
+let countryWatchList = [
+  'Mexico',
+  'Ecuador',
+  'Chile',
+  'Argentina',
+  'Bolivia',
+  'Guyana',
+  'Colombia',
+  'Brazil',
+  'Trinidad and Tobago',
+  'Costa Rica',
+  'Panama',
+  'Nicaragua',
+  'Honduras',
+  'Paraguay',
+  'Suriname',
+  'Uruguay',
+  'Peru',
+  'Venezuela',
+  'Belize',
+  'Cuba',
+  'Dominican Republic',
+  'Guatemala',
+  'Haiti',
+  'El Salvador',
+].sort();

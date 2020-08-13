@@ -46,32 +46,6 @@ async function drawMap({metric, chartKeyword}) {
 
   // filter dataset to only keep rows of countries we care about
   // TODO move this watchlist to the pais.js level since we use it often
-  const countryWatchList = [
-    'Mexico',
-    'Ecuador',
-    'Chile',
-    'Argentina',
-    'Bolivia',
-    'Guyana',
-    'Colombia',
-    'Brazil',
-    'Trinidad and Tobago',
-    'Costa Rica',
-    'Panama',
-    'Nicaragua',
-    'Honduras',
-    'Paraguay',
-    'Suriname',
-    'Uruguay',
-    'Peru',
-    'Venezuela',
-    'Belize',
-    'Cuba',
-    'Dominican Republic',
-    'Guatemala',
-    'Haiti',
-    'El Salvador',
-  ].sort();
 
   const countryData = dataset.filter(d =>
     countryWatchList.some(i => countryNameAccessor(d) == i)

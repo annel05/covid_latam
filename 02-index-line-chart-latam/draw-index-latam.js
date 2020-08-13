@@ -244,6 +244,7 @@ async function indexLineChart_LATAM({
 
   // click on labels -- start
   d3.selectAll(`.input_label_${chartKeyword}`).on('click', triggerStateLine);
+
   function triggerStateLine() {
     const inputLabel = d3.select(this);
     const _name = inputLabel.attr('for');

@@ -1,8 +1,9 @@
-async function ihmeChart() {
+async function ihmeChart({chartKeyword, cutoffDate}) {
   // 0. check for language locale
   setLocale();
 
   // 1. access data
+  // TODO use absolute url from github
   const dataset = await d3.csv(
     `./../data/ihme/Reference_hospitalization_all_locs.csv`
   );
@@ -24,18 +25,33 @@ async function ihmeChart() {
   const lowerProjectionAccessor = d => +d.deaths_lower_smoothed;
 
   // sorting and organizing data
-  countryWatchList = [
+  const countryWatchListIHME = [
     'Mexico',
-    'Brazil',
+    'Ecuador',
     'Chile',
-    'Colombia',
-    'Dominican Republic',
     'Argentina',
     'Bolivia',
+    'Guyana',
+    'Colombia',
+    'Brazil',
+    'Trinidad and Tobago',
+    'Costa Rica',
+    'Panama',
+    'Nicaragua',
+    'Honduras',
+    'Paraguay',
+    'Suriname',
+    'Uruguay',
+    'Peru',
+    'Cuba',
+    'Dominican Republic',
+    'Guatemala',
+    'Haiti',
+    'El Salvador',
   ].sort();
 
   const countryData = dataset.filter(d =>
-    countryWatchList.some(i => countryNameAccessor(d) == i)
+    countryWatchListIHME.some(i => countryNameAccessor(d) == i)
   );
 
   const datasetByCountry = d3
@@ -43,14 +59,13 @@ async function ihmeChart() {
     .key(countryNameAccessor)
     .entries(countryData);
 
-  const cutoffString = '2020-07-18';
-  const cutoffDate = dateParser(cutoffString);
+  const cutoffDateDate = dateParser(cutoffDate);
 
   // 2. create dimensions
+  const wrapperElt = `wrapper_${chartKeyword}`;
 
   let dimensions = {
-    width: document.getElementById('wrapper_ihme').parentElement
-      .clientWidth,
+    width: document.getElementById(wrapperElt).parentElement.clientWidth,
     height: 600,
     margin: {
       top: 15,
@@ -66,7 +81,7 @@ async function ihmeChart() {
 
   // 3. draw canvas
   const wrapper = d3
-    .select('#wrapper_ihme')
+    .select(`#${wrapperElt}`)
     .append('svg')
     .attr('width', dimensions.width)
     .attr('height', dimensions.height);
@@ -91,9 +106,10 @@ async function ihmeChart() {
     .domain(d3.extent(dataset, xAccessor))
     .range([0, dimensions.boundedWidth]);
 
+  // TODO figure out why colors are showing up as grey??
   const colorScale = d3
     .scaleOrdinal()
-    .domain(countryWatchList)
+    .domain(countryWatchListIHME)
     .range(colorGroup);
 
   // 5. draw peripherals -- part 1
@@ -136,16 +152,19 @@ async function ihmeChart() {
     .y0(d => yScale(lowerProjectionAccessor(d)))
     .y1(d => yScale(upperProjectionAccessor(d)));
 
-  countryWatchList.forEach(element => {
+  countryWatchListIHME.forEach(element => {
     // keep only data for 1 country
     const countrySpecific = datasetByCountry.filter(d => d.key == element);
+    if (!countrySpecific[0]) {
+      console.log(element);
+    }
     const country = countrySpecific[0].values;
     // locationID will be used for classes and ids to select the country since names are messier to work with
     const locationID = locationIDAccessor(country[0]);
 
     // segment data into real and projection
-    const confirmedData = country.filter(d => xAccessor(d) <= cutoffDate);
-    const projectionData = country.filter(d => xAccessor(d) > cutoffDate);
+    const confirmedData = country.filter(d => xAccessor(d) <= cutoffDateDate);
+    const projectionData = country.filter(d => xAccessor(d) > cutoffDateDate);
 
     // draw path for real confirmed/real data
     bounds
@@ -180,15 +199,15 @@ async function ihmeChart() {
       .attr('id', '#projectionBox')
       .attr('fill', '#eeeeee')
       .attr('opacity', '0.15')
-      .attr('x', xScale(cutoffDate))
+      .attr('x', xScale(cutoffDateDate))
       .attr('y', 0)
-      .attr('width', xScale.range()[1] - xScale(cutoffDate))
+      .attr('width', xScale.range()[1] - xScale(cutoffDateDate))
       .attr('height', dimensions.boundedHeight);
 
     bounds
       .append('line')
-      .attr('x1', xScale(cutoffDate))
-      .attr('x2', xScale(cutoffDate))
+      .attr('x1', xScale(cutoffDateDate))
+      .attr('x2', xScale(cutoffDateDate))
       .attr('y1', 0)
       .attr('y2', dimensions.boundedHeight)
       .attr('id', 'cutoffDate_line')
@@ -197,9 +216,7 @@ async function ihmeChart() {
 
   projectBoundaries();
 
-  const tooltipLine = bounds
-    .append('line')
-    .attr('class', '.tooltipLine_ihme');
+  const tooltipLine = bounds.append('line').attr('class', '.tooltipLine_ihme');
 
   // TODO function for adding active Countries
   const activateCountry = _locationID => {
@@ -209,18 +226,20 @@ async function ihmeChart() {
     );
     // segment data into real and projection
     const confirmedData = countrySpecific.filter(
-      d => xAccessor(d) <= cutoffDate
+      d => xAccessor(d) <= cutoffDateDate
     );
     const projectionData = countrySpecific.filter(
-      d => xAccessor(d) > cutoffDate
+      d => xAccessor(d) > cutoffDateDate
     );
     // draw area
     bounds
       .append('path')
       .attr('fill', colorScale(countryNameAccessor(countrySpecific[0])))
       .attr('fill-opacity', 0.15)
+      .attr('id', `country_${_locationID}_area`)
       .attr('stroke', 'none')
       .attr('d', areaGenerator(countrySpecific));
+
     // draw confirmed line
     bounds
       .append('path')
@@ -260,206 +279,62 @@ async function ihmeChart() {
 
   // 7. act interactivity
 
-  // const state_list = d3
-  // .select('#state_list_policy')
-  // .selectAll('input')
-  // .data(states)
-  // .enter()
-  // .append('li')
-  // .attr('class', d => `${stateCodeAccessor(d.values[0])}_input`);
+  // Toggle Country Lines, part 1 start -- populate country checklist
+  const countryList = d3
+    .select(`#countryList_${chartKeyword}`)
+    .selectAll('input')
+    .data(datasetByCountry)
+    .enter()
+    .append('li')
+    .attr('class', d => `country_${locationIDAccessor(d.values[0])}_input`);
 
-  // state_list
-  // .append('input')
-  // .attr('class', 'input_box_policy')
-  // .attr('type', 'checkbox')
-  // .attr('name', d => `${stateCodeAccessor(d.values[0])}_policy`);
+  countryList
+    .append('input')
+    .attr('class', `input_box_${chartKeyword}`)
+    .attr('type', 'checkbox')
+    .attr(
+      'name',
+      d => `country_${locationIDAccessor(d.values[0])}_${chartKeyword}`
+    );
 
-  // state_list
-  // .append('label')
-  // .attr('class', 'input_label')
-  // .attr('for', d => `${stateCodeAccessor(d.values[0])}_policy`)
-  // .html(d => stateAccessor(d.values[0]));
+  countryList
+    .append('label')
+    .attr('class', `input_label input_label_${chartKeyword}`)
+    .attr(
+      'for',
+      d => `country_${locationIDAccessor(d.values[0])}_${chartKeyword}`
+    )
+    .html(d => countryNameAccessor(d.values[0]));
 
   ownCountryIdArray.forEach(_element => {
     activateCountry(_element);
-    // TODO future -- checkbox clicked
-    // TODO future -- label active
+    const countrySelector = `country_${_element}_${chartKeyword}`;
+    // TODO find countryName based on location
+    const countryName = 'Mexico';
+    // checkbox clicked
+    d3.select(`[name=${countrySelector}]`).property('checked', true);
+    // label active
+    d3.select(`[for=${countrySelector}]`)
+      .style('color', colorScale(countryName))
+      .style('font-weight', 'bold');
   });
 
-  // state_list.select(`[name=${firstRankCode}_policy]`).property('checked', true);
-  // state_list
-  // .select(`[for=${firstRankCode}_policy]`)
-  // .style('color', colorScale(firstRankCode))
-  // .style('font-weight', 'bold');
+  d3.selectAll(`.input_box_${chartKeyword}`).on('input', toggleCountry);
 
-  // state_list.select(`[name=${lastRankCode}_policy]`).property('checked', true);
-  // state_list
-  // .select(`[for=${lastRankCode}_policy]`)
-  // .style('color', colorScale(lastRankCode))
-  // .style('font-weight', 'bold');
+  function toggleCountry() {
+    const locationID = this.name.split('_')[1];
+    const inputLabel = countryList.select(`[for=${this.name}]`);
+    console.log(this.checked);
+    // TODO when you click a country's input box
+    if (this.checked) {
+      // clicked on
+    } else {
+      // clicked off
+    }
+    // 1. check if the box has been clicked
+    // if it has just been clicked: activateCountry and label.
+    // if it has been clicked off, remove the line, remove the area, and deactivate the label
+  }
 
-  // d3.selectAll('.input_box_policy').on('input', toggleStateLine);
-
-  // function toggleStateLine() {
-  // const code = this.name.split('_')[0];
-  // const label = state_list.select(`[for=${this.name}]`);
-  // if (this.checked) {
-  // // input box has been checked
-  // // 1 - turn on state line
-  // addStateLine(code);
-  // // 2 - turn on label to match color
-  // label.style('color', colorScale(code)).style('font-weight', 'bold');
-  // } else {
-  // // input box has been unchecked
-  // // 1 - turn off state line
-  // bounds.select(`.${code}_temp_policy`).remove();
-  // label.style('color', '#000').style('font-weight', 'normal');
-  // // 2 - turn off label to match colors
-  // }
-  // }
-  // const tooltipDate = bounds
-  // .append('text')
-  // .attr('class', 'tooltipDate_policy')
-  // .style('opacity', 0);
-  // // tooltip interactivity:
-  // listeningRect.on('mousemove', onMouseMove).on('mouseleave', onMouseLeave);
-
-  // const tooltip = d3
-  // .select('#tooltip_policy')
-  // .style('opacity', 0)
-  // .style('top', `${dimensions.margin.top * 2}px`)
-  // .style('left', `${dimensions.margin.left * 1.25}px`);
-  // const tooltipHeader = tooltip.select('#tooltipHeader_policy');
-  // const tooltipContent = tooltip.select('#tooltipContent_policy');
-  // let activeStates;
-
-  // function onMouseMove() {
-  // tooltip.style('opacity', 1);
-  // // Translate mouse position into a date and y-value
-  // const mousePosition = d3.mouse(this);
-  // const hoveredDate = xScale.invert(mousePosition[0]);
-
-  // const getDistanceFromHoveredDate = d =>
-  // Math.abs(xAccessor(d) - hoveredDate);
-
-  // const closestIndex = d3.scan(
-  // dataset,
-  // (a, b) => getDistanceFromHoveredDate(a) - getDistanceFromHoveredDate(b)
-  // );
-  // const closestDate = dataset[closestIndex];
-
-  // const data = states.filter(d => d.date == closestDate.date);
-  // const closestXValue = xAccessor(closestDate);
-  // const closestYValue = yAccessor(closestDate);
-
-  // activeStates = ['Nacional'];
-  // // get a list of all the active states
-  // const allActive = document
-  // .getElementById('wrapper_policy_main')
-  // .getElementsByClassName('active_policy');
-
-  // Array.from(allActive).forEach(element => {
-  // code = element.getAttribute('class').split('_')[0];
-  // activeStates.push(code);
-  // });
-
-  // // clear the tooltip box
-  // tooltipHeader.selectAll('*').remove();
-  // tooltipContent.selectAll('*').remove();
-  // d3.selectAll('.temp_circle_policy').remove();
-
-  // const displayFormat = d3.timeFormat('%d %B');
-
-  // // Update tooltipDate with current date:
-  // tooltipDate
-  // .attr('x', xScale(closestXValue) + 15)
-  // .attr('y', mousePosition[1])
-  // .text(displayFormat(dateParser(closestDate.date)))
-  // .attr('font-weight', 700)
-  // .style('opacity', 1);
-  // // Add date to tooltip
-  // tooltipHeader
-  // .append('span')
-  // .html(displayFormat(dateParser(closestDate.date)));
-
-  // tooltipLine
-  // .attr('x1', xScale(closestXValue))
-  // .attr('x2', xScale(closestXValue))
-  // .attr('y1', 0)
-  // .attr('y2', dimensions.boundedHeight)
-  // .attr('stroke-width', 2)
-  // .attr('stroke-dasharray', '7px 2px')
-  // .attr('stroke', '#000')
-  // .style('opacity', 1);
-
-  // // add value for each active state to the tooltip
-  // activeStates.forEach(element => {
-  // // filter for the state's data on that day.
-  // const point = dataset
-  // .filter(d => d.state_short == element)
-  // .filter(d => d.date == closestDate.date);
-
-  // const yValue = yAccessor(point[0]);
-  // const xValue = xAccessor(point[0]);
-  // const stateName = stateCodeAccessor(point[0]);
-  // const getColor = _code => {
-  // if (_code == 'Nacional') {
-  // return '#171717';
-  // } else {
-  // return colorScale(stateName);
-  // }
-  // };
-  // const pointInfo = tooltipContent
-  // .append('tr')
-  // .attr('class', 'tooltip_state');
-  // pointInfo
-  // .append('td')
-  // .attr('class', 'tooltip_state_name')
-  // .html(point[0].state_name)
-  // .style('color', getColor(element));
-  // pointInfo
-  // .append('td')
-  // .attr('class', 'tooltip_value')
-  // .html(yValue.toFixed(1));
-
-  // // add a dot for each state
-  // bounds
-  // .append('circle')
-  // .attr('cx', xScale(xValue))
-  // .attr('cy', yScale(yValue))
-  // .attr('r', 7)
-  // .attr('fill', getColor(element))
-  // .attr('class', 'temp_circle_policy');
-  // });
-
-  // //
-  // }
-
-  // function onMouseLeave() {
-  // activeStates = ['Nacional'];
-  // tooltip.style('opacity', 0);
-  // tooltipLine.style('opacity', 0);
-  // bounds.selectAll('.temp_circle_policy').remove();
-  // tooltipDate.style('opacity', 0);
-  // }
-
-  // d3.selectAll('.states').on('click', toggleStateLineManually);
-  // d3.selectAll('.active_policy').on('click', toggleStateLineManually);
-  // function toggleStateLineManually() {
-  // const ourClass = this.classList[0];
-  // const code = ourClass.split('_')[0];
-  // // find the input box associated with this line
-  // const inputBox = d3.select(`[name=${code}_policy`);
-  // const isActive = inputBox._groups[0][0].checked;
-  // const label = d3.select(`[for=${code}_policy]`);
-  // if (isActive) {
-  // // remove the state line, turn off the label, and uncheck the box
-  // } else {
-  // // draw the state line, turn on the label, and check the box
-  // addStateLine(code);
-  // label.style('color', colorScale(code)).style('font-weight', 'bold');
-  // inputBox.property('checked', true);
-  // }
-  // }
+  // TODO use labels to toggle country data
 }
-ihmeChart();
