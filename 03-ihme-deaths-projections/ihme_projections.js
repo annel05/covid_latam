@@ -232,19 +232,22 @@ async function ihmeChart({chartKeyword, cutoffDate}) {
       d => xAccessor(d) > cutoffDateDate
     );
     // draw area
+    // TODO look at how I added the class `country_${_locationID}_temp` to area
     bounds
       .append('path')
       .attr('fill', colorScale(countryNameAccessor(countrySpecific[0])))
       .attr('fill-opacity', 0.15)
+      .attr('class', `country_${_locationID}_temp`)
       .attr('id', `country_${_locationID}_area`)
       .attr('stroke', 'none')
       .attr('d', areaGenerator(countrySpecific));
 
+    // TODO I also added it to the confirmed and projection lines
     // draw confirmed line
     bounds
       .append('path')
       .attr('fill', 'none')
-      .attr('class', `country_${_locationID} confirmedData`)
+      .attr('class', `country_${_locationID} country_${_locationID}_temp`)
       .attr('id', `country_${_locationID}_confirmed`)
       .attr('stroke-width', 1.25)
       .attr('stroke', colorScale(countryNameAccessor(countrySpecific[0])))
@@ -253,7 +256,7 @@ async function ihmeChart({chartKeyword, cutoffDate}) {
     bounds
       .append('path')
       .attr('fill', 'none')
-      .attr('class', `country_${_locationID} projectionData`)
+      .attr('class', `country_${_locationID} country_${_locationID}_temp`)
       .attr('id', `country_${_locationID}_projection`)
       .attr('stroke-width', 1.25)
       .attr('stroke', colorScale(countryNameAccessor(countrySpecific[0])))
@@ -310,9 +313,8 @@ async function ihmeChart({chartKeyword, cutoffDate}) {
     activateCountry(_element);
     const countrySelector = `country_${_element}_${chartKeyword}`;
     // TODO find countryName based on location
-    const countryName = countryData.filter(
-      d => _element == d.location_id
-    )[0].location_name;
+    const countryName = countryData.filter(d => _element == d.location_id)[0]
+      .location_name;
     // checkbox clicked
     d3.select(`[name=${countrySelector}]`).property('checked', true);
     // label active
@@ -335,10 +337,11 @@ async function ihmeChart({chartKeyword, cutoffDate}) {
         .style('font-weight', 'bold');
     } else {
       // clicked off
-      const confirmed = bounds.select(`path#country_${locationID}_confirmed`);
-      const projected = bounds.select(`path#country_${locationID}_projection`);
-      confirmed.remove();
-      projected.remove();
+      // select the lines & area and remove them
+      const linesPlusArea = d3.selectAll(`.country_${locationID}_temp`);
+      linesPlusArea.remove();
+
+      // remove style of label
       inputLabel.style('color', '#000').style('font-weight', 'normal');
     }
     // 1. check if the box has been clicked
