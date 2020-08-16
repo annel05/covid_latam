@@ -310,7 +310,9 @@ async function ihmeChart({chartKeyword, cutoffDate}) {
     activateCountry(_element);
     const countrySelector = `country_${_element}_${chartKeyword}`;
     // TODO find countryName based on location
-    const countryName = 'Mexico';
+    const countryName = countryData.filter(
+      d => _element == d.location_id
+    )[0].location_name;
     // checkbox clicked
     d3.select(`[name=${countrySelector}]`).property('checked', true);
     // label active
@@ -324,12 +326,20 @@ async function ihmeChart({chartKeyword, cutoffDate}) {
   function toggleCountry() {
     const locationID = this.name.split('_')[1];
     const inputLabel = countryList.select(`[for=${this.name}]`);
-    console.log(this.checked);
     // TODO when you click a country's input box
     if (this.checked) {
       // clicked on
+      activateCountry(locationID);
+      inputLabel
+        .style('color', colorScale(this.name))
+        .style('font-weight', 'bold');
     } else {
       // clicked off
+      const confirmed = bounds.select(`path#country_${locationID}_confirmed`);
+      const projected = bounds.select(`path#country_${locationID}_projection`);
+      confirmed.remove();
+      projected.remove();
+      inputLabel.style('color', '#000').style('font-weight', 'normal');
     }
     // 1. check if the box has been clicked
     // if it has just been clicked: activateCountry and label.
