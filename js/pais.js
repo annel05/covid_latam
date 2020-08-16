@@ -123,7 +123,6 @@ let colorGroup = [
   '#9DC3E5',
   '#AAD18D',
   '#213964',
-  '#4A72B8',
 ];
 
 let countryWatchList = [
